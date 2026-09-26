@@ -1,0 +1,48 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ---------------------------------------------------------------------------
+# Monorepo additions
+# ---------------------------------------------------------------------------
+
+# Never commit environment files. Each app keeps its .env locally and the
+# Vercel projects hold the deployed values.
+.env
+.env.*
+!.env.example
+
+# Local Vercel CLI link state (created by `vercel link`)
+.vercel
+
+# Test artefacts
+test-results/
+playwright-report/
+
+# OneSignal service-worker SDK downloads — kept locally only. The portals'
+# own public/OneSignalSDKWorker.js loads the SDK from cdn.onesignal.com at
+# runtime, so these extracted downloads are not part of any build.
+OneSignalSDK-v16-ServiceWorker_*/

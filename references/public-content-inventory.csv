@@ -1,0 +1,22 @@
+legacy_url,new_route,content_area,owner,asset_rights,verification_date,state,notes
+https://www.westincolleges.com/vij/,/,college overview,College content owner,Pending,2026-09-24,fixture,Use as inventory only until current wording and imagery are approved
+https://www.westincolleges.com/vij/about,/about,about and values,College content owner,Pending,2026-09-24,fixture,Verify history mission vision and campus description
+https://www.westincolleges.com/vij/management,/about/management,management,College content owner,Pending,2026-09-24,blocked,Obtain approved names roles bios and portraits
+https://www.westincolleges.com/vij/courses,/programs,program discovery,Academic owner,Pending,2026-09-24,fixture,Verify qualification names duration eligibility and streams
+https://www.westincolleges.com/vij/bba,/programs/bba,BBA,Academic owner,Pending,2026-09-24,fixture,No fees deadlines ranking or outcome numbers in fixture
+https://www.westincolleges.com/vij/hotel-management,/programs/hotel-management,hotel management,Academic owner,Pending,2026-09-24,fixture,Confirm degree wording and practical-learning claims
+https://www.westincolleges.com/vij/intermediate,/programs/intermediate,intermediate MEC and CEC,Academic owner,Pending,2026-09-24,fixture,Confirm current streams and progression information
+https://www.westincolleges.com/vij/why-westin,/why-westin,reasons to choose Westin,College content owner,Pending,2026-09-24,fixture,Replace generic copy with evidence-led approved content
+https://www.westincolleges.com/vij/campus,/campus,campus life,College content owner,Pending,2026-09-24,fixture,Use permission-cleared campus photography
+https://www.westincolleges.com/vij/infrastructure,/campus/infrastructure,facilities,College content owner,Pending,2026-09-24,blocked,Verify current facilities and obtain references
+https://www.westincolleges.com/vij/placements,/placements,placements and career guidance,Career owner,Pending,2026-09-24,blocked,Require dated verifiable outcomes and approved employer marks
+https://www.westincolleges.com/vij/bineid,/partners/bineid,partnership,College content owner,Pending,2026-09-24,blocked,Verify current relationship and approved wording
+https://www.westincolleges.com/vij/news,/news,news,Editorial owner,Pending,2026-09-24,fixture,Published API remains empty until CMS revision is approved
+https://www.westincolleges.com/vij/blog,/blog,blog,Editorial owner,Pending,2026-09-24,fixture,Create only from approved articles
+https://www.westincolleges.com/vij/events,/campus/events,public event stories,Editorial owner,Pending,2026-09-24,fixture,Keep distinct from private portal events
+https://www.westincolleges.com/vij/gallery,/gallery,gallery,Editorial owner,Pending,2026-09-24,fixture,Require media rights alt text focal point and captions
+https://www.westincolleges.com/vij/magazine,/magazine,magazine and publications,Editorial owner,Pending,2026-09-24,fixture,Verify edition dates PDF rights and metadata
+https://www.westincolleges.com/vij/testimonials,/testimonials,testimonials,College content owner,Pending,2026-09-24,blocked,Require consent dates and context for identifiable voices
+https://www.westincolleges.com/vij/success-stories,/success-stories,success stories,College content owner,Pending,2026-09-24,blocked,Require dated verifiable stories
+https://www.westincolleges.com/vij/admissions,/admissions,admissions and campus visits,Admissions owner,Pending,2026-09-24,blocked,Privacy retention and current process approval required
+https://www.westincolleges.com/vij/contact,/contact,contact,College content owner,Pending,2026-09-24,blocked,Verify address phone email directions and approved enquiry route

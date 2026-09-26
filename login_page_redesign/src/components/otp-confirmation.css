@@ -1,0 +1,130 @@
+.otp-confirmation {
+  padding-top: 2px;
+  min-width: 0;
+}
+.otp-confirmation .card-heading h2:focus {
+  outline: none;
+}
+.otp-confirmation-scene {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 28px auto 6px;
+  overflow: visible;
+}
+.otp-confirmation-orbit {
+  animation: otp-confirmation-orbit 2.4s ease both;
+}
+.otp-confirmation-rotor {
+  animation: otp-confirmation-spin 2.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+.otp-confirmation-tile {
+  animation: otp-confirmation-gather 2.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+.otp-confirmation-tile rect {
+  fill: #f0f7fb;
+  stroke: #a7c9dd;
+  stroke-width: 1.2;
+  animation: otp-confirmation-color 2.4s ease both;
+}
+.otp-confirmation-tile text {
+  fill: #254f70;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: inherit;
+}
+.otp-confirmation-check {
+  animation: otp-confirmation-check 2.4s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+.otp-confirmation-status {
+  margin: 16px 0 8px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #28714f;
+}
+.otp-confirmation-caption {
+  margin: 0;
+  text-align: center;
+  font-size: 11px;
+  color: #536e7e;
+}
+@keyframes otp-confirmation-gather {
+  0%,
+  8% {
+    transform: translate(var(--row-x), 0);
+    opacity: 1;
+  }
+  30%,
+  72% {
+    transform: translate(var(--orbit-x), var(--orbit-y));
+    opacity: 1;
+  }
+  86%,
+  100% {
+    transform: translate(0, 0) scale(0.3);
+    opacity: 0;
+  }
+}
+@keyframes otp-confirmation-spin {
+  0%,
+  30% {
+    transform: rotate(0deg);
+  }
+  68%,
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes otp-confirmation-color {
+  0%,
+  60% {
+    fill: #f0f7fb;
+    stroke: #a7c9dd;
+  }
+  72%,
+  100% {
+    fill: #e0f3e9;
+    stroke: #78b997;
+  }
+}
+@keyframes otp-confirmation-orbit {
+  0%,
+  10%,
+  86%,
+  100% {
+    opacity: 0;
+  }
+  30%,
+  72% {
+    opacity: 1;
+  }
+}
+@keyframes otp-confirmation-check {
+  0%,
+  81% {
+    opacity: 0;
+    transform: scale(0.65);
+  }
+  94%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.westin-preview[data-reduced-motion="true"] .otp-confirmation * {
+  animation: none !important;
+}
+.westin-preview[data-reduced-motion="true"] .otp-confirmation-rotor,
+.westin-preview[data-reduced-motion="true"] .otp-confirmation-orbit {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .otp-confirmation * {
+    animation: none !important;
+  }
+  .otp-confirmation-rotor,
+  .otp-confirmation-orbit {
+    display: none;
+  }
+}

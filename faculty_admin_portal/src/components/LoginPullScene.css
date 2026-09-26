@@ -1,0 +1,739 @@
+/*
+ * The pulling scene is deliberately scoped to its root so the production
+ * portal screens keep their existing typography and layout rules.
+ */
+.login-pull-scene {
+  --pull-ink: #142d46;
+  --pull-muted: #456880;
+  --pull-blue: #176caf;
+  --pull-line: #cce7f7;
+  container-type: inline-size;
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 416px;
+  gap: 52px;
+  align-items: center;
+  width: 100%;
+  max-width: 1280px;
+  min-height: 684px;
+  margin: 0 auto;
+  padding: 46px 56px 48px;
+  overflow: hidden;
+  border: 1px solid var(--pull-line);
+  border-radius: 32px;
+  background:
+    radial-gradient(ellipse at 12% 4%, #effbff 0, transparent 62%),
+    linear-gradient(130deg, #daf1ff 10%, #b1e0fb 67%, #9cd4f6);
+}
+
+.login-pull-scene .stage-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(#fff3 1px, transparent 1px),
+    linear-gradient(90deg, #fff3 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(135deg, transparent 25%, #0009 95%);
+}
+
+.login-pull-scene .stage-orbit {
+  position: absolute;
+  border: 1px solid #ffffff57;
+  border-radius: 50%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.login-pull-scene .stage-orbit-one {
+  width: 700px;
+  height: 700px;
+  right: -250px;
+  top: -240px;
+}
+
+.login-pull-scene .stage-orbit-two {
+  width: 860px;
+  height: 860px;
+  right: -330px;
+  top: -320px;
+}
+
+.login-pull-scene .stage-story {
+  position: relative;
+  align-self: stretch;
+  min-height: 580px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.login-pull-scene .story-copy {
+  position: relative;
+  z-index: 2;
+  padding-top: 20px;
+  color: var(--pull-ink);
+}
+
+.login-pull-scene .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  line-height: 1.6;
+}
+
+.login-pull-scene .eyebrow > span {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #247a93;
+  box-shadow: 0 0 0 4px #75c5d226;
+}
+
+.login-pull-scene .story-copy h1 {
+  margin: 25px 0 20px;
+  color: var(--pull-ink);
+  font-family: ui-rounded, "Trebuchet MS", Inter, system-ui, sans-serif;
+  font-size: clamp(45px, 4.8cqi, 66px);
+  font-weight: 700;
+  letter-spacing: -2.7px;
+  line-height: 1.05;
+}
+
+.login-pull-scene .story-copy h1 span {
+  position: relative;
+  color: var(--pull-blue);
+  white-space: nowrap;
+}
+
+.login-pull-scene .story-copy h1 span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 6px;
+  border-radius: 50%;
+  border-top: 3px solid #ec9556;
+  transform: rotate(-2deg);
+}
+
+.login-pull-scene .story-copy > p {
+  margin: 0;
+  color: var(--pull-muted);
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.login-pull-scene .story-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  color: #416882;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.login-pull-scene .story-note svg {
+  color: #866324;
+}
+
+.login-pull-scene .campus-sketch {
+  position: absolute;
+  left: -28px;
+  bottom: 31px;
+  z-index: 0;
+  width: min(560px, calc(100% + 32px));
+  max-width: none;
+  height: auto;
+  color: #386984;
+  opacity: 0.62;
+}
+
+.login-pull-scene .pull-character {
+  position: absolute;
+  right: -36px;
+  bottom: 3px;
+  z-index: 3;
+  width: 248px;
+  transform-origin: center bottom;
+}
+
+.login-pull-scene .ground-line {
+  position: absolute;
+  right: -68px;
+  bottom: 16px;
+  width: 240px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #689cbd80, transparent);
+}
+
+.login-pull-scene .notebook-note {
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 12px;
+  border: 1px solid #f3e7cf;
+  border-radius: 8px;
+  background: #fffaf0;
+  box-shadow: 3px 5px 0 #5990b016;
+  color: #78664a;
+  font-size: 10px;
+  line-height: 1.7;
+  transform: rotate(-2deg);
+}
+
+.login-pull-scene .notebook-note > svg:first-child {
+  color: #b88d48;
+}
+
+.login-pull-scene .notebook-note strong {
+  color: #493f30;
+  font-weight: 600;
+}
+
+.login-pull-scene .notebook-note > svg:last-child {
+  align-self: flex-start;
+  margin-left: 5px;
+}
+
+.login-pull-scene .scene-rope {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.login-pull-scene .pull-card {
+  position: relative;
+  z-index: 5;
+  min-width: 0;
+  transform-origin: 0 45%;
+}
+
+.login-pull-scene .pull-card > .card-rope-anchor {
+  position: absolute;
+  top: 56%;
+  left: -7px;
+  z-index: -1;
+  width: 14px;
+  height: 22px;
+  border: 3px solid #a68a65;
+  border-radius: 8px;
+  background: #efe4d1;
+  box-shadow: 1px 0 2px #8558222e;
+}
+
+.login-pull-scene .login-card {
+  position: relative;
+  min-height: 570px;
+  padding: 30px 32px 20px;
+  border: 1px solid #ffffff;
+  border-radius: 24px;
+  background: #fffefa;
+  box-shadow:
+    0 18px 45px -14px #23587938,
+    0 3px 6px #23587908;
+}
+
+.login-pull-scene .login-card input {
+  min-height: 44px;
+}
+
+.login-pull-scene .stage-bottom-note {
+  position: absolute;
+  left: 55px;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #517f99;
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+}
+
+.login-pull-scene .stage-bottom-note > span {
+  width: 21px;
+  height: 1px;
+  background: currentColor;
+}
+
+.login-pull-scene .skip-animation {
+  position: absolute;
+  right: 58px;
+  bottom: 13px;
+  z-index: 8;
+  padding: 8px 10px;
+  border: 1px solid #b7d8ec;
+  border-radius: 6px;
+  background: #eef8ffeb;
+  color: #24608a;
+  font-size: 10px;
+}
+
+.login-pull-scene .skip-animation span {
+  padding-left: 8px;
+}
+
+/* One viewport-sized composition. Intrinsic form height may expand the page
+ * when zoom, a virtual keyboard or an install guide needs more space; never
+ * hide overflow or scale down the controls to force a fit.
+ * Keep this production stylesheet in sync in the student and staff apps. */
+.login-page-shell {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: clip;
+  background:
+    radial-gradient(ellipse at 12% 4%, #effbff 0, transparent 62%),
+    linear-gradient(130deg, #daf1ff 10%, #b1e0fb 67%, #9cd4f6);
+}
+.login-page-shell .login-page-header,
+.login-page-shell .login-page-footer {
+  position: relative;
+  z-index: 10;
+  flex: 0 0 auto;
+  max-width: 1240px;
+  padding-inline: 40px;
+}
+.login-page-shell .login-page-main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+.login-page-shell .login-pull-scene {
+  flex: 1;
+  width: 100%;
+  max-width: 1240px;
+  min-height: 0;
+  margin: 0 auto;
+  padding: clamp(20px, 3dvh, 32px) 40px;
+  grid-template-columns: minmax(0, 1fr) 416px;
+  gap: 40px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.login-page-shell .stage-story {
+  align-self: center;
+  height: min(620px, calc(100dvh - 160px));
+  min-height: 0;
+}
+.login-page-shell .story-copy {
+  padding-top: 12px;
+}
+.login-page-shell .story-copy h1 {
+  font-size: clamp(42px, 4.4vw, 62px);
+}
+.login-page-shell .campus-sketch {
+  left: -12px;
+  bottom: 40px;
+  width: min(510px, calc(100% + 12px));
+}
+.login-page-shell .pull-character {
+  right: -26px;
+  bottom: 8px;
+  width: clamp(190px, 26dvh, 248px);
+}
+.login-page-shell .notebook-note {
+  bottom: 0;
+}
+.login-page-shell .stage-bottom-note {
+  left: 40px;
+  bottom: 9px;
+}
+.login-page-shell .skip-animation {
+  right: 40px;
+  bottom: 4px;
+}
+.login-page-shell .login-card {
+  min-height: min(540px, calc(100dvh - 190px));
+  padding: 26px 28px;
+}
+.login-page-shell .login-card-topline {
+  margin-bottom: 18px;
+}
+.login-page-shell .login-card-intro {
+  margin-bottom: 22px;
+}
+.login-page-shell .login-card-intro img {
+  height: 52px;
+  width: auto;
+}
+.login-page-shell .login-card-intro h2 {
+  margin-top: 12px;
+  font-size: 24px;
+  line-height: 1.2;
+}
+.login-page-shell .login-card-intro p {
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.login-page-shell .login-card label {
+  font-size: 13px;
+}
+.login-page-shell .login-card button[type="submit"] {
+  margin-top: 20px;
+  min-height: 46px;
+  padding-block: 10px;
+}
+.login-page-shell .login-card-help {
+  margin-top: 18px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.login-page-shell .login-card [role="alert"] {
+  margin-top: 12px;
+  padding: 8px 12px;
+}
+.login-page-shell .login-otp-feedback .ota-root {
+  padding: 0;
+}
+.login-page-shell .login-page-install:empty {
+  display: none;
+}
+.login-page-shell .login-page-install:not(:empty) {
+  padding: 8px 16px 12px;
+}
+.login-page-shell .login-page-footer {
+  padding-block: 12px;
+  gap: 12px;
+  color: #416882;
+}
+
+/* These are viewport queries: the scene cannot query its own container size
+ * to change its columns. Descendant-only container rules left mobile in the
+ * desktop grid in the old stylesheet. */
+@media (min-width: 901px) and (max-width: 1150px) {
+  .login-page-shell .login-pull-scene {
+    grid-template-columns: minmax(0, 1fr) 370px;
+    gap: 30px;
+    padding-inline: 32px;
+  }
+  .login-page-shell .login-page-header,
+  .login-page-shell .login-page-footer {
+    padding-inline: 32px;
+  }
+  .login-page-shell .story-copy h1 {
+    font-size: 44px;
+  }
+  .login-page-shell .pull-character {
+    right: -23px;
+    width: 204px;
+  }
+  .login-page-shell .campus-sketch {
+    width: min(420px, 100%);
+  }
+  .login-page-shell .login-card {
+    padding-inline: 24px;
+  }
+}
+@media (max-height: 760px) {
+  .login-page-shell .login-page-header {
+    padding-block: 6px;
+  }
+  .login-page-shell .login-page-header img {
+    height: 40px;
+    width: auto;
+  }
+  .login-page-shell .login-pull-scene {
+    padding-block: 16px;
+  }
+  .login-page-shell .stage-story {
+    height: min(480px, calc(100dvh - 132px));
+  }
+  .login-page-shell .story-copy {
+    padding-top: 0;
+  }
+  .login-page-shell .story-copy h1 {
+    font-size: clamp(40px, 4.2vw, 54px);
+    margin-block: 16px;
+  }
+  .login-page-shell .story-note {
+    margin-top: 12px;
+  }
+  .login-page-shell .campus-sketch {
+    width: min(390px, 72%);
+    bottom: 25px;
+  }
+  .login-page-shell .pull-character {
+    width: clamp(160px, 28dvh, 210px);
+    bottom: 0;
+  }
+  .login-page-shell .notebook-note {
+    padding-block: 4px;
+    font-size: 9px;
+  }
+  .login-page-shell .stage-bottom-note {
+    display: none;
+  }
+  .login-page-shell .login-card {
+    min-height: min(470px, calc(100dvh - 150px));
+    padding: 20px 26px;
+  }
+  .login-page-shell .login-card-topline {
+    margin-bottom: 12px;
+  }
+  .login-page-shell .login-card-intro {
+    margin-bottom: 16px;
+  }
+  .login-page-shell .login-card-intro img {
+    height: 40px;
+  }
+  .login-page-shell .login-card-intro h2 {
+    margin-top: 8px;
+    font-size: 22px;
+  }
+  .login-page-shell .login-card-intro p {
+    line-height: 1.45;
+  }
+  .login-page-shell .login-card input {
+    height: 44px;
+    min-height: 44px;
+  }
+  .login-page-shell .login-card-fields > :not(:last-child) {
+    margin-bottom: 12px;
+  }
+  .login-page-shell .login-card button[type="submit"] {
+    margin-top: 16px;
+    min-height: 44px;
+    padding-block: 8px;
+  }
+  .login-page-shell .login-card-help {
+    margin-top: 12px;
+    font-size: 12px;
+  }
+  .login-page-shell .login-page-footer {
+    padding-block: 8px;
+    font-size: 11px;
+  }
+}
+@media (max-width: 900px) {
+  .login-page-shell .login-pull-scene {
+    flex: 0 0 auto;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    max-width: 500px;
+    padding: 12px 24px 16px;
+  }
+  .login-page-shell .login-page-main {
+    justify-content: center;
+  }
+  .login-page-shell .stage-story {
+    width: 100%;
+    min-height: 0;
+    height: clamp(140px, 20dvh, 180px);
+  }
+  .login-page-shell .story-copy {
+    padding: 0;
+  }
+  .login-page-shell .story-copy h1 {
+    margin: 10px 0 0;
+    font-size: clamp(27px, 4.8vw, 34px);
+    letter-spacing: -1.4px;
+    line-height: 1.08;
+  }
+  .login-page-shell .eyebrow {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+  .login-page-shell .story-copy > p,
+  .login-page-shell .story-note,
+  .login-page-shell .notebook-note,
+  .login-page-shell .stage-bottom-note,
+  .login-page-shell .ground-line {
+    display: none;
+  }
+  .login-page-shell .campus-sketch {
+    left: 0;
+    bottom: -2px;
+    width: 168px;
+    opacity: 0.45;
+  }
+  .login-page-shell .pull-character {
+    right: 4px;
+    bottom: -8px;
+    width: clamp(92px, 15dvh, 120px);
+  }
+  .login-page-shell .pull-card {
+    width: 100%;
+    max-width: 452px;
+    justify-self: center;
+  }
+  .login-page-shell .pull-card > .card-rope-anchor {
+    top: -7px;
+    right: 26px;
+    left: auto;
+    width: 22px;
+    height: 14px;
+  }
+  .login-page-shell .login-card {
+    min-height: 0;
+    padding: 22px 26px;
+    border-radius: 22px;
+  }
+  .login-page-shell .login-card-intro img {
+    height: 40px;
+  }
+  .login-page-shell .login-card-topline {
+    margin-bottom: 12px;
+  }
+  .login-page-shell .login-card-intro {
+    margin-bottom: 16px;
+  }
+  .login-page-shell .login-card-intro h2 {
+    margin-top: 8px;
+    font-size: 22px;
+  }
+  .login-page-shell .login-card-intro p {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .login-page-shell .login-card-help {
+    margin-top: 14px;
+    font-size: 12px;
+  }
+  .login-page-shell .skip-animation {
+    top: 12px;
+    bottom: auto;
+    right: 24px;
+    padding: 6px;
+    font-size: 9px;
+  }
+  .login-page-shell .skip-animation span {
+    display: none;
+  }
+  .login-page-shell .login-page-header,
+  .login-page-shell .login-page-footer {
+    padding-inline: 24px;
+  }
+  .login-page-shell .login-page-footer {
+    flex-wrap: wrap;
+    font-size: 10px;
+    gap: 4px 12px;
+    padding-block: 8px;
+  }
+}
+@media (max-width: 900px) and (max-height: 760px) {
+  .login-page-shell .login-pull-scene {
+    gap: 12px;
+    padding-block: 6px 10px;
+  }
+  .login-page-shell .stage-story {
+    height: 100px;
+  }
+  .login-page-shell .campus-sketch {
+    left: auto;
+    right: 58px;
+    bottom: -4px;
+    width: 125px;
+    opacity: 0.24;
+  }
+  .login-page-shell .pull-character {
+    right: 0;
+    width: 78px;
+  }
+  .login-page-shell .story-copy h1 {
+    font-size: 26px;
+  }
+  .login-page-shell .login-card {
+    padding: 16px 22px;
+  }
+  .login-page-shell .login-card-intro img {
+    height: 32px;
+  }
+  .login-page-shell .login-card-intro h2 {
+    font-size: 21px;
+  }
+  .login-page-shell .login-card-intro p {
+    margin-top: 4px;
+    font-size: 12px;
+  }
+  .login-page-shell .login-card-topline,
+  .login-page-shell .login-card-intro {
+    margin-bottom: 10px;
+  }
+  .login-page-shell .login-card label {
+    margin-bottom: 4px;
+    font-size: 12px;
+  }
+  .login-page-shell .login-card-help {
+    margin-top: 10px;
+  }
+  .login-page-shell .login-card button[type="submit"] {
+    margin-top: 12px;
+  }
+}
+@media (max-width: 374px) {
+  .login-page-shell .login-pull-scene {
+    padding-inline: 16px;
+  }
+  .login-page-shell .login-card {
+    padding-inline: 18px;
+  }
+  .login-page-shell .story-copy h1 {
+    font-size: 25px;
+  }
+  .login-page-shell .eyebrow {
+    font-size: 6px;
+  }
+  .login-page-shell .login-page-header,
+  .login-page-shell .login-page-footer {
+    padding-inline: 16px;
+  }
+}
+
+/* On short phones, omit only duplicate branding and explanatory copy.
+ * The actual labels, fields, errors and actions retain their readable sizes. */
+@media (max-width: 900px) and (max-height: 640px) {
+  .login-page-shell .stage-story {
+    height: 64px;
+  }
+  .login-page-shell .story-copy h1 {
+    margin: 0;
+    font-size: 22px;
+  }
+  .login-page-shell .eyebrow,
+  .login-page-shell .login-card-intro picture,
+  .login-page-shell .login-card-intro p {
+    display: none;
+  }
+  .login-page-shell .login-card-intro h2 {
+    margin-top: 0;
+  }
+  .login-page-shell .pull-character {
+    width: 54px;
+  }
+  .login-page-shell .campus-sketch {
+    right: 46px;
+    width: 92px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .login-pull-scene *,
+  .login-pull-scene *::before,
+  .login-pull-scene *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

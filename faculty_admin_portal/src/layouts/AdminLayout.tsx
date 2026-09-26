@@ -1,0 +1,62 @@
+import {
+  Bell,
+  CalendarClock,
+  CalendarDays,
+  FileText,
+  FolderOpen,
+  Globe2,
+  GraduationCap,
+  History,
+  Inbox,
+  Layers,
+  LayoutDashboard,
+  LayoutList,
+  Send,
+  Settings,
+  SlidersHorizontal,
+  Users,
+} from 'lucide-react'
+import { PortalShell } from './PortalShell'
+import { useAdminAuth } from '../contexts/AdminAuthContext'
+
+export const adminNavItems = [
+  { label: 'Dashboard', to: '/admin', icon: LayoutDashboard },
+  { label: 'Teachers', to: '/admin/teachers', icon: Users },
+  { label: 'Students', to: '/admin/students', icon: GraduationCap },
+  { label: 'Sections', to: '/admin/sections', icon: Layers },
+  { label: 'Timetable', to: '/admin/timetable', icon: CalendarDays },
+  { label: 'Events', to: '/admin/events', icon: CalendarClock },
+  { label: 'Study Materials', to: '/admin/materials', icon: FolderOpen },
+  { label: 'Daily Reports', to: '/admin/reports', icon: FileText },
+  { label: 'Website', to: '/admin/website', icon: Globe2 },
+  { label: 'Enquiries', to: '/admin/enquiries', icon: Inbox },
+  {
+    label: 'Notifications',
+    to: '/admin/notifications',
+    icon: Bell,
+    children: [
+      { label: 'Send Notification', to: '/admin/notifications/send', icon: Send },
+      { label: 'Notification Templates', to: '/admin/notifications/templates', icon: LayoutList },
+      { label: 'Notification History', to: '/admin/notifications/history', icon: History },
+      { label: 'My Notification Settings', to: '/admin/notifications/settings', icon: SlidersHorizontal },
+    ],
+  },
+  { label: 'Settings', to: '/admin/settings', icon: Settings },
+]
+
+export function AdminLayout() {
+  const { isAuthenticated, user, logout } = useAdminAuth()
+
+  return (
+    <PortalShell
+      isAuthenticated={isAuthenticated}
+      loginPath="/admin/login"
+      portalTitle="Admin Portal"
+      navItems={adminNavItems}
+      profileName={user?.name ?? ''}
+      profileDetail={user?.role ?? ''}
+      avatarUrl={user?.avatarUrl ?? null}
+      onLogout={logout}
+    />
+  )
+}

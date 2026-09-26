@@ -1,0 +1,16 @@
+{
+  "name": "otp-animation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "1:1 rebuild of WhatsApp OTP video — Verify your number (pure CSS, no deps)",
+  "type": "module",
+  "scripts": {
+    "preview": "echo \"Open index.html directly — no server needed. For Vite: npx vite --open index.html\"",
+    "dev": "npx vite --open index.html --port 5179",
+    "lint": "echo \"No lint needed — standalone HTML\"",
+    "copy:portals": "cp src/OtpAnimation.tsx ../Student_portal/src/components/OtpAnimation.tsx && cp src/OtpAnimation.tsx ../faculty_admin_portal/src/components/OtpAnimation.tsx && echo \"Copied to both portals\""
+  },
+  "keywords": ["otp", "animation", "react", "tailwind", "verify"],
+  "author": "Westin College",
+  "license": "UNLICENSED"
+}
