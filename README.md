@@ -23,8 +23,10 @@ all three independently.
 - **Backend** reads its configuration from Vercel environment variables
   (`DATABASE_URL`, `SUPABASE_*`, `JWT_SECRET`, `SMTP_*`, `CORS_ORIGINS`,
   `ONESIGNAL_*`, …). `CORS_ORIGINS` must list the deployed frontend origins.
-- `westin-api/vercel.json` keeps the existing `builds`/`routes` contract:
-  `src/main.ts` exports the Nest handler and Vercel routes every path to it.
+- `westin-api/vercel.json` keeps the `builds`/`routes` contract: `src/main.ts`
+  exports the Nest handler and Vercel routes every path to it. It deliberately
+  sets no CORS headers — `app.enableCors()` in `src/main.ts` is the single
+  source of truth, driven by `CORS_ORIGINS`.
 - Each app's `vercel.json` (SPA rewrites, caching and security headers) is
   unchanged and is read from the app's own Root Directory.
 
@@ -50,6 +52,10 @@ cd Student_portal && npm test                 # Playwright (fixture + published 
 cd westin-api && npm run smoke                # API smoke suite against a running API
 API_URL=https://westin-api.vercel.app npm run smoke   # …or against production
 ```
+
+Faculty and admin are OTP-only, so the smoke suite skips their sections unless
+emailed codes are supplied: `OTP_FACULTY=123456 OTP_ADMIN=654321 npm run smoke`.
+Request the code in the portal first — issuing a new one invalidates the old.
 
 ## Deploying
 
