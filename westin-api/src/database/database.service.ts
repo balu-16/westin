@@ -6,6 +6,20 @@ import { env } from '../config/env';
  * Thin wrapper around node-postgres. All SQL in this codebase is hand-written
  * and parameterized — there is no ORM by design.
  */
+
+/**
+ * The Supabase pooler hands out a fixed number of client slots (pool_size: 15 on
+ * the session pooler) shared by everything that connects — every Vercel
+ * instance plus local dev. A per-instance `max` larger than that guarantees
+ * `EMAXCONNSESSION: max clients reached`, and `onModuleInit` then throws, so
+ * the function fails to boot with FUNCTION_INVOCATION_FAILED. Keep the
+ * per-instance pool small and configurable; multiply it by the number of
+ * concurrent instances and keep the result under the pooler's pool_size.
+ */
+const POOL_MAX = Math.max(1, Number(process.env.DB_POOL_MAX ?? 3) || 3);
+const INIT_ATTEMPTS = 3;
+const INIT_BACKOFF_MS = 1_000;
+
 @Injectable()
 export class DatabaseService implements OnModuleInit, OnModuleDestroy {
   private pool: Pool;
@@ -14,7 +28,7 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy {
     this.pool = new Pool({
       connectionString: env.databaseUrl,
       ssl: { rejectUnauthorized: false },
-      max: 20,
+      max: POOL_MAX,
       idleTimeoutMillis: 30_000,
       connectionTimeoutMillis: 5_000,
       statement_timeout: 8_000,
@@ -24,7 +38,24 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy {
   }
 
   async onModuleInit() {
-    await this.query('select 1');
+    // A cold start can land while the shared pooler is momentarily saturated by
+    // other instances. Retry before giving up so one busy moment does not take
+    // the whole API down.
+    let lastError: unknown;
+    for (let attempt = 1; attempt <= INIT_ATTEMPTS; attempt++) {
+      try {
+        await this.query('select 1');
+        return;
+      } catch (err) {
+        lastError = err;
+        const message = err instanceof Error ? err.message : String(err);
+        console.error(`[db] init attempt ${attempt}/${INIT_ATTEMPTS} failed: ${message}`);
+        if (attempt < INIT_ATTEMPTS) {
+          await new Promise((resolve) => setTimeout(resolve, INIT_BACKOFF_MS * attempt));
+        }
+      }
+    }
+    throw lastError;
   }
 
   async onModuleDestroy() {
