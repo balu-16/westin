@@ -6,9 +6,10 @@ import { DashboardLayout } from './layouts/DashboardLayout'
 import { PageLoader } from './components/Loading'
 import { PublicLayout } from './public/PublicLayout'
 import { PublicHome } from './public/PublicHome'
+import { PublicPage, PublicSearch, NotFound as PublicNotFound } from './public/PublicPage'
 
-// Keep the landing page in the first render: a short loading fallback moves
-// the footer and causes a large layout shift. Other pages remain lazy-loaded.
+// Keep public pages in the first render: a chunk fallback would interrupt
+// their route transitions. Private pages remain lazy-loaded.
 const Login = lazy(() => import('./pages/Login').then((m) => ({ default: m.Login })))
 const Dashboard = lazy(() => import('./pages/Dashboard').then((m) => ({ default: m.Dashboard })))
 const Timetable = lazy(() => import('./pages/Timetable').then((m) => ({ default: m.Timetable })))
@@ -19,9 +20,6 @@ const StudyMaterials = lazy(() =>
 const Events = lazy(() => import('./pages/Events').then((m) => ({ default: m.Events })))
 const Settings = lazy(() => import('./pages/Settings').then((m) => ({ default: m.Settings })))
 const OtpDemo = lazy(() => import('./pages/OtpDemo').then((m) => ({ default: m.OtpDemo })))
-const PublicPage = lazy(() => import('./public/PublicPage').then((m) => ({ default: m.PublicPage })))
-const PublicSearch = lazy(() => import('./public/PublicPage').then((m) => ({ default: m.PublicSearch })))
-const PublicNotFound = lazy(() => import('./public/PublicPage').then((m) => ({ default: m.NotFound })))
 
 /** Walker fallback for chunk-loaded routes — shows the section's own
  *  dedicated label so it never fights the page's data-loading state. */

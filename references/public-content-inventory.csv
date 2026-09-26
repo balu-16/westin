@@ -1,22 +1,24 @@
-legacy_url,new_route,content_area,owner,asset_rights,verification_date,state,notes
-https://www.westincolleges.com/vij/,/,college overview,College content owner,Pending,2026-09-24,fixture,Use as inventory only until current wording and imagery are approved
-https://www.westincolleges.com/vij/about,/about,about and values,College content owner,Pending,2026-09-24,fixture,Verify history mission vision and campus description
-https://www.westincolleges.com/vij/management,/about/management,management,College content owner,Pending,2026-09-24,blocked,Obtain approved names roles bios and portraits
-https://www.westincolleges.com/vij/courses,/programs,program discovery,Academic owner,Pending,2026-09-24,fixture,Verify qualification names duration eligibility and streams
-https://www.westincolleges.com/vij/bba,/programs/bba,BBA,Academic owner,Pending,2026-09-24,fixture,No fees deadlines ranking or outcome numbers in fixture
-https://www.westincolleges.com/vij/hotel-management,/programs/hotel-management,hotel management,Academic owner,Pending,2026-09-24,fixture,Confirm degree wording and practical-learning claims
-https://www.westincolleges.com/vij/intermediate,/programs/intermediate,intermediate MEC and CEC,Academic owner,Pending,2026-09-24,fixture,Confirm current streams and progression information
-https://www.westincolleges.com/vij/why-westin,/why-westin,reasons to choose Westin,College content owner,Pending,2026-09-24,fixture,Replace generic copy with evidence-led approved content
-https://www.westincolleges.com/vij/campus,/campus,campus life,College content owner,Pending,2026-09-24,fixture,Use permission-cleared campus photography
-https://www.westincolleges.com/vij/infrastructure,/campus/infrastructure,facilities,College content owner,Pending,2026-09-24,blocked,Verify current facilities and obtain references
-https://www.westincolleges.com/vij/placements,/placements,placements and career guidance,Career owner,Pending,2026-09-24,blocked,Require dated verifiable outcomes and approved employer marks
-https://www.westincolleges.com/vij/bineid,/partners/bineid,partnership,College content owner,Pending,2026-09-24,blocked,Verify current relationship and approved wording
-https://www.westincolleges.com/vij/news,/news,news,Editorial owner,Pending,2026-09-24,fixture,Published API remains empty until CMS revision is approved
-https://www.westincolleges.com/vij/blog,/blog,blog,Editorial owner,Pending,2026-09-24,fixture,Create only from approved articles
-https://www.westincolleges.com/vij/events,/campus/events,public event stories,Editorial owner,Pending,2026-09-24,fixture,Keep distinct from private portal events
-https://www.westincolleges.com/vij/gallery,/gallery,gallery,Editorial owner,Pending,2026-09-24,fixture,Require media rights alt text focal point and captions
-https://www.westincolleges.com/vij/magazine,/magazine,magazine and publications,Editorial owner,Pending,2026-09-24,fixture,Verify edition dates PDF rights and metadata
-https://www.westincolleges.com/vij/testimonials,/testimonials,testimonials,College content owner,Pending,2026-09-24,blocked,Require consent dates and context for identifiable voices
-https://www.westincolleges.com/vij/success-stories,/success-stories,success stories,College content owner,Pending,2026-09-24,blocked,Require dated verifiable stories
-https://www.westincolleges.com/vij/admissions,/admissions,admissions and campus visits,Admissions owner,Pending,2026-09-24,blocked,Privacy retention and current process approval required
-https://www.westincolleges.com/vij/contact,/contact,contact,College content owner,Pending,2026-09-24,blocked,Verify address phone email directions and approved enquiry route
+source_url,new_route,content_area,asset_rights,reviewed_at,state,notes
+https://www.westincollegevijayawada.com/,/,college overview and placement figures,external link only,2026-09-26,sourced,Package and placement figures lack a reporting period on the source
+https://www.westincollegevijayawada.com/about-us,/about,identity history founder and mission,external link only,2026-09-26,sourced,Newer detailed page takes precedence for leadership wording
+https://www.westincollegevijayawada.com/vision-mision,/about/mission-vision,vision and mission,external link only,2026-09-26,sourced,Also corroborated by legacy mission page
+https://www.westincollegevijayawada.com/bba,/programs/bba,three-year BBA,external link only,2026-09-26,sourced,Entry requirements are attributed to source
+https://www.westincollegevijayawada.com/bba-4-years-programe,/programs/bba-honours,four-year BBA,external link only,2026-09-26,sourced,Honours research year
+https://www.westincollegevijayawada.com/3-years-degree-program,/programs/bhm-three-year,three-year BHM,external link only,2026-09-26,sourced,Krishna University affiliation stated by source
+https://www.westincollegevijayawada.com/4-years-degree-program,/programs/bhm-honours,four-year BHM,external link only,2026-09-26,sourced,Krishna University affiliation stated by source
+https://www.westincollegevijayawada.com/diploma-in-hotel-management,/programs/work-integrated-hotel-management,three-year work-integrated route,external link only,2026-09-26,sourced,Page body says degree while menu says diploma; detailed page wording used
+https://www.westincollegevijayawada.com/dhm-1-year-course,/programs/dhm-one-year,one-year hotel-management diploma,external link only,2026-09-26,sourced,Source phases do not add neatly to one year; summarized thematically
+https://www.westincollegevijayawada.com/diploma-in-food-production,/programs/food-production,food-production diploma,external link only,2026-09-26,sourced,Practical culinary content
+https://www.westincollegevijayawada.com/pgdm,/programs/pgdhm,postgraduate hotel-management diploma,external link only,2026-09-26,sourced,Source calls this PGDHM
+https://www.westincollegevijayawada.com/blank-1-4-1,/programs/intermediate,MEC and CEC intermediate,external link only,2026-09-26,sourced,Two-year state-board route
+https://www.westincollegevijayawada.com/bba-college-in-vijayawada,/campus/infrastructure,classrooms and library,external link only,2026-09-26,sourced,No source photos copied
+https://www.westincollegevijayawada.com/event,/campus/events,campus event archive,external link only,2026-09-26,sourced,Past activities are not displayed as upcoming
+https://www.westincollegevijayawada.com/gallery,/gallery,official gallery collections,external link only,2026-09-26,sourced,No source photos copied
+https://www.westincollegevijayawada.com/contact,/contact,Vijayawada phone email and address,external link only,2026-09-26,sourced,Legacy page supplies G V R Towers location detail
+https://www.westincolleges.com/vij/why-westin.html,/why-westin,teaching and career guidance,external link only,2026-09-26,sourced,Paraphrased from official college page
+https://www.westincolleges.com/vij/management-team.html,/about/management,legacy team profiles,external link only,2026-09-26,sourced,Leadership roles attributed to legacy page and newer Durga Prasad wording used where different
+https://www.westincolleges.com/vij/bineid.html,/partners/bineid,BIN EID profile,external link only,2026-09-26,sourced,Presented as profile on legacy site
+https://www.westincolleges.com/vij/placements.html,/placements,2017-18 Hyderabad placement archive,external link only,2026-09-26,sourced,Year and Hyderabad campus displayed explicitly
+https://www.westincolleges.com/vij/,/about,legacy history and numerical highlights,external link only,2026-09-26,sourced,Older undated figures labeled as legacy site highlights
+https://www.westincollegevijayawada.com/post/alumni-success-stories,/success-stories,dated alumni profiles,external link only,2026-09-26,sourced,Roles described as at publication on 24 December 2024
+https://www.westincollegevijayawada.com/news-and-more,/news,college news archive,external link only,2026-09-26,sourced,Older stories are not displayed as current news

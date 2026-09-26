@@ -12,6 +12,7 @@ import {
   LearningChapter,
   PeopleChapter,
   PublicationChapter,
+  WestinOverview,
 } from "./HomeChapters";
 
 export function PublicHome() {
@@ -30,6 +31,7 @@ export function PublicHome() {
       }
     >
       <SkybookHero model={model} />
+      <WestinOverview />
       <ProgramExplorer programs={model.programs} />
       <LearningChapter model={model} />
       <CampusChapter model={model} />

@@ -1,6 +1,6 @@
 # Westin Skybook — implemented homepage references
 
-Created 25 September 2026. The original [approved hero reference](../westin-skybook-hero.png)
+Created 25 September 2026; homepage screenshots refreshed 26 September 2026 after the handwritten-copy, motion, footer-sketch and sourced-content updates. The original [approved hero reference](../westin-skybook-hero.png)
 is preserved unchanged. This folder contains production artwork masters and
 screenshots of the actual local `Student_portal` implementation—not just mockups.
 
@@ -41,11 +41,10 @@ and reference usage are preserved in [prompts.md](prompts.md).
 | [publications.png](publications.png) | 1536 × 1024 | Unbranded editorial still life, not an actual college publication |
 
 People, facilities and architecture are illustrative, not documentary Westin
-imagery or claims about available facilities. Visible captions and alt text state
-this on the homepage. No fabricated quotes, identities, placement figures,
-employer logos, admissions dates or magazine editions are supplied. Generated
+imagery or claims about available facilities. Descriptive image alt text and a
+footer disclosure identify this on the homepage. Placement figures, named people and magazine editions in the public pages are attributed to Westin’s official sites; no employer logos or source photos are copied. Generated
 hands, sleeves, straps, feet, faces and perspective were visually inspected.
-College approval of campaign copy and actual content remains required for launch.
+Course, campus and placement copy is paraphrased from the two official Westin websites and linked to its source in the public pages. The [content inventory](../public-content-inventory.csv) records those sources and any date or campus context.
 
 The official logo is reused from `Student_portal/src/assets/images/westin-logo.avif`.
 Inter and Bricolage Grotesque are copied from the existing local preview assets;

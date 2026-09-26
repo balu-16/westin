@@ -6,13 +6,11 @@ export function HomeMedia({
   image,
   className = "",
   sizes = "(max-width: 767px) calc(100vw - 44px), 50vw",
-  caption,
   priority = false,
 }: {
   image: HomeImage;
   className?: string;
   sizes?: string;
-  caption?: string;
   priority?: boolean;
 }) {
   const [failedSource, setFailedSource] = useState<string | null>(null);
@@ -54,12 +52,6 @@ export function HomeMedia({
           />
         )}
       </div>
-      <figcaption>
-        {caption && <span>{caption}</span>}
-        {image.generated && (
-          <span className="sk-image-note">AI-generated illustration</span>
-        )}
-      </figcaption>
     </figure>
   );
 }

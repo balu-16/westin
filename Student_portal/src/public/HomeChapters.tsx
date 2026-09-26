@@ -9,7 +9,28 @@ import {
 import { Link } from "react-router-dom";
 import { HomeMedia } from "./HomeMedia";
 import { ContactActions } from "./ContactHandoff";
+import { sources } from "./content";
 import { displayDate, homeImages, type HomeModel } from "./home-model";
+
+export function WestinOverview() {
+  return (
+    <section className="sk-container sk-section sk-overview" aria-labelledby="westin-overview-title" data-reveal>
+      <div className="sk-overview-heading">
+        <div>
+          <p className="sk-eyebrow">Westin College · Vijayawada</p>
+          <h2 id="westin-overview-title">Rooted here. <em>Ready for what’s next.</em></h2>
+        </div>
+        <p>Westin traces its story to 1999. In Vijayawada, it brings together hotel management, business management and junior-college education, with practical learning that reaches beyond the classroom.</p>
+      </div>
+      <div className="sk-overview-grid">
+        <article><span>01 / Study</span><h3>Find your direction</h3><p>Compare business degrees, hospitality degrees and diplomas, and MEC/CEC intermediate streams.</p><Link to="/programs" className="sk-text-link">Explore every course <ArrowUpRight size={17} aria-hidden="true" /></Link></article>
+        <article><span>02 / Practise</span><h3>Learn by doing</h3><p>Westin describes hotel-department practice, business projects, workshops, internships and guest sessions.</p><Link to="/why-westin" className="sk-text-link">Discover the approach <ArrowUpRight size={17} aria-hidden="true" /></Link></article>
+        <article><span>03 / Belong</span><h3>Make the day yours</h3><p>Clubs, cultural events, student projects, mentoring and career guidance add more to campus life.</p><Link to="/campus" className="sk-text-link">See campus life <ArrowUpRight size={17} aria-hidden="true" /></Link></article>
+      </div>
+      <a href={sources.about} target="_blank" rel="noopener noreferrer" className="sk-overview-source">Read the college’s official About page <ArrowUpRight size={16} aria-hidden="true" /><span className="sr-only"> (opens a new tab)</span></a>
+    </section>
+  );
+}
 
 export function LearningChapter({ model }: { model: HomeModel }) {
   const content = model.sections.learning;
@@ -25,15 +46,14 @@ export function LearningChapter({ model }: { model: HomeModel }) {
             a little theory.
             <br />a lot of possibility.
           </span>
+          <span className="sk-hand-note sk-learning-idea-note">Ideas. People.<br />Possibilities.</span>
           <HomeMedia
             image={content?.image || homeImages.business}
-            caption="Ideas take shape."
             className="sk-learning-first"
             sizes="(max-width: 767px) 60vw, 350px"
           />
           <HomeMedia
             image={homeImages.hospitality}
-            caption="Details make a difference."
             className="sk-learning-second"
             sizes="(max-width: 767px) 60vw, 350px"
           />
@@ -65,7 +85,7 @@ export function LearningChapter({ model }: { model: HomeModel }) {
           </h2>
           <p className="sk-lead">
             {content?.summary ||
-              "A question becomes a conversation. An idea becomes a project. And somewhere along the way, you start seeing what you could become."}
+              "Hospitality students practise food production, service, front-office work and housekeeping. Business students learn through case studies, projects and industry interaction. Every practical step gives an idea somewhere to go."}
           </p>
           <ol className="sk-learning-notes">
             <li>
@@ -112,7 +132,7 @@ export function CampusChapter({ model }: { model: HomeModel }) {
         <div>
           <p>
             {content?.summary ||
-              "The conversations after class. The idea you share. The people who make a place feel like yours."}
+              "Westin describes clubs, workshops, cultural events, sports and mentoring alongside classrooms and practical learning spaces. The people and projects shape the day as much as the timetable."}
           </p>
           <Link to="/campus" className="sk-text-link">
             Explore campus life <ArrowUpRight size={18} aria-hidden="true" />
@@ -122,19 +142,16 @@ export function CampusChapter({ model }: { model: HomeModel }) {
       <div className="sk-campus-mosaic">
         <HomeMedia
           image={content?.image || homeImages.campus}
-          caption="Find your people. Bring your perspective."
           className="sk-campus-wide"
           sizes="(min-width: 768px) 70vw, 100vw"
         />
         <div className="sk-campus-side">
           <HomeMedia
             image={homeImages.collaboration}
-            caption="Better ideas, together."
             sizes="(min-width: 768px) 30vw, 100vw"
           />
           <HomeMedia
             image={homeImages.foundation}
-            caption="A quiet moment to grow."
             sizes="(min-width: 768px) 30vw, 100vw"
           />
         </div>
@@ -173,14 +190,13 @@ export function CareerChapter({ model }: { model: HomeModel }) {
           </div>
           <p>
             {content?.summary ||
-              "You don’t need every answer on day one. Start with curiosity, make space for practice and keep looking ahead."}
+              "Course pages describe internships, specialisation, guest lectures and career guidance. Westin also publishes placement outcomes and a hospitality career-planning route."}
           </p>
         </div>
         <div className="sk-career-grid">
           <HomeMedia
             image={content?.image || homeImages.mentoring}
             sizes="(min-width: 768px) 50vw, 100vw"
-            caption="Make space for a conversation about what comes next."
           />
           <div className="sk-career-path">
             <ol>
@@ -219,6 +235,12 @@ export function CareerChapter({ model }: { model: HomeModel }) {
               </Link>
             </div>
           </div>
+        </div>
+        <div className="sk-career-figures" aria-label="Placement figures published by Westin">
+          <div><strong>42 LPA</strong><span>Highest package</span></div>
+          <div><strong>8 LPA</strong><span>Average package</span></div>
+          <div><strong>100%</strong><span>Placement percentage</span></div>
+          <p>Figures published by Westin; the reporting period is not stated. <a href={sources.home} target="_blank" rel="noopener noreferrer">View the official source <ArrowUpRight size={15} aria-hidden="true" /><span className="sr-only"> (opens a new tab)</span></a></p>
         </div>
       </div>
     </section>
@@ -437,8 +459,8 @@ export function PublicationChapter({ model }: { model: HomeModel }) {
           <em>turning a page for.</em>
         </h2>
         <p className="sk-lead">
-          A new perspective. A favourite moment. A story to return to. Discover
-          the Westin magazine and visual journal.
+          Discover Sattvika hospitality editions, Table business magazine and
+          the Westin Publishing House’s Student Author Program.
         </p>
         <div className="sk-actions">
           <Link className="sk-text-link" to="/magazine">
@@ -454,7 +476,6 @@ export function PublicationChapter({ model }: { model: HomeModel }) {
         <HomeMedia
           image={homeImages.publications}
           sizes="(min-width: 768px) 50vw, 100vw"
-          caption="An illustrated invitation to explore. Not a published edition."
         />
       </div>
       {model.publications.length > 0 && (

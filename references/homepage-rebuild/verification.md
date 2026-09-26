@@ -1,5 +1,21 @@
 # Skybook homepage — verification record
 
+## 26 September 2026 sourced-content refresh
+
+The Home page now introduces Westin’s history, study directions and practical learning with an added overview chapter. The career section displays the placement figures published on the newer Westin site with a note that its reporting period is unstated. The saved desktop, tablet and mobile screenshots were refreshed after these changes. Illustrative image captions remain hidden.
+
+Public course pages now cover the full official catalog; About, campus, career, partners, admissions and contact pages carry distinct Westin information. News, events, magazines and stories link to official records, and API-published entries supplement them. Placement figures from the legacy Hyderabad page are labeled with its 2017–18 year and campus. The source mapping and conflict notes are in [public-content-inventory.csv](../public-content-inventory.csv).
+
+The TypeScript/Vite build, SSR smoke and lint ran successfully. All 48 browser tests passed, including narrow course headings, empty and failed API content, published-program updates, and WCAG scans of expanded course and editorial pages at 390 and 1440px. After adding more management and alumni records, the build and two focused content tests passed again. Lint reports the same ten existing warnings and no errors. Lighthouse was not rerun; its figures below remain the earlier baseline.
+
+## 26 September 2026 design refresh
+
+The refreshed [desktop, tablet and mobile screenshots](README.md#review-the-page) show the handwritten hero notes, the login-style college sketch and WESTIN footer wordmark. About, Programs, Campus life, Placements, Contact and the remaining public routes now use coordinated illustrated heroes. Local public navigation has short exit/entrance motion, smooth same-page anchors and a reduced-motion fallback. Image captions are hidden; descriptive alt text and the footer disclosure still identify illustrative artwork.
+
+The production build and SSR smoke pass. The 39-test Playwright suite passed for this refresh, including six viewport widths, public hero reflow, route motion, hash links and the existing WCAG scans. After the later caption removal, the build, lint and eight affected responsive/published-content tests passed again. Lint has no errors and the same ten pre-existing warnings. The Lighthouse figures below belong to the 25 September baseline; this refresh has not been remeasured with Lighthouse.
+
+## 25 September 2026 baseline
+
 25 September 2026. Local implementation only; nothing deployed.
 
 ## Scope checked
@@ -60,7 +76,7 @@ composed; it is not a squeezed desktop screenshot. Mobile actions stack.
 
 Full-page screenshot review covers editorial variation through the program
 explorer, practical-learning collage, asymmetric campus story, career timeline,
-belonging, journal, publication still life, folded invitation and skyline footer.
+belonging, journal, publication still life, folded invitation and the original skyline footer.
 See [saved screenshots](README.md#review-the-page). Generated-image labels remain
 visible, and no made-up news dates, testimonials or publication issues are shown.
 

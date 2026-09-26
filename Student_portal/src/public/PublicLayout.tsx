@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { ArrowRight, ArrowUp, Menu, X } from "lucide-react";
-import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import westinLogo from "../assets/images/westin-logo.avif";
 import { useAuth } from "../contexts/AuthContext";
-import { getFixturePage, publicPageCopy } from "./content";
+import { getFixturePage, publicPageCopy, routeCopy } from "./content";
 import { PUBLIC_CONTENT_MODE } from "./usePublicContent";
+import { CampusSketch } from "./CampusSketch";
 import "./skybook.css";
 
 const navigation = [
@@ -28,8 +29,12 @@ const footerGroups = [
   {
     title: "Your possibilities",
     links: [
+      ["All courses", "/programs"],
       ["Business management", "/programs/bba"],
+      ["BBA (Honours)", "/programs/bba-honours"],
       ["Hotel management", "/programs/hotel-management"],
+      ["Hospitality degrees", "/programs/bhm-three-year"],
+      ["Hospitality diplomas", "/programs/dhm-one-year"],
       ["Intermediate", "/programs/intermediate"],
       ["Placements", "/placements"],
       ["Career planner", "/career-planner"],
@@ -51,21 +56,26 @@ const footerGroups = [
 export function PublicLayout() {
   const { isAuthenticated } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [exitingFrom, setExitingFrom] = useState<string | null>(null);
   const menu = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
+  const main = useRef<HTMLElement>(null);
+  const pendingNavigation = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const previousPath = useRef(location.pathname);
   const page = getFixturePage(location.pathname);
   const home = location.pathname === "/";
   const title = home
     ? "Westin College, Vijayawada — Big dreams. Bright beginnings."
     : (page?.program?.title ??
-        (page ? publicPageCopy[page.kind].title : "Page not found")) +
+        (page ? (routeCopy[page.key] ?? publicPageCopy[page.kind]).title : "Page not found")) +
       " · Westin College";
   const description = home
     ? "Discover business, hospitality and a campus full of possibility. Explore Westin College, Vijayawada, and start your next chapter."
     : page
-      ? publicPageCopy[page.kind].summary
+      ? (routeCopy[page.key] ?? publicPageCopy[page.kind]).summary
       : "Explore Westin College, Vijayawada.";
   const canonicalOrigin = (
     import.meta.env.VITE_PUBLIC_SITE_ORIGIN ?? "https://www.westincolleges.com"
@@ -84,15 +94,83 @@ export function PublicLayout() {
   }, []);
 
   useEffect(() => {
+    if (pendingNavigation.current) {
+      clearTimeout(pendingNavigation.current);
+      pendingNavigation.current = null;
+    }
+    setExitingFrom(null);
+    const changedPage = previousPath.current !== location.pathname;
+    previousPath.current = location.pathname;
     setOpen(false);
     if (location.hash) {
-      const frame = requestAnimationFrame(() =>
-        document.getElementById(location.hash.slice(1))?.scrollIntoView(),
-      );
+      const frame = requestAnimationFrame(() => {
+        document.getElementById(location.hash.slice(1))?.scrollIntoView({
+          behavior: changedPage || window.matchMedia("(prefers-reduced-motion: reduce)").matches
+            ? "instant"
+            : "smooth",
+        });
+        if (changedPage) main.current?.focus({ preventScroll: true });
+      });
       return () => cancelAnimationFrame(frame);
     }
     window.scrollTo({ top: 0, behavior: "instant" });
-  }, [location.pathname, location.hash]);
+    if (changedPage) {
+      const frame = requestAnimationFrame(() => main.current?.focus({ preventScroll: true }));
+      return () => cancelAnimationFrame(frame);
+    }
+  }, [location.pathname, location.search, location.hash]);
+
+  useEffect(() => () => {
+    if (pendingNavigation.current) clearTimeout(pendingNavigation.current);
+  }, []);
+
+  const onPublicClickCapture = (event: MouseEvent<HTMLDivElement>) => {
+    if (
+      event.defaultPrevented || event.button !== 0 || event.metaKey ||
+      event.ctrlKey || event.shiftKey || event.altKey ||
+      !(event.target instanceof Element)
+    ) return;
+    const anchor = event.target.closest<HTMLAnchorElement>("a[href]");
+    if (!anchor || !event.currentTarget.contains(anchor) || anchor.hasAttribute("download")) return;
+    if (anchor.target && anchor.target !== "_self") return;
+    const target = new URL(anchor.href, window.location.href);
+    if (target.origin !== window.location.origin) return;
+    if (target.pathname === location.pathname && target.search === location.search) {
+      if (anchor.classList.contains("sk-back-top")) return;
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (target.hash) {
+        let id: string;
+        try {
+          id = decodeURIComponent(target.hash.slice(1));
+        } catch {
+          return;
+        }
+        const section = document.getElementById(id);
+        if (section) {
+          event.preventDefault();
+          if (target.hash === location.hash) {
+            section.scrollIntoView({ behavior: reduced ? "instant" : "smooth" });
+          } else {
+            navigate(target.pathname + target.search + target.hash);
+          }
+        }
+      } else if (!location.hash && window.scrollY > 0) {
+        event.preventDefault();
+        window.scrollTo({ top: 0, behavior: reduced ? "instant" : "smooth" });
+      }
+      return;
+    }
+    if (target.pathname !== "/" && target.pathname !== "/search" && !getFixturePage(target.pathname)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    event.preventDefault();
+    if (pendingNavigation.current) clearTimeout(pendingNavigation.current);
+    setExitingFrom(location.pathname + location.search);
+    pendingNavigation.current = setTimeout(() => {
+      pendingNavigation.current = null;
+      navigate(target.pathname + target.search + target.hash);
+    }, 155);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -145,7 +223,7 @@ export function PublicLayout() {
   }, [open]);
 
   return (
-    <div className="skybook-site" id="page-top">
+    <div className="skybook-site" id="page-top" onClickCapture={onPublicClickCapture}>
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta property="og:title" content={title} />
@@ -257,7 +335,14 @@ export function PublicLayout() {
           <p className="sk-menu-signature">Your next chapter starts here.</p>
         </div>
       </dialog>
-      <main id="public-content" tabIndex={-1}>
+      <main
+        id="public-content"
+        key={location.pathname + location.search}
+        ref={main}
+        tabIndex={-1}
+        data-public-route="true"
+        data-exiting={exitingFrom === location.pathname + location.search ? "true" : undefined}
+      >
         <Outlet />
       </main>
       <footer className="sk-footer">
@@ -319,14 +404,14 @@ export function PublicLayout() {
               </nav>
             ))}
           </div>
-          <div className="sk-footer-skyline" aria-hidden="true">
-            <svg viewBox="0 0 1200 110" fill="none">
-              <path
-                d="M0 105h1200M100 104V61h100v43m-82-29h12v15h-12zm45 0h12v15h-12zM210 104V43h180v61M202 43l97-29 99 29H202Zm33 16h12v24h-12zm44 0h12v24h-12zm44 0h12v24h-12zm40 0h12v24h-12zM445 104V60h104v44m-115-44 64-34 63 34H434ZM490 104V78h16v26M670 104V39h160v65M660 39l90-32 90 32H660Zm30 17h14v30h-14zm41 0h14v30h-14zm40 0h14v30h-14zm40 0h14v30h-14zM905 104V57h119v47m-103-32h12v18h-12zm38 0h12v18h-12zm38 0h12v18h-12zM58 104V56m-1 21C10 77 34 26 57 36c21-25 54 35 0 41ZM604 104V58m0 19c-40 4-38-43-16-38 10-27 58 22 16 38ZM1083 104V52m0 27c-44 0-39-40-15-39 10-30 60 28 15 39Z"
-                stroke="currentColor"
-                strokeWidth="1.1"
-              />
-            </svg>
+          <div className="sk-footer-signoff">
+            <div className="sk-footer-sketch" aria-hidden="true">
+              <CampusSketch />
+            </div>
+            <div className="sk-footer-wordmark" aria-label="Westin College, Vijayawada">
+              <span>WESTIN</span>
+              <span>College · Vijayawada</span>
+            </div>
           </div>
           <div className="sk-footer-bottom">
             <span>
@@ -334,17 +419,10 @@ export function PublicLayout() {
             </span>
             <span>Made for your next chapter.</span>
           </div>
-          <p className="sk-art-disclosure">
+          {/* <p className="sk-art-disclosure">
             AI-generated scenes are illustrative, not photographs of Westin’s
             campus, students or facilities.
-          </p>
-          {PUBLIC_CONTENT_MODE === "fixture" && (
-            <p className="sk-preview-note" role="note">
-              <span aria-hidden="true" />
-              Design preview · Local content and illustrative imagery · College
-              approval required before publication.
-            </p>
-          )}
+          </p> */}
         </div>
       </footer>
     </div>

@@ -41,7 +41,7 @@ for (const scenario of ["populated", "empty", "failed", "malformed"] as const) {
     );
     await page.goto("/");
     await ready(page);
-    await expect(page.locator(".sk-home > section")).toHaveCount(9);
+    await expect(page.locator(".sk-home > section")).toHaveCount(10);
     await expect(page.locator(".sk-hero-art img")).toBeVisible();
     if (scenario === "populated") {
       await expect(page.locator("h1")).toHaveText("A published new beginning.");
@@ -88,6 +88,42 @@ test("slow content never blocks the headline or main actions", async ({
   );
   release();
   await expect(page.getByRole("status")).toHaveCount(0);
+});
+
+test("sourced pages remain readable when the published feed is unavailable", async ({ page }) => {
+  await page.route("**/api/public/site", (route) => route.fulfill({ status: 503, json: { message: "Unavailable" } }));
+  await page.goto("/about");
+  await expect(page.getByRole("heading", { name: "Westin in Vijayawada" })).toBeVisible();
+  await page.goto("/programs/bhm-three-year");
+  await expect(page.getByRole("heading", { name: "What you will explore" })).toBeVisible();
+  await expect(page.getByRole("link", { name: /View college course page/ })).toHaveAttribute("href", /3-years-degree-program/);
+  await page.goto("/news");
+  await expect(page.getByRole("heading", { name: "Hospitality campus interviews" })).toBeVisible();
+});
+
+test("published entries supplement sourced records without duplicating a matching title", async ({ page }) => {
+  await page.route("**/api/public/site", (route) => route.fulfill({ json: { settings: {}, entries: [
+    entry("news", "awards", { title: "Westin awards and achievements", summary: "A revised college update." }),
+    entry("news", "new-update", { title: "New college update", summary: "A newly published item." }),
+  ] } }));
+  await page.goto("/news");
+  await expect(page.getByRole("heading", { name: "Westin awards and achievements" })).toHaveCount(1);
+  await expect(page.getByRole("heading", { name: "New college update" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Hospitality campus interviews" })).toBeVisible();
+});
+
+test("published program copy updates the catalog while sourced details remain available", async ({ page }) => {
+  await page.route("**/api/public/site", (route) => route.fulfill({ json: { settings: {}, entries: [
+    null,
+    { slug: "broken", entryType: "program", content: null },
+    entry("program", "bba", { title: "Published BBA title", summary: "Published BBA summary", body: "A college update to the course." }),
+  ] } }));
+  await page.goto("/programs");
+  await expect(page.getByRole("heading", { name: "Published BBA title" })).toBeVisible();
+  await page.goto("/programs/bba");
+  await expect(page.locator(".sk-page-hero h1")).toHaveText("Published BBA title");
+  await expect(page.getByText("A college update to the course.")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "What you will explore" })).toBeVisible();
 });
 
 test("published images, attributed quote and genuine PDF use the shared chapters", async ({

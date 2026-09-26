@@ -77,9 +77,13 @@ export function SkybookHero({ model }: { model: HomeModel }) {
               />
             </picture>
           )}
-          <figcaption>
-            Imagination, illustrated. <span>AI-generated campus concept.</span>
-          </figcaption>
+          {!failed && (
+            <div className="sk-hero-notes">
+              <p className="sk-hero-note sk-hero-note-top">More people.<br />Brighter tomorrows.</p>
+              <p className="sk-hero-note sk-hero-note-left">A brighter you.</p>
+              <p className="sk-hero-note sk-hero-note-page">Same curiosity.<br />Bigger horizons.</p>
+            </div>
+          )}
         </figure>
       </div>
       <div className="sk-container sk-pathway-wrap">

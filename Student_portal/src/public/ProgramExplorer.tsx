@@ -101,6 +101,9 @@ export function ProgramExplorer({ programs }: { programs: HomeProgram[] }) {
               Your {program.shortLabel.toLowerCase()} chapter
             </p>
             <h3>{program.title}</h3>
+            {program.slug === "hotel-management" && (
+              <p className="sk-hand-note sk-program-hand-note">Good people. Great hospitality.</p>
+            )}
             <p>{program.summary}</p>
             <ul className="sk-tags">
               {program.tags.map((tag) => (
@@ -122,6 +125,9 @@ export function ProgramExplorer({ programs }: { programs: HomeProgram[] }) {
               <h3>{item.label}</h3>
             </div>
             <HomeMedia image={item.image} sizes="100vw" />
+            {item.slug === "hotel-management" && (
+              <p className="sk-hand-note sk-program-hand-note">Good people. Great hospitality.</p>
+            )}
             <h4>{item.title}</h4>
             <p>{item.summary}</p>
             <Link className="sk-text-link" to={`/programs/${item.slug}`}>

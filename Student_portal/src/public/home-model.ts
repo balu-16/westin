@@ -95,8 +95,8 @@ const basePrograms: HomeProgram[] = [
     shortLabel: "Business",
     title: "For the ideas that could change things.",
     summary:
-      "Explore the people, decisions and possibilities behind the world of business. Bring your curiosity. Start finding your direction.",
-    tags: ["Management", "Communication", "Enterprise"],
+      "Explore management, finance and enterprise through projects, case studies, internships and industry conversations.",
+    tags: ["Management", "Projects", "Internships"],
     image: homeImages.business,
   },
   {
@@ -105,8 +105,8 @@ const basePrograms: HomeProgram[] = [
     shortLabel: "Hospitality",
     title: "For the people who make people feel welcome.",
     summary:
-      "Discover a world shaped by thoughtful service, attention to detail and human connection. Explore your next step in hospitality.",
-    tags: ["Hospitality", "Service", "Operations"],
+      "Practise food production, service, front-office work and housekeeping while learning what makes hospitality feel human.",
+    tags: ["Culinary", "Service", "Operations"],
     image: homeImages.hospitality,
   },
   {
@@ -115,8 +115,8 @@ const basePrograms: HomeProgram[] = [
     shortLabel: "Intermediate",
     title: "A strong beginning. An open future.",
     summary:
-      "Explore MEC and CEC study pathways, ask the right questions and build a foundation for the possibilities ahead.",
-    tags: ["MEC / CEC", "Foundations", "Next steps"],
+      "Build a two-year foundation in commerce and economics, with mathematics in MEC or civics in CEC.",
+    tags: ["MEC / CEC", "Commerce", "Next steps"],
     image: homeImages.foundation,
   },
 ];
