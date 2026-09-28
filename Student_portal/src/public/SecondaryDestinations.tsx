@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { ContactActions } from './ContactHandoff'
 import { EditorialNote } from './EditorialNote'
 import { publicPageCopy, type PublicSection } from './content'
-import { OfficialContentSection, moveCardLight, resetCardLight } from './EditorialDestinations'
+import { OfficialContentSection, moveCardLight, leaveCardLight } from './EditorialDestinations'
 import { OfficialHighlights, PlacementHistory, UnpicturedCompanies } from './OfficialHighlights'
 import { OfficialDestinationContent } from './OfficialDestinationContent'
 import { admissions2026, placementsSpotlight, site } from './officialSite'
@@ -16,6 +16,12 @@ const placementCards = [
   { title: 'Business internships', label: 'In the field', tone: 'plain', image: 'bba-journeys', alt: 'Westin business students collaborating around a laptop' },
   { title: 'Corporate readiness', label: 'Ready for what is next', tone: 'sand', image: 'training-etiquette', alt: 'Westin students and educators gathered during an industry visit' },
   { title: 'Career planner', label: 'A route forward', tone: 'plain', href: '/career-planner' },
+] as const
+
+const admissionStudyRoutes = [
+  { name: 'Hospitality', detail: 'Practise food, service, front office and housekeeping skills.' },
+  { name: 'Business', detail: 'Build management skills through projects and industry interaction.' },
+  { name: 'MEC / CEC', detail: 'Take a two-year intermediate route in commerce and economics.' },
 ] as const
 
 function SourceLink({ href, children }: { href: string; children: string }) {
@@ -35,7 +41,7 @@ export function PlacementsDestination({ sections, title, summary, publishedBody 
     <section className="ed-shell ed-secondary-section ed-placement-figures" aria-labelledby="placement-figures-title">
       <div className="ed-secondary-heading"><p className="ed-kicker"><span className="ed-orange-rule" aria-hidden="true" />Published by Westin</p><div><h2 id="placement-figures-title">The figures, with their context.</h2><p>Westin highlights career support and outcomes alongside its business and hospitality learning.</p></div></div>
       <div className="ed-placement-stat-grid" aria-label="Placement figures published by Westin">
-        {placementsSpotlight.stats.map((stat, index) => <article key={stat.label} className={`ed-placement-stat${index === 0 ? ' ed-placement-stat--feature' : ''}`} onPointerMove={moveCardLight} onPointerLeave={resetCardLight}>
+        {placementsSpotlight.stats.map((stat, index) => <article key={stat.label} className={`ed-placement-stat${index === 0 ? ' ed-placement-stat--feature' : ''}`} onPointerMove={moveCardLight} onPointerLeave={leaveCardLight}>
           <span className="ed-bento-label">{index === 0 ? 'The headline figure' : 'Also published'}</span>
           <strong>{stat.value.replace('100 %', '100%')}</strong>
           <h3>{stat.label}</h3>
@@ -50,7 +56,7 @@ export function PlacementsDestination({ sections, title, summary, publishedBody 
         {placementCards.flatMap((card) => {
           const section = sections.find((item) => item.title === card.title)
           if (!section) return []
-          return [<article key={card.title} className={`ed-bento-card ed-bento-card--${card.tone}`} onPointerMove={moveCardLight} onPointerLeave={resetCardLight}>
+          return [<article key={card.title} className={`ed-bento-card ed-bento-card--${card.tone}`} onPointerMove={moveCardLight} onPointerLeave={leaveCardLight}>
             {'image' in card && <div className="ed-photo-frame"><img src={`/images/official/campus/${card.image}-960.webp`} srcSet={`/images/official/campus/${card.image}-480.webp 480w, /images/official/campus/${card.image}-960.webp 960w`} sizes="(min-width: 1100px) 45vw, 100vw" width="960" height="640" loading="lazy" decoding="async" alt={card.alt} /></div>}
             <div className="ed-bento-card-copy"><span className="ed-bento-label">{card.label}</span><h3>{section.title}</h3><p>{section.body}</p>
               {'note' in card && card.note ? <EditorialNote>{card.note}</EditorialNote> : null}
@@ -81,15 +87,17 @@ export function AdmissionsDestination() {
     <section className="ed-shell ed-secondary-section" aria-labelledby="admissions-overview-title">
       <div className="ed-secondary-heading"><p className="ed-kicker"><span className="ed-orange-rule" aria-hidden="true" />Your next step</p><div><h2 id="admissions-overview-title">Find your way in.</h2><p>See your options, read the entry details on each course page, and talk with the Vijayawada team about a visit.</p></div></div>
       <div className="ed-bento-grid ed-secondary-bento ed-secondary-bento--admissions">
-        <article className="ed-bento-card ed-bento-card--cream" onPointerMove={moveCardLight} onPointerLeave={resetCardLight}>
+        <article className="ed-bento-card ed-bento-card--cream" onPointerMove={moveCardLight} onPointerLeave={leaveCardLight}>
           <div className="ed-photo-frame"><img src="/images/official/campus/bba-about-960.webp" srcSet="/images/official/campus/bba-about-480.webp 480w, /images/official/campus/bba-about-960.webp 960w" sizes="(min-width: 1100px) 45vw, 100vw" width="960" height="640" loading="lazy" decoding="async" alt="Westin business students together around a table" /></div>
-          <div className="ed-bento-card-copy"><span className="ed-bento-label">Explore</span><h3>Discover your study direction.</h3><p>Compare business, hospitality and MEC or CEC intermediate study before choosing a course.</p><EditorialNote>Find your direction.</EditorialNote><div className="ed-secondary-card-links"><Link to="/programs">See all programs <ArrowRight size={17} aria-hidden="true" /></Link></div></div>
+          <div className="ed-bento-card-copy"><span className="ed-bento-label">Explore</span><h3>Discover your study direction.</h3><p>Compare business, hospitality and MEC or CEC intermediate study before choosing a course.</p>
+            <div className="ed-admissions-study-routes"><h4>Ways to begin</h4><dl>{admissionStudyRoutes.map((route) => <div key={route.name}><dt>{route.name}</dt><dd>{route.detail}</dd></div>)}</dl></div>
+            <EditorialNote>Find your direction.</EditorialNote><div className="ed-secondary-card-links"><Link to="/programs">See all programs <ArrowRight size={17} aria-hidden="true" /></Link></div></div>
         </article>
-        <article className="ed-bento-card" onPointerMove={moveCardLight} onPointerLeave={resetCardLight}>
+        <article className="ed-bento-card" onPointerMove={moveCardLight} onPointerLeave={leaveCardLight}>
           <div className="ed-photo-frame"><img src="/images/official/campus/junior-about-960.webp" srcSet="/images/official/campus/junior-about-480.webp 480w, /images/official/campus/junior-about-960.webp 960w" sizes="(min-width: 1100px) 25vw, 100vw" width="960" height="640" loading="lazy" decoding="async" alt="Westin students listening during a classroom session" /></div>
           <div className="ed-bento-card-copy"><span className="ed-bento-label">Understand</span><h3>Check the entry route.</h3><p>Each course page lists the educational requirements Westin has published for that route.</p><div className="ed-admissions-course-links"><Link to="/programs/bba">BBA <ArrowRight size={15} aria-hidden="true" /></Link><Link to="/programs/hotel-management">Hotel management <ArrowRight size={15} aria-hidden="true" /></Link><Link to="/programs/intermediate">Intermediate <ArrowRight size={15} aria-hidden="true" /></Link></div></div>
         </article>
-        <article className="ed-bento-card ed-bento-card--sand" onPointerMove={moveCardLight} onPointerLeave={resetCardLight}>
+        <article className="ed-bento-card ed-bento-card--sand" onPointerMove={moveCardLight} onPointerLeave={leaveCardLight}>
           <div className="ed-photo-frame"><img src="/images/official/campus/hm-learning-960.webp" srcSet="/images/official/campus/hm-learning-480.webp 480w, /images/official/campus/hm-learning-960.webp 960w" sizes="(min-width: 1100px) 25vw, 100vw" width="960" height="640" loading="lazy" decoding="async" alt="Westin hospitality student practising food preparation in a kitchen" /></div>
           <div className="ed-bento-card-copy"><span className="ed-bento-label">Connect</span><h3>See the place for yourself.</h3><p>Speak with the team about courses, counselling and what a campus visit could include.</p><div className="ed-secondary-card-links"><a href="#visit">Plan a visit <ArrowRight size={17} aria-hidden="true" /></a></div></div>
         </article>

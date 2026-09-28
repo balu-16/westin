@@ -50,9 +50,9 @@ export function moveCardLight(event: PointerEvent<HTMLElement>) {
   event.currentTarget.style.setProperty('--pointer-y', `${((event.clientY - bounds.top) / bounds.height) * 100}%`)
 }
 
-export function resetCardLight(event: PointerEvent<HTMLElement>) {
-  event.currentTarget.style.removeProperty('--pointer-x')
-  event.currentTarget.style.removeProperty('--pointer-y')
+export function leaveCardLight(event: PointerEvent<HTMLElement>) {
+  // Keep the light at the exit edge while its opacity fades out.
+  moveCardLight(event)
 }
 
 export function OfficialContentSection({ kind, title, intro, children }: {
@@ -95,7 +95,7 @@ export function EditorialDestination({ kind, sections, publishedBody, children }
         {sections.map((section, index) => {
           const card = page.cards[index]
           if (!card) return null
-          return <article key={section.title} className={`ed-bento-card ed-bento-card--${card.tone}`} onPointerMove={moveCardLight} onPointerLeave={resetCardLight}>
+          return <article key={section.title} className={`ed-bento-card ed-bento-card--${card.tone}`} onPointerMove={moveCardLight} onPointerLeave={leaveCardLight}>
             {'image' in card && card.image ? <div className="ed-photo-frame"><img src={`/images/official/campus/${card.image}-960.webp`} srcSet={`/images/official/campus/${card.image}-480.webp 480w, /images/official/campus/${card.image}-960.webp 960w`} sizes="(min-width: 1100px) 45vw, 100vw" width="960" height="640" loading="lazy" decoding="async" alt={card.alt} /></div> : null}
             <div className="ed-bento-card-copy">
               <span className="ed-bento-label">{card.label}</span>

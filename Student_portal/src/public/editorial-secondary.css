@@ -66,6 +66,12 @@
 .ed-secondary-card-links { display: flex; align-items: center; flex-wrap: wrap; gap: 15px 22px; margin-top: auto; padding-top: 24px; }
 .ed-secondary-card-links a { display: inline-flex; align-items: center; gap: 6px; color: #9c401b; font-size: 13px; font-weight: 750; }
 .ed-secondary-card-links a:not(:first-child) { color: #526477; text-decoration: underline; text-underline-offset: 3px; }
+.ed-admissions-study-routes { width: 100%; margin-top: 25px; padding-top: 19px; border-top: 1px solid #d9ccbc; }
+.ed-admissions-study-routes h4 { color: #9c401b; font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.ed-admissions-study-routes dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 13px; }
+.ed-admissions-study-routes dl > div { min-width: 0; padding: 12px; border: 1px solid #e3dacf; border-radius: 9px; background: #fffdfa; }
+.ed-admissions-study-routes dt { color: #0d2e51; font-size: 13px; font-weight: 800; }
+.ed-admissions-study-routes dd { margin-top: 5px; color: #40566a; font-size: 12px; line-height: 1.5; }
 .ed-admissions-course-links { display: grid; gap: 7px; width: 100%; margin-top: auto; padding-top: 20px; }
 .ed-admissions-course-links a { display: flex; justify-content: space-between; align-items: center; gap: 10px; min-height: 39px; border-bottom: 1px solid #e3dacf; color: #9c401b; font-size: 13px; font-weight: 750; }
 .ed-admissions-course-links a:last-child { border-bottom: 0; }
@@ -207,6 +213,7 @@
   .ed-secondary .sk-company-row-heading { align-items: start; }
 }
 @media (max-width: 580px) {
+  .ed-admissions-study-routes dl { grid-template-columns: 1fr; }
   .ed-placement-stat-grid, .ed-contact-grid { grid-template-columns: 1fr; gap: 12px; }
   .ed-placement-stat--feature, .ed-contact-grid > * { grid-column: span 1; }
   .ed-placement-stat { min-height: 170px; }

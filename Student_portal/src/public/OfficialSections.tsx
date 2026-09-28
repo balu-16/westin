@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import { OfficialPhoto } from "./OfficialPhoto";
 import { EditorialNote } from "./EditorialNote";
-import { OfficialContentSection, moveCardLight, resetCardLight } from "./EditorialDestinations";
+import { OfficialContentSection, moveCardLight, leaveCardLight } from "./EditorialDestinations";
 import { PublicFaq } from "./PublicFaq";
 import {
   about,
@@ -1044,6 +1044,12 @@ export function FaqSection() {
   );
 }
 
+const admissionsCourseVisuals = {
+  "Hotel Managment": { mediaKey: "campus/hm-service-team", alt: "Westin hospitality student serving water at a restaurant table" },
+  BBA: { mediaKey: "campus/bba-leadership", alt: "Westin business student writing in a notebook" },
+  "Junior Intermediate College": { mediaKey: "campus/junior-life-2", alt: "Westin junior college students listening during a workshop", note: "A strong start opens doors." },
+} as const satisfies Record<(typeof admissions2026.courses)[number]["title"], { mediaKey: string; alt: string; note?: string }>;
+
 /** 22 · Admissions 2026. */
 export function AdmissionsSection() {
   return (
@@ -1057,17 +1063,26 @@ export function AdmissionsSection() {
           <p className="sk-admissions-line">{admissions2026.programmesLine}</p>
         </div>
         <div className="sk-course-highlights">
-          {admissions2026.courses.map((course) => (
-            <article key={course.title} className="ed-source-card">
-              <h3>{course.title}</h3>
-              <p className="sk-course-note">Highlights:</p>
-              <ul>
-                {course.highlights.map((highlight) => (
-                  <li key={highlight}>{highlight}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
+          {admissions2026.courses.map((course) => {
+            const visual = admissionsCourseVisuals[course.title];
+            return (
+              <article key={course.title} className="ed-source-card ed-admissions-course-card">
+                <div className="ed-admissions-course-copy">
+                  <h3>{course.title}</h3>
+                  <p className="sk-course-note">Highlights:</p>
+                  <ul>
+                    {course.highlights.map((highlight) => (
+                      <li key={highlight}>{highlight}</li>
+                    ))}
+                  </ul>
+                  {"note" in visual && <EditorialNote>{visual.note}</EditorialNote>}
+                </div>
+                <div className="ed-photo-frame ed-admissions-course-photo">
+                  <OfficialPhoto mediaKey={visual.mediaKey} alt={visual.alt} sizes="(max-width: 580px) calc(100vw - 64px), (max-width: 1100px) calc(50vw - 64px), 36vw" />
+                </div>
+              </article>
+            );
+          })}
         </div>
         <div className="sk-admissions-notes">
           <div className="ed-source-card">
@@ -1128,10 +1143,10 @@ export function ContactSection() {
       <section className="ed-shell ed-contact-overview" id="contact-official" aria-labelledby="contact-official-title">
         <div className="ed-secondary-heading"><p className="ed-kicker"><span className="ed-orange-rule" aria-hidden="true" />Reach the college</p><div><h2 id="contact-official-title">Talk to the college.</h2><p>Westin is more than just a place of learning; it&rsquo;s a place where dreams take flight, where ideas flourish, and where you&rsquo;ll find the support.</p></div></div>
         <div className="ed-contact-grid">
-          <article className="ed-bento-card ed-bento-card--cream ed-contact-phone" onPointerMove={moveCardLight} onPointerLeave={resetCardLight}>
+          <article className="ed-bento-card ed-bento-card--cream ed-contact-phone" onPointerMove={moveCardLight} onPointerLeave={leaveCardLight}>
             <div className="ed-bento-card-copy"><span className="ed-bento-label">Call</span><h3>Speak to the Vijayawada team.</h3><ul className="ed-contact-phone-list">{[...site.contact.phones].reverse().map((line) => <li key={line}><a href={phoneHref(line)}>{line}</a></li>)}</ul></div>
           </article>
-          <div className="sk-counselling ed-bento-card ed-contact-form" onPointerMove={moveCardLight} onPointerLeave={resetCardLight}>
+          <div className="sk-counselling ed-bento-card ed-contact-form" onPointerMove={moveCardLight} onPointerLeave={leaveCardLight}>
           <span className="ed-bento-label">Ask a question</span>
           <h3>Get free counselling</h3>
           <p>
@@ -1208,8 +1223,8 @@ export function ContactSection() {
             </button>
           </form>
         </div>
-          <article className="ed-bento-card ed-contact-email" onPointerMove={moveCardLight} onPointerLeave={resetCardLight}><div className="ed-bento-card-copy"><span className="ed-bento-label">Email</span><h3>Write to the team.</h3><p><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></p></div></article>
-          <article className="ed-bento-card ed-bento-card--sand ed-contact-address" onPointerMove={moveCardLight} onPointerLeave={resetCardLight}><div className="ed-bento-card-copy"><span className="ed-bento-label">Visit</span><h3>Find us in Vijayawada.</h3><p>{site.contact.address}. {site.contact.addressNote}.</p><a className="ed-contact-directions" href={site.contact.directions} target="_blank" rel="noopener noreferrer">Get directions <ArrowUpRight size={17} aria-hidden="true" /><span className="sr-only"> (opens a new tab)</span></a></div></article>
+          <article className="ed-bento-card ed-contact-email" onPointerMove={moveCardLight} onPointerLeave={leaveCardLight}><div className="ed-bento-card-copy"><span className="ed-bento-label">Email</span><h3>Write to the team.</h3><p><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></p></div></article>
+          <article className="ed-bento-card ed-bento-card--sand ed-contact-address" onPointerMove={moveCardLight} onPointerLeave={leaveCardLight}><div className="ed-bento-card-copy"><span className="ed-bento-label">Visit</span><h3>Find us in Vijayawada.</h3><p>{site.contact.address}. {site.contact.addressNote}.</p><a className="ed-contact-directions" href={site.contact.directions} target="_blank" rel="noopener noreferrer">Get directions <ArrowUpRight size={17} aria-hidden="true" /><span className="sr-only"> (opens a new tab)</span></a></div></article>
         </div>
         <SourceNote href={officialSources.contact}>Westin’s original Contact page</SourceNote>
       </section>

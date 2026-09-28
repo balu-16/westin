@@ -239,6 +239,11 @@
 .ed-source-body .sk-course-highlights article:first-child, .ed-source-body .sk-admissions-notes > div:nth-child(2) { grid-column: span 6; background: #eae0d2; }
 .ed-source-body .sk-course-highlights article:nth-child(2), .ed-source-body .sk-admissions-notes > div:first-child { grid-column: span 6; }
 .ed-source-body .sk-course-highlights article:nth-child(3), .ed-source-body .sk-admissions-notes > div:nth-child(3) { grid-column: span 12; }
+.ed-source-body .sk-course-highlights .ed-admissions-course-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .85fr); align-items: stretch; gap: clamp(18px, 2vw, 28px); min-height: 275px; }
+.ed-source-body .sk-course-highlights .ed-admissions-course-card:last-child { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
+.ed-admissions-course-copy { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
+.ed-admissions-course-copy .ed-card-note { margin: auto 12px 6px auto !important; padding-top: 22px; }
+.ed-admissions-course-photo { min-height: 215px; border-radius: 10px; }
 .ed-source-body .sk-admissions-notes h3 { color: #0d2e51; font-size: 1.45rem; }
 .ed-source-body .sk-admissions-psychometric { background: #fffdfa; }
 
@@ -275,6 +280,10 @@
   .ed-source-body .sk-course-highlights article:nth-child(2), .ed-source-body .sk-course-highlights article:nth-child(3),
   .ed-source-body .sk-admissions-notes > div, .ed-source-body .sk-admissions-notes > div:first-child,
   .ed-source-body .sk-admissions-notes > div:nth-child(2), .ed-source-body .sk-admissions-notes > div:nth-child(3) { grid-column: span 6; }
+  .ed-source-body .sk-course-highlights .ed-admissions-course-card,
+  .ed-source-body .sk-course-highlights .ed-admissions-course-card:last-child { grid-template-columns: minmax(0, 1fr); }
+  .ed-admissions-course-photo { grid-row: 1; height: 200px; min-height: 0; }
+  .ed-admissions-course-copy .ed-card-note { margin-top: 24px !important; }
 }
 @media (max-width: 767px) {
   .ed-source-heading { grid-template-columns: 1fr; gap: 12px; }

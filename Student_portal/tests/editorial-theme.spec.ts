@@ -140,6 +140,32 @@ test('placements and admissions add real photos while BBA Honours explains all f
   await expect(page.locator('.sk-campaign-group--hospitality .ed-card-note').filter({ hasText: 'Lead with purpose.' })).toBeVisible()
 })
 
+test('admissions choices and campus details stay readable across screen sizes', async ({ page }) => {
+  for (const width of [390, 768, 1440]) {
+    await page.setViewportSize({ width, height: 900 })
+    await page.goto('/admissions')
+    const courses = page.locator('#admissions-2026 .ed-admissions-course-card')
+    await expect(courses).toHaveCount(3)
+    for (const course of await courses.all()) {
+      await course.scrollIntoViewIfNeeded()
+      const image = course.locator('.ed-admissions-course-photo img')
+      await expect(image).toBeVisible()
+      expect(await image.evaluate(async (node: HTMLImageElement) => { await node.decode(); return node.naturalWidth > 0 })).toBe(true)
+      await expect(course.locator('h3')).toBeVisible()
+    }
+    await expect(courses.last().locator('.ed-card-note')).toContainText('A strong start opens doors.')
+    await expect(page.locator('.ed-admissions-study-routes dl > div')).toHaveCount(3)
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `admissions at ${width}px`).toBe(true)
+
+    await page.goto('/campus')
+    for (const title of ['Spaces for study', 'Student-led communities']) {
+      const card = page.locator('.ed-bento-card').filter({ hasText: title })
+      await expect(card.locator('li')).toHaveCount(3)
+    }
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `campus at ${width}px`).toBe(true)
+  }
+})
+
 test('campus life has one blue panel before the footer with its explore links', async ({ page }) => {
   await page.goto('/campus')
   await expect(page.locator('.ed-destination-links')).toHaveCount(0)

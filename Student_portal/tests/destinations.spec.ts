@@ -86,6 +86,26 @@ test('pointer response is subtle and respects reduced motion', async ({ page }) 
   expect(await card.evaluate((node) => getComputedStyle(node).transform)).toBe('none')
 })
 
+test('pointer light fades out at the exit edge without flashing in the center', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' })
+  await page.goto('/about')
+  const card = page.locator('.ed-bento-card').first()
+  await card.hover({ position: { x: 24, y: 24 } })
+  await expect.poll(() => card.evaluate((node) => getComputedStyle(node, '::before').opacity)).toBe('1')
+
+  const bounds = await card.boundingBox()
+  expect(bounds).not.toBeNull()
+  await page.mouse.move(bounds!.x - 4, bounds!.y + 24)
+
+  const light = await card.evaluate((node) => {
+    const style = getComputedStyle(node, '::before')
+    return { background: style.backgroundImage, opacity: Number(style.opacity), hovered: node.matches(':hover') }
+  })
+  expect(light.hovered).toBe(false)
+  expect(light.opacity).toBeGreaterThan(0)
+  expect(light.background).toContain(' at ')
+})
+
 for (const width of [390, 1440]) {
   test(`redesigned destinations meet automated WCAG checks at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 })

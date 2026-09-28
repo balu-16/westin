@@ -15,7 +15,7 @@ import { EditorialNote } from './EditorialNote'
 import { archivePath, findArchiveEntry, officialArchive, type OfficialArchiveEntry } from './officialArchive'
 import { safePublicUrl } from './home-model'
 import { OfficialDestinationContent } from './OfficialDestinationContent'
-import { EditorialDestination, OfficialContentSection, moveCardLight, resetCardLight } from './EditorialDestinations'
+import { EditorialDestination, OfficialContentSection, moveCardLight, leaveCardLight } from './EditorialDestinations'
 import { AdmissionsDestination, ContactDestination, PlacementsDestination } from './SecondaryDestinations'
 import { PublicFaq } from './PublicFaq'
 import './editorial-destinations.css'
@@ -92,7 +92,7 @@ function PageIntro({ kind, keyName, title, summary, heroPhoto }: { kind: PublicP
 
 function SectionCards({ sections }: { sections: PublicSection[] }) {
   return <div className="ed-section-grid">
-    {sections.map((section) => <article key={section.title} className="ed-section-card" onPointerMove={moveCardLight} onPointerLeave={resetCardLight}>
+    {sections.map((section) => <article key={section.title} className="ed-section-card" onPointerMove={moveCardLight} onPointerLeave={leaveCardLight}>
       <h2>{section.title}</h2>
       <p>{section.body}</p>
         {section.points && <ul>{section.points.map((point) => <li key={point}><Check size={16} aria-hidden="true" />{point}</li>)}</ul>}
@@ -122,7 +122,7 @@ function ProgramIndex({ entries }: { entries: PublishedContentEntry[] }) {
             : program.slug === 'bba-honours'
               ? { stem: 'bba-programme-2', alt: 'Westin business student seated in a blue blazer' }
               : null
-          return <article key={program.slug} className={`ed-program-card${index === 0 ? ' ed-program-card--feature' : ''}`} onPointerMove={moveCardLight} onPointerLeave={resetCardLight}>
+          return <article key={program.slug} className={`ed-program-card${index === 0 ? ' ed-program-card--feature' : ''}`} onPointerMove={moveCardLight} onPointerLeave={leaveCardLight}>
             {cardImage && <div className="ed-photo-frame"><img src={`/images/official/campus/${cardImage.stem}-960.webp`} srcSet={`/images/official/campus/${cardImage.stem}-480.webp 480w, /images/official/campus/${cardImage.stem}-960.webp 960w`} sizes="(min-width: 1100px) 45vw, 100vw" width="960" height="640" loading="lazy" decoding="async" alt={cardImage.alt} /></div>}
             <div className="ed-program-card-copy"><span className="ed-bento-label">{program.label}</span><h4>{published && contentText(published.content, 'title') || program.title}</h4><p>{published && contentText(published.content, 'summary') || program.summary}</p>
               <ul>{program.facts.map((fact) => <li key={fact}>{fact}</li>)}</ul>
@@ -250,7 +250,7 @@ function RecordGrid({ kind, entries }: { kind: PublicPageKind; entries: Publishe
     <p className="mb-8 max-w-3xl text-base leading-8 text-[#40566a]">Explore our college archive. Dates and campus context are shown where the original record provides them; new published stories appear alongside earlier material.</p>
     {kind === 'magazine' && <Link to="/publishing-house" className="sk-text-link mb-8">Explore Westin Publishing House <ArrowRight size={17} aria-hidden="true" /></Link>}
     <div className="ed-record-grid">
-      {published.map((entry) => <article key={entry.id || entry.slug} className="ed-record-card flex flex-col p-6" onPointerMove={moveCardLight} onPointerLeave={resetCardLight}>
+      {published.map((entry) => <article key={entry.id || entry.slug} className="ed-record-card flex flex-col p-6" onPointerMove={moveCardLight} onPointerLeave={leaveCardLight}>
         <p className="text-xs font-bold uppercase tracking-[.15em] text-[#9c401b]">Published by Westin</p>
         <h2 className="mt-4 text-2xl font-bold tracking-[-.04em] text-[#0d2e51]">{contentText(entry.content, 'title')}</h2>
         <p className="mt-3 flex-1 text-sm leading-7 text-[#40566a]">{contentText(entry.content, 'summary')}</p>
@@ -260,7 +260,7 @@ function RecordGrid({ kind, entries }: { kind: PublicPageKind; entries: Publishe
         const image = 'image' in record && typeof record.image === 'string' ? record.image : ''
         const imageAlt = 'imageAlt' in record && typeof record.imageAlt === 'string' ? record.imageAlt : record.title
         const label = 'label' in record && typeof record.label === 'string' ? record.label : record.kind === 'campus-events' ? 'Campus event' : 'Westin archive'
-        return <article key={record.id} className="ed-record-card flex flex-col overflow-hidden p-6" onPointerMove={moveCardLight} onPointerLeave={resetCardLight}>
+        return <article key={record.id} className="ed-record-card flex flex-col overflow-hidden p-6" onPointerMove={moveCardLight} onPointerLeave={leaveCardLight}>
           {image ? <div className="ed-photo-frame"><img className="sk-archive-thumb" src={image} width="600" height="400" loading="lazy" alt={imageAlt} /></div> : null}
           <p className="text-xs font-bold uppercase tracking-[.15em] text-[#9c401b]">{label}</p>
           <h2 className="mt-4 text-2xl font-bold tracking-[-.04em] text-[#0d2e51]">{record.title}</h2>

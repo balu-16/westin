@@ -258,10 +258,10 @@ export const publicSections: Record<string, PublicSection[]> = {
     { title: 'Regional reach', body: 'The profile describes work across the Gulf region, Far East and Asia, matching candidates to employer requirements.', source: sources.legacyPartners },
   ],
   '/campus': [
-    { title: 'Spaces for study', body: 'Westin describes digital classrooms and a library and learning centre with books, journals and online resources.', source: sources.business },
+    { title: 'Spaces for study', body: 'Westin describes digital classrooms and a library and learning centre with books, journals and online resources.', points: ['Digital boards and high-speed internet support interactive lessons.', 'The learning centre offers books, journals and online resources for research.', 'Computer labs and innovation hubs support technology-led work.'], source: sources.business },
     { title: 'Spaces for practice', body: 'Hospitality study brings students into kitchens, food and beverage service, front office and housekeeping practice.', source: sources.bhm },
     { title: 'Life beyond class', body: 'The junior college describes business and debate clubs, workshops, cultural events, sports, mentoring and career guidance.', source: sources.junior },
-    { title: 'Student-led communities', body: 'The student-life page lists entrepreneurship, finance and investment, marketing, cultural, sports and social-responsibility clubs.', source: sources.studentLife },
+    { title: 'Student-led communities', body: 'The student-life page lists entrepreneurship, finance and investment, marketing, cultural, sports and social-responsibility clubs.', points: ['Business clubs explore startups, finance and marketing through workshops and networking.', 'Cultural and sports groups make room for music, art, cricket, badminton and more.', 'The social-responsibility club takes part in community service and awareness campaigns.'], source: sources.studentLife },
   ],
   '/campus/infrastructure': [
     { title: 'Classrooms and learning centre', body: 'Westin describes classrooms with digital boards and internet, alongside library resources for study and research.', source: sources.business },
