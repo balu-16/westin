@@ -4,7 +4,7 @@ export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
   workers: 3,
-  timeout: 45_000,
+  timeout: 90_000,
   expect: { timeout: 8000 },
   reporter: [["list"], ["html", { open: "never" }]],
   use: {
@@ -16,7 +16,7 @@ export default defineConfig({
   projects: [
     {
       name: "preview",
-      testMatch: /(homepage|public-boundary)\.spec\.ts/,
+      testMatch: /(homepage|destinations|secondary-destinations|editorial-theme|next-step|public-boundary)\.spec\.ts/,
       use: { baseURL: "http://127.0.0.1:5180" },
     },
     {

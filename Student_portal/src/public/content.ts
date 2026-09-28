@@ -20,6 +20,13 @@ export const sources = {
   juniorCourses: 'https://www.westincollegevijayawada.com/blank-1-4-1',
   business: 'https://www.westincollegevijayawada.com/bba-college-in-vijayawada',
   hotelCollege: 'https://www.westincollegevijayawada.com/blank',
+  hotelCollegeDetailed: 'https://www.westincollegevijayawada.com/hotel-management-college-in-vijayawada',
+  faculty: 'https://www.westincollegevijayawada.com/faculty-excellence',
+  corporateTraining: 'https://www.westincollegevijayawada.com/corporate-training',
+  internship: 'https://www.westincollegevijayawada.com/internship',
+  studentLife: 'https://www.westincollegevijayawada.com/student-life',
+  admissions: 'https://www.westincollegevijayawada.com/admission-page',
+  courseGuide: 'https://www.westincollegevijayawada.com/post/westin-college-of-hotel-management-ug-courses-2025-a-simple-student-guide',
   events: 'https://www.westincollegevijayawada.com/event',
   gallery: 'https://www.westincollegevijayawada.com/gallery',
   publishing: 'https://www.westincollegevijayawada.com/blank-1-2-1-1-1-1-1-1-1-2-1',
@@ -67,6 +74,13 @@ export interface PublicRecord {
   date?: string
   context?: string
 }
+
+export const otherStudyOptions = [
+  { title: 'B.Sc. in Hospitality & Hotel Administration', detail: 'Three-year degree mentioned in Westin’s 2026 undergraduate guide, including hotel operations, bakery, guest care and internships.', source: sources.courseGuide },
+  { title: 'Food & Beverage Service and Housekeeping', detail: 'One-year skill course mentioned in Westin’s undergraduate guide.', source: sources.courseGuide },
+  { title: 'Bakery and Confectionery', detail: 'Six-month skill course mentioned in Westin’s undergraduate guide.', source: sources.courseGuide },
+  { title: 'Mixology / Bartending', detail: 'Six-month skill course mentioned in Westin’s undergraduate guide.', source: sources.courseGuide },
+] as const
 
 /** A sourced catalog. Home still introduces the three broad study directions. */
 export const fixturePrograms: PublicProgram[] = [
@@ -179,7 +193,7 @@ export const publicPageCopy: Record<PublicPageKind, { eyebrow: string; title: st
   programs: { eyebrow: 'Find your kind of future', title: 'Start with a direction, then make it yours.', summary: 'Compare Westin’s business, hospitality and junior-college courses.' },
   campus: { eyebrow: 'Campus life', title: 'A place to learn, practise, and belong.', summary: 'Explore classrooms, hospitality practice, clubs and life beyond lessons.' },
   placements: { eyebrow: 'From campus to career', title: 'Preparation opens possibilities.', summary: 'Read about internships, career support and outcomes published by Westin.' },
-  news: { eyebrow: 'Campus journal', title: 'What is happening at Westin.', summary: 'College updates and achievements from Westin’s official sites.' },
+  news: { eyebrow: 'Campus journal', title: 'What is happening at Westin.', summary: 'College updates and achievements from our Vijayawada and legacy archives.' },
   blog: { eyebrow: 'Westin journal', title: 'Ideas worth spending time with.', summary: 'Explore guidance on study, hospitality, business and student life.' },
   'campus-events': { eyebrow: 'Happening here', title: 'The moments make the place.', summary: 'Celebrations and past events documented by Westin.' },
   gallery: { eyebrow: 'Gallery', title: 'See learning in action.', summary: 'Official collections of culinary practice, student projects and campus events.' },
@@ -191,6 +205,8 @@ export const publicPageCopy: Record<PublicPageKind, { eyebrow: string; title: st
 }
 
 export const routeCopy: Record<string, { eyebrow: string; title: string; summary: string }> = {
+  '/about/faculty': { eyebrow: 'Faculty excellence', title: 'Learning with experienced guides.', summary: 'Meet the faculty and industry practitioners who support learning at Westin.' },
+  '/publishing-house': { eyebrow: 'Westin Publishing House', title: 'Stories begin with a first page.', summary: 'Explore Westin’s publishing vision, student author program and support for new writers.' },
   '/about/mission-vision': { eyebrow: 'Our direction', title: 'Purpose in every practical step.', summary: 'Westin’s vision and mission connect hospitality skills with career opportunity.' },
   '/about/management': { eyebrow: 'People at Westin', title: 'Meet the people shaping the journey.', summary: 'Leadership and teaching are part of the Westin story.' },
   '/partners/bineid': { eyebrow: 'Industry relationship', title: 'A connection to hospitality careers.', summary: 'Explore the BIN EID profile documented by Westin.' },
@@ -199,12 +215,19 @@ export const routeCopy: Record<string, { eyebrow: string; title: string; summary
 }
 
 export const publicSections: Record<string, PublicSection[]> = {
+  '/about/faculty': [
+    { title: 'Teachers and mentors', body: 'Westin describes experienced educators, industry practitioners, case-study teaching and individual mentoring.', source: sources.faculty },
+  ],
+  '/publishing-house': [
+    { title: 'From idea to publication', body: 'Westin Publishing House describes writing workshops, editorial mentoring and support from manuscript to publication.', source: sources.publishing },
+  ],
   '/about': [
     { title: 'Westin in Vijayawada', body: 'Westin traces its history to 1999 and brings hotel management, business management and junior-college study together in Vijayawada.', points: ['Hospitality and business education', 'MEC and CEC junior-college streams', 'Vijayawada and Hyderabad campuses'], source: sources.about },
     { title: 'The idea behind the college', body: 'Westin describes a student-centred environment connecting educators, industry professionals and learning beyond the classroom.', points: ['Academic and operational skill', 'Communication and character', 'Career-oriented learning'], source: sources.about },
     { title: 'Founder and leadership', body: 'The newer Westin About page identifies K. Durga Prasad as Founder and Director and presents education as a route from potential to purpose.', source: sources.about },
-    { title: 'Recognition published by Westin', body: 'Westin’s newer hospitality page lists seven Best College awards from the Government of Andhra Pradesh, more than 25 years of experience, 75+ international placement partners, 12,000+ international placements and 4,000+ domestic placements. The page does not specify reporting periods for the placement totals. Its homepage also describes the college as ranked among the top in Andhra Pradesh.', source: sources.hotelCollege },
+    { title: 'Recognition and reach', body: 'Our business-facing page lists seven Best College awards from the Government of Andhra Pradesh, more than 25 years of experience and 75+ international placement partners. These are figures published by Westin without award dates or a partner reporting period.', source: sources.business },
     { title: 'Earlier site highlights', body: 'The older Vijayawada homepage displays 65 teachers, 5,300 students and 2,200 international placements without a reporting date. These are retained as figures from that version of the site.', source: sources.legacyHome },
+    { title: 'Faculty and mentoring', body: 'Westin’s faculty page describes educators with advanced qualifications and corporate experience, one-to-one mentoring, case-study teaching and live projects.', points: ['Guest sessions with business leaders', 'Small-class interaction', 'Leadership development'], source: sources.faculty },
   ],
   '/about/mission-vision': [
     { title: 'Vision', body: 'Westin’s stated vision is to lead in state-of-the-art training and international job opportunities.', source: sources.vision },
@@ -222,6 +245,8 @@ export const publicSections: Record<string, PublicSection[]> = {
     { title: 'Practice belongs in the lesson', body: 'Hospitality training covers food production, service, front office and housekeeping; business study uses cases, projects and workshops.', source: sources.legacyWhy },
     { title: 'Industry in view', body: 'Westin describes internships, guest lectures, industry interactions and study visits as ways to connect learning with work.', source: sources.legacyBba },
     { title: 'Feedback and direction', body: 'The college describes constructive feedback, career counselling and support for internships and higher study.', source: sources.legacyWhy },
+    { title: 'Corporate preparation', body: 'Westin’s corporate-training page lists communication workshops, advanced certifications, resume sessions, mock interviews and professional grooming.', source: sources.corporateTraining },
+    { title: 'Industry learning', body: 'The business internship page describes structured internships in the second and sixth semesters, industry visits, live business challenges and a business conclave.', source: sources.internship },
   ],
   '/partners': [
     { title: 'Academic connections', body: 'Westin’s degree pages list affiliation with Krishna University. Junior-college pages name the Board of Intermediate Education, Andhra Pradesh.', source: sources.bhm },
@@ -236,6 +261,7 @@ export const publicSections: Record<string, PublicSection[]> = {
     { title: 'Spaces for study', body: 'Westin describes digital classrooms and a library and learning centre with books, journals and online resources.', source: sources.business },
     { title: 'Spaces for practice', body: 'Hospitality study brings students into kitchens, food and beverage service, front office and housekeeping practice.', source: sources.bhm },
     { title: 'Life beyond class', body: 'The junior college describes business and debate clubs, workshops, cultural events, sports, mentoring and career guidance.', source: sources.junior },
+    { title: 'Student-led communities', body: 'The student-life page lists entrepreneurship, finance and investment, marketing, cultural, sports and social-responsibility clubs.', source: sources.studentLife },
   ],
   '/campus/infrastructure': [
     { title: 'Classrooms and learning centre', body: 'Westin describes classrooms with digital boards and internet, alongside library resources for study and research.', source: sources.business },
@@ -246,8 +272,10 @@ export const publicSections: Record<string, PublicSection[]> = {
     { title: 'Preparation throughout study', body: 'Westin describes internships, workplace projects, specialisation and career guidance across business and hospitality courses.', source: sources.home },
     { title: 'Figures published by Westin', body: 'The newer homepage lists a 42 LPA highest package, 8 LPA average package and 100% placement percentage. It gives no reporting period or campus breakdown for these figures.', points: ['42 LPA highest package', '8 LPA average package', '100% placement percentage'], source: sources.home },
     { title: 'Earlier Hyderabad campus record', body: 'The legacy placements page reports that 66% of final-year students had international jobs or internships before course completion in 2017–18. That page explicitly describes Hyderabad campus interviews.', source: sources.legacyPlacements },
-    { title: 'College-wide totals on Westin’s sites', body: 'The newer hospitality page lists 12,000+ international and 4,000+ domestic placements without a reporting period. The older Vijayawada homepage lists 2,200 international placements, also without a date. Each figure is presented with its source and original context.', source: sources.hotelCollege },
+    { title: 'College-wide totals on Westin’s sites', body: 'A newer business-facing page lists 12,000+ international and 4,000+ domestic placements, while a newer hospitality-facing page lists 15,000+ international and 6,000+ domestic placements. Neither gives a reporting period or campus breakdown. The legacy Vijayawada homepage separately lists 2,200 international placements without a date.', source: sources.hotelCollegeDetailed },
     { title: 'Career planner', body: 'Westin describes a dedicated hospitality career-planning and recruitment organisation with screening and employer connections.', source: sources.legacyPlacements },
+    { title: 'Business internships', body: 'Westin describes internships in the second and sixth semesters, industry visits, live business challenges and its Business Conclave.', source: sources.internship },
+    { title: 'Corporate readiness', body: 'Its corporate-training page lists soft-skills workshops, certification, mock interviews, resume building and professional etiquette.', source: sources.corporateTraining },
   ],
   '/career-planner': [
     { title: 'From interest to opportunity', body: 'Westin Career Planner is described as a hospitality recruitment organisation connecting candidates with internships and jobs.', source: sources.legacyPlacements },
@@ -257,7 +285,7 @@ export const publicSections: Record<string, PublicSection[]> = {
 }
 
 export const publicRecords: PublicRecord[] = [
-  { id: 'awards', kind: 'news', label: 'College recognition', title: 'Westin awards and achievements', summary: 'The newer hospitality page lists seven Best College awards by the Government of Andhra Pradesh; the older site records earlier awards.', source: 'https://www.westincollegevijayawada.com/blank' },
+  { id: 'awards', kind: 'news', label: 'College recognition', title: 'Westin awards and achievements', summary: 'The newer business page lists seven Best College awards by the Government of Andhra Pradesh; the older site records earlier awards.', source: sources.business },
   { id: 'business-quiz', kind: 'news', label: 'Student achievement', title: 'BBA students recognised in business quiz', summary: 'Westin reports that Chandra Chandi, Manaswini and Gowshik T. won second prize in a quiz organised by KBN College, Vijayawada.', source: sources.business },
   { id: 'news-more', kind: 'news', label: 'College archive', title: 'Westin news and more', summary: 'The college’s news collection documents student achievements, hotel-industry learning and placement updates.', source: sources.newsMore },
   { id: 'interviews', kind: 'news', label: '2017–18 archive · Hyderabad', title: 'Hospitality campus interviews', summary: 'The legacy site documents hotel-industry interviews and placements for Hyderabad in 2017–18.', date: '2018', context: 'Hyderabad campus', source: sources.legacyPlacements },
@@ -274,6 +302,7 @@ export const publicRecords: PublicRecord[] = [
   { id: 'sattvika-3', kind: 'magazine', label: 'Hospitality publication · Volume III', title: 'Sattvika III', summary: 'The third Sattvika volume linked by Westin.', source: 'https://www.westincollegevijayawada.com/_files/ugd/e4b079_39c690c54eb54f0a9a581c34c8e7d5be.pdf?index=true' },
   { id: 'table-1', kind: 'magazine', label: 'Business publication', title: 'Table: A Business Magazine', summary: 'An official Westin business magazine available from the legacy Vijayawada site.', source: 'https://www.westincolleges.com/vij/pdf/TABLE-Business-Magazine.pdf' },
   { id: 'table-new', kind: 'magazine', label: 'Business publication', title: 'Table Magazine', summary: 'A newer Table volume linked by Westin College Vijayawada.', source: 'https://www.westincollegevijayawada.com/_files/ugd/e4b079_5ee25301beb549ed90b8ff0c08252e13.pdf' },
+  { id: 'table-3', kind: 'magazine', label: 'Business publication', title: 'Table Magazine 3', summary: 'A further Table business-magazine PDF linked from the Vijayawada site. The file is large and opens at the original source.', source: 'https://www.westincollegevijayawada.com/_files/ugd/e4b079_8d7b159078794b789e40fc358c986a8a.pdf' },
   { id: 'publishing', kind: 'magazine', label: 'Westin Publishing House', title: 'Student Author Program', summary: 'The publishing house describes writing workshops, editorial mentorship and the journey from manuscript to publication.', source: sources.publishing },
   { id: 'founder', kind: 'testimonials', label: 'College leadership', title: 'K. Durga Prasad', summary: 'Westin’s Founder and Director describes education as a journey that builds knowledge, character and opportunity.', source: sources.about },
   { id: 'michael-wierling', kind: 'testimonials', label: 'Employer perspective · legacy site', title: 'Michael Wierling', summary: 'The hotel human-resources director describes Westin Career Planner’s candidate search and travel coordination for hospitality recruitment.', source: sources.legacyHome },
@@ -286,7 +315,8 @@ export const publicRecords: PublicRecord[] = [
 
 export function getFixturePage(pathname: string): { kind: PublicPageKind; key: string; program?: PublicProgram } | null {
   const clean = pathname.endsWith('/') && pathname !== '/' ? pathname.slice(0, -1) : pathname
-  if (clean === '/about' || clean === '/about/mission-vision' || clean === '/about/management') return { kind: 'about', key: clean }
+  if (clean === '/about' || clean === '/about/mission-vision' || clean === '/about/management' || clean === '/about/faculty') return { kind: 'about', key: clean }
+  if (clean === '/publishing-house') return { kind: 'magazine', key: clean }
   if (clean === '/partners' || clean === '/partners/bineid') return { kind: 'partners', key: clean }
   if (clean === '/why-westin') return { kind: 'why-westin', key: clean }
   if (clean === '/programs') return { kind: 'programs', key: clean }

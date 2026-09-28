@@ -15,25 +15,26 @@ import { CampusSketch } from './CampusSketch'
 
 type HeroKind = PublicPageKind | 'search' | 'not-found'
 type Motif = 'college' | 'programs' | 'campus' | 'career' | 'stories' | 'contact'
+export type PageHeroPhoto = { alt: string; caption: string } & ({ stem: string; src?: never; srcSet?: never } | { src: string; srcSet?: string; stem?: never })
 
-const heroDetails: Record<HeroKind, { motif: Motif; note: string }> = {
-  about: { motif: 'college', note: 'Every beginning has a place.' },
-  partners: { motif: 'college', note: 'Better paths, together.' },
-  'why-westin': { motif: 'college', note: 'A place to become.' },
-  programs: { motif: 'programs', note: 'More than one way forward.' },
-  campus: { motif: 'campus', note: 'Find your people.' },
-  placements: { motif: 'career', note: 'Every step counts.' },
-  news: { motif: 'stories', note: 'Stories worth sharing.' },
-  blog: { motif: 'stories', note: 'Keep your curiosity close.' },
-  'campus-events': { motif: 'campus', note: 'The moments make the place.' },
-  gallery: { motif: 'campus', note: 'Look a little closer.' },
-  magazine: { motif: 'stories', note: 'Turn the page.' },
-  testimonials: { motif: 'stories', note: 'Every voice has a story.' },
-  'success-stories': { motif: 'career', note: 'Every path is personal.' },
-  admissions: { motif: 'contact', note: 'Your next page starts here.' },
-  contact: { motif: 'contact', note: 'Let’s start here.' },
-  search: { motif: 'stories', note: 'See what you discover.' },
-  'not-found': { motif: 'stories', note: 'Another page is waiting.' },
+const heroMotifs: Record<HeroKind, Motif> = {
+  about: 'college',
+  partners: 'college',
+  'why-westin': 'college',
+  programs: 'programs',
+  campus: 'campus',
+  placements: 'career',
+  news: 'stories',
+  blog: 'stories',
+  'campus-events': 'campus',
+  gallery: 'campus',
+  magazine: 'stories',
+  testimonials: 'stories',
+  'success-stories': 'career',
+  admissions: 'contact',
+  contact: 'contact',
+  search: 'stories',
+  'not-found': 'stories',
 }
 
 function HeroMotif({ motif }: { motif: Motif }) {
@@ -106,27 +107,36 @@ export function PublicPageHero({
   eyebrow,
   title,
   summary,
+  photo,
 }: {
   kind: HeroKind
   eyebrow: string
   title: string
   summary: string
+  photo?: PageHeroPhoto
 }) {
-  const { motif, note } = heroDetails[kind]
+  const motif = heroMotifs[kind]
+  const photoSrc = photo && ('stem' in photo && photo.stem ? `/images/official/campus/${photo.stem}-960.webp` : photo.src)
+  const photoSrcSet = photo && ('stem' in photo && photo.stem
+    ? `/images/official/campus/${photo.stem}-480.webp 480w, /images/official/campus/${photo.stem}-960.webp 960w`
+    : photo.srcSet)
   return (
-    <section className="sk-page-hero" data-motif={motif}>
+    <section className={`sk-page-hero${photo ? ' sk-page-hero-photographic' : ''}`} data-motif={motif}>
       <div className="sk-container sk-page-hero-grid">
         <div className="sk-page-hero-copy">
           <p className="sk-eyebrow"><span className="sk-small-line" aria-hidden="true" />{eyebrow}</p>
           <h1>{title}</h1>
           <p className="sk-page-hero-summary">{summary}</p>
+          <p className="sk-page-hero-quote">Good people<br />make great places<span aria-hidden="true" /></p>
         </div>
-        <div className="sk-page-hero-art">
+        {photo ? <figure className="sk-page-hero-photo">
+          <img src={photoSrc} srcSet={photoSrcSet} sizes="(min-width: 900px) 50vw, 100vw" width="960" height="640" loading="eager" fetchPriority="high" decoding="async" alt={photo.alt} />
+          <figcaption className="sr-only">{photo.caption}</figcaption>
+        </figure> : <div className="sk-page-hero-art">
           <div className="sk-page-paper" aria-hidden="true" />
-          <CampusSketch />
+          <CampusSketch id="westin-page-hero" />
           <HeroMotif motif={motif} />
-          <p className="sk-page-hero-note">{note}<span aria-hidden="true" /></p>
-        </div>
+        </div>}
       </div>
     </section>
   )

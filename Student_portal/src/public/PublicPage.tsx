@@ -1,102 +1,168 @@
-import { useEffect, useState } from 'react'
+import { lazy, Suspense, useEffect, useMemo, useState } from 'react'
 import { ArrowRight, ArrowUpRight, CalendarDays, Check, Search } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 import {
-  fixturePrograms, getFixturePage, publicPageCopy, publicRecords, publicSections,
+  fixturePrograms, getFixturePage, otherStudyOptions, publicPageCopy, publicRecords, publicSections,
   routeCopy, type PublicPageKind, type PublicProgram, type PublicSection,
 } from './content'
-import { ErrorState } from '../components/ErrorState'
 import { PageLoader } from '../components/Loading'
 import type { PublishedContentEntry } from '../lib/publicApi'
-import { PUBLIC_CONTENT_MODE, usePublishedEntry, usePublishedSite } from './usePublicContent'
+import { PUBLIC_CONTENT_MODE, publicSnapshot, snapshotPublicPath, snapshotRoute, usePublishedEntry, usePublishedSite } from './usePublicContent'
 import { publicFetch, publicSearchUrl } from '../lib/publicApi'
-import { ContactHandoff } from './ContactHandoff'
-import { PublicPageHero } from './PublicPageHero'
+import { PublicPageHero, type PageHeroPhoto } from './PublicPageHero'
+import { EditorialNote } from './EditorialNote'
+import { archivePath, findArchiveEntry, officialArchive, type OfficialArchiveEntry } from './officialArchive'
+import { safePublicUrl } from './home-model'
+import { OfficialDestinationContent } from './OfficialDestinationContent'
+import { EditorialDestination, OfficialContentSection, moveCardLight, resetCardLight } from './EditorialDestinations'
+import { AdmissionsDestination, ContactDestination, PlacementsDestination } from './SecondaryDestinations'
+import { PublicFaq } from './PublicFaq'
+import './editorial-destinations.css'
+import './editorial-secondary.css'
 
 const wrap = 'mx-auto max-w-[1360px] px-5 py-14 sm:px-8 lg:px-12 lg:py-20'
-const card = 'rounded-[26px] border border-[#cce7f7] bg-white p-6 shadow-[0_12px_30px_rgba(27,96,133,.06)]'
+const card = 'rounded-[26px] border border-[#e3dacf] bg-white p-6 shadow-[0_12px_30px_rgba(62,52,34,.06)]'
+
+function MovedContent({ path, programSlug }: { path: string; programSlug?: string }) {
+  return <OfficialDestinationContent path={path} programSlug={programSlug} />
+}
 
 function contentText(content: Record<string, unknown>, key: string) {
   const value = content[key]
   return typeof value === 'string' ? value.trim() : ''
 }
 
-function SourceLink({ href, label = 'Read on Westin’s official site' }: { href: string; label?: string }) {
-  return <a href={href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-bold text-[#1468aa] underline decoration-[#9fcde8] underline-offset-4 hover:text-[#0c4c80]">
+function SourceLink({ href, label = 'Original Westin record' }: { href: string; label?: string }) {
+  return <a href={href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-bold text-[#9c401b] underline decoration-[#d6b79b] underline-offset-4 hover:text-[#753115]">
     {label}<ArrowUpRight size={16} aria-hidden="true" /><span className="sr-only"> (opens a new tab)</span>
   </a>
 }
 
-function PageIntro({ kind, keyName, title, summary }: { kind: PublicPageKind; keyName: string; title?: string; summary?: string }) {
+const photo = (stem: string, alt: string, caption: string): PageHeroPhoto => ({ stem, alt, caption })
+
+const routeHeroPhotos: Record<string, PageHeroPhoto> = {
+  '/about': photo('about-hero', 'Westin hospitality students learning together', 'Learning with people at Westin'),
+  '/about/mission-vision': photo('about-hero', 'Westin hospitality students learning together', 'Purpose in practice'),
+  '/about/management': photo('students-group', 'Westin students listening during a learning session', 'People shaping the journey'),
+  '/about/faculty': photo('faculty-excellence', 'Westin educators and students in a learning setting', 'Guidance that stays with you'),
+  '/why-westin': photo('hm-learning', 'Westin hospitality student practising food preparation', 'Learning by doing'),
+  '/partners': photo('success-team', 'Westin students and educators gathered together', 'Connections open doors'),
+  '/partners/bineid': photo('success-team', 'Westin students and educators gathered together', 'Connections open doors'),
+  '/programs': photo('hm-learning', 'Westin hospitality student practising food preparation', 'Ideas become skills through practice'),
+  '/programs/bba': photo('bba-programme', 'Westin business students studying together', 'Explore your business path'),
+  '/programs/bba-honours': photo('bba-leadership', 'Westin business students learning together', 'Ideas in action'),
+  '/programs/hotel-management': photo('hm-learning', 'Westin hospitality student practising food preparation', 'Learn the craft of hospitality'),
+  '/programs/bhm-three-year': photo('hm-programme-degree', 'Westin hospitality students taking part in practical learning', 'Practice makes possibilities'),
+  '/programs/bhm-honours': photo('hm-programme-honours', 'Westin hospitality students learning together', 'Take your learning further'),
+  '/programs/work-integrated-hotel-management': photo('hm-service-team', 'Westin hospitality students practising service together', 'Learn in the workplace'),
+  '/programs/dhm-one-year': photo('hm-front-office', 'Westin hospitality students practising front office service', 'Build practical skills'),
+  '/programs/food-production': photo('hm-learning', 'Westin hospitality student practising food preparation', 'Learn through practice'),
+  '/programs/pgdhm': photo('hm-hospitality', 'Westin hospitality students in a practical learning setting', 'Build on what you know'),
+  '/programs/intermediate': photo('junior-foundation', 'Westin junior college students learning together', 'A strong start'),
+  '/campus': photo('campus-culture', 'Westin students collaborating around a laptop', 'A place to learn and belong'),
+  '/campus/infrastructure': photo('hm-front-office', 'Westin hospitality students practising front office service', 'Spaces made for practice'),
+  '/campus/events': photo('campus-culture', 'Westin students collaborating around a laptop', 'The moments make the place'),
+  '/career-planner': photo('training-mock-interviews', 'Westin students attending a workplace learning session', 'Prepare for what comes next'),
+  '/publishing-house': photo('bba-journeys', 'Westin students discussing work around a laptop', 'Stories start here'),
+}
+
+const kindHeroPhotos: Record<PublicPageKind, PageHeroPhoto> = {
+  about: routeHeroPhotos['/about'],
+  partners: routeHeroPhotos['/partners'],
+  'why-westin': routeHeroPhotos['/why-westin'],
+  programs: routeHeroPhotos['/programs'],
+  campus: routeHeroPhotos['/campus'],
+  placements: photo('success-hero', 'Westin hospitality students gathered around a table', 'Where preparation meets possibility'),
+  news: photo('students-group', 'Westin students listening during a learning session', 'News from Westin'),
+  blog: photo('bba-learning', 'Westin business students learning together', 'Ideas from Westin'),
+  'campus-events': routeHeroPhotos['/campus/events'],
+  gallery: routeHeroPhotos['/campus'],
+  magazine: routeHeroPhotos['/publishing-house'],
+  testimonials: photo('alumni-hero', 'Westin alumni gathered together', 'Voices from Westin'),
+  'success-stories': photo('alumni-hero', 'Westin alumni gathered together', 'Paths beyond Westin'),
+  admissions: photo('students-group', 'Westin students listening during a learning session', 'A new chapter starts with a conversation'),
+  contact: photo('bba-journeys', 'Westin students discussing work around a laptop', 'Your next conversation starts here'),
+}
+
+function PageIntro({ kind, keyName, title, summary, heroPhoto }: { kind: PublicPageKind; keyName: string; title?: string; summary?: string; heroPhoto?: PageHeroPhoto }) {
   const copy = routeCopy[keyName] ?? publicPageCopy[kind]
-  return <PublicPageHero kind={kind} eyebrow={copy.eyebrow} title={title || copy.title} summary={summary || copy.summary} />
+  return <PublicPageHero kind={kind} eyebrow={copy.eyebrow} title={title || copy.title} summary={summary || copy.summary} photo={heroPhoto ?? routeHeroPhotos[keyName] ?? kindHeroPhotos[kind]} />
 }
 
 function SectionCards({ sections }: { sections: PublicSection[] }) {
-  return <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-    {sections.map((section) => <article key={section.title} className={card}>
-      <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#eaf6ff] text-[#1468aa]"><Check size={20} aria-hidden="true" /></span>
-      <h2 className="mt-5 text-[clamp(1.45rem,2vw,2rem)] font-bold leading-tight tracking-[-0.04em] text-[#142d46]">{section.title}</h2>
-      <p className="mt-4 text-[15px] leading-7 text-[#42647a]">{section.body}</p>
-      {section.points && <ul className="mt-5 grid gap-2 text-sm leading-6 text-[#325d77]">{section.points.map((point) => <li key={point} className="flex gap-2"><Check size={16} className="mt-1 shrink-0 text-[#1688ba]" aria-hidden="true" />{point}</li>)}</ul>}
-      <div className="mt-6"><SourceLink href={section.source} /></div>
+  return <div className="ed-section-grid">
+    {sections.map((section) => <article key={section.title} className="ed-section-card" onPointerMove={moveCardLight} onPointerLeave={resetCardLight}>
+      <h2>{section.title}</h2>
+      <p>{section.body}</p>
+        {section.points && <ul>{section.points.map((point) => <li key={point}><Check size={16} aria-hidden="true" />{point}</li>)}</ul>}
+        <SourceLink href={section.source} />
     </article>)}
   </div>
 }
 
 function ProgramIndex({ entries }: { entries: PublishedContentEntry[] }) {
-  return <div className={wrap}>
-    <div className="mb-10 max-w-[750px]">
-      <p className="sk-eyebrow">Three study directions · more ways to begin</p>
-      <h2 className="mt-3 text-3xl font-bold tracking-[-0.05em] text-[#142d46] sm:text-4xl">Choose the route that fits your curiosity.</h2>
-      <p className="mt-4 text-base leading-7 text-[#42647a]">Westin lists business degrees, hospitality degrees and diplomas, and MEC/CEC intermediate study. Each course page below brings together its learning areas, entry details and the original college source.</p>
-    </div>
-    {(['Business', 'Hospitality', 'Junior college'] as const).map((group) => <section key={group} className="mb-14 last:mb-0" aria-label={group + ' courses'}>
-      <h3 className="mb-5 border-b border-[#cce7f7] pb-3 text-xl font-bold text-[#142d46]">{group}</h3>
-      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-        {fixturePrograms.filter((program) => program.group === group).map((program) => {
+  const groups = [
+    { name: 'Business', slug: 'business', description: 'Explore management, enterprise and the work behind strong decisions.', image: 'bba-programme', alt: 'Westin business students in a learning setting', note: 'Ideas into action.' },
+    { name: 'Hospitality', slug: 'hospitality', description: 'Learn service, food, operations and the craft of welcoming people.', image: 'hm-service-team', alt: 'Westin hospitality students practising service together', note: 'Care is a craft.' },
+    { name: 'Junior college', slug: 'junior', description: 'Build a foundation in commerce and management through MEC or CEC.', image: 'junior-life-1', alt: 'Westin junior college students participating in an activity', note: 'Start with possibility.' },
+  ] as const
+  return <div className="ed-programs">
+    <section className="ed-shell ed-programs-intro" aria-labelledby="ed-programs-title">
+      <p className="ed-kicker"><span className="ed-orange-rule" aria-hidden="true" />Our Programmes · three study directions</p>
+      <div><h2 id="ed-programs-title">Find the course that feels like yours.</h2><p>Explore business degrees, hospitality degrees and diplomas, and MEC or CEC intermediate study. Each course page has its learning areas, entry details and a way to speak with the Vijayawada team.</p></div>
+    </section>
+    {groups.map((group) => <section key={group.slug} className="ed-shell ed-program-group" data-group={group.slug} aria-labelledby={`ed-program-${group.slug}`}>
+      <div className="ed-program-group-heading"><div><p className="ed-kicker"><span className="ed-orange-rule" aria-hidden="true" />Study direction</p><h3 id={`ed-program-${group.slug}`}>{group.name}</h3></div><p>{group.description}</p></div>
+      <div className="ed-program-grid">
+        {fixturePrograms.filter((program) => program.group === group.name).map((program, index) => {
           const published = entries.find((entry) => entry.entryType === 'program' && entry.slug === program.slug)
-          return <article key={program.slug} className={card + ' flex flex-col'}>
-          <span className="text-xs font-bold uppercase tracking-[.15em] text-[#35728f]">{program.label}</span>
-          <h4 className="mt-4 text-2xl font-bold leading-tight tracking-[-0.04em] text-[#142d46]">{published && contentText(published.content, 'title') || program.title}</h4>
-          <p className="mt-4 flex-1 text-sm leading-7 text-[#42647a]">{published && contentText(published.content, 'summary') || program.summary}</p>
-          <ul className="mt-5 grid gap-2 text-sm text-[#325d77]">{program.facts.map((fact) => <li key={fact} className="flex gap-2"><Check size={15} className="mt-1 shrink-0 text-[#3ba7f2]" aria-hidden="true" />{fact}</li>)}</ul>
-          <Link to={'/programs/' + program.slug} className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-[#1468aa]">Explore course <ArrowRight size={17} aria-hidden="true" /></Link>
-        </article>})}
+          return <article key={program.slug} className={`ed-program-card${index === 0 ? ' ed-program-card--feature' : ''}`} onPointerMove={moveCardLight} onPointerLeave={resetCardLight}>
+            {index === 0 && <div className="ed-photo-frame ed-photo-frame--bottom"><img src={`/images/official/campus/${group.image}-960.webp`} srcSet={`/images/official/campus/${group.image}-480.webp 480w, /images/official/campus/${group.image}-960.webp 960w`} sizes="(min-width: 1100px) 45vw, 100vw" width="960" height="640" loading="lazy" decoding="async" alt={group.alt} /><span className="ed-photo-frame-caption">{group.name}</span></div>}
+            <div className="ed-program-card-copy"><span className="ed-bento-label">{program.label}</span><h4>{published && contentText(published.content, 'title') || program.title}</h4><p>{published && contentText(published.content, 'summary') || program.summary}</p>
+              <ul>{program.facts.map((fact) => <li key={fact}>{fact}</li>)}</ul>
+              {index === 0 && <EditorialNote>{group.note}</EditorialNote>}
+              <div className="ed-program-card-links"><Link to={'/programs/' + program.slug}>Explore course <ArrowRight size={17} aria-hidden="true" /></Link><a href={program.source} target="_blank" rel="noopener noreferrer">Original course record <span className="sr-only">(opens a new tab)</span></a></div>
+            </div>
+          </article>
+        })}
       </div>
     </section>)}
+    <section className="ed-shell ed-other-options" aria-labelledby="other-options-title"><div><p className="ed-kicker"><span className="ed-orange-rule" aria-hidden="true" />Also in Westin's guide</p><h2 id="other-options-title">Other study options.</h2><p>These options appear in Westin's undergraduate guide without full current admission details. Contact the college to discuss availability.</p></div>
+      <div className="ed-other-options-grid">{otherStudyOptions.map((option) => <article key={option.title}><h3>{option.title}</h3><p>{option.detail}</p><a href={option.source} target="_blank" rel="noopener noreferrer">Read the guide <ArrowRight size={16} aria-hidden="true" /><span className="sr-only"> (opens a new tab)</span></a></article>)}</div>
+      <Link className="ed-other-contact" to="/contact">Ask about an option <ArrowRight size={17} aria-hidden="true" /></Link>
+    </section>
   </div>
 }
 
 function ProgramDetail({ program, published }: { program: PublicProgram; published?: PublishedContentEntry }) {
   const publishedBody = published ? contentText(published.content, 'body') : ''
   return <div className={wrap}>
-    <Link to="/programs" className="inline-flex items-center gap-2 text-sm font-bold text-[#1468aa]">← All programs</Link>
+    <Link to="/programs" className="inline-flex items-center gap-2 text-sm font-bold text-[#9c401b]">← All programs</Link>
     <div className="mt-8 grid gap-6 lg:grid-cols-[1.45fr_.8fr]">
       <article className={card}>
         <p className="sk-eyebrow">{program.label}</p>
-        <h2 className="mt-4 text-[clamp(2rem,3vw,3.3rem)] font-bold leading-tight tracking-[-.05em] text-[#142d46]">{program.title}</h2>
-        <p className="mt-5 text-base leading-8 text-[#42647a]">{program.detail}</p>
-        {publishedBody && <p className="mt-5 whitespace-pre-line border-l-2 border-[#f2a159] pl-5 text-base leading-8 text-[#42647a]">{publishedBody}</p>}
-        <h3 className="mt-9 text-xl font-bold text-[#142d46]">What you will explore</h3>
-        <ul className="mt-4 grid gap-3 text-[15px] leading-7 text-[#42647a]">{program.learning.map((point) => <li key={point} className="flex gap-3"><Check size={17} className="mt-1 shrink-0 text-[#1688ba]" aria-hidden="true" />{point}</li>)}</ul>
-        {program.related && <div className="mt-9 border-t border-[#d8eaf3] pt-6">
-          <h3 className="mb-3 text-lg font-bold text-[#142d46]">Related courses</h3>
+        <h2 className="mt-4 text-[clamp(2rem,3vw,3.3rem)] font-bold leading-tight tracking-[-.05em] text-[#0d2e51]">{program.title}</h2>
+        <p className="mt-5 text-base leading-8 text-[#40566a]">{program.detail}</p>
+        {publishedBody && <p className="mt-5 whitespace-pre-line border-l-2 border-[#f2a159] pl-5 text-base leading-8 text-[#40566a]">{publishedBody}</p>}
+        <h3 className="mt-9 text-xl font-bold text-[#0d2e51]">What you will explore</h3>
+        <ul className="mt-4 grid gap-3 text-[15px] leading-7 text-[#40566a]">{program.learning.map((point) => <li key={point} className="flex gap-3"><Check size={17} className="mt-1 shrink-0 text-[#c14e13]" aria-hidden="true" />{point}</li>)}</ul>
+        {program.related && <div className="mt-9 border-t border-[#e3dacf] pt-6">
+          <h3 className="mb-3 text-lg font-bold text-[#0d2e51]">Related courses</h3>
           <div className="flex flex-wrap gap-2">{program.related.map((slug) => {
             const related = fixturePrograms.find((item) => item.slug === slug)
-            return related ? <Link key={slug} to={'/programs/' + slug} className="rounded-full border border-[#afd5e8] bg-[#f3faff] px-4 py-2 text-sm font-semibold text-[#1468aa]">{related.label}</Link> : null
+            return related ? <Link key={slug} to={'/programs/' + slug} className="rounded-full border border-[#d6c5b2] bg-[#f4efe6] px-4 py-2 text-sm font-semibold text-[#9c401b]">{related.label}</Link> : null
           })}</div>
         </div>}
       </article>
-      <aside className="self-start rounded-[28px] border border-[#cce7f7] bg-[#eaf6ff] p-6 sm:p-8">
+      <aside className="self-start rounded-[28px] border border-[#e3dacf] bg-[#f4efe6] p-6 sm:p-8">
         <p className="sk-eyebrow">At a glance</p>
-        <ul className="mt-5 grid gap-3">{program.facts.map((fact) => <li key={fact} className="flex gap-3 border-b border-[#c5e1ef] pb-3 text-sm font-semibold text-[#325d77] last:border-0"><span className="mt-2 h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: program.color }} />{fact}</li>)}</ul>
-        <h3 className="mt-7 text-lg font-bold text-[#142d46]">Entry listed by Westin</h3>
-        <p className="mt-2 text-sm leading-7 text-[#42647a]">{program.entry}</p>
-        <h3 className="mt-6 text-lg font-bold text-[#142d46]">Where it can lead</h3>
-        <p className="mt-2 text-sm leading-7 text-[#42647a]">{program.outcomes}</p>
-        <div className="mt-7"><SourceLink href={program.source} label="View college course page" /></div>
-        <Link to="/admissions#visit" className="mt-7 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#1468aa] px-5 text-sm font-bold text-white">Ask about this course <ArrowUpRight size={16} aria-hidden="true" /></Link>
+        <ul className="mt-5 grid gap-3">{program.facts.map((fact) => <li key={fact} className="flex gap-3 border-b border-[#e3dacf] pb-3 text-sm font-semibold text-[#40566a] last:border-0"><span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#c14e13]" />{fact}</li>)}</ul>
+        <h3 className="mt-7 text-lg font-bold text-[#0d2e51]">Entry listed by Westin</h3>
+        <p className="mt-2 text-sm leading-7 text-[#40566a]">{program.entry}</p>
+        <h3 className="mt-6 text-lg font-bold text-[#0d2e51]">Where it can lead</h3>
+        <p className="mt-2 text-sm leading-7 text-[#40566a]">{program.outcomes}</p>
+        <div className="mt-7"><SourceLink href={program.source} label="Original course record" /></div>
+        <Link to="/admissions#visit" className="mt-7 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#9c401b] px-5 text-sm font-bold text-white">Ask about this course <ArrowUpRight size={16} aria-hidden="true" /></Link>
       </aside>
     </div>
   </div>
@@ -107,35 +173,111 @@ const collectionTypes: Partial<Record<PublicPageKind, string>> = {
   magazine: 'magazine', testimonials: 'testimonial', 'success-stories': 'success-story',
 }
 
+type LocalRecord = OfficialArchiveEntry | (typeof publicRecords)[number]
+
+function localRecordPath(record: LocalRecord) {
+  if ('paragraphs' in record) return archivePath(record)
+  if (record.kind === 'campus-events') return '/campus/events/' + record.id
+  return '/' + record.kind + '/' + record.id
+}
+
+function findLocalRecord(pathname: string): LocalRecord | undefined {
+  const archive = findArchiveEntry(pathname)
+  if (archive) return archive
+  return publicRecords.find((record) => localRecordPath(record) === pathname.replace(/\/+$/, ''))
+}
+
+/**
+ * Renders the full, verbatim article body. The body data lives in its own
+ * module and is loaded on demand, so the 29k words never enter the Home bundle.
+ */
+const ArticleBody = lazy(() =>
+  import('./OfficialArticleBody').then((m) => ({ default: m.OfficialArticleBody })),
+)
+
+function LocalDetail({ record }: { record: LocalRecord }) {
+  const paragraphs = 'paragraphs' in record ? record.paragraphs : [record.summary]
+  const points = 'points' in record ? record.points : undefined
+  const image = 'image' in record ? record.image : undefined
+  const imageAlt = 'imageAlt' in record ? record.imageAlt : undefined
+  // A blog article gets its complete original text, in our theme.
+  const articleSlug = record.kind === 'blog' ? record.id : undefined
+  const heroPhoto = image?.startsWith('/images/') ? { src: image, alt: imageAlt || record.title, caption: 'From the Westin archive' } as const : undefined
+  return <><PageIntro kind={record.kind} keyName={localRecordPath(record)} title={record.title} summary={record.summary} heroPhoto={heroPhoto} />
+    <div className={wrap}><article className="sk-archive-detail">
+      <div className="sk-archive-detail-meta">{record.date && <span>{record.date}</span>}{record.context && <span>{record.context}</span>}</div>
+      {image && <img src={image} width="900" height="600" loading="eager" alt={imageAlt || record.title} />}
+      <div className="sk-archive-detail-copy">
+        {articleSlug ? (
+          <Suspense fallback={<p>{paragraphs.join(' ')}</p>}>
+            <ArticleBody slug={articleSlug} />
+          </Suspense>
+        ) : (
+          <>
+            {paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            {points?.length ? <ul>{points.map((point) => <li key={point}>{point}</li>)}</ul> : null}
+          </>
+        )}
+        <SourceLink href={record.source} label="View original Westin archive" />
+        <Link to={record.kind === 'campus-events' ? '/campus/events' : '/' + record.kind} className="sk-text-link">Back to the collection <ArrowRight size={17} aria-hidden="true" /></Link>
+      </div>
+    </article></div>
+    <MovedContent path={localRecordPath(record)} />
+  </>
+}
+
 function RecordGrid({ kind, entries }: { kind: PublicPageKind; entries: PublishedContentEntry[] }) {
-  const sourceRecords = publicRecords.filter((record) => record.kind === kind)
+  const archiveRecords = officialArchive.filter((record) => record.kind === kind)
+  const archiveSources = new Set(archiveRecords.map((record) => record.source))
+  const archiveIds = new Set(archiveRecords.map((record) => record.id))
+  const sourceRecords: LocalRecord[] = [...archiveRecords, ...publicRecords.filter((record) => record.kind === kind && !archiveSources.has(record.source) && !archiveIds.has(record.id))]
   const published = entries.filter((entry) => entry.entryType === collectionTypes[kind] && typeof entry.content?.title === 'string')
   const names = new Set(published.map((entry) => contentText(entry.content, 'title').toLowerCase()))
   const sourceUrls = new Set(published.map((entry) => contentText(entry.content, 'sourceUrl')).filter(Boolean))
-  const sourceCounts = new Map<string, number>()
-  sourceRecords.forEach((record) => sourceCounts.set(record.source, (sourceCounts.get(record.source) ?? 0) + 1))
   return <div className={wrap}>
-    <p className="mb-8 max-w-3xl text-base leading-8 text-[#42647a]">These records come from Westin’s official websites. Dates and campus context are shown where the source provides them. Newly published college entries appear here too.</p>
-    <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-      {published.map((entry) => <article key={entry.id || entry.slug} className={card + ' flex flex-col'}>
-        <p className="text-xs font-bold uppercase tracking-[.15em] text-[#35728f]">Published by Westin</p>
-        <h2 className="mt-4 text-2xl font-bold tracking-[-.04em] text-[#142d46]">{contentText(entry.content, 'title')}</h2>
-        <p className="mt-3 flex-1 text-sm leading-7 text-[#42647a]">{contentText(entry.content, 'summary')}</p>
-        <Link to={publicEntryPath(entry)} className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#1468aa]">Read story <ArrowUpRight size={16} aria-hidden="true" /></Link>
+    <p className="mb-8 max-w-3xl text-base leading-8 text-[#40566a]">Explore our college archive. Dates and campus context are shown where the original record provides them; new published stories appear alongside earlier material.</p>
+    {kind === 'magazine' && <Link to="/publishing-house" className="sk-text-link mb-8">Explore Westin Publishing House <ArrowRight size={17} aria-hidden="true" /></Link>}
+    <div className="ed-record-grid">
+      {published.map((entry) => <article key={entry.id || entry.slug} className="ed-record-card flex flex-col p-6" onPointerMove={moveCardLight} onPointerLeave={resetCardLight}>
+        <p className="text-xs font-bold uppercase tracking-[.15em] text-[#9c401b]">Published by Westin</p>
+        <h2 className="mt-4 text-2xl font-bold tracking-[-.04em] text-[#0d2e51]">{contentText(entry.content, 'title')}</h2>
+        <p className="mt-3 flex-1 text-sm leading-7 text-[#40566a]">{contentText(entry.content, 'summary')}</p>
+        <Link to={publicEntryPath(entry)} className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#9c401b]">Read story <ArrowUpRight size={16} aria-hidden="true" /></Link>
       </article>)}
-      {sourceRecords.filter((record) => !names.has(record.title.toLowerCase()) && !(sourceCounts.get(record.source) === 1 && sourceUrls.has(record.source))).map((record) => <article key={record.id} className={card + ' flex flex-col'}>
-        <p className="text-xs font-bold uppercase tracking-[.15em] text-[#35728f]">{record.label}</p>
-        <h2 className="mt-4 text-2xl font-bold tracking-[-.04em] text-[#142d46]">{record.title}</h2>
-        <p className="mt-3 flex-1 text-sm leading-7 text-[#42647a]">{record.summary}</p>
-        {(record.date || record.context) && <p className="mt-4 text-xs font-semibold text-[#557184]">{[record.date, record.context].filter(Boolean).join(' · ')}</p>}
-        <div className="mt-5"><SourceLink href={record.source} label="Open official source" /></div>
-      </article>)}
+      {sourceRecords.filter((record) => !names.has(record.title.toLowerCase()) && !sourceUrls.has(record.source) && !published.some((entry) => entry.slug === record.id)).map((record) => {
+        const image = 'image' in record && typeof record.image === 'string' ? record.image : ''
+        const imageAlt = 'imageAlt' in record && typeof record.imageAlt === 'string' ? record.imageAlt : record.title
+        const label = 'label' in record && typeof record.label === 'string' ? record.label : record.kind === 'campus-events' ? 'Campus event' : 'Westin archive'
+        return <article key={record.id} className="ed-record-card flex flex-col overflow-hidden p-6" onPointerMove={moveCardLight} onPointerLeave={resetCardLight}>
+          {image ? <div className="ed-photo-frame ed-photo-frame--bottom"><img className="sk-archive-thumb" src={image} width="600" height="400" loading="lazy" alt={imageAlt} /><span className="ed-photo-frame-caption ed-photo-frame-caption--label">{label}</span></div> : <p className="text-xs font-bold uppercase tracking-[.15em] text-[#9c401b]">{label}</p>}
+          <h2 className="mt-4 text-2xl font-bold tracking-[-.04em] text-[#0d2e51]">{record.title}</h2>
+          <p className="mt-3 flex-1 text-sm leading-7 text-[#40566a]">{record.summary}</p>
+          {(record.date || record.context) && <p className="mt-4 text-xs font-semibold text-[#526477]">{[record.date, record.context].filter(Boolean).join(' · ')}</p>}
+          {kind === 'magazine' ? <div className="mt-5"><SourceLink href={record.source} label="Open publication" /></div> : <Link to={localRecordPath(record)} className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#9c401b]">Explore record <ArrowRight size={17} aria-hidden="true" /></Link>}
+        </article>
+      })}
     </div>
   </div>
 }
 
+function GalleryCollection({ entries }: { entries: PublishedContentEntry[] }) {
+  const events = officialArchive.filter((record) => record.kind === 'campus-events' && record.image)
+  const published = entries.filter((entry) => entry.entryType === 'gallery' && contentText(entry.content, 'title'))
+  return <div className={wrap}>
+    <div className="sk-gallery-feature">
+      <div className="ed-photo-frame ed-photo-frame--left"><img src="/images/official/hospitality-practice.webp" width="1200" height="800" loading="eager" alt="Westin students practising food production together" /><span className="ed-photo-frame-caption">Learning in action</span></div>
+      <div><p className="sk-eyebrow">Learning in action</p><h2>Practice, people and shared moments.</h2><p>Browse photographs published in Westin’s event galleries. Open a collection to see its source and the context supplied by the college.</p><EditorialNote className="ed-card-note--paired">Every moment tells a story.</EditorialNote></div>
+    </div>
+    <div className="sk-gallery-grid">{published.map((entry) => <Link key={entry.id} to={publicEntryPath(entry)}>
+      {safePublicUrl(entry.media?.[0]?.url) ? <span className="ed-photo-frame ed-photo-frame--bottom"><img src={safePublicUrl(entry.media[0].url)} width="600" height="400" loading="lazy" alt={entry.media[0].altText || contentText(entry.content, 'title')} /><span className="ed-photo-frame-caption">{contentText(entry.content, 'title')}</span></span> : <span>{contentText(entry.content, 'title')}</span>}
+    </Link>)}{events.map((event) => <Link key={event.id} to={archivePath(event)}>
+      <span className="ed-photo-frame ed-photo-frame--bottom"><img src={event.image} width="600" height="400" loading="lazy" alt={event.imageAlt || event.title} /><span className="ed-photo-frame-caption">{event.title}</span></span>
+    </Link>)}</div>
+  </div>
+}
+
 const relatedLinks: Record<string, Array<[string, string]>> = {
-  '/about': [['Mission & vision', '/about/mission-vision'], ['People at Westin', '/about/management'], ['Why Westin', '/why-westin']],
+  '/about': [['Mission & vision', '/about/mission-vision'], ['People at Westin', '/about/management'], ['Faculty', '/about/faculty'], ['Why Westin', '/why-westin']],
   '/why-westin': [['Explore courses', '/programs'], ['Campus life', '/campus'], ['Career planning', '/career-planner']],
   '/partners': [['BIN EID profile', '/partners/bineid'], ['Career planning', '/career-planner']],
   '/campus': [['Learning spaces', '/campus/infrastructure'], ['Campus events', '/campus/events'], ['Gallery', '/gallery']],
@@ -148,25 +290,37 @@ function EditorialPage({ kind, keyName, entries, published }: { kind: PublicPage
   const publishedTitle = published && contentText(published.content, 'title')
   const publishedSummary = published && contentText(published.content, 'summary')
   const publishedBody = published && contentText(published.content, 'body')
+  if (keyName === '/placements' && sections) return <PlacementsDestination sections={sections} title={publishedTitle || undefined} summary={publishedSummary || undefined} publishedBody={publishedBody || undefined} />
+  if ((keyName === '/about' || keyName === '/campus') && sections) return <>
+    <PageIntro kind={kind} keyName={keyName} title={publishedTitle || undefined} summary={publishedSummary || undefined} />
+    <EditorialDestination kind={keyName === '/about' ? 'about' : 'campus'} sections={sections} publishedBody={publishedBody || undefined}>
+      <MovedContent path={keyName} />
+    </EditorialDestination>
+  </>
   return <>
     <PageIntro kind={kind} keyName={keyName} title={publishedTitle || undefined} summary={publishedSummary || undefined} />
-    {sections ? <div className={wrap}>
-      <div className="mb-9 max-w-3xl"><p className="sk-eyebrow">Inside {copy.eyebrow.toLowerCase()}</p><p className="mt-3 text-base leading-8 text-[#42647a]">{copy.summary}</p></div>
+    {sections ? <><div className={wrap}>
+      <div className="mb-9 max-w-3xl"><p className="sk-eyebrow">Inside {copy.eyebrow.toLowerCase()}</p><p className="mt-3 text-base leading-8 text-[#40566a]">{copy.summary}</p></div>
+      {keyName === '/why-westin' && <div className="sk-editorial-photo"><div className="ed-photo-frame ed-photo-frame--left"><img src="/images/official/westin-students.webp" width="1200" height="800" loading="lazy" alt="Westin students and educators together at a hospitality venue" /><span className="ed-photo-frame-caption">Why Westin</span></div><div><span>Westin College · Vijayawada</span><p>A community shaped by learning, ambition and opportunity.</p><EditorialNote className="ed-card-note--paired">Purpose in practice.</EditorialNote></div></div>}
       <SectionCards sections={sections} />
-      {publishedBody && <article className={card + ' mt-6 max-w-4xl'}><h2 className="text-2xl font-bold text-[#142d46]">More from Westin</h2><p className="mt-4 whitespace-pre-line text-base leading-8 text-[#42647a]">{publishedBody}</p></article>}
-      {(relatedLinks[keyName] || []).length > 0 && <nav aria-label="Explore related pages" className="mt-10 flex flex-wrap gap-3">{relatedLinks[keyName].map(([label, href]) => <Link key={href} to={href} className="inline-flex items-center gap-2 rounded-full border border-[#afd5e8] bg-white px-5 py-3 text-sm font-bold text-[#1468aa]">{label}<ArrowRight size={16} aria-hidden="true" /></Link>)}</nav>}
-    </div> : <RecordGrid kind={kind} entries={entries} />}
+      {publishedBody && <article className={card + ' mt-6 max-w-4xl'}><h2 className="text-2xl font-bold text-[#0d2e51]">More from Westin</h2><p className="mt-4 whitespace-pre-line text-base leading-8 text-[#40566a]">{publishedBody}</p></article>}
+      {(relatedLinks[keyName] || []).length > 0 && <nav aria-label="Explore related pages" className="mt-10 flex flex-wrap gap-3">{relatedLinks[keyName].map(([label, href]) => <Link key={href} to={href} className="inline-flex items-center gap-2 rounded-full border border-[#d6c5b2] bg-white px-5 py-3 text-sm font-bold text-[#9c401b]">{label}<ArrowRight size={16} aria-hidden="true" /></Link>)}</nav>}
+    </div><MovedContent path={keyName} /></> : kind === 'gallery' ? <GalleryCollection entries={entries} /> : <><RecordGrid kind={kind} entries={entries} />{(keyName === '/campus/events' || keyName === '/success-stories') && <MovedContent path={keyName} />}</>}
   </>
 }
 
 function PublishedDetail({ entry, kind, keyName }: { entry: PublishedContentEntry; kind: PublicPageKind; keyName: string }) {
   const content = entry.content
   const bullets = Array.isArray(content.bullets) ? content.bullets.filter((item): item is string => typeof item === 'string') : []
-  return <><PageIntro kind={kind} keyName={keyName} title={contentText(content, 'title') || entry.slug} summary={contentText(content, 'summary')} />
+  const media = entry.media?.[0]
+  const localImage = media && safePublicUrl(media.url)
+  const heroPhoto = localImage?.startsWith('/images/') ? { src: localImage, alt: media.altText || contentText(content, 'title') || entry.slug, caption: 'From Westin' } as const : undefined
+  return <><PageIntro kind={kind} keyName={keyName} title={contentText(content, 'title') || entry.slug} summary={contentText(content, 'summary')} heroPhoto={heroPhoto} />
     <div className={wrap}><article className={card + ' max-w-4xl'}>
       <p className="sk-eyebrow">{contentText(content, 'eyebrow') || publicPageCopy[kind].eyebrow}</p>
-      <p className="mt-5 whitespace-pre-line text-base leading-8 text-[#42647a]">{contentText(content, 'body')}</p>
-      {bullets.length > 0 && <ul className="mt-6 grid gap-2 text-sm text-[#42647a]">{bullets.map((item) => <li key={item} className="border-l-2 border-[#f2a159] pl-3">{item}</li>)}</ul>}
+      <p className="mt-5 whitespace-pre-line text-base leading-8 text-[#40566a]">{contentText(content, 'body')}</p>
+      {bullets.length > 0 && <ul className="mt-6 grid gap-2 text-sm text-[#40566a]">{bullets.map((item) => <li key={item} className="border-l-2 border-[#f2a159] pl-3">{item}</li>)}</ul>}
+      <Link to={kind === 'campus-events' ? '/campus/events' : '/' + kind} className="sk-text-link mt-8">Back to the collection <ArrowRight size={17} aria-hidden="true" /></Link>
     </article></div>
   </>
 }
@@ -188,8 +342,13 @@ export function PublicPage() {
   const site = usePublishedSite(PUBLIC_CONTENT_MODE === 'api' && page?.kind !== 'contact' && page?.kind !== 'admissions')
   const detail = usePublishedEntry(PUBLIC_CONTENT_MODE === 'api' && collectionDetail ? collectionDetail.type : null, collectionDetail?.slug ?? null)
   if (!page) return <NotFound />
-  if (page.kind === 'contact' || page.kind === 'admissions') return <ContactHandoff visit={page.kind === 'admissions'} />
+  if (page.kind === 'contact') return <ContactDestination />
+  if (page.kind === 'admissions') return <AdmissionsDestination />
   if (collectionDetail) {
+    const local = findLocalRecord(pathname)
+    const publishedDetail = detail.data ?? snapshotRoute(pathname)
+    if (publishedDetail) return <PublishedDetail entry={publishedDetail} kind={page.kind} keyName={page.key} />
+    if (local) return <LocalDetail record={local} />
     if (PUBLIC_CONTENT_MODE !== 'api') return <NotFound />
     if (detail.loading) return <><PageIntro kind={page.kind} keyName={page.key} /><PageLoader label="Opening published story" className="min-h-[40vh]" /></>
     if (detail.error || !detail.data) return <NotFound />
@@ -207,8 +366,9 @@ export function PublicPage() {
   if (page.program) return <div data-public-fixture={PUBLIC_CONTENT_MODE === 'fixture' ? 'true' : undefined}>
     <PageIntro kind="programs" keyName={page.key} title={published && contentText(published.content, 'title') || page.program.title} summary={published && contentText(published.content, 'summary') || page.program.summary} />
     <ProgramDetail program={page.program} published={published} />
+    <MovedContent path={page.key} programSlug={page.program.slug} />
   </div>
-  if (page.kind === 'programs') return <div data-public-fixture={PUBLIC_CONTENT_MODE === 'fixture' ? 'true' : undefined}><PageIntro kind="programs" keyName={page.key} /><ProgramIndex entries={entries} /></div>
+  if (page.kind === 'programs') return <div data-public-fixture={PUBLIC_CONTENT_MODE === 'fixture' ? 'true' : undefined}><PageIntro kind="programs" keyName={page.key} /><ProgramIndex entries={entries} /><OfficialContentSection kind="programs" title="The ideas behind each school." intro="Explore Westin’s published campaign lines and photographs across hospitality, business, junior college and publishing."><MovedContent path={page.key} /></OfficialContentSection><PublicFaq route="/programs" /></div>
   return <div data-public-fixture={PUBLIC_CONTENT_MODE === 'fixture' ? 'true' : undefined}><EditorialPage kind={page.kind} keyName={page.key} entries={entries} published={published} /></div>
 }
 
@@ -218,9 +378,30 @@ export function PublicSearch() {
   const [result, setResult] = useState<{ items: PublishedContentEntry[] } | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const localResults = useMemo(() => {
+    const term = submitted.toLocaleLowerCase().trim()
+    if (!term) return []
+    const items = [
+      ...fixturePrograms.map((item) => ({ title: item.title, summary: item.summary + ' ' + item.detail, href: '/programs/' + item.slug, kind: 'Program' })),
+      ...Object.entries(publicSections).map(([href, sections]) => ({ title: (routeCopy[href] ?? publicPageCopy[getFixturePage(href)?.kind ?? 'about']).title, summary: sections.map((section) => section.title + ' ' + section.body).join(' '), href, kind: 'College page' })),
+      ...officialArchive.map((item) => ({ title: item.title, summary: item.summary + ' ' + item.paragraphs.join(' '), href: archivePath(item), kind: item.kind === 'campus-events' ? 'Event' : 'Article' })),
+      ...publicRecords.map((item) => ({ title: item.title, summary: item.summary, href: item.kind === 'magazine' ? item.source : localRecordPath(item), kind: item.kind === 'magazine' ? 'Publication' : 'College record' })),
+      ...publicSnapshot.entries.flatMap((item) => {
+        const href = snapshotPublicPath(item)
+        return href ? [{ title: contentText(item.content, 'title') || item.slug, summary: contentText(item.content, 'summary') + ' ' + contentText(item.content, 'body'), href, kind: 'Published story' }] : []
+      }),
+    ]
+    const seen = new Set<string>()
+    return items.filter((item) => {
+      if (!(`${item.title} ${item.summary}`).toLocaleLowerCase().includes(term) || seen.has(item.href)) return false
+      seen.add(item.href)
+      return true
+    }).slice(0, 80)
+  }, [submitted])
 
   useEffect(() => {
-    if (PUBLIC_CONTENT_MODE !== 'api') return
+    setResult(null)
+    if (PUBLIC_CONTENT_MODE !== 'api' || !submitted) return
     let cancelled = false
     setLoading(true)
     setError(null)
@@ -241,29 +422,26 @@ export function PublicSearch() {
 
   return (
     <>
-      <PublicPageHero kind="search" eyebrow="Explore the Westin journal" title="Search the public story." summary="Search only the content that has been approved and published for visitors." />
+      <PublicPageHero kind="search" eyebrow="Explore Westin" title="Find what you need." summary="Search programs, college information, articles, events and publications." photo={photo('bba-learning', 'Westin business students learning together', 'Find your next direction')} />
       <div data-public-fixture={PUBLIC_CONTENT_MODE === 'fixture' ? 'true' : undefined} className="mx-auto max-w-[1360px] px-5 py-14 sm:px-8 lg:px-12 lg:py-24">
-        <form onSubmit={(event) => { event.preventDefault(); setSubmitted(query.trim()) }} className="mx-auto flex max-w-3xl gap-2 rounded-2xl border border-[#cce7f7] bg-white p-2 shadow-[0_10px_30px_rgba(27,96,133,.06)]">
+        <form onSubmit={(event) => { event.preventDefault(); setSubmitted(query.trim()) }} className="mx-auto flex max-w-3xl gap-2 rounded-2xl border border-[#e3dacf] bg-white p-2 shadow-[0_10px_30px_rgba(62,52,34,.06)]">
           <label htmlFor="public-search" className="sr-only">Search published content</label>
-          <input id="public-search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search programs, stories, and campus life" className="min-h-12 min-w-0 flex-1 rounded-xl bg-[#f7fbff] px-4 text-base text-[#142d46] outline-none ring-[#3ba7f2] placeholder:text-[#7891a1] focus:ring-2" />
-          <button type="submit" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-[#1468aa] px-4 text-sm font-bold text-white"><Search size={16} aria-hidden="true" />Search</button>
+          <input id="public-search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search programs, stories, and campus life" className="min-h-12 min-w-0 flex-1 rounded-xl bg-[#fbfaf7] px-4 text-base text-[#0d2e51] outline-none ring-[#c14e13] placeholder:text-[#6b746f] focus:ring-2" />
+          <button type="submit" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-[#9c401b] px-4 text-sm font-bold text-white"><Search size={16} aria-hidden="true" />Search</button>
         </form>
-        {PUBLIC_CONTENT_MODE === 'fixture' ? (
-          <div className="mt-8 rounded-[28px] border border-[#cce7f7] bg-white p-8 text-center">
-            <CalendarDays size={28} className="mx-auto text-[#1468aa]" aria-hidden="true" />
-            <p className="mt-4 text-sm leading-7 text-[#557184]">Search is wired to the published-content API contract. Local fixture mode does not invent search results.</p>
-          </div>
-        ) : loading ? <PageLoader label="Searching published content" size={86} className="min-h-[240px]" /> : error ? <div className="mt-8"><ErrorState message={error} /></div> : (
-          <div className="mt-8 grid gap-4">
-            {result?.items.length ? result.items.map((entry) => (
-              <Link key={entry.id} to={publicEntryPath(entry)} className="rounded-[24px] border border-[#d4e8f2] bg-white p-6 transition hover:border-[#3ba7f2]">
-                <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#35728f]">{entry.entryType}</p>
-                <h2 className="mt-2 text-2xl font-bold tracking-[-0.04em] text-[#142d46]">{contentText(entry.content, 'title') || entry.slug}</h2>
-                <p className="mt-2 text-sm leading-7 text-[#557184]">{contentText(entry.content, 'summary')}</p>
+        {!submitted ? <div className="mt-8 rounded-[28px] border border-[#e3dacf] bg-white p-8 text-center"><CalendarDays size={28} className="mx-auto text-[#9c401b]" aria-hidden="true" /><p className="mt-4 text-sm leading-7 text-[#526477]">Try “BBA”, “internship”, “student life” or “hospitality”.</p></div> : <div className="mt-8 grid gap-4">
+            {localResults.map((item) => item.href.startsWith('http') ? <a key={item.href} href={item.href} target="_blank" rel="noopener noreferrer" className="rounded-[24px] border border-[#e3dacf] bg-white p-6 transition hover:border-[#c14e13]"><p className="text-xs font-bold uppercase tracking-[0.14em] text-[#9c401b]">{item.kind}</p><h2 className="mt-2 text-2xl font-bold tracking-[-0.04em] text-[#0d2e51]">{item.title}</h2><p className="mt-2 text-sm leading-7 text-[#526477]">{item.summary}</p></a> : <Link key={item.href} to={item.href} className="rounded-[24px] border border-[#e3dacf] bg-white p-6 transition hover:border-[#c14e13]"><p className="text-xs font-bold uppercase tracking-[0.14em] text-[#9c401b]">{item.kind}</p><h2 className="mt-2 text-2xl font-bold tracking-[-0.04em] text-[#0d2e51]">{item.title}</h2><p className="mt-2 text-sm leading-7 text-[#526477]">{item.summary.slice(0, 200)}</p></Link>)}
+            {loading && <p className="text-sm text-[#526477]">Checking newly published stories…</p>}
+            {error && <p className="text-sm text-[#526477]">Newly published stories are temporarily unavailable. College pages and archive results remain searchable.</p>}
+            {result?.items.filter((entry) => !localResults.some((item) => item.href === publicEntryPath(entry) || item.title.toLowerCase() === contentText(entry.content, 'title').toLowerCase())).length ? result.items.filter((entry) => !localResults.some((item) => item.href === publicEntryPath(entry) || item.title.toLowerCase() === contentText(entry.content, 'title').toLowerCase())).map((entry) => (
+              <Link key={entry.id} to={publicEntryPath(entry)} className="rounded-[24px] border border-[#e3dacf] bg-white p-6 transition hover:border-[#c14e13]">
+                <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#9c401b]">{entry.entryType}</p>
+                <h2 className="mt-2 text-2xl font-bold tracking-[-0.04em] text-[#0d2e51]">{contentText(entry.content, 'title') || entry.slug}</h2>
+                <p className="mt-2 text-sm leading-7 text-[#526477]">{contentText(entry.content, 'summary')}</p>
               </Link>
-            )) : <div className="rounded-[28px] border border-dashed border-[#cce7f7] p-10 text-center text-sm text-[#557184]">No published pages matched that search.</div>}
-          </div>
-        )}
+            )) : null}
+            {!localResults.length && !result?.items.length && !loading && <div className="rounded-[28px] border border-dashed border-[#e3dacf] p-10 text-center text-sm text-[#526477]">No pages matched that search.</div>}
+          </div>}
       </div>
     </>
   )
@@ -283,7 +461,7 @@ function publicEntryPath(entry: PublishedContentEntry) {
 export function NotFound() {
   return (
     <>
-      <PublicPageHero kind="not-found" eyebrow="Page not found" title="That page has turned." summary="Try the homepage or explore the programs currently available." />
+      <PublicPageHero kind="not-found" eyebrow="Page not found" title="That page has turned." summary="Try the homepage or explore the programs currently available." photo={photo('about-hero', 'Westin hospitality students learning together', 'Find your way back')} />
       <div className="sk-container sk-not-found-action">
         <Link to="/" className="sk-button">Back to Westin <ArrowUpRight size={16} aria-hidden="true" /></Link>
       </div>

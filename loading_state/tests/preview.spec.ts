@@ -98,6 +98,7 @@ test("system reduced motion stops the walk and dots immediately, and can resume"
   await page.goto("/");
   const figure = page.locator(".hero-loader .swl-art");
   const leg = figure.locator('[data-part="near-thigh"]');
+  const head = figure.locator('[data-part="head"]');
   await expect(figure).toHaveAttribute("data-motion", "walking");
   await page.emulateMedia({ reducedMotion: "reduce" });
   await expect(figure).toHaveAttribute("data-motion", "reduced");
@@ -105,8 +106,10 @@ test("system reduced motion stops the walk and dots immediately, and can resume"
     page.getByRole("button", { name: "Pause motion" }),
   ).toBeDisabled();
   const pose = await leg.getAttribute("transform");
+  const headPose = await head.getAttribute("transform");
   await page.waitForTimeout(160);
   expect(await leg.getAttribute("transform")).toBe(pose);
+  expect(await head.getAttribute("transform")).toBe(headPose);
   expect(
     await page
       .locator(".hero-loader .swl-dots i")
@@ -116,6 +119,7 @@ test("system reduced motion stops the walk and dots immediately, and can resume"
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await expect(figure).toHaveAttribute("data-motion", "walking");
   await expect.poll(() => leg.getAttribute("transform")).not.toBe(pose);
+  await expect.poll(() => head.getAttribute("transform")).not.toBe(headPose);
 });
 
 test("offscreen walkers stop until they enter the viewport", async ({

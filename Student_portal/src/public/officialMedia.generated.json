@@ -1,0 +1,5032 @@
+{
+  "generatedBy": "fetch-official-media.mjs",
+  "images": {
+    "brand/westin-logo-full": {
+      "srcset": [
+        "/images/official/brand/westin-logo-full-480.png 480w",
+        "/images/official/brand/westin-logo-full-960.png 960w"
+      ],
+      "src": "/images/official/brand/westin-logo-full-960.png",
+      "width": 960,
+      "height": 491,
+      "format": "png"
+    },
+    "brand/laurel-25": {
+      "srcset": [
+        "/images/official/brand/laurel-25-249.png 249w"
+      ],
+      "src": "/images/official/brand/laurel-25-249.png",
+      "width": 249,
+      "height": 181,
+      "format": "png"
+    },
+    "brand/publishing-logo": {
+      "srcset": [
+        "/images/official/brand/publishing-logo-480.png 480w",
+        "/images/official/brand/publishing-logo-960.png 960w"
+      ],
+      "src": "/images/official/brand/publishing-logo-960.png",
+      "width": 960,
+      "height": 261,
+      "format": "png"
+    },
+    "people/founder-k-durga-prasad": {
+      "srcset": [
+        "/images/official/people/founder-k-durga-prasad-480.webp 480w",
+        "/images/official/people/founder-k-durga-prasad-960.webp 960w"
+      ],
+      "src": "/images/official/people/founder-k-durga-prasad-960.webp",
+      "width": 960,
+      "height": 743,
+      "format": "webp"
+    },
+    "people/leadership-banner": {
+      "srcset": [
+        "/images/official/people/leadership-banner-480.webp 480w",
+        "/images/official/people/leadership-banner-960.webp 960w"
+      ],
+      "src": "/images/official/people/leadership-banner-960.webp",
+      "width": 960,
+      "height": 503,
+      "format": "webp"
+    },
+    "people/director-k-durga-prasad": {
+      "srcset": [
+        "/images/official/people/director-k-durga-prasad-288.png 288w"
+      ],
+      "src": "/images/official/people/director-k-durga-prasad-288.png",
+      "width": 288,
+      "height": 288,
+      "format": "png"
+    },
+    "people/principal-p-chandra-shekar-circle": {
+      "srcset": [
+        "/images/official/people/principal-p-chandra-shekar-circle-288.png 288w"
+      ],
+      "src": "/images/official/people/principal-p-chandra-shekar-circle-288.png",
+      "width": 288,
+      "height": 288,
+      "format": "png"
+    },
+    "people/admin-manager-k-sailaja": {
+      "srcset": [
+        "/images/official/people/admin-manager-k-sailaja-288.png 288w"
+      ],
+      "src": "/images/official/people/admin-manager-k-sailaja-288.png",
+      "width": 288,
+      "height": 288,
+      "format": "png"
+    },
+    "people/p-chandra-sekhar": {
+      "srcset": [
+        "/images/official/people/p-chandra-sekhar-480.webp 480w",
+        "/images/official/people/p-chandra-sekhar-960.webp 960w"
+      ],
+      "src": "/images/official/people/p-chandra-sekhar-960.webp",
+      "width": 960,
+      "height": 1439,
+      "format": "webp"
+    },
+    "people/p-suresh-babu": {
+      "srcset": [
+        "/images/official/people/p-suresh-babu-480.webp 480w",
+        "/images/official/people/p-suresh-babu-960.webp 960w"
+      ],
+      "src": "/images/official/people/p-suresh-babu-960.webp",
+      "width": 960,
+      "height": 1439,
+      "format": "webp"
+    },
+    "people/vishwajit-jadhav": {
+      "srcset": [
+        "/images/official/people/vishwajit-jadhav-480.webp 480w",
+        "/images/official/people/vishwajit-jadhav-960.webp 960w"
+      ],
+      "src": "/images/official/people/vishwajit-jadhav-960.webp",
+      "width": 960,
+      "height": 1439,
+      "format": "webp"
+    },
+    "people/shampa-chatterjee": {
+      "srcset": [
+        "/images/official/people/shampa-chatterjee-480.webp 480w",
+        "/images/official/people/shampa-chatterjee-960.webp 960w"
+      ],
+      "src": "/images/official/people/shampa-chatterjee-960.webp",
+      "width": 960,
+      "height": 1211,
+      "format": "webp"
+    },
+    "people/sk-kalisha-vali": {
+      "srcset": [
+        "/images/official/people/sk-kalisha-vali-480.webp 480w",
+        "/images/official/people/sk-kalisha-vali-960.webp 960w"
+      ],
+      "src": "/images/official/people/sk-kalisha-vali-960.webp",
+      "width": 960,
+      "height": 1439,
+      "format": "webp"
+    },
+    "people/rahul-nair": {
+      "srcset": [
+        "/images/official/people/rahul-nair-480.webp 480w",
+        "/images/official/people/rahul-nair-960.webp 960w"
+      ],
+      "src": "/images/official/people/rahul-nair-960.webp",
+      "width": 960,
+      "height": 1439,
+      "format": "webp"
+    },
+    "people/arun-kumar": {
+      "srcset": [
+        "/images/official/people/arun-kumar-480.webp 480w",
+        "/images/official/people/arun-kumar-960.webp 960w"
+      ],
+      "src": "/images/official/people/arun-kumar-960.webp",
+      "width": 960,
+      "height": 1439,
+      "format": "webp"
+    },
+    "people/vyshnavi": {
+      "srcset": [
+        "/images/official/people/vyshnavi-480.webp 480w",
+        "/images/official/people/vyshnavi-960.webp 960w"
+      ],
+      "src": "/images/official/people/vyshnavi-960.webp",
+      "width": 960,
+      "height": 1439,
+      "format": "webp"
+    },
+    "people/alumni-sudharshan-motupalli": {
+      "srcset": [
+        "/images/official/people/alumni-sudharshan-motupalli-99.webp 99w"
+      ],
+      "src": "/images/official/people/alumni-sudharshan-motupalli-99.webp",
+      "width": 99,
+      "height": 127,
+      "format": "webp"
+    },
+    "people/alumni-vara-prasad": {
+      "srcset": [
+        "/images/official/people/alumni-vara-prasad-98.webp 98w"
+      ],
+      "src": "/images/official/people/alumni-vara-prasad-98.webp",
+      "width": 98,
+      "height": 127,
+      "format": "webp"
+    },
+    "people/alumni-indra-kiran": {
+      "srcset": [
+        "/images/official/people/alumni-indra-kiran-108.webp 108w"
+      ],
+      "src": "/images/official/people/alumni-indra-kiran-108.webp",
+      "width": 108,
+      "height": 140,
+      "format": "webp"
+    },
+    "schools/hotel-management": {
+      "srcset": [
+        "/images/official/schools/hotel-management-480.webp 480w",
+        "/images/official/schools/hotel-management-960.webp 960w"
+      ],
+      "src": "/images/official/schools/hotel-management-960.webp",
+      "width": 960,
+      "height": 640,
+      "format": "webp"
+    },
+    "schools/business-management": {
+      "srcset": [
+        "/images/official/schools/business-management-480.webp 480w",
+        "/images/official/schools/business-management-960.webp 960w"
+      ],
+      "src": "/images/official/schools/business-management-960.webp",
+      "width": 960,
+      "height": 1440,
+      "format": "webp"
+    },
+    "schools/junior-college": {
+      "srcset": [
+        "/images/official/schools/junior-college-480.webp 480w",
+        "/images/official/schools/junior-college-960.webp 960w"
+      ],
+      "src": "/images/official/schools/junior-college-960.webp",
+      "width": 960,
+      "height": 640,
+      "format": "webp"
+    },
+    "schools/publishing-house": {
+      "srcset": [
+        "/images/official/schools/publishing-house-480.webp 480w",
+        "/images/official/schools/publishing-house-960.webp 960w"
+      ],
+      "src": "/images/official/schools/publishing-house-960.webp",
+      "width": 960,
+      "height": 640,
+      "format": "webp"
+    },
+    "campus/hm-service-team": {
+      "srcset": [
+        "/images/official/campus/hm-service-team-480.webp 480w",
+        "/images/official/campus/hm-service-team-960.webp 960w"
+      ],
+      "src": "/images/official/campus/hm-service-team-960.webp",
+      "width": 960,
+      "height": 640,
+      "format": "webp"
+    },
+    "campus/hm-front-office": {
+      "srcset": [
+        "/images/official/campus/hm-front-office-480.webp 480w",
+        "/images/official/campus/hm-front-office-960.webp 960w"
+      ],
+      "src": "/images/official/campus/hm-front-office-960.webp",
+      "width": 960,
+      "height": 640,
+      "format": "webp"
+    },
+    "campus/hm-room-service": {
+      "srcset": [
+        "/images/official/campus/hm-room-service-480.webp 480w",
+        "/images/official/campus/hm-room-service-960.webp 960w"
+      ],
+      "src": "/images/official/campus/hm-room-service-960.webp",
+      "width": 960,
+      "height": 640,
+      "format": "webp"
+    },
+    "campus/hm-learning": {
+      "srcset": [
+        "/images/official/campus/hm-learning-480.webp 480w",
+        "/images/official/campus/hm-learning-960.webp 960w"
+      ],
+      "src": "/images/official/campus/hm-learning-960.webp",
+      "width": 960,
+      "height": 640,
+      "format": "webp"
+    },
+    "campus/hm-hospitality": {
+      "srcset": [
+        "/images/official/campus/hm-hospitality-480.webp 480w",
+        "/images/official/campus/hm-hospitality-960.webp 960w"
+      ],
+      "src": "/images/official/campus/hm-hospitality-960.webp",
+      "width": 960,
+      "height": 640,
+      "format": "webp"
+    },
+    "campus/hm-bartending": {
+      "srcset": [
+        "/images/official/campus/hm-bartending-480.webp 480w",
+        "/images/official/campus/hm-bartending-960.webp 960w"
+      ],
+      "src": "/images/official/campus/hm-bartending-960.webp",
+      "width": 960,
+      "height": 640,
+      "format": "webp"
+    },
+    "campus/hm-about": {
+      "srcset": [
+        "/images/official/campus/hm-about-480.webp 480w",
+        "/images/official/campus/hm-about-960.webp 960w"
+      ],
+      "src": "/images/official/campus/hm-about-960.webp",
+      "width": 960,
+      "height": 1440,
+      "format": "webp"
+    },
+    "campus/hm-programme-honours": {
+      "srcset": [
+        "/images/official/campus/hm-programme-honours-480.webp 480w",
+        "/images/official/campus/hm-programme-honours-960.webp 960w"
+      ],
+      "src": "/images/official/campus/hm-programme-honours-960.webp",
+      "width": 960,
+      "height": 640,
+      "format": "webp"
+    },
+    "campus/hm-programme-degree": {
+      "srcset": [
+        "/images/official/campus/hm-programme-degree-480.webp 480w",
+        "/images/official/campus/hm-programme-degree-960.webp 960w"
+      ],
+      "src": "/images/official/campus/hm-programme-degree-960.webp",
+      "width": 960,
+      "height": 640,
+      "format": "webp"
+    },
+    "campus/bba-leadership": {
+      "srcset": [
+        "/images/official/campus/bba-leadership-480.webp 480w",
+        "/images/official/campus/bba-leadership-960.webp 960w"
+      ],
+      "src": "/images/official/campus/bba-leadership-960.webp",
+      "width": 960,
+      "height": 640,
+      "format": "webp"
+    },
+    "campus/bba-learning": {
+      "srcset": [
+        "/images/official/campus/bba-learning-480.webp 480w",
+        "/images/official/campus/bba-learning-960.webp 960w"
+      ],
+      "src": "/images/official/campus/bba-learning-960.webp",
+      "width": 960,
+      "height": 640,
+      "format": "webp"
+    },
+    "campus/bba-journeys": {
+      "srcset": [
+        "/images/official/campus/bba-journeys-480.webp 480w",
+        "/images/official/campus/bba-journeys-960.webp 960w"
+      ],
+      "src": "/images/official/campus/bba-journeys-960.webp",
+      "width": 960,
+      "height": 640,
+      "format": "webp"
+    },
+    "campus/bba-about": {
+      "srcset": [
+        "/images/official/campus/bba-about-480.webp 480w",
+        "/images/official/campus/bba-about-960.webp 960w"
+      ],
+      "src": "/images/official/campus/bba-about-960.webp",
+      "width": 960,
+      "height": 640,
+      "format": "webp"
+    },
+    "campus/bba-programme": {
+      "srcset": [
+        "/images/official/campus/bba-programme-480.webp 480w",
+        "/images/official/campus/bba-programme-960.webp 960w"
+      ],
+      "src": "/images/official/campus/bba-programme-960.webp",
+      "width": 960,
+      "height": 640,
+      "format": "webp"
+    },
+    "campus/bba-programme-2": {
+      "srcset": [
+        "/images/official/campus/bba-programme-2-480.webp 480w",
+        "/images/official/campus/bba-programme-2-960.webp 960w"
+      ],
+      "src": "/images/official/campus/bba-programme-2-960.webp",
+      "width": 960,
+      "height": 640,
+      "format": "webp"
+    },
+    "campus/campus-culture": {
+      "srcset": [
+        "/images/official/campus/campus-culture-480.webp 480w",
+        "/images/official/campus/campus-culture-960.webp 960w"
+      ],
+      "src": "/images/official/campus/campus-culture-960.webp",
+      "width": 960,
+      "height": 640,
+      "format": "webp"
+    },
+    "campus/junior-foundation": {
+      "srcset": [
+        "/images/official/campus/junior-foundation-480.webp 480w",
+        "/images/official/campus/junior-foundation-960.webp 960w"
+      ],
+      "src": "/images/official/campus/junior-foundation-960.webp",
+      "width": 960,
+      "height": 640,
+      "format": "webp"
+    },
+    "campus/junior-about": {
+      "srcset": [
+        "/images/official/campus/junior-about-480.webp 480w",
+        "/images/official/campus/junior-about-960.webp 960w"
+      ],
+      "src": "/images/official/campus/junior-about-960.webp",
+      "width": 960,
+      "height": 640,
+      "format": "webp"
+    },
+    "campus/students-group": {
+      "srcset": [
+        "/images/official/campus/students-group-480.webp 480w",
+        "/images/official/campus/students-group-960.webp 960w"
+      ],
+      "src": "/images/official/campus/students-group-960.webp",
+      "width": 960,
+      "height": 640,
+      "format": "webp"
+    },
+    "campus/about-hero": {
+      "srcset": [
+        "/images/official/campus/about-hero-480.webp 480w",
+        "/images/official/campus/about-hero-960.webp 960w"
+      ],
+      "src": "/images/official/campus/about-hero-960.webp",
+      "width": 960,
+      "height": 640,
+      "format": "webp"
+    },
+    "campus/success-hero": {
+      "srcset": [
+        "/images/official/campus/success-hero-480.webp 480w",
+        "/images/official/campus/success-hero-960.webp 960w"
+      ],
+      "src": "/images/official/campus/success-hero-960.webp",
+      "width": 960,
+      "height": 640,
+      "format": "webp"
+    },
+    "campus/success-team": {
+      "srcset": [
+        "/images/official/campus/success-team-480.webp 480w",
+        "/images/official/campus/success-team-960.webp 960w"
+      ],
+      "src": "/images/official/campus/success-team-960.webp",
+      "width": 960,
+      "height": 640,
+      "format": "webp"
+    },
+    "campus/alumni-hero": {
+      "srcset": [
+        "/images/official/campus/alumni-hero-480.webp 480w",
+        "/images/official/campus/alumni-hero-960.webp 960w"
+      ],
+      "src": "/images/official/campus/alumni-hero-960.webp",
+      "width": 960,
+      "height": 640,
+      "format": "webp"
+    },
+    "campus/bba-success-cover": {
+      "srcset": [
+        "/images/official/campus/bba-success-cover-480.webp 480w",
+        "/images/official/campus/bba-success-cover-960.webp 960w"
+      ],
+      "src": "/images/official/campus/bba-success-cover-960.webp",
+      "width": 960,
+      "height": 720,
+      "format": "webp"
+    },
+    "campus/faculty-excellence": {
+      "srcset": [
+        "/images/official/campus/faculty-excellence-480.webp 480w",
+        "/images/official/campus/faculty-excellence-960.webp 960w"
+      ],
+      "src": "/images/official/campus/faculty-excellence-960.webp",
+      "width": 960,
+      "height": 795,
+      "format": "webp"
+    },
+    "campus/training-soft-skills": {
+      "srcset": [
+        "/images/official/campus/training-soft-skills-480.webp 480w",
+        "/images/official/campus/training-soft-skills-960.webp 960w"
+      ],
+      "src": "/images/official/campus/training-soft-skills-960.webp",
+      "width": 960,
+      "height": 720,
+      "format": "webp"
+    },
+    "campus/training-certification": {
+      "srcset": [
+        "/images/official/campus/training-certification-480.webp 480w",
+        "/images/official/campus/training-certification-960.webp 960w"
+      ],
+      "src": "/images/official/campus/training-certification-960.webp",
+      "width": 960,
+      "height": 720,
+      "format": "webp"
+    },
+    "campus/training-mock-interviews": {
+      "srcset": [
+        "/images/official/campus/training-mock-interviews-480.webp 480w",
+        "/images/official/campus/training-mock-interviews-960.webp 960w"
+      ],
+      "src": "/images/official/campus/training-mock-interviews-960.webp",
+      "width": 960,
+      "height": 720,
+      "format": "webp"
+    },
+    "campus/training-etiquette": {
+      "srcset": [
+        "/images/official/campus/training-etiquette-480.webp 480w",
+        "/images/official/campus/training-etiquette-960.webp 960w"
+      ],
+      "src": "/images/official/campus/training-etiquette-960.webp",
+      "width": 960,
+      "height": 720,
+      "format": "webp"
+    },
+    "campus/junior-life-1": {
+      "srcset": [
+        "/images/official/campus/junior-life-1-480.webp 480w",
+        "/images/official/campus/junior-life-1-960.webp 960w"
+      ],
+      "src": "/images/official/campus/junior-life-1-960.webp",
+      "width": 960,
+      "height": 720,
+      "format": "webp"
+    },
+    "campus/junior-life-2": {
+      "srcset": [
+        "/images/official/campus/junior-life-2-480.webp 480w",
+        "/images/official/campus/junior-life-2-960.webp 960w"
+      ],
+      "src": "/images/official/campus/junior-life-2-960.webp",
+      "width": 960,
+      "height": 720,
+      "format": "webp"
+    },
+    "campus/junior-life-3": {
+      "srcset": [
+        "/images/official/campus/junior-life-3-480.webp 480w",
+        "/images/official/campus/junior-life-3-960.webp 960w"
+      ],
+      "src": "/images/official/campus/junior-life-3-960.webp",
+      "width": 960,
+      "height": 720,
+      "format": "webp"
+    },
+    "campus/junior-industry": {
+      "srcset": [
+        "/images/official/campus/junior-industry-480.webp 480w",
+        "/images/official/campus/junior-industry-960.webp 960w"
+      ],
+      "src": "/images/official/campus/junior-industry-960.webp",
+      "width": 960,
+      "height": 1280,
+      "format": "webp"
+    },
+    "campus/quiz-prasnothara": {
+      "srcset": [
+        "/images/official/campus/quiz-prasnothara-480.webp 480w",
+        "/images/official/campus/quiz-prasnothara-960.webp 960w"
+      ],
+      "src": "/images/official/campus/quiz-prasnothara-960.webp",
+      "width": 960,
+      "height": 720,
+      "format": "webp"
+    },
+    "campus/quiz-chitropa-hasak": {
+      "srcset": [
+        "/images/official/campus/quiz-chitropa-hasak-480.webp 480w",
+        "/images/official/campus/quiz-chitropa-hasak-960.webp 960w"
+      ],
+      "src": "/images/official/campus/quiz-chitropa-hasak-960.webp",
+      "width": 960,
+      "height": 720,
+      "format": "webp"
+    },
+    "campus/news-placements": {
+      "srcset": [
+        "/images/official/campus/news-placements-480.webp 480w"
+      ],
+      "src": "/images/official/campus/news-placements-480.webp",
+      "width": 480,
+      "height": 342,
+      "format": "webp"
+    },
+    "events/bhm-diwali-2024/01": {
+      "srcset": [
+        "/images/official/events/bhm-diwali-2024/01-480.webp 480w",
+        "/images/official/events/bhm-diwali-2024/01-960.webp 960w"
+      ],
+      "src": "/images/official/events/bhm-diwali-2024/01-960.webp",
+      "album": "events/bhm-diwali-2024",
+      "page": "events__bhm-diwali-2024"
+    },
+    "events/bhm-diwali-2024/02": {
+      "srcset": [
+        "/images/official/events/bhm-diwali-2024/02-480.webp 480w",
+        "/images/official/events/bhm-diwali-2024/02-960.webp 960w"
+      ],
+      "src": "/images/official/events/bhm-diwali-2024/02-960.webp",
+      "album": "events/bhm-diwali-2024",
+      "page": "events__bhm-diwali-2024"
+    },
+    "events/bhm-diwali-2024/03": {
+      "srcset": [
+        "/images/official/events/bhm-diwali-2024/03-480.webp 480w",
+        "/images/official/events/bhm-diwali-2024/03-960.webp 960w"
+      ],
+      "src": "/images/official/events/bhm-diwali-2024/03-960.webp",
+      "album": "events/bhm-diwali-2024",
+      "page": "events__bhm-diwali-2024"
+    },
+    "events/bhm-diwali-2024/04": {
+      "srcset": [
+        "/images/official/events/bhm-diwali-2024/04-480.webp 480w",
+        "/images/official/events/bhm-diwali-2024/04-960.webp 960w"
+      ],
+      "src": "/images/official/events/bhm-diwali-2024/04-960.webp",
+      "album": "events/bhm-diwali-2024",
+      "page": "events__bhm-diwali-2024"
+    },
+    "events/bhm-diwali-2024/05": {
+      "srcset": [
+        "/images/official/events/bhm-diwali-2024/05-480.webp 480w",
+        "/images/official/events/bhm-diwali-2024/05-960.webp 960w"
+      ],
+      "src": "/images/official/events/bhm-diwali-2024/05-960.webp",
+      "album": "events/bhm-diwali-2024",
+      "page": "events__bhm-diwali-2024"
+    },
+    "events/bhm-diwali-2024/06": {
+      "srcset": [
+        "/images/official/events/bhm-diwali-2024/06-480.webp 480w",
+        "/images/official/events/bhm-diwali-2024/06-960.webp 960w"
+      ],
+      "src": "/images/official/events/bhm-diwali-2024/06-960.webp",
+      "album": "events/bhm-diwali-2024",
+      "page": "events__bhm-diwali-2024"
+    },
+    "events/bhm-diwali-2024/07": {
+      "srcset": [
+        "/images/official/events/bhm-diwali-2024/07-480.webp 480w",
+        "/images/official/events/bhm-diwali-2024/07-960.webp 960w"
+      ],
+      "src": "/images/official/events/bhm-diwali-2024/07-960.webp",
+      "album": "events/bhm-diwali-2024",
+      "page": "events__bhm-diwali-2024"
+    },
+    "events/bhm-diwali-2024/08": {
+      "srcset": [
+        "/images/official/events/bhm-diwali-2024/08-480.webp 480w",
+        "/images/official/events/bhm-diwali-2024/08-960.webp 960w"
+      ],
+      "src": "/images/official/events/bhm-diwali-2024/08-960.webp",
+      "album": "events/bhm-diwali-2024",
+      "page": "events__bhm-diwali-2024"
+    },
+    "events/cake-distribution/01": {
+      "srcset": [
+        "/images/official/events/cake-distribution/01-480.webp 480w",
+        "/images/official/events/cake-distribution/01-960.webp 960w"
+      ],
+      "src": "/images/official/events/cake-distribution/01-960.webp",
+      "album": "events/cake-distribution",
+      "page": "events__cake-distribution"
+    },
+    "events/cake-distribution/02": {
+      "srcset": [
+        "/images/official/events/cake-distribution/02-480.webp 480w",
+        "/images/official/events/cake-distribution/02-960.webp 960w"
+      ],
+      "src": "/images/official/events/cake-distribution/02-960.webp",
+      "album": "events/cake-distribution",
+      "page": "events__cake-distribution"
+    },
+    "events/cake-distribution/03": {
+      "srcset": [
+        "/images/official/events/cake-distribution/03-480.webp 480w",
+        "/images/official/events/cake-distribution/03-960.webp 960w"
+      ],
+      "src": "/images/official/events/cake-distribution/03-960.webp",
+      "album": "events/cake-distribution",
+      "page": "events__cake-distribution"
+    },
+    "events/cake-distribution/04": {
+      "srcset": [
+        "/images/official/events/cake-distribution/04-480.webp 480w",
+        "/images/official/events/cake-distribution/04-960.webp 960w"
+      ],
+      "src": "/images/official/events/cake-distribution/04-960.webp",
+      "album": "events/cake-distribution",
+      "page": "events__cake-distribution"
+    },
+    "events/cake-distribution/05": {
+      "srcset": [
+        "/images/official/events/cake-distribution/05-480.webp 480w",
+        "/images/official/events/cake-distribution/05-960.webp 960w"
+      ],
+      "src": "/images/official/events/cake-distribution/05-960.webp",
+      "album": "events/cake-distribution",
+      "page": "events__cake-distribution"
+    },
+    "events/cake-distribution/06": {
+      "srcset": [
+        "/images/official/events/cake-distribution/06-480.webp 480w",
+        "/images/official/events/cake-distribution/06-960.webp 960w"
+      ],
+      "src": "/images/official/events/cake-distribution/06-960.webp",
+      "album": "events/cake-distribution",
+      "page": "events__cake-distribution"
+    },
+    "events/cake-distribution/07": {
+      "srcset": [
+        "/images/official/events/cake-distribution/07-480.webp 480w",
+        "/images/official/events/cake-distribution/07-960.webp 960w"
+      ],
+      "src": "/images/official/events/cake-distribution/07-960.webp",
+      "album": "events/cake-distribution",
+      "page": "events__cake-distribution"
+    },
+    "events/cake-distribution/08": {
+      "srcset": [
+        "/images/official/events/cake-distribution/08-480.webp 480w",
+        "/images/official/events/cake-distribution/08-960.webp 960w"
+      ],
+      "src": "/images/official/events/cake-distribution/08-960.webp",
+      "album": "events/cake-distribution",
+      "page": "events__cake-distribution"
+    },
+    "events/cake-distribution/09": {
+      "srcset": [
+        "/images/official/events/cake-distribution/09-480.webp 480w",
+        "/images/official/events/cake-distribution/09-960.webp 960w"
+      ],
+      "src": "/images/official/events/cake-distribution/09-960.webp",
+      "album": "events/cake-distribution",
+      "page": "events__cake-distribution"
+    },
+    "events/cake-distribution/10": {
+      "srcset": [
+        "/images/official/events/cake-distribution/10-480.webp 480w",
+        "/images/official/events/cake-distribution/10-960.webp 960w"
+      ],
+      "src": "/images/official/events/cake-distribution/10-960.webp",
+      "album": "events/cake-distribution",
+      "page": "events__cake-distribution"
+    },
+    "events/cake-mixing/01": {
+      "srcset": [
+        "/images/official/events/cake-mixing/01-480.webp 480w"
+      ],
+      "src": "/images/official/events/cake-mixing/01-480.webp",
+      "album": "events/cake-mixing",
+      "page": "events__cake-mixing"
+    },
+    "events/cake-mixing/02": {
+      "srcset": [
+        "/images/official/events/cake-mixing/02-480.webp 480w"
+      ],
+      "src": "/images/official/events/cake-mixing/02-480.webp",
+      "album": "events/cake-mixing",
+      "page": "events__cake-mixing"
+    },
+    "events/cake-mixing/03": {
+      "srcset": [
+        "/images/official/events/cake-mixing/03-480.webp 480w"
+      ],
+      "src": "/images/official/events/cake-mixing/03-480.webp",
+      "album": "events/cake-mixing",
+      "page": "events__cake-mixing"
+    },
+    "events/cake-mixing/04": {
+      "srcset": [
+        "/images/official/events/cake-mixing/04-480.webp 480w"
+      ],
+      "src": "/images/official/events/cake-mixing/04-480.webp",
+      "album": "events/cake-mixing",
+      "page": "events__cake-mixing"
+    },
+    "events/cake-mixing/05": {
+      "srcset": [
+        "/images/official/events/cake-mixing/05-480.webp 480w"
+      ],
+      "src": "/images/official/events/cake-mixing/05-480.webp",
+      "album": "events/cake-mixing",
+      "page": "events__cake-mixing"
+    },
+    "events/cake-mixing/06": {
+      "srcset": [
+        "/images/official/events/cake-mixing/06-480.webp 480w"
+      ],
+      "src": "/images/official/events/cake-mixing/06-480.webp",
+      "album": "events/cake-mixing",
+      "page": "events__cake-mixing"
+    },
+    "events/cake-mixing/07": {
+      "srcset": [
+        "/images/official/events/cake-mixing/07-480.webp 480w"
+      ],
+      "src": "/images/official/events/cake-mixing/07-480.webp",
+      "album": "events/cake-mixing",
+      "page": "events__cake-mixing"
+    },
+    "events/cake-mixing/08": {
+      "srcset": [
+        "/images/official/events/cake-mixing/08-480.webp 480w"
+      ],
+      "src": "/images/official/events/cake-mixing/08-480.webp",
+      "album": "events/cake-mixing",
+      "page": "events__cake-mixing"
+    },
+    "events/cake-mixing/09": {
+      "srcset": [
+        "/images/official/events/cake-mixing/09-480.webp 480w",
+        "/images/official/events/cake-mixing/09-960.webp 960w"
+      ],
+      "src": "/images/official/events/cake-mixing/09-960.webp",
+      "album": "events/cake-mixing",
+      "page": "events__cake-mixing"
+    },
+    "events/cake-mixing/10": {
+      "srcset": [
+        "/images/official/events/cake-mixing/10-480.webp 480w"
+      ],
+      "src": "/images/official/events/cake-mixing/10-480.webp",
+      "album": "events/cake-mixing",
+      "page": "events__cake-mixing"
+    },
+    "events/cake-mixing/11": {
+      "srcset": [
+        "/images/official/events/cake-mixing/11-480.webp 480w",
+        "/images/official/events/cake-mixing/11-960.webp 960w"
+      ],
+      "src": "/images/official/events/cake-mixing/11-960.webp",
+      "album": "events/cake-mixing",
+      "page": "events__cake-mixing"
+    },
+    "events/cake-mixing/12": {
+      "srcset": [
+        "/images/official/events/cake-mixing/12-480.webp 480w",
+        "/images/official/events/cake-mixing/12-960.webp 960w"
+      ],
+      "src": "/images/official/events/cake-mixing/12-960.webp",
+      "album": "events/cake-mixing",
+      "page": "events__cake-mixing"
+    },
+    "events/cake-mixing/13": {
+      "srcset": [
+        "/images/official/events/cake-mixing/13-480.webp 480w",
+        "/images/official/events/cake-mixing/13-960.webp 960w"
+      ],
+      "src": "/images/official/events/cake-mixing/13-960.webp",
+      "album": "events/cake-mixing",
+      "page": "events__cake-mixing"
+    },
+    "events/flower-decoration/01": {
+      "srcset": [
+        "/images/official/events/flower-decoration/01-480.webp 480w",
+        "/images/official/events/flower-decoration/01-960.webp 960w"
+      ],
+      "src": "/images/official/events/flower-decoration/01-960.webp",
+      "album": "events/flower-decoration",
+      "page": "events__flower-decoration"
+    },
+    "events/flower-decoration/02": {
+      "srcset": [
+        "/images/official/events/flower-decoration/02-480.webp 480w",
+        "/images/official/events/flower-decoration/02-960.webp 960w"
+      ],
+      "src": "/images/official/events/flower-decoration/02-960.webp",
+      "album": "events/flower-decoration",
+      "page": "events__flower-decoration"
+    },
+    "events/flower-decoration/03": {
+      "srcset": [
+        "/images/official/events/flower-decoration/03-480.webp 480w",
+        "/images/official/events/flower-decoration/03-960.webp 960w"
+      ],
+      "src": "/images/official/events/flower-decoration/03-960.webp",
+      "album": "events/flower-decoration",
+      "page": "events__flower-decoration"
+    },
+    "events/flower-decoration/04": {
+      "srcset": [
+        "/images/official/events/flower-decoration/04-480.webp 480w",
+        "/images/official/events/flower-decoration/04-960.webp 960w"
+      ],
+      "src": "/images/official/events/flower-decoration/04-960.webp",
+      "album": "events/flower-decoration",
+      "page": "events__flower-decoration"
+    },
+    "events/flower-decoration/05": {
+      "srcset": [
+        "/images/official/events/flower-decoration/05-480.webp 480w",
+        "/images/official/events/flower-decoration/05-960.webp 960w"
+      ],
+      "src": "/images/official/events/flower-decoration/05-960.webp",
+      "album": "events/flower-decoration",
+      "page": "events__flower-decoration"
+    },
+    "events/flower-decoration/06": {
+      "srcset": [
+        "/images/official/events/flower-decoration/06-480.webp 480w",
+        "/images/official/events/flower-decoration/06-960.webp 960w"
+      ],
+      "src": "/images/official/events/flower-decoration/06-960.webp",
+      "album": "events/flower-decoration",
+      "page": "events__flower-decoration"
+    },
+    "events/flower-decoration/07": {
+      "srcset": [
+        "/images/official/events/flower-decoration/07-480.webp 480w",
+        "/images/official/events/flower-decoration/07-960.webp 960w"
+      ],
+      "src": "/images/official/events/flower-decoration/07-960.webp",
+      "album": "events/flower-decoration",
+      "page": "events__flower-decoration"
+    },
+    "events/flower-decoration/08": {
+      "srcset": [
+        "/images/official/events/flower-decoration/08-480.webp 480w",
+        "/images/official/events/flower-decoration/08-960.webp 960w"
+      ],
+      "src": "/images/official/events/flower-decoration/08-960.webp",
+      "album": "events/flower-decoration",
+      "page": "events__flower-decoration"
+    },
+    "events/flower-decoration/09": {
+      "srcset": [
+        "/images/official/events/flower-decoration/09-480.webp 480w",
+        "/images/official/events/flower-decoration/09-960.webp 960w"
+      ],
+      "src": "/images/official/events/flower-decoration/09-960.webp",
+      "album": "events/flower-decoration",
+      "page": "events__flower-decoration"
+    },
+    "events/flower-decoration/10": {
+      "srcset": [
+        "/images/official/events/flower-decoration/10-480.webp 480w",
+        "/images/official/events/flower-decoration/10-960.webp 960w"
+      ],
+      "src": "/images/official/events/flower-decoration/10-960.webp",
+      "album": "events/flower-decoration",
+      "page": "events__flower-decoration"
+    },
+    "events/flower-decoration/11": {
+      "srcset": [
+        "/images/official/events/flower-decoration/11-480.webp 480w",
+        "/images/official/events/flower-decoration/11-960.webp 960w"
+      ],
+      "src": "/images/official/events/flower-decoration/11-960.webp",
+      "album": "events/flower-decoration",
+      "page": "events__flower-decoration"
+    },
+    "events/flower-decoration/12": {
+      "srcset": [
+        "/images/official/events/flower-decoration/12-480.webp 480w",
+        "/images/official/events/flower-decoration/12-960.webp 960w"
+      ],
+      "src": "/images/official/events/flower-decoration/12-960.webp",
+      "album": "events/flower-decoration",
+      "page": "events__flower-decoration"
+    },
+    "events/flower-decoration/13": {
+      "srcset": [
+        "/images/official/events/flower-decoration/13-480.webp 480w",
+        "/images/official/events/flower-decoration/13-960.webp 960w"
+      ],
+      "src": "/images/official/events/flower-decoration/13-960.webp",
+      "album": "events/flower-decoration",
+      "page": "events__flower-decoration"
+    },
+    "events/flower-decoration/14": {
+      "srcset": [
+        "/images/official/events/flower-decoration/14-480.webp 480w",
+        "/images/official/events/flower-decoration/14-960.webp 960w"
+      ],
+      "src": "/images/official/events/flower-decoration/14-960.webp",
+      "album": "events/flower-decoration",
+      "page": "events__flower-decoration"
+    },
+    "events/flower-decoration/15": {
+      "srcset": [
+        "/images/official/events/flower-decoration/15-480.webp 480w",
+        "/images/official/events/flower-decoration/15-960.webp 960w"
+      ],
+      "src": "/images/official/events/flower-decoration/15-960.webp",
+      "album": "events/flower-decoration",
+      "page": "events__flower-decoration"
+    },
+    "events/flower-decoration/16": {
+      "srcset": [
+        "/images/official/events/flower-decoration/16-480.webp 480w"
+      ],
+      "src": "/images/official/events/flower-decoration/16-480.webp",
+      "album": "events/flower-decoration",
+      "page": "events__flower-decoration"
+    },
+    "events/flower-decoration/17": {
+      "srcset": [
+        "/images/official/events/flower-decoration/17-480.webp 480w",
+        "/images/official/events/flower-decoration/17-960.webp 960w"
+      ],
+      "src": "/images/official/events/flower-decoration/17-960.webp",
+      "album": "events/flower-decoration",
+      "page": "events__flower-decoration"
+    },
+    "events/flower-decoration/18": {
+      "srcset": [
+        "/images/official/events/flower-decoration/18-480.webp 480w"
+      ],
+      "src": "/images/official/events/flower-decoration/18-480.webp",
+      "album": "events/flower-decoration",
+      "page": "events__flower-decoration"
+    },
+    "events/flower-decoration/19": {
+      "srcset": [
+        "/images/official/events/flower-decoration/19-480.webp 480w",
+        "/images/official/events/flower-decoration/19-960.webp 960w"
+      ],
+      "src": "/images/official/events/flower-decoration/19-960.webp",
+      "album": "events/flower-decoration",
+      "page": "events__flower-decoration"
+    },
+    "events/flower-decoration/20": {
+      "srcset": [
+        "/images/official/events/flower-decoration/20-480.webp 480w",
+        "/images/official/events/flower-decoration/20-960.webp 960w"
+      ],
+      "src": "/images/official/events/flower-decoration/20-960.webp",
+      "album": "events/flower-decoration",
+      "page": "events__flower-decoration"
+    },
+    "events/flower-decoration/21": {
+      "srcset": [
+        "/images/official/events/flower-decoration/21-480.webp 480w",
+        "/images/official/events/flower-decoration/21-960.webp 960w"
+      ],
+      "src": "/images/official/events/flower-decoration/21-960.webp",
+      "album": "events/flower-decoration",
+      "page": "events__flower-decoration"
+    },
+    "events/flower-decoration/22": {
+      "srcset": [
+        "/images/official/events/flower-decoration/22-480.webp 480w",
+        "/images/official/events/flower-decoration/22-960.webp 960w"
+      ],
+      "src": "/images/official/events/flower-decoration/22-960.webp",
+      "album": "events/flower-decoration",
+      "page": "events__flower-decoration"
+    },
+    "events/flower-decoration/23": {
+      "srcset": [
+        "/images/official/events/flower-decoration/23-480.webp 480w",
+        "/images/official/events/flower-decoration/23-960.webp 960w"
+      ],
+      "src": "/images/official/events/flower-decoration/23-960.webp",
+      "album": "events/flower-decoration",
+      "page": "events__flower-decoration"
+    },
+    "events/flower-decoration/24": {
+      "srcset": [
+        "/images/official/events/flower-decoration/24-480.webp 480w",
+        "/images/official/events/flower-decoration/24-960.webp 960w"
+      ],
+      "src": "/images/official/events/flower-decoration/24-960.webp",
+      "album": "events/flower-decoration",
+      "page": "events__flower-decoration"
+    },
+    "events/flower-decoration/25": {
+      "srcset": [
+        "/images/official/events/flower-decoration/25-480.webp 480w",
+        "/images/official/events/flower-decoration/25-960.webp 960w"
+      ],
+      "src": "/images/official/events/flower-decoration/25-960.webp",
+      "album": "events/flower-decoration",
+      "page": "events__flower-decoration"
+    },
+    "events/ghsdp-2024/01": {
+      "srcset": [
+        "/images/official/events/ghsdp-2024/01-480.webp 480w",
+        "/images/official/events/ghsdp-2024/01-960.webp 960w"
+      ],
+      "src": "/images/official/events/ghsdp-2024/01-960.webp",
+      "album": "events/ghsdp-2024",
+      "page": "events__ghsdp-2024"
+    },
+    "events/ghsdp-2024/02": {
+      "srcset": [
+        "/images/official/events/ghsdp-2024/02-480.webp 480w",
+        "/images/official/events/ghsdp-2024/02-960.webp 960w"
+      ],
+      "src": "/images/official/events/ghsdp-2024/02-960.webp",
+      "album": "events/ghsdp-2024",
+      "page": "events__ghsdp-2024"
+    },
+    "events/ghsdp-2024/03": {
+      "srcset": [
+        "/images/official/events/ghsdp-2024/03-480.webp 480w",
+        "/images/official/events/ghsdp-2024/03-960.webp 960w"
+      ],
+      "src": "/images/official/events/ghsdp-2024/03-960.webp",
+      "album": "events/ghsdp-2024",
+      "page": "events__ghsdp-2024"
+    },
+    "events/ghsdp-2024/04": {
+      "srcset": [
+        "/images/official/events/ghsdp-2024/04-480.webp 480w",
+        "/images/official/events/ghsdp-2024/04-960.webp 960w"
+      ],
+      "src": "/images/official/events/ghsdp-2024/04-960.webp",
+      "album": "events/ghsdp-2024",
+      "page": "events__ghsdp-2024"
+    },
+    "events/ghsdp-2024/05": {
+      "srcset": [
+        "/images/official/events/ghsdp-2024/05-480.webp 480w",
+        "/images/official/events/ghsdp-2024/05-960.webp 960w"
+      ],
+      "src": "/images/official/events/ghsdp-2024/05-960.webp",
+      "album": "events/ghsdp-2024",
+      "page": "events__ghsdp-2024"
+    },
+    "events/ghsdp-2024/06": {
+      "srcset": [
+        "/images/official/events/ghsdp-2024/06-480.webp 480w",
+        "/images/official/events/ghsdp-2024/06-960.webp 960w"
+      ],
+      "src": "/images/official/events/ghsdp-2024/06-960.webp",
+      "album": "events/ghsdp-2024",
+      "page": "events__ghsdp-2024"
+    },
+    "events/ghsdp-2024/07": {
+      "srcset": [
+        "/images/official/events/ghsdp-2024/07-480.webp 480w",
+        "/images/official/events/ghsdp-2024/07-960.webp 960w"
+      ],
+      "src": "/images/official/events/ghsdp-2024/07-960.webp",
+      "album": "events/ghsdp-2024",
+      "page": "events__ghsdp-2024"
+    },
+    "events/ghsdp-2024/08": {
+      "srcset": [
+        "/images/official/events/ghsdp-2024/08-480.webp 480w",
+        "/images/official/events/ghsdp-2024/08-960.webp 960w"
+      ],
+      "src": "/images/official/events/ghsdp-2024/08-960.webp",
+      "album": "events/ghsdp-2024",
+      "page": "events__ghsdp-2024"
+    },
+    "events/ghsdp-2024/09": {
+      "srcset": [
+        "/images/official/events/ghsdp-2024/09-480.webp 480w",
+        "/images/official/events/ghsdp-2024/09-960.webp 960w"
+      ],
+      "src": "/images/official/events/ghsdp-2024/09-960.webp",
+      "album": "events/ghsdp-2024",
+      "page": "events__ghsdp-2024"
+    },
+    "events/ghsdp-2024/10": {
+      "srcset": [
+        "/images/official/events/ghsdp-2024/10-480.webp 480w",
+        "/images/official/events/ghsdp-2024/10-960.webp 960w"
+      ],
+      "src": "/images/official/events/ghsdp-2024/10-960.webp",
+      "album": "events/ghsdp-2024",
+      "page": "events__ghsdp-2024"
+    },
+    "events/ghsdp-2024/11": {
+      "srcset": [
+        "/images/official/events/ghsdp-2024/11-480.webp 480w",
+        "/images/official/events/ghsdp-2024/11-960.webp 960w"
+      ],
+      "src": "/images/official/events/ghsdp-2024/11-960.webp",
+      "album": "events/ghsdp-2024",
+      "page": "events__ghsdp-2024"
+    },
+    "events/ghsdp-2024/12": {
+      "srcset": [
+        "/images/official/events/ghsdp-2024/12-480.webp 480w",
+        "/images/official/events/ghsdp-2024/12-960.webp 960w"
+      ],
+      "src": "/images/official/events/ghsdp-2024/12-960.webp",
+      "album": "events/ghsdp-2024",
+      "page": "events__ghsdp-2024"
+    },
+    "events/ghsdp-2024/13": {
+      "srcset": [
+        "/images/official/events/ghsdp-2024/13-480.webp 480w",
+        "/images/official/events/ghsdp-2024/13-960.webp 960w"
+      ],
+      "src": "/images/official/events/ghsdp-2024/13-960.webp",
+      "album": "events/ghsdp-2024",
+      "page": "events__ghsdp-2024"
+    },
+    "events/ghsdp-2024/14": {
+      "srcset": [
+        "/images/official/events/ghsdp-2024/14-480.webp 480w",
+        "/images/official/events/ghsdp-2024/14-960.webp 960w"
+      ],
+      "src": "/images/official/events/ghsdp-2024/14-960.webp",
+      "album": "events/ghsdp-2024",
+      "page": "events__ghsdp-2024"
+    },
+    "events/ghsdp-2024/15": {
+      "srcset": [
+        "/images/official/events/ghsdp-2024/15-480.webp 480w",
+        "/images/official/events/ghsdp-2024/15-960.webp 960w"
+      ],
+      "src": "/images/official/events/ghsdp-2024/15-960.webp",
+      "album": "events/ghsdp-2024",
+      "page": "events__ghsdp-2024"
+    },
+    "events/ghsdp-2024/16": {
+      "srcset": [
+        "/images/official/events/ghsdp-2024/16-480.webp 480w",
+        "/images/official/events/ghsdp-2024/16-960.webp 960w"
+      ],
+      "src": "/images/official/events/ghsdp-2024/16-960.webp",
+      "album": "events/ghsdp-2024",
+      "page": "events__ghsdp-2024"
+    },
+    "events/ghsdp-2024/17": {
+      "srcset": [
+        "/images/official/events/ghsdp-2024/17-480.webp 480w",
+        "/images/official/events/ghsdp-2024/17-960.webp 960w"
+      ],
+      "src": "/images/official/events/ghsdp-2024/17-960.webp",
+      "album": "events/ghsdp-2024",
+      "page": "events__ghsdp-2024"
+    },
+    "events/ghsdp-2024/18": {
+      "srcset": [
+        "/images/official/events/ghsdp-2024/18-480.webp 480w",
+        "/images/official/events/ghsdp-2024/18-960.webp 960w"
+      ],
+      "src": "/images/official/events/ghsdp-2024/18-960.webp",
+      "album": "events/ghsdp-2024",
+      "page": "events__ghsdp-2024"
+    },
+    "events/ghsdp-2024/19": {
+      "srcset": [
+        "/images/official/events/ghsdp-2024/19-480.webp 480w",
+        "/images/official/events/ghsdp-2024/19-960.webp 960w"
+      ],
+      "src": "/images/official/events/ghsdp-2024/19-960.webp",
+      "album": "events/ghsdp-2024",
+      "page": "events__ghsdp-2024"
+    },
+    "events/ghsdp-2024/20": {
+      "srcset": [
+        "/images/official/events/ghsdp-2024/20-480.webp 480w",
+        "/images/official/events/ghsdp-2024/20-960.webp 960w"
+      ],
+      "src": "/images/official/events/ghsdp-2024/20-960.webp",
+      "album": "events/ghsdp-2024",
+      "page": "events__ghsdp-2024"
+    },
+    "events/ghsdp-2024/21": {
+      "srcset": [
+        "/images/official/events/ghsdp-2024/21-480.webp 480w",
+        "/images/official/events/ghsdp-2024/21-960.webp 960w"
+      ],
+      "src": "/images/official/events/ghsdp-2024/21-960.webp",
+      "album": "events/ghsdp-2024",
+      "page": "events__ghsdp-2024"
+    },
+    "events/ghsdp-2024/22": {
+      "srcset": [
+        "/images/official/events/ghsdp-2024/22-480.webp 480w",
+        "/images/official/events/ghsdp-2024/22-960.webp 960w"
+      ],
+      "src": "/images/official/events/ghsdp-2024/22-960.webp",
+      "album": "events/ghsdp-2024",
+      "page": "events__ghsdp-2024"
+    },
+    "events/ghsdp-2024/23": {
+      "srcset": [
+        "/images/official/events/ghsdp-2024/23-480.webp 480w",
+        "/images/official/events/ghsdp-2024/23-960.webp 960w"
+      ],
+      "src": "/images/official/events/ghsdp-2024/23-960.webp",
+      "album": "events/ghsdp-2024",
+      "page": "events__ghsdp-2024"
+    },
+    "events/ghsdp-2024/24": {
+      "srcset": [
+        "/images/official/events/ghsdp-2024/24-480.webp 480w",
+        "/images/official/events/ghsdp-2024/24-960.webp 960w"
+      ],
+      "src": "/images/official/events/ghsdp-2024/24-960.webp",
+      "album": "events/ghsdp-2024",
+      "page": "events__ghsdp-2024"
+    },
+    "events/ghsdp-2024/25": {
+      "srcset": [
+        "/images/official/events/ghsdp-2024/25-480.webp 480w",
+        "/images/official/events/ghsdp-2024/25-960.webp 960w"
+      ],
+      "src": "/images/official/events/ghsdp-2024/25-960.webp",
+      "album": "events/ghsdp-2024",
+      "page": "events__ghsdp-2024"
+    },
+    "events/iftar-party/01": {
+      "srcset": [
+        "/images/official/events/iftar-party/01-480.webp 480w",
+        "/images/official/events/iftar-party/01-960.webp 960w"
+      ],
+      "src": "/images/official/events/iftar-party/01-960.webp",
+      "album": "events/iftar-party",
+      "page": "events__iftar-party"
+    },
+    "events/iftar-party/02": {
+      "srcset": [
+        "/images/official/events/iftar-party/02-480.webp 480w",
+        "/images/official/events/iftar-party/02-960.webp 960w"
+      ],
+      "src": "/images/official/events/iftar-party/02-960.webp",
+      "album": "events/iftar-party",
+      "page": "events__iftar-party"
+    },
+    "events/iftar-party/03": {
+      "srcset": [
+        "/images/official/events/iftar-party/03-480.webp 480w",
+        "/images/official/events/iftar-party/03-960.webp 960w"
+      ],
+      "src": "/images/official/events/iftar-party/03-960.webp",
+      "album": "events/iftar-party",
+      "page": "events__iftar-party"
+    },
+    "events/iftar-party/04": {
+      "srcset": [
+        "/images/official/events/iftar-party/04-480.webp 480w",
+        "/images/official/events/iftar-party/04-960.webp 960w"
+      ],
+      "src": "/images/official/events/iftar-party/04-960.webp",
+      "album": "events/iftar-party",
+      "page": "events__iftar-party"
+    },
+    "events/iftar-party/05": {
+      "srcset": [
+        "/images/official/events/iftar-party/05-480.webp 480w",
+        "/images/official/events/iftar-party/05-960.webp 960w"
+      ],
+      "src": "/images/official/events/iftar-party/05-960.webp",
+      "album": "events/iftar-party",
+      "page": "events__iftar-party"
+    },
+    "events/independence/01": {
+      "srcset": [
+        "/images/official/events/independence/01-480.webp 480w"
+      ],
+      "src": "/images/official/events/independence/01-480.webp",
+      "album": "events/independence",
+      "page": "events__independence"
+    },
+    "events/independence/02": {
+      "srcset": [
+        "/images/official/events/independence/02-480.webp 480w",
+        "/images/official/events/independence/02-960.webp 960w"
+      ],
+      "src": "/images/official/events/independence/02-960.webp",
+      "album": "events/independence",
+      "page": "events__independence"
+    },
+    "events/independence/03": {
+      "srcset": [
+        "/images/official/events/independence/03-480.webp 480w",
+        "/images/official/events/independence/03-960.webp 960w"
+      ],
+      "src": "/images/official/events/independence/03-960.webp",
+      "album": "events/independence",
+      "page": "events__independence"
+    },
+    "events/independence/04": {
+      "srcset": [
+        "/images/official/events/independence/04-480.webp 480w",
+        "/images/official/events/independence/04-960.webp 960w"
+      ],
+      "src": "/images/official/events/independence/04-960.webp",
+      "album": "events/independence",
+      "page": "events__independence"
+    },
+    "events/independence/05": {
+      "srcset": [
+        "/images/official/events/independence/05-480.webp 480w",
+        "/images/official/events/independence/05-960.webp 960w"
+      ],
+      "src": "/images/official/events/independence/05-960.webp",
+      "album": "events/independence",
+      "page": "events__independence"
+    },
+    "events/independence/06": {
+      "srcset": [
+        "/images/official/events/independence/06-480.webp 480w",
+        "/images/official/events/independence/06-960.webp 960w"
+      ],
+      "src": "/images/official/events/independence/06-960.webp",
+      "album": "events/independence",
+      "page": "events__independence"
+    },
+    "events/independence/07": {
+      "srcset": [
+        "/images/official/events/independence/07-480.webp 480w",
+        "/images/official/events/independence/07-960.webp 960w"
+      ],
+      "src": "/images/official/events/independence/07-960.webp",
+      "album": "events/independence",
+      "page": "events__independence"
+    },
+    "events/independence/08": {
+      "srcset": [
+        "/images/official/events/independence/08-480.webp 480w",
+        "/images/official/events/independence/08-960.webp 960w"
+      ],
+      "src": "/images/official/events/independence/08-960.webp",
+      "album": "events/independence",
+      "page": "events__independence"
+    },
+    "events/independence/09": {
+      "srcset": [
+        "/images/official/events/independence/09-480.webp 480w",
+        "/images/official/events/independence/09-960.webp 960w"
+      ],
+      "src": "/images/official/events/independence/09-960.webp",
+      "album": "events/independence",
+      "page": "events__independence"
+    },
+    "events/independence/10": {
+      "srcset": [
+        "/images/official/events/independence/10-480.webp 480w",
+        "/images/official/events/independence/10-960.webp 960w"
+      ],
+      "src": "/images/official/events/independence/10-960.webp",
+      "album": "events/independence",
+      "page": "events__independence"
+    },
+    "events/independence/11": {
+      "srcset": [
+        "/images/official/events/independence/11-480.webp 480w",
+        "/images/official/events/independence/11-960.webp 960w"
+      ],
+      "src": "/images/official/events/independence/11-960.webp",
+      "album": "events/independence",
+      "page": "events__independence"
+    },
+    "events/independence/12": {
+      "srcset": [
+        "/images/official/events/independence/12-480.webp 480w",
+        "/images/official/events/independence/12-960.webp 960w"
+      ],
+      "src": "/images/official/events/independence/12-960.webp",
+      "album": "events/independence",
+      "page": "events__independence"
+    },
+    "events/independence/13": {
+      "srcset": [
+        "/images/official/events/independence/13-480.webp 480w",
+        "/images/official/events/independence/13-960.webp 960w"
+      ],
+      "src": "/images/official/events/independence/13-960.webp",
+      "album": "events/independence",
+      "page": "events__independence"
+    },
+    "events/independence/14": {
+      "srcset": [
+        "/images/official/events/independence/14-480.webp 480w",
+        "/images/official/events/independence/14-960.webp 960w"
+      ],
+      "src": "/images/official/events/independence/14-960.webp",
+      "album": "events/independence",
+      "page": "events__independence"
+    },
+    "events/independence/15": {
+      "srcset": [
+        "/images/official/events/independence/15-480.webp 480w",
+        "/images/official/events/independence/15-960.webp 960w"
+      ],
+      "src": "/images/official/events/independence/15-960.webp",
+      "album": "events/independence",
+      "page": "events__independence"
+    },
+    "events/independence/16": {
+      "srcset": [
+        "/images/official/events/independence/16-480.webp 480w",
+        "/images/official/events/independence/16-960.webp 960w"
+      ],
+      "src": "/images/official/events/independence/16-960.webp",
+      "album": "events/independence",
+      "page": "events__independence"
+    },
+    "events/independence/17": {
+      "srcset": [
+        "/images/official/events/independence/17-480.webp 480w",
+        "/images/official/events/independence/17-960.webp 960w"
+      ],
+      "src": "/images/official/events/independence/17-960.webp",
+      "album": "events/independence",
+      "page": "events__independence"
+    },
+    "events/independence/18": {
+      "srcset": [
+        "/images/official/events/independence/18-480.webp 480w",
+        "/images/official/events/independence/18-960.webp 960w"
+      ],
+      "src": "/images/official/events/independence/18-960.webp",
+      "album": "events/independence",
+      "page": "events__independence"
+    },
+    "events/independence/19": {
+      "srcset": [
+        "/images/official/events/independence/19-480.webp 480w",
+        "/images/official/events/independence/19-960.webp 960w"
+      ],
+      "src": "/images/official/events/independence/19-960.webp",
+      "album": "events/independence",
+      "page": "events__independence"
+    },
+    "events/independence/20": {
+      "srcset": [
+        "/images/official/events/independence/20-480.webp 480w",
+        "/images/official/events/independence/20-960.webp 960w"
+      ],
+      "src": "/images/official/events/independence/20-960.webp",
+      "album": "events/independence",
+      "page": "events__independence"
+    },
+    "events/independence/21": {
+      "srcset": [
+        "/images/official/events/independence/21-480.webp 480w",
+        "/images/official/events/independence/21-960.webp 960w"
+      ],
+      "src": "/images/official/events/independence/21-960.webp",
+      "album": "events/independence",
+      "page": "events__independence"
+    },
+    "events/independence/22": {
+      "srcset": [
+        "/images/official/events/independence/22-480.webp 480w",
+        "/images/official/events/independence/22-960.webp 960w"
+      ],
+      "src": "/images/official/events/independence/22-960.webp",
+      "album": "events/independence",
+      "page": "events__independence"
+    },
+    "events/independence/23": {
+      "srcset": [
+        "/images/official/events/independence/23-480.webp 480w",
+        "/images/official/events/independence/23-960.webp 960w"
+      ],
+      "src": "/images/official/events/independence/23-960.webp",
+      "album": "events/independence",
+      "page": "events__independence"
+    },
+    "events/independence/24": {
+      "srcset": [
+        "/images/official/events/independence/24-480.webp 480w",
+        "/images/official/events/independence/24-960.webp 960w"
+      ],
+      "src": "/images/official/events/independence/24-960.webp",
+      "album": "events/independence",
+      "page": "events__independence"
+    },
+    "events/independence/25": {
+      "srcset": [
+        "/images/official/events/independence/25-480.webp 480w",
+        "/images/official/events/independence/25-960.webp 960w"
+      ],
+      "src": "/images/official/events/independence/25-960.webp",
+      "album": "events/independence",
+      "page": "events__independence"
+    },
+    "events/janstami-bhm/01": {
+      "srcset": [
+        "/images/official/events/janstami-bhm/01-478.webp 478w"
+      ],
+      "src": "/images/official/events/janstami-bhm/01-478.webp",
+      "album": "events/janstami-bhm",
+      "page": "events__janstami-bhm"
+    },
+    "events/janstami-bhm/02": {
+      "srcset": [
+        "/images/official/events/janstami-bhm/02-480.webp 480w"
+      ],
+      "src": "/images/official/events/janstami-bhm/02-480.webp",
+      "album": "events/janstami-bhm",
+      "page": "events__janstami-bhm"
+    },
+    "events/janstami-bhm/03": {
+      "srcset": [
+        "/images/official/events/janstami-bhm/03-480.webp 480w",
+        "/images/official/events/janstami-bhm/03-960.webp 960w"
+      ],
+      "src": "/images/official/events/janstami-bhm/03-960.webp",
+      "album": "events/janstami-bhm",
+      "page": "events__janstami-bhm"
+    },
+    "events/janstami-bhm/04": {
+      "srcset": [
+        "/images/official/events/janstami-bhm/04-480.webp 480w",
+        "/images/official/events/janstami-bhm/04-960.webp 960w"
+      ],
+      "src": "/images/official/events/janstami-bhm/04-960.webp",
+      "album": "events/janstami-bhm",
+      "page": "events__janstami-bhm"
+    },
+    "events/janstami-bhm/05": {
+      "srcset": [
+        "/images/official/events/janstami-bhm/05-480.webp 480w",
+        "/images/official/events/janstami-bhm/05-960.webp 960w"
+      ],
+      "src": "/images/official/events/janstami-bhm/05-960.webp",
+      "album": "events/janstami-bhm",
+      "page": "events__janstami-bhm"
+    },
+    "events/janstami-bhm/06": {
+      "srcset": [
+        "/images/official/events/janstami-bhm/06-480.webp 480w",
+        "/images/official/events/janstami-bhm/06-960.webp 960w"
+      ],
+      "src": "/images/official/events/janstami-bhm/06-960.webp",
+      "album": "events/janstami-bhm",
+      "page": "events__janstami-bhm"
+    },
+    "events/janstami-bhm/07": {
+      "srcset": [
+        "/images/official/events/janstami-bhm/07-480.webp 480w",
+        "/images/official/events/janstami-bhm/07-960.webp 960w"
+      ],
+      "src": "/images/official/events/janstami-bhm/07-960.webp",
+      "album": "events/janstami-bhm",
+      "page": "events__janstami-bhm"
+    },
+    "events/janstami-bhm/08": {
+      "srcset": [
+        "/images/official/events/janstami-bhm/08-480.webp 480w",
+        "/images/official/events/janstami-bhm/08-960.webp 960w"
+      ],
+      "src": "/images/official/events/janstami-bhm/08-960.webp",
+      "album": "events/janstami-bhm",
+      "page": "events__janstami-bhm"
+    },
+    "events/janstami-bhm/09": {
+      "srcset": [
+        "/images/official/events/janstami-bhm/09-480.webp 480w",
+        "/images/official/events/janstami-bhm/09-960.webp 960w"
+      ],
+      "src": "/images/official/events/janstami-bhm/09-960.webp",
+      "album": "events/janstami-bhm",
+      "page": "events__janstami-bhm"
+    },
+    "events/janstami-bhm/10": {
+      "srcset": [
+        "/images/official/events/janstami-bhm/10-480.webp 480w",
+        "/images/official/events/janstami-bhm/10-960.webp 960w"
+      ],
+      "src": "/images/official/events/janstami-bhm/10-960.webp",
+      "album": "events/janstami-bhm",
+      "page": "events__janstami-bhm"
+    },
+    "events/janstami-bhm/11": {
+      "srcset": [
+        "/images/official/events/janstami-bhm/11-480.webp 480w",
+        "/images/official/events/janstami-bhm/11-960.webp 960w"
+      ],
+      "src": "/images/official/events/janstami-bhm/11-960.webp",
+      "album": "events/janstami-bhm",
+      "page": "events__janstami-bhm"
+    },
+    "events/janstami-bhm/12": {
+      "srcset": [
+        "/images/official/events/janstami-bhm/12-480.webp 480w",
+        "/images/official/events/janstami-bhm/12-960.webp 960w"
+      ],
+      "src": "/images/official/events/janstami-bhm/12-960.webp",
+      "album": "events/janstami-bhm",
+      "page": "events__janstami-bhm"
+    },
+    "events/janstami-bhm/13": {
+      "srcset": [
+        "/images/official/events/janstami-bhm/13-480.webp 480w"
+      ],
+      "src": "/images/official/events/janstami-bhm/13-480.webp",
+      "album": "events/janstami-bhm",
+      "page": "events__janstami-bhm"
+    },
+    "events/janstami-bhm/14": {
+      "srcset": [
+        "/images/official/events/janstami-bhm/14-480.webp 480w"
+      ],
+      "src": "/images/official/events/janstami-bhm/14-480.webp",
+      "album": "events/janstami-bhm",
+      "page": "events__janstami-bhm"
+    },
+    "events/janstami-bhm/15": {
+      "srcset": [
+        "/images/official/events/janstami-bhm/15-480.webp 480w",
+        "/images/official/events/janstami-bhm/15-960.webp 960w"
+      ],
+      "src": "/images/official/events/janstami-bhm/15-960.webp",
+      "album": "events/janstami-bhm",
+      "page": "events__janstami-bhm"
+    },
+    "events/janstami-bhm/16": {
+      "srcset": [
+        "/images/official/events/janstami-bhm/16-480.webp 480w",
+        "/images/official/events/janstami-bhm/16-960.webp 960w"
+      ],
+      "src": "/images/official/events/janstami-bhm/16-960.webp",
+      "album": "events/janstami-bhm",
+      "page": "events__janstami-bhm"
+    },
+    "events/janstami-bhm/17": {
+      "srcset": [
+        "/images/official/events/janstami-bhm/17-480.webp 480w",
+        "/images/official/events/janstami-bhm/17-960.webp 960w"
+      ],
+      "src": "/images/official/events/janstami-bhm/17-960.webp",
+      "album": "events/janstami-bhm",
+      "page": "events__janstami-bhm"
+    },
+    "events/mr-and-ms/01": {
+      "srcset": [
+        "/images/official/events/mr-and-ms/01-478.webp 478w"
+      ],
+      "src": "/images/official/events/mr-and-ms/01-478.webp",
+      "album": "events/mr-and-ms",
+      "page": "events__mr-and-ms"
+    },
+    "events/mr-and-ms/02": {
+      "srcset": [
+        "/images/official/events/mr-and-ms/02-480.webp 480w",
+        "/images/official/events/mr-and-ms/02-960.webp 960w"
+      ],
+      "src": "/images/official/events/mr-and-ms/02-960.webp",
+      "album": "events/mr-and-ms",
+      "page": "events__mr-and-ms"
+    },
+    "events/mr-and-ms/03": {
+      "srcset": [
+        "/images/official/events/mr-and-ms/03-480.webp 480w",
+        "/images/official/events/mr-and-ms/03-960.webp 960w"
+      ],
+      "src": "/images/official/events/mr-and-ms/03-960.webp",
+      "album": "events/mr-and-ms",
+      "page": "events__mr-and-ms"
+    },
+    "events/mr-and-ms/04": {
+      "srcset": [
+        "/images/official/events/mr-and-ms/04-480.webp 480w",
+        "/images/official/events/mr-and-ms/04-960.webp 960w"
+      ],
+      "src": "/images/official/events/mr-and-ms/04-960.webp",
+      "album": "events/mr-and-ms",
+      "page": "events__mr-and-ms"
+    },
+    "events/mr-and-ms/05": {
+      "srcset": [
+        "/images/official/events/mr-and-ms/05-480.webp 480w"
+      ],
+      "src": "/images/official/events/mr-and-ms/05-480.webp",
+      "album": "events/mr-and-ms",
+      "page": "events__mr-and-ms"
+    },
+    "events/mr-and-ms/06": {
+      "srcset": [
+        "/images/official/events/mr-and-ms/06-480.webp 480w",
+        "/images/official/events/mr-and-ms/06-960.webp 960w"
+      ],
+      "src": "/images/official/events/mr-and-ms/06-960.webp",
+      "album": "events/mr-and-ms",
+      "page": "events__mr-and-ms"
+    },
+    "events/mr-and-ms/07": {
+      "srcset": [
+        "/images/official/events/mr-and-ms/07-480.webp 480w"
+      ],
+      "src": "/images/official/events/mr-and-ms/07-480.webp",
+      "album": "events/mr-and-ms",
+      "page": "events__mr-and-ms"
+    },
+    "events/mr-and-ms/08": {
+      "srcset": [
+        "/images/official/events/mr-and-ms/08-480.webp 480w",
+        "/images/official/events/mr-and-ms/08-960.webp 960w"
+      ],
+      "src": "/images/official/events/mr-and-ms/08-960.webp",
+      "album": "events/mr-and-ms",
+      "page": "events__mr-and-ms"
+    },
+    "events/mr-and-ms/09": {
+      "srcset": [
+        "/images/official/events/mr-and-ms/09-480.webp 480w",
+        "/images/official/events/mr-and-ms/09-960.webp 960w"
+      ],
+      "src": "/images/official/events/mr-and-ms/09-960.webp",
+      "album": "events/mr-and-ms",
+      "page": "events__mr-and-ms"
+    },
+    "events/mr-and-ms/10": {
+      "srcset": [
+        "/images/official/events/mr-and-ms/10-480.webp 480w",
+        "/images/official/events/mr-and-ms/10-960.webp 960w"
+      ],
+      "src": "/images/official/events/mr-and-ms/10-960.webp",
+      "album": "events/mr-and-ms",
+      "page": "events__mr-and-ms"
+    },
+    "events/mr-and-ms/11": {
+      "srcset": [
+        "/images/official/events/mr-and-ms/11-480.webp 480w",
+        "/images/official/events/mr-and-ms/11-960.webp 960w"
+      ],
+      "src": "/images/official/events/mr-and-ms/11-960.webp",
+      "album": "events/mr-and-ms",
+      "page": "events__mr-and-ms"
+    },
+    "events/mr-and-ms/12": {
+      "srcset": [
+        "/images/official/events/mr-and-ms/12-480.webp 480w",
+        "/images/official/events/mr-and-ms/12-960.webp 960w"
+      ],
+      "src": "/images/official/events/mr-and-ms/12-960.webp",
+      "album": "events/mr-and-ms",
+      "page": "events__mr-and-ms"
+    },
+    "events/mr-and-ms/13": {
+      "srcset": [
+        "/images/official/events/mr-and-ms/13-480.webp 480w",
+        "/images/official/events/mr-and-ms/13-960.webp 960w"
+      ],
+      "src": "/images/official/events/mr-and-ms/13-960.webp",
+      "album": "events/mr-and-ms",
+      "page": "events__mr-and-ms"
+    },
+    "events/mr-and-ms/14": {
+      "srcset": [
+        "/images/official/events/mr-and-ms/14-480.webp 480w",
+        "/images/official/events/mr-and-ms/14-960.webp 960w"
+      ],
+      "src": "/images/official/events/mr-and-ms/14-960.webp",
+      "album": "events/mr-and-ms",
+      "page": "events__mr-and-ms"
+    },
+    "events/mr-and-ms/15": {
+      "srcset": [
+        "/images/official/events/mr-and-ms/15-480.webp 480w",
+        "/images/official/events/mr-and-ms/15-960.webp 960w"
+      ],
+      "src": "/images/official/events/mr-and-ms/15-960.webp",
+      "album": "events/mr-and-ms",
+      "page": "events__mr-and-ms"
+    },
+    "events/mr-and-ms/16": {
+      "srcset": [
+        "/images/official/events/mr-and-ms/16-480.webp 480w",
+        "/images/official/events/mr-and-ms/16-960.webp 960w"
+      ],
+      "src": "/images/official/events/mr-and-ms/16-960.webp",
+      "album": "events/mr-and-ms",
+      "page": "events__mr-and-ms"
+    },
+    "events/mr-and-ms/17": {
+      "srcset": [
+        "/images/official/events/mr-and-ms/17-480.webp 480w",
+        "/images/official/events/mr-and-ms/17-960.webp 960w"
+      ],
+      "src": "/images/official/events/mr-and-ms/17-960.webp",
+      "album": "events/mr-and-ms",
+      "page": "events__mr-and-ms"
+    },
+    "events/mr-and-ms/18": {
+      "srcset": [
+        "/images/official/events/mr-and-ms/18-480.webp 480w",
+        "/images/official/events/mr-and-ms/18-960.webp 960w"
+      ],
+      "src": "/images/official/events/mr-and-ms/18-960.webp",
+      "album": "events/mr-and-ms",
+      "page": "events__mr-and-ms"
+    },
+    "events/mr-and-ms/19": {
+      "srcset": [
+        "/images/official/events/mr-and-ms/19-480.webp 480w",
+        "/images/official/events/mr-and-ms/19-960.webp 960w"
+      ],
+      "src": "/images/official/events/mr-and-ms/19-960.webp",
+      "album": "events/mr-and-ms",
+      "page": "events__mr-and-ms"
+    },
+    "events/mr-and-ms/20": {
+      "srcset": [
+        "/images/official/events/mr-and-ms/20-480.webp 480w",
+        "/images/official/events/mr-and-ms/20-960.webp 960w"
+      ],
+      "src": "/images/official/events/mr-and-ms/20-960.webp",
+      "album": "events/mr-and-ms",
+      "page": "events__mr-and-ms"
+    },
+    "events/mr-and-ms/21": {
+      "srcset": [
+        "/images/official/events/mr-and-ms/21-480.webp 480w"
+      ],
+      "src": "/images/official/events/mr-and-ms/21-480.webp",
+      "album": "events/mr-and-ms",
+      "page": "events__mr-and-ms"
+    },
+    "events/mr-and-ms/22": {
+      "srcset": [
+        "/images/official/events/mr-and-ms/22-480.webp 480w",
+        "/images/official/events/mr-and-ms/22-960.webp 960w"
+      ],
+      "src": "/images/official/events/mr-and-ms/22-960.webp",
+      "album": "events/mr-and-ms",
+      "page": "events__mr-and-ms"
+    },
+    "events/mr-and-ms/23": {
+      "srcset": [
+        "/images/official/events/mr-and-ms/23-480.webp 480w"
+      ],
+      "src": "/images/official/events/mr-and-ms/23-480.webp",
+      "album": "events/mr-and-ms",
+      "page": "events__mr-and-ms"
+    },
+    "events/mr-and-ms/24": {
+      "srcset": [
+        "/images/official/events/mr-and-ms/24-480.webp 480w",
+        "/images/official/events/mr-and-ms/24-960.webp 960w"
+      ],
+      "src": "/images/official/events/mr-and-ms/24-960.webp",
+      "album": "events/mr-and-ms",
+      "page": "events__mr-and-ms"
+    },
+    "events/mr-and-ms/25": {
+      "srcset": [
+        "/images/official/events/mr-and-ms/25-480.webp 480w",
+        "/images/official/events/mr-and-ms/25-960.webp 960w"
+      ],
+      "src": "/images/official/events/mr-and-ms/25-960.webp",
+      "album": "events/mr-and-ms",
+      "page": "events__mr-and-ms"
+    },
+    "events/old-age-home/01": {
+      "srcset": [
+        "/images/official/events/old-age-home/01-480.webp 480w"
+      ],
+      "src": "/images/official/events/old-age-home/01-480.webp",
+      "album": "events/old-age-home",
+      "page": "events__old-age-home"
+    },
+    "events/old-age-home/02": {
+      "srcset": [
+        "/images/official/events/old-age-home/02-480.webp 480w"
+      ],
+      "src": "/images/official/events/old-age-home/02-480.webp",
+      "album": "events/old-age-home",
+      "page": "events__old-age-home"
+    },
+    "events/old-age-home/03": {
+      "srcset": [
+        "/images/official/events/old-age-home/03-480.webp 480w",
+        "/images/official/events/old-age-home/03-960.webp 960w"
+      ],
+      "src": "/images/official/events/old-age-home/03-960.webp",
+      "album": "events/old-age-home",
+      "page": "events__old-age-home"
+    },
+    "events/old-age-home/04": {
+      "srcset": [
+        "/images/official/events/old-age-home/04-480.webp 480w",
+        "/images/official/events/old-age-home/04-960.webp 960w"
+      ],
+      "src": "/images/official/events/old-age-home/04-960.webp",
+      "album": "events/old-age-home",
+      "page": "events__old-age-home"
+    },
+    "events/old-age-home/05": {
+      "srcset": [
+        "/images/official/events/old-age-home/05-480.webp 480w",
+        "/images/official/events/old-age-home/05-960.webp 960w"
+      ],
+      "src": "/images/official/events/old-age-home/05-960.webp",
+      "album": "events/old-age-home",
+      "page": "events__old-age-home"
+    },
+    "events/old-age-home/06": {
+      "srcset": [
+        "/images/official/events/old-age-home/06-480.webp 480w",
+        "/images/official/events/old-age-home/06-960.webp 960w"
+      ],
+      "src": "/images/official/events/old-age-home/06-960.webp",
+      "album": "events/old-age-home",
+      "page": "events__old-age-home"
+    },
+    "events/old-age-home/07": {
+      "srcset": [
+        "/images/official/events/old-age-home/07-480.webp 480w",
+        "/images/official/events/old-age-home/07-960.webp 960w"
+      ],
+      "src": "/images/official/events/old-age-home/07-960.webp",
+      "album": "events/old-age-home",
+      "page": "events__old-age-home"
+    },
+    "events/old-age-home/08": {
+      "srcset": [
+        "/images/official/events/old-age-home/08-480.webp 480w",
+        "/images/official/events/old-age-home/08-960.webp 960w"
+      ],
+      "src": "/images/official/events/old-age-home/08-960.webp",
+      "album": "events/old-age-home",
+      "page": "events__old-age-home"
+    },
+    "events/old-age-home/09": {
+      "srcset": [
+        "/images/official/events/old-age-home/09-480.webp 480w",
+        "/images/official/events/old-age-home/09-960.webp 960w"
+      ],
+      "src": "/images/official/events/old-age-home/09-960.webp",
+      "album": "events/old-age-home",
+      "page": "events__old-age-home"
+    },
+    "events/old-age-home/10": {
+      "srcset": [
+        "/images/official/events/old-age-home/10-480.webp 480w",
+        "/images/official/events/old-age-home/10-960.webp 960w"
+      ],
+      "src": "/images/official/events/old-age-home/10-960.webp",
+      "album": "events/old-age-home",
+      "page": "events__old-age-home"
+    },
+    "events/old-age-home/11": {
+      "srcset": [
+        "/images/official/events/old-age-home/11-480.webp 480w",
+        "/images/official/events/old-age-home/11-960.webp 960w"
+      ],
+      "src": "/images/official/events/old-age-home/11-960.webp",
+      "album": "events/old-age-home",
+      "page": "events__old-age-home"
+    },
+    "events/old-age-home/12": {
+      "srcset": [
+        "/images/official/events/old-age-home/12-480.webp 480w",
+        "/images/official/events/old-age-home/12-960.webp 960w"
+      ],
+      "src": "/images/official/events/old-age-home/12-960.webp",
+      "album": "events/old-age-home",
+      "page": "events__old-age-home"
+    },
+    "events/old-age-home/13": {
+      "srcset": [
+        "/images/official/events/old-age-home/13-480.webp 480w",
+        "/images/official/events/old-age-home/13-960.webp 960w"
+      ],
+      "src": "/images/official/events/old-age-home/13-960.webp",
+      "album": "events/old-age-home",
+      "page": "events__old-age-home"
+    },
+    "events/old-age-home/14": {
+      "srcset": [
+        "/images/official/events/old-age-home/14-480.webp 480w",
+        "/images/official/events/old-age-home/14-960.webp 960w"
+      ],
+      "src": "/images/official/events/old-age-home/14-960.webp",
+      "album": "events/old-age-home",
+      "page": "events__old-age-home"
+    },
+    "events/old-age-home/15": {
+      "srcset": [
+        "/images/official/events/old-age-home/15-480.webp 480w",
+        "/images/official/events/old-age-home/15-960.webp 960w"
+      ],
+      "src": "/images/official/events/old-age-home/15-960.webp",
+      "album": "events/old-age-home",
+      "page": "events__old-age-home"
+    },
+    "events/old-age-home/16": {
+      "srcset": [
+        "/images/official/events/old-age-home/16-480.webp 480w",
+        "/images/official/events/old-age-home/16-960.webp 960w"
+      ],
+      "src": "/images/official/events/old-age-home/16-960.webp",
+      "album": "events/old-age-home",
+      "page": "events__old-age-home"
+    },
+    "events/old-age-home/17": {
+      "srcset": [
+        "/images/official/events/old-age-home/17-480.webp 480w",
+        "/images/official/events/old-age-home/17-960.webp 960w"
+      ],
+      "src": "/images/official/events/old-age-home/17-960.webp",
+      "album": "events/old-age-home",
+      "page": "events__old-age-home"
+    },
+    "events/old-age-home/18": {
+      "srcset": [
+        "/images/official/events/old-age-home/18-480.webp 480w",
+        "/images/official/events/old-age-home/18-960.webp 960w"
+      ],
+      "src": "/images/official/events/old-age-home/18-960.webp",
+      "album": "events/old-age-home",
+      "page": "events__old-age-home"
+    },
+    "events/old-age-home/19": {
+      "srcset": [
+        "/images/official/events/old-age-home/19-480.webp 480w"
+      ],
+      "src": "/images/official/events/old-age-home/19-480.webp",
+      "album": "events/old-age-home",
+      "page": "events__old-age-home"
+    },
+    "events/old-age-home/20": {
+      "srcset": [
+        "/images/official/events/old-age-home/20-480.webp 480w",
+        "/images/official/events/old-age-home/20-960.webp 960w"
+      ],
+      "src": "/images/official/events/old-age-home/20-960.webp",
+      "album": "events/old-age-home",
+      "page": "events__old-age-home"
+    },
+    "events/old-age-home/21": {
+      "srcset": [
+        "/images/official/events/old-age-home/21-480.webp 480w",
+        "/images/official/events/old-age-home/21-960.webp 960w"
+      ],
+      "src": "/images/official/events/old-age-home/21-960.webp",
+      "album": "events/old-age-home",
+      "page": "events__old-age-home"
+    },
+    "events/old-age-home/22": {
+      "srcset": [
+        "/images/official/events/old-age-home/22-480.webp 480w",
+        "/images/official/events/old-age-home/22-960.webp 960w"
+      ],
+      "src": "/images/official/events/old-age-home/22-960.webp",
+      "album": "events/old-age-home",
+      "page": "events__old-age-home"
+    },
+    "events/old-age-home/23": {
+      "srcset": [
+        "/images/official/events/old-age-home/23-480.webp 480w",
+        "/images/official/events/old-age-home/23-960.webp 960w"
+      ],
+      "src": "/images/official/events/old-age-home/23-960.webp",
+      "album": "events/old-age-home",
+      "page": "events__old-age-home"
+    },
+    "events/old-age-home/24": {
+      "srcset": [
+        "/images/official/events/old-age-home/24-480.webp 480w",
+        "/images/official/events/old-age-home/24-960.webp 960w"
+      ],
+      "src": "/images/official/events/old-age-home/24-960.webp",
+      "album": "events/old-age-home",
+      "page": "events__old-age-home"
+    },
+    "events/old-age-home/25": {
+      "srcset": [
+        "/images/official/events/old-age-home/25-480.webp 480w",
+        "/images/official/events/old-age-home/25-960.webp 960w"
+      ],
+      "src": "/images/official/events/old-age-home/25-960.webp",
+      "album": "events/old-age-home",
+      "page": "events__old-age-home"
+    },
+    "events/onam/01": {
+      "srcset": [
+        "/images/official/events/onam/01-480.webp 480w",
+        "/images/official/events/onam/01-960.webp 960w"
+      ],
+      "src": "/images/official/events/onam/01-960.webp",
+      "album": "events/onam",
+      "page": "events__onam"
+    },
+    "events/onam/02": {
+      "srcset": [
+        "/images/official/events/onam/02-480.webp 480w",
+        "/images/official/events/onam/02-960.webp 960w"
+      ],
+      "src": "/images/official/events/onam/02-960.webp",
+      "album": "events/onam",
+      "page": "events__onam"
+    },
+    "events/onam/03": {
+      "srcset": [
+        "/images/official/events/onam/03-480.webp 480w"
+      ],
+      "src": "/images/official/events/onam/03-480.webp",
+      "album": "events/onam",
+      "page": "events__onam"
+    },
+    "events/onam/04": {
+      "srcset": [
+        "/images/official/events/onam/04-480.webp 480w",
+        "/images/official/events/onam/04-960.webp 960w"
+      ],
+      "src": "/images/official/events/onam/04-960.webp",
+      "album": "events/onam",
+      "page": "events__onam"
+    },
+    "events/onam/05": {
+      "srcset": [
+        "/images/official/events/onam/05-480.webp 480w",
+        "/images/official/events/onam/05-960.webp 960w"
+      ],
+      "src": "/images/official/events/onam/05-960.webp",
+      "album": "events/onam",
+      "page": "events__onam"
+    },
+    "events/onam/06": {
+      "srcset": [
+        "/images/official/events/onam/06-480.webp 480w",
+        "/images/official/events/onam/06-960.webp 960w"
+      ],
+      "src": "/images/official/events/onam/06-960.webp",
+      "album": "events/onam",
+      "page": "events__onam"
+    },
+    "events/onam/07": {
+      "srcset": [
+        "/images/official/events/onam/07-480.webp 480w"
+      ],
+      "src": "/images/official/events/onam/07-480.webp",
+      "album": "events/onam",
+      "page": "events__onam"
+    },
+    "events/onam/08": {
+      "srcset": [
+        "/images/official/events/onam/08-480.webp 480w",
+        "/images/official/events/onam/08-960.webp 960w"
+      ],
+      "src": "/images/official/events/onam/08-960.webp",
+      "album": "events/onam",
+      "page": "events__onam"
+    },
+    "events/onam/09": {
+      "srcset": [
+        "/images/official/events/onam/09-480.webp 480w"
+      ],
+      "src": "/images/official/events/onam/09-480.webp",
+      "album": "events/onam",
+      "page": "events__onam"
+    },
+    "events/onam/10": {
+      "srcset": [
+        "/images/official/events/onam/10-480.webp 480w",
+        "/images/official/events/onam/10-960.webp 960w"
+      ],
+      "src": "/images/official/events/onam/10-960.webp",
+      "album": "events/onam",
+      "page": "events__onam"
+    },
+    "events/onam/11": {
+      "srcset": [
+        "/images/official/events/onam/11-480.webp 480w",
+        "/images/official/events/onam/11-960.webp 960w"
+      ],
+      "src": "/images/official/events/onam/11-960.webp",
+      "album": "events/onam",
+      "page": "events__onam"
+    },
+    "events/onam/12": {
+      "srcset": [
+        "/images/official/events/onam/12-480.webp 480w",
+        "/images/official/events/onam/12-960.webp 960w"
+      ],
+      "src": "/images/official/events/onam/12-960.webp",
+      "album": "events/onam",
+      "page": "events__onam"
+    },
+    "events/onam/13": {
+      "srcset": [
+        "/images/official/events/onam/13-480.webp 480w",
+        "/images/official/events/onam/13-960.webp 960w"
+      ],
+      "src": "/images/official/events/onam/13-960.webp",
+      "album": "events/onam",
+      "page": "events__onam"
+    },
+    "events/onam/14": {
+      "srcset": [
+        "/images/official/events/onam/14-480.webp 480w",
+        "/images/official/events/onam/14-960.webp 960w"
+      ],
+      "src": "/images/official/events/onam/14-960.webp",
+      "album": "events/onam",
+      "page": "events__onam"
+    },
+    "events/onam/15": {
+      "srcset": [
+        "/images/official/events/onam/15-480.webp 480w",
+        "/images/official/events/onam/15-960.webp 960w"
+      ],
+      "src": "/images/official/events/onam/15-960.webp",
+      "album": "events/onam",
+      "page": "events__onam"
+    },
+    "events/onam/16": {
+      "srcset": [
+        "/images/official/events/onam/16-480.webp 480w"
+      ],
+      "src": "/images/official/events/onam/16-480.webp",
+      "album": "events/onam",
+      "page": "events__onam"
+    },
+    "events/pattabi/01": {
+      "srcset": [
+        "/images/official/events/pattabi/01-480.webp 480w",
+        "/images/official/events/pattabi/01-960.webp 960w"
+      ],
+      "src": "/images/official/events/pattabi/01-960.webp",
+      "album": "events/pattabi",
+      "page": "events__pattabi"
+    },
+    "events/pattabi/02": {
+      "srcset": [
+        "/images/official/events/pattabi/02-480.webp 480w",
+        "/images/official/events/pattabi/02-960.webp 960w"
+      ],
+      "src": "/images/official/events/pattabi/02-960.webp",
+      "album": "events/pattabi",
+      "page": "events__pattabi"
+    },
+    "events/pattabi/03": {
+      "srcset": [
+        "/images/official/events/pattabi/03-480.webp 480w",
+        "/images/official/events/pattabi/03-960.webp 960w"
+      ],
+      "src": "/images/official/events/pattabi/03-960.webp",
+      "album": "events/pattabi",
+      "page": "events__pattabi"
+    },
+    "events/pattabi/04": {
+      "srcset": [
+        "/images/official/events/pattabi/04-480.webp 480w",
+        "/images/official/events/pattabi/04-960.webp 960w"
+      ],
+      "src": "/images/official/events/pattabi/04-960.webp",
+      "album": "events/pattabi",
+      "page": "events__pattabi"
+    },
+    "events/pattabi/05": {
+      "srcset": [
+        "/images/official/events/pattabi/05-480.webp 480w",
+        "/images/official/events/pattabi/05-960.webp 960w"
+      ],
+      "src": "/images/official/events/pattabi/05-960.webp",
+      "album": "events/pattabi",
+      "page": "events__pattabi"
+    },
+    "events/pattabi/06": {
+      "srcset": [
+        "/images/official/events/pattabi/06-480.webp 480w",
+        "/images/official/events/pattabi/06-960.webp 960w"
+      ],
+      "src": "/images/official/events/pattabi/06-960.webp",
+      "album": "events/pattabi",
+      "page": "events__pattabi"
+    },
+    "events/pattabi/07": {
+      "srcset": [
+        "/images/official/events/pattabi/07-480.webp 480w",
+        "/images/official/events/pattabi/07-960.webp 960w"
+      ],
+      "src": "/images/official/events/pattabi/07-960.webp",
+      "album": "events/pattabi",
+      "page": "events__pattabi"
+    },
+    "events/pattabi/08": {
+      "srcset": [
+        "/images/official/events/pattabi/08-480.webp 480w",
+        "/images/official/events/pattabi/08-960.webp 960w"
+      ],
+      "src": "/images/official/events/pattabi/08-960.webp",
+      "album": "events/pattabi",
+      "page": "events__pattabi"
+    },
+    "events/pattabi/09": {
+      "srcset": [
+        "/images/official/events/pattabi/09-480.webp 480w",
+        "/images/official/events/pattabi/09-960.webp 960w"
+      ],
+      "src": "/images/official/events/pattabi/09-960.webp",
+      "album": "events/pattabi",
+      "page": "events__pattabi"
+    },
+    "events/pattabi/10": {
+      "srcset": [
+        "/images/official/events/pattabi/10-480.webp 480w",
+        "/images/official/events/pattabi/10-960.webp 960w"
+      ],
+      "src": "/images/official/events/pattabi/10-960.webp",
+      "album": "events/pattabi",
+      "page": "events__pattabi"
+    },
+    "events/pattabi/11": {
+      "srcset": [
+        "/images/official/events/pattabi/11-480.webp 480w",
+        "/images/official/events/pattabi/11-960.webp 960w"
+      ],
+      "src": "/images/official/events/pattabi/11-960.webp",
+      "album": "events/pattabi",
+      "page": "events__pattabi"
+    },
+    "events/pattabi/12": {
+      "srcset": [
+        "/images/official/events/pattabi/12-480.webp 480w",
+        "/images/official/events/pattabi/12-960.webp 960w"
+      ],
+      "src": "/images/official/events/pattabi/12-960.webp",
+      "album": "events/pattabi",
+      "page": "events__pattabi"
+    },
+    "events/pattabi/13": {
+      "srcset": [
+        "/images/official/events/pattabi/13-480.webp 480w",
+        "/images/official/events/pattabi/13-960.webp 960w"
+      ],
+      "src": "/images/official/events/pattabi/13-960.webp",
+      "album": "events/pattabi",
+      "page": "events__pattabi"
+    },
+    "events/pattabi/14": {
+      "srcset": [
+        "/images/official/events/pattabi/14-480.webp 480w",
+        "/images/official/events/pattabi/14-960.webp 960w"
+      ],
+      "src": "/images/official/events/pattabi/14-960.webp",
+      "album": "events/pattabi",
+      "page": "events__pattabi"
+    },
+    "events/pattabi/15": {
+      "srcset": [
+        "/images/official/events/pattabi/15-480.webp 480w",
+        "/images/official/events/pattabi/15-960.webp 960w"
+      ],
+      "src": "/images/official/events/pattabi/15-960.webp",
+      "album": "events/pattabi",
+      "page": "events__pattabi"
+    },
+    "events/pattabi/16": {
+      "srcset": [
+        "/images/official/events/pattabi/16-480.webp 480w",
+        "/images/official/events/pattabi/16-960.webp 960w"
+      ],
+      "src": "/images/official/events/pattabi/16-960.webp",
+      "album": "events/pattabi",
+      "page": "events__pattabi"
+    },
+    "events/pattabi/17": {
+      "srcset": [
+        "/images/official/events/pattabi/17-480.webp 480w",
+        "/images/official/events/pattabi/17-960.webp 960w"
+      ],
+      "src": "/images/official/events/pattabi/17-960.webp",
+      "album": "events/pattabi",
+      "page": "events__pattabi"
+    },
+    "events/pattabi/18": {
+      "srcset": [
+        "/images/official/events/pattabi/18-480.webp 480w",
+        "/images/official/events/pattabi/18-960.webp 960w"
+      ],
+      "src": "/images/official/events/pattabi/18-960.webp",
+      "album": "events/pattabi",
+      "page": "events__pattabi"
+    },
+    "events/pattabi/19": {
+      "srcset": [
+        "/images/official/events/pattabi/19-480.webp 480w",
+        "/images/official/events/pattabi/19-960.webp 960w"
+      ],
+      "src": "/images/official/events/pattabi/19-960.webp",
+      "album": "events/pattabi",
+      "page": "events__pattabi"
+    },
+    "events/pattabi/20": {
+      "srcset": [
+        "/images/official/events/pattabi/20-480.webp 480w",
+        "/images/official/events/pattabi/20-960.webp 960w"
+      ],
+      "src": "/images/official/events/pattabi/20-960.webp",
+      "album": "events/pattabi",
+      "page": "events__pattabi"
+    },
+    "events/pattabi/21": {
+      "srcset": [
+        "/images/official/events/pattabi/21-480.webp 480w",
+        "/images/official/events/pattabi/21-960.webp 960w"
+      ],
+      "src": "/images/official/events/pattabi/21-960.webp",
+      "album": "events/pattabi",
+      "page": "events__pattabi"
+    },
+    "events/pattabi/22": {
+      "srcset": [
+        "/images/official/events/pattabi/22-480.webp 480w",
+        "/images/official/events/pattabi/22-960.webp 960w"
+      ],
+      "src": "/images/official/events/pattabi/22-960.webp",
+      "album": "events/pattabi",
+      "page": "events__pattabi"
+    },
+    "events/pattabi/23": {
+      "srcset": [
+        "/images/official/events/pattabi/23-480.webp 480w",
+        "/images/official/events/pattabi/23-960.webp 960w"
+      ],
+      "src": "/images/official/events/pattabi/23-960.webp",
+      "album": "events/pattabi",
+      "page": "events__pattabi"
+    },
+    "events/sankranthi/01": {
+      "srcset": [
+        "/images/official/events/sankranthi/01-480.webp 480w",
+        "/images/official/events/sankranthi/01-960.webp 960w"
+      ],
+      "src": "/images/official/events/sankranthi/01-960.webp",
+      "album": "events/sankranthi",
+      "page": "events__sankranthi"
+    },
+    "events/sankranthi/02": {
+      "srcset": [
+        "/images/official/events/sankranthi/02-480.webp 480w",
+        "/images/official/events/sankranthi/02-960.webp 960w"
+      ],
+      "src": "/images/official/events/sankranthi/02-960.webp",
+      "album": "events/sankranthi",
+      "page": "events__sankranthi"
+    },
+    "events/sankranthi/03": {
+      "srcset": [
+        "/images/official/events/sankranthi/03-480.webp 480w",
+        "/images/official/events/sankranthi/03-960.webp 960w"
+      ],
+      "src": "/images/official/events/sankranthi/03-960.webp",
+      "album": "events/sankranthi",
+      "page": "events__sankranthi"
+    },
+    "events/sankranthi/04": {
+      "srcset": [
+        "/images/official/events/sankranthi/04-480.webp 480w",
+        "/images/official/events/sankranthi/04-960.webp 960w"
+      ],
+      "src": "/images/official/events/sankranthi/04-960.webp",
+      "album": "events/sankranthi",
+      "page": "events__sankranthi"
+    },
+    "events/sankranthi/05": {
+      "srcset": [
+        "/images/official/events/sankranthi/05-480.webp 480w"
+      ],
+      "src": "/images/official/events/sankranthi/05-480.webp",
+      "album": "events/sankranthi",
+      "page": "events__sankranthi"
+    },
+    "events/sankranthi/06": {
+      "srcset": [
+        "/images/official/events/sankranthi/06-480.webp 480w"
+      ],
+      "src": "/images/official/events/sankranthi/06-480.webp",
+      "album": "events/sankranthi",
+      "page": "events__sankranthi"
+    },
+    "events/sankranthi/07": {
+      "srcset": [
+        "/images/official/events/sankranthi/07-480.webp 480w",
+        "/images/official/events/sankranthi/07-960.webp 960w"
+      ],
+      "src": "/images/official/events/sankranthi/07-960.webp",
+      "album": "events/sankranthi",
+      "page": "events__sankranthi"
+    },
+    "events/sankranthi/08": {
+      "srcset": [
+        "/images/official/events/sankranthi/08-480.webp 480w"
+      ],
+      "src": "/images/official/events/sankranthi/08-480.webp",
+      "album": "events/sankranthi",
+      "page": "events__sankranthi"
+    },
+    "events/sankranthi/09": {
+      "srcset": [
+        "/images/official/events/sankranthi/09-480.webp 480w",
+        "/images/official/events/sankranthi/09-960.webp 960w"
+      ],
+      "src": "/images/official/events/sankranthi/09-960.webp",
+      "album": "events/sankranthi",
+      "page": "events__sankranthi"
+    },
+    "events/sankranthi/10": {
+      "srcset": [
+        "/images/official/events/sankranthi/10-480.webp 480w",
+        "/images/official/events/sankranthi/10-960.webp 960w"
+      ],
+      "src": "/images/official/events/sankranthi/10-960.webp",
+      "album": "events/sankranthi",
+      "page": "events__sankranthi"
+    },
+    "events/sankranthi/11": {
+      "srcset": [
+        "/images/official/events/sankranthi/11-480.webp 480w",
+        "/images/official/events/sankranthi/11-960.webp 960w"
+      ],
+      "src": "/images/official/events/sankranthi/11-960.webp",
+      "album": "events/sankranthi",
+      "page": "events__sankranthi"
+    },
+    "events/sankranthi/12": {
+      "srcset": [
+        "/images/official/events/sankranthi/12-480.webp 480w"
+      ],
+      "src": "/images/official/events/sankranthi/12-480.webp",
+      "album": "events/sankranthi",
+      "page": "events__sankranthi"
+    },
+    "events/sankranthi/13": {
+      "srcset": [
+        "/images/official/events/sankranthi/13-480.webp 480w",
+        "/images/official/events/sankranthi/13-960.webp 960w"
+      ],
+      "src": "/images/official/events/sankranthi/13-960.webp",
+      "album": "events/sankranthi",
+      "page": "events__sankranthi"
+    },
+    "events/sankranthi/14": {
+      "srcset": [
+        "/images/official/events/sankranthi/14-480.webp 480w",
+        "/images/official/events/sankranthi/14-960.webp 960w"
+      ],
+      "src": "/images/official/events/sankranthi/14-960.webp",
+      "album": "events/sankranthi",
+      "page": "events__sankranthi"
+    },
+    "events/sankranthi/15": {
+      "srcset": [
+        "/images/official/events/sankranthi/15-480.webp 480w"
+      ],
+      "src": "/images/official/events/sankranthi/15-480.webp",
+      "album": "events/sankranthi",
+      "page": "events__sankranthi"
+    },
+    "events/sankranthi/16": {
+      "srcset": [
+        "/images/official/events/sankranthi/16-480.webp 480w",
+        "/images/official/events/sankranthi/16-960.webp 960w"
+      ],
+      "src": "/images/official/events/sankranthi/16-960.webp",
+      "album": "events/sankranthi",
+      "page": "events__sankranthi"
+    },
+    "events/sankranthi/17": {
+      "srcset": [
+        "/images/official/events/sankranthi/17-480.webp 480w",
+        "/images/official/events/sankranthi/17-960.webp 960w"
+      ],
+      "src": "/images/official/events/sankranthi/17-960.webp",
+      "album": "events/sankranthi",
+      "page": "events__sankranthi"
+    },
+    "events/sparkles/01": {
+      "srcset": [
+        "/images/official/events/sparkles/01-480.webp 480w",
+        "/images/official/events/sparkles/01-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles/01-960.webp",
+      "album": "events/sparkles",
+      "page": "events__sparkles"
+    },
+    "events/sparkles/02": {
+      "srcset": [
+        "/images/official/events/sparkles/02-480.webp 480w",
+        "/images/official/events/sparkles/02-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles/02-960.webp",
+      "album": "events/sparkles",
+      "page": "events__sparkles"
+    },
+    "events/sparkles/03": {
+      "srcset": [
+        "/images/official/events/sparkles/03-480.webp 480w",
+        "/images/official/events/sparkles/03-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles/03-960.webp",
+      "album": "events/sparkles",
+      "page": "events__sparkles"
+    },
+    "events/sparkles/04": {
+      "srcset": [
+        "/images/official/events/sparkles/04-480.webp 480w",
+        "/images/official/events/sparkles/04-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles/04-960.webp",
+      "album": "events/sparkles",
+      "page": "events__sparkles"
+    },
+    "events/sparkles/05": {
+      "srcset": [
+        "/images/official/events/sparkles/05-480.webp 480w",
+        "/images/official/events/sparkles/05-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles/05-960.webp",
+      "album": "events/sparkles",
+      "page": "events__sparkles"
+    },
+    "events/sparkles/06": {
+      "srcset": [
+        "/images/official/events/sparkles/06-480.webp 480w",
+        "/images/official/events/sparkles/06-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles/06-960.webp",
+      "album": "events/sparkles",
+      "page": "events__sparkles"
+    },
+    "events/sparkles/07": {
+      "srcset": [
+        "/images/official/events/sparkles/07-480.webp 480w",
+        "/images/official/events/sparkles/07-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles/07-960.webp",
+      "album": "events/sparkles",
+      "page": "events__sparkles"
+    },
+    "events/sparkles/08": {
+      "srcset": [
+        "/images/official/events/sparkles/08-480.webp 480w",
+        "/images/official/events/sparkles/08-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles/08-960.webp",
+      "album": "events/sparkles",
+      "page": "events__sparkles"
+    },
+    "events/sparkles/09": {
+      "srcset": [
+        "/images/official/events/sparkles/09-480.webp 480w",
+        "/images/official/events/sparkles/09-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles/09-960.webp",
+      "album": "events/sparkles",
+      "page": "events__sparkles"
+    },
+    "events/sparkles/10": {
+      "srcset": [
+        "/images/official/events/sparkles/10-480.webp 480w",
+        "/images/official/events/sparkles/10-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles/10-960.webp",
+      "album": "events/sparkles",
+      "page": "events__sparkles"
+    },
+    "events/sparkles/11": {
+      "srcset": [
+        "/images/official/events/sparkles/11-480.webp 480w",
+        "/images/official/events/sparkles/11-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles/11-960.webp",
+      "album": "events/sparkles",
+      "page": "events__sparkles"
+    },
+    "events/sparkles/12": {
+      "srcset": [
+        "/images/official/events/sparkles/12-480.webp 480w",
+        "/images/official/events/sparkles/12-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles/12-960.webp",
+      "album": "events/sparkles",
+      "page": "events__sparkles"
+    },
+    "events/sparkles/13": {
+      "srcset": [
+        "/images/official/events/sparkles/13-480.webp 480w",
+        "/images/official/events/sparkles/13-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles/13-960.webp",
+      "album": "events/sparkles",
+      "page": "events__sparkles"
+    },
+    "events/sparkles/14": {
+      "srcset": [
+        "/images/official/events/sparkles/14-480.webp 480w",
+        "/images/official/events/sparkles/14-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles/14-960.webp",
+      "album": "events/sparkles",
+      "page": "events__sparkles"
+    },
+    "events/sparkles/15": {
+      "srcset": [
+        "/images/official/events/sparkles/15-480.webp 480w",
+        "/images/official/events/sparkles/15-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles/15-960.webp",
+      "album": "events/sparkles",
+      "page": "events__sparkles"
+    },
+    "events/sparkles/16": {
+      "srcset": [
+        "/images/official/events/sparkles/16-480.webp 480w",
+        "/images/official/events/sparkles/16-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles/16-960.webp",
+      "album": "events/sparkles",
+      "page": "events__sparkles"
+    },
+    "events/sparkles/17": {
+      "srcset": [
+        "/images/official/events/sparkles/17-480.webp 480w",
+        "/images/official/events/sparkles/17-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles/17-960.webp",
+      "album": "events/sparkles",
+      "page": "events__sparkles"
+    },
+    "events/sparkles/18": {
+      "srcset": [
+        "/images/official/events/sparkles/18-480.webp 480w",
+        "/images/official/events/sparkles/18-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles/18-960.webp",
+      "album": "events/sparkles",
+      "page": "events__sparkles"
+    },
+    "events/sparkles/19": {
+      "srcset": [
+        "/images/official/events/sparkles/19-480.webp 480w",
+        "/images/official/events/sparkles/19-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles/19-960.webp",
+      "album": "events/sparkles",
+      "page": "events__sparkles"
+    },
+    "events/vinayaka-chavithi/01": {
+      "srcset": [
+        "/images/official/events/vinayaka-chavithi/01-478.webp 478w"
+      ],
+      "src": "/images/official/events/vinayaka-chavithi/01-478.webp",
+      "album": "events/vinayaka-chavithi",
+      "page": "events__vinayaka-chavithi"
+    },
+    "events/vinayaka-chavithi/02": {
+      "srcset": [
+        "/images/official/events/vinayaka-chavithi/02-478.webp 478w"
+      ],
+      "src": "/images/official/events/vinayaka-chavithi/02-478.webp",
+      "album": "events/vinayaka-chavithi",
+      "page": "events__vinayaka-chavithi"
+    },
+    "events/vinayaka-chavithi/03": {
+      "srcset": [
+        "/images/official/events/vinayaka-chavithi/03-478.webp 478w"
+      ],
+      "src": "/images/official/events/vinayaka-chavithi/03-478.webp",
+      "album": "events/vinayaka-chavithi",
+      "page": "events__vinayaka-chavithi"
+    },
+    "events/vinayaka-chavithi/04": {
+      "srcset": [
+        "/images/official/events/vinayaka-chavithi/04-478.webp 478w"
+      ],
+      "src": "/images/official/events/vinayaka-chavithi/04-478.webp",
+      "album": "events/vinayaka-chavithi",
+      "page": "events__vinayaka-chavithi"
+    },
+    "events/vinayaka-chavithi/05": {
+      "srcset": [
+        "/images/official/events/vinayaka-chavithi/05-480.webp 480w",
+        "/images/official/events/vinayaka-chavithi/05-960.webp 960w"
+      ],
+      "src": "/images/official/events/vinayaka-chavithi/05-960.webp",
+      "album": "events/vinayaka-chavithi",
+      "page": "events__vinayaka-chavithi"
+    },
+    "events/vinayaka-chavithi/06": {
+      "srcset": [
+        "/images/official/events/vinayaka-chavithi/06-480.webp 480w",
+        "/images/official/events/vinayaka-chavithi/06-960.webp 960w"
+      ],
+      "src": "/images/official/events/vinayaka-chavithi/06-960.webp",
+      "album": "events/vinayaka-chavithi",
+      "page": "events__vinayaka-chavithi"
+    },
+    "events/vinayaka-chavithi/07": {
+      "srcset": [
+        "/images/official/events/vinayaka-chavithi/07-480.webp 480w",
+        "/images/official/events/vinayaka-chavithi/07-960.webp 960w"
+      ],
+      "src": "/images/official/events/vinayaka-chavithi/07-960.webp",
+      "album": "events/vinayaka-chavithi",
+      "page": "events__vinayaka-chavithi"
+    },
+    "events/vinayaka-chavithi/08": {
+      "srcset": [
+        "/images/official/events/vinayaka-chavithi/08-480.webp 480w",
+        "/images/official/events/vinayaka-chavithi/08-960.webp 960w"
+      ],
+      "src": "/images/official/events/vinayaka-chavithi/08-960.webp",
+      "album": "events/vinayaka-chavithi",
+      "page": "events__vinayaka-chavithi"
+    },
+    "events/vinayaka-chavithi/09": {
+      "srcset": [
+        "/images/official/events/vinayaka-chavithi/09-480.webp 480w"
+      ],
+      "src": "/images/official/events/vinayaka-chavithi/09-480.webp",
+      "album": "events/vinayaka-chavithi",
+      "page": "events__vinayaka-chavithi"
+    },
+    "events/vinayaka-chavithi/10": {
+      "srcset": [
+        "/images/official/events/vinayaka-chavithi/10-480.webp 480w",
+        "/images/official/events/vinayaka-chavithi/10-960.webp 960w"
+      ],
+      "src": "/images/official/events/vinayaka-chavithi/10-960.webp",
+      "album": "events/vinayaka-chavithi",
+      "page": "events__vinayaka-chavithi"
+    },
+    "events/vinayaka-chavithi/11": {
+      "srcset": [
+        "/images/official/events/vinayaka-chavithi/11-480.webp 480w",
+        "/images/official/events/vinayaka-chavithi/11-960.webp 960w"
+      ],
+      "src": "/images/official/events/vinayaka-chavithi/11-960.webp",
+      "album": "events/vinayaka-chavithi",
+      "page": "events__vinayaka-chavithi"
+    },
+    "events/vinayaka-chavithi/12": {
+      "srcset": [
+        "/images/official/events/vinayaka-chavithi/12-480.webp 480w",
+        "/images/official/events/vinayaka-chavithi/12-960.webp 960w"
+      ],
+      "src": "/images/official/events/vinayaka-chavithi/12-960.webp",
+      "album": "events/vinayaka-chavithi",
+      "page": "events__vinayaka-chavithi"
+    },
+    "events/vinayaka-chavithi/13": {
+      "srcset": [
+        "/images/official/events/vinayaka-chavithi/13-480.webp 480w"
+      ],
+      "src": "/images/official/events/vinayaka-chavithi/13-480.webp",
+      "album": "events/vinayaka-chavithi",
+      "page": "events__vinayaka-chavithi"
+    },
+    "events/vinayaka-chavithi/14": {
+      "srcset": [
+        "/images/official/events/vinayaka-chavithi/14-480.webp 480w",
+        "/images/official/events/vinayaka-chavithi/14-960.webp 960w"
+      ],
+      "src": "/images/official/events/vinayaka-chavithi/14-960.webp",
+      "album": "events/vinayaka-chavithi",
+      "page": "events__vinayaka-chavithi"
+    },
+    "events/vinayaka-chavithi/15": {
+      "srcset": [
+        "/images/official/events/vinayaka-chavithi/15-480.webp 480w"
+      ],
+      "src": "/images/official/events/vinayaka-chavithi/15-480.webp",
+      "album": "events/vinayaka-chavithi",
+      "page": "events__vinayaka-chavithi"
+    },
+    "events/vinayaka-chavithi/16": {
+      "srcset": [
+        "/images/official/events/vinayaka-chavithi/16-480.webp 480w"
+      ],
+      "src": "/images/official/events/vinayaka-chavithi/16-480.webp",
+      "album": "events/vinayaka-chavithi",
+      "page": "events__vinayaka-chavithi"
+    },
+    "events/vinayaka-chavithi/17": {
+      "srcset": [
+        "/images/official/events/vinayaka-chavithi/17-480.webp 480w"
+      ],
+      "src": "/images/official/events/vinayaka-chavithi/17-480.webp",
+      "album": "events/vinayaka-chavithi",
+      "page": "events__vinayaka-chavithi"
+    },
+    "events/vinayaka-chavithi/18": {
+      "srcset": [
+        "/images/official/events/vinayaka-chavithi/18-480.webp 480w",
+        "/images/official/events/vinayaka-chavithi/18-960.webp 960w"
+      ],
+      "src": "/images/official/events/vinayaka-chavithi/18-960.webp",
+      "album": "events/vinayaka-chavithi",
+      "page": "events__vinayaka-chavithi"
+    },
+    "events/tourism-2024/01": {
+      "srcset": [
+        "/images/official/events/tourism-2024/01-480.webp 480w",
+        "/images/official/events/tourism-2024/01-960.webp 960w"
+      ],
+      "src": "/images/official/events/tourism-2024/01-960.webp",
+      "album": "events/tourism-2024",
+      "page": "events__tourism-2024"
+    },
+    "events/tourism-2024/02": {
+      "srcset": [
+        "/images/official/events/tourism-2024/02-480.webp 480w",
+        "/images/official/events/tourism-2024/02-960.webp 960w"
+      ],
+      "src": "/images/official/events/tourism-2024/02-960.webp",
+      "album": "events/tourism-2024",
+      "page": "events__tourism-2024"
+    },
+    "events/tourism-2024/03": {
+      "srcset": [
+        "/images/official/events/tourism-2024/03-480.webp 480w",
+        "/images/official/events/tourism-2024/03-960.webp 960w"
+      ],
+      "src": "/images/official/events/tourism-2024/03-960.webp",
+      "album": "events/tourism-2024",
+      "page": "events__tourism-2024"
+    },
+    "events/tourism-2024/04": {
+      "srcset": [
+        "/images/official/events/tourism-2024/04-480.webp 480w",
+        "/images/official/events/tourism-2024/04-960.webp 960w"
+      ],
+      "src": "/images/official/events/tourism-2024/04-960.webp",
+      "album": "events/tourism-2024",
+      "page": "events__tourism-2024"
+    },
+    "events/tourism-2024/05": {
+      "srcset": [
+        "/images/official/events/tourism-2024/05-480.webp 480w",
+        "/images/official/events/tourism-2024/05-960.webp 960w"
+      ],
+      "src": "/images/official/events/tourism-2024/05-960.webp",
+      "album": "events/tourism-2024",
+      "page": "events__tourism-2024"
+    },
+    "events/tourism-2024/06": {
+      "srcset": [
+        "/images/official/events/tourism-2024/06-480.webp 480w",
+        "/images/official/events/tourism-2024/06-960.webp 960w"
+      ],
+      "src": "/images/official/events/tourism-2024/06-960.webp",
+      "album": "events/tourism-2024",
+      "page": "events__tourism-2024"
+    },
+    "events/tourism-2024/07": {
+      "srcset": [
+        "/images/official/events/tourism-2024/07-480.webp 480w",
+        "/images/official/events/tourism-2024/07-960.webp 960w"
+      ],
+      "src": "/images/official/events/tourism-2024/07-960.webp",
+      "album": "events/tourism-2024",
+      "page": "events__tourism-2024"
+    },
+    "events/tourism-2024/08": {
+      "srcset": [
+        "/images/official/events/tourism-2024/08-480.webp 480w",
+        "/images/official/events/tourism-2024/08-960.webp 960w"
+      ],
+      "src": "/images/official/events/tourism-2024/08-960.webp",
+      "album": "events/tourism-2024",
+      "page": "events__tourism-2024"
+    },
+    "events/tourism-2024/09": {
+      "srcset": [
+        "/images/official/events/tourism-2024/09-480.webp 480w",
+        "/images/official/events/tourism-2024/09-960.webp 960w"
+      ],
+      "src": "/images/official/events/tourism-2024/09-960.webp",
+      "album": "events/tourism-2024",
+      "page": "events__tourism-2024"
+    },
+    "events/tourism-2024/10": {
+      "srcset": [
+        "/images/official/events/tourism-2024/10-480.webp 480w",
+        "/images/official/events/tourism-2024/10-960.webp 960w"
+      ],
+      "src": "/images/official/events/tourism-2024/10-960.webp",
+      "album": "events/tourism-2024",
+      "page": "events__tourism-2024"
+    },
+    "events/tourism-2024/11": {
+      "srcset": [
+        "/images/official/events/tourism-2024/11-480.webp 480w",
+        "/images/official/events/tourism-2024/11-960.webp 960w"
+      ],
+      "src": "/images/official/events/tourism-2024/11-960.webp",
+      "album": "events/tourism-2024",
+      "page": "events__tourism-2024"
+    },
+    "events/tourism-2024/12": {
+      "srcset": [
+        "/images/official/events/tourism-2024/12-480.webp 480w",
+        "/images/official/events/tourism-2024/12-960.webp 960w"
+      ],
+      "src": "/images/official/events/tourism-2024/12-960.webp",
+      "album": "events/tourism-2024",
+      "page": "events__tourism-2024"
+    },
+    "events/tourism-2024/13": {
+      "srcset": [
+        "/images/official/events/tourism-2024/13-480.webp 480w",
+        "/images/official/events/tourism-2024/13-960.webp 960w"
+      ],
+      "src": "/images/official/events/tourism-2024/13-960.webp",
+      "album": "events/tourism-2024",
+      "page": "events__tourism-2024"
+    },
+    "events/tourism-2024/14": {
+      "srcset": [
+        "/images/official/events/tourism-2024/14-480.webp 480w",
+        "/images/official/events/tourism-2024/14-960.webp 960w"
+      ],
+      "src": "/images/official/events/tourism-2024/14-960.webp",
+      "album": "events/tourism-2024",
+      "page": "events__tourism-2024"
+    },
+    "events/tourism-2024/15": {
+      "srcset": [
+        "/images/official/events/tourism-2024/15-480.webp 480w",
+        "/images/official/events/tourism-2024/15-960.webp 960w"
+      ],
+      "src": "/images/official/events/tourism-2024/15-960.webp",
+      "album": "events/tourism-2024",
+      "page": "events__tourism-2024"
+    },
+    "events/tourism-2024/16": {
+      "srcset": [
+        "/images/official/events/tourism-2024/16-480.webp 480w",
+        "/images/official/events/tourism-2024/16-960.webp 960w"
+      ],
+      "src": "/images/official/events/tourism-2024/16-960.webp",
+      "album": "events/tourism-2024",
+      "page": "events__tourism-2024"
+    },
+    "events/tourism-2024/17": {
+      "srcset": [
+        "/images/official/events/tourism-2024/17-480.webp 480w",
+        "/images/official/events/tourism-2024/17-960.webp 960w"
+      ],
+      "src": "/images/official/events/tourism-2024/17-960.webp",
+      "album": "events/tourism-2024",
+      "page": "events__tourism-2024"
+    },
+    "events/tourism-2024/18": {
+      "srcset": [
+        "/images/official/events/tourism-2024/18-480.webp 480w",
+        "/images/official/events/tourism-2024/18-960.webp 960w"
+      ],
+      "src": "/images/official/events/tourism-2024/18-960.webp",
+      "album": "events/tourism-2024",
+      "page": "events__tourism-2024"
+    },
+    "events/tourism-2024/19": {
+      "srcset": [
+        "/images/official/events/tourism-2024/19-480.webp 480w",
+        "/images/official/events/tourism-2024/19-960.webp 960w"
+      ],
+      "src": "/images/official/events/tourism-2024/19-960.webp",
+      "album": "events/tourism-2024",
+      "page": "events__tourism-2024"
+    },
+    "events/tourism-2024/20": {
+      "srcset": [
+        "/images/official/events/tourism-2024/20-480.webp 480w",
+        "/images/official/events/tourism-2024/20-960.webp 960w"
+      ],
+      "src": "/images/official/events/tourism-2024/20-960.webp",
+      "album": "events/tourism-2024",
+      "page": "events__tourism-2024"
+    },
+    "events/tourism-2024/21": {
+      "srcset": [
+        "/images/official/events/tourism-2024/21-480.webp 480w",
+        "/images/official/events/tourism-2024/21-960.webp 960w"
+      ],
+      "src": "/images/official/events/tourism-2024/21-960.webp",
+      "album": "events/tourism-2024",
+      "page": "events__tourism-2024"
+    },
+    "events/tourism-2024/22": {
+      "srcset": [
+        "/images/official/events/tourism-2024/22-480.webp 480w",
+        "/images/official/events/tourism-2024/22-960.webp 960w"
+      ],
+      "src": "/images/official/events/tourism-2024/22-960.webp",
+      "album": "events/tourism-2024",
+      "page": "events__tourism-2024"
+    },
+    "events/tourism-2024/23": {
+      "srcset": [
+        "/images/official/events/tourism-2024/23-480.webp 480w",
+        "/images/official/events/tourism-2024/23-960.webp 960w"
+      ],
+      "src": "/images/official/events/tourism-2024/23-960.webp",
+      "album": "events/tourism-2024",
+      "page": "events__tourism-2024"
+    },
+    "events/tourism-2024/24": {
+      "srcset": [
+        "/images/official/events/tourism-2024/24-480.webp 480w",
+        "/images/official/events/tourism-2024/24-960.webp 960w"
+      ],
+      "src": "/images/official/events/tourism-2024/24-960.webp",
+      "album": "events/tourism-2024",
+      "page": "events__tourism-2024"
+    },
+    "events/tourism-2024/25": {
+      "srcset": [
+        "/images/official/events/tourism-2024/25-480.webp 480w",
+        "/images/official/events/tourism-2024/25-960.webp 960w"
+      ],
+      "src": "/images/official/events/tourism-2024/25-960.webp",
+      "album": "events/tourism-2024",
+      "page": "events__tourism-2024"
+    },
+    "events/star/01": {
+      "srcset": [
+        "/images/official/events/star/01-480.webp 480w",
+        "/images/official/events/star/01-960.webp 960w"
+      ],
+      "src": "/images/official/events/star/01-960.webp",
+      "album": "events/star",
+      "page": "events__star"
+    },
+    "events/star/02": {
+      "srcset": [
+        "/images/official/events/star/02-480.webp 480w",
+        "/images/official/events/star/02-960.webp 960w"
+      ],
+      "src": "/images/official/events/star/02-960.webp",
+      "album": "events/star",
+      "page": "events__star"
+    },
+    "events/star/03": {
+      "srcset": [
+        "/images/official/events/star/03-480.webp 480w",
+        "/images/official/events/star/03-960.webp 960w"
+      ],
+      "src": "/images/official/events/star/03-960.webp",
+      "album": "events/star",
+      "page": "events__star"
+    },
+    "events/star/04": {
+      "srcset": [
+        "/images/official/events/star/04-480.webp 480w",
+        "/images/official/events/star/04-960.webp 960w"
+      ],
+      "src": "/images/official/events/star/04-960.webp",
+      "album": "events/star",
+      "page": "events__star"
+    },
+    "events/star/05": {
+      "srcset": [
+        "/images/official/events/star/05-480.webp 480w",
+        "/images/official/events/star/05-960.webp 960w"
+      ],
+      "src": "/images/official/events/star/05-960.webp",
+      "album": "events/star",
+      "page": "events__star"
+    },
+    "events/star/06": {
+      "srcset": [
+        "/images/official/events/star/06-480.webp 480w",
+        "/images/official/events/star/06-960.webp 960w"
+      ],
+      "src": "/images/official/events/star/06-960.webp",
+      "album": "events/star",
+      "page": "events__star"
+    },
+    "events/star/07": {
+      "srcset": [
+        "/images/official/events/star/07-480.webp 480w",
+        "/images/official/events/star/07-960.webp 960w"
+      ],
+      "src": "/images/official/events/star/07-960.webp",
+      "album": "events/star",
+      "page": "events__star"
+    },
+    "events/star/08": {
+      "srcset": [
+        "/images/official/events/star/08-480.webp 480w",
+        "/images/official/events/star/08-960.webp 960w"
+      ],
+      "src": "/images/official/events/star/08-960.webp",
+      "album": "events/star",
+      "page": "events__star"
+    },
+    "events/star/09": {
+      "srcset": [
+        "/images/official/events/star/09-480.webp 480w",
+        "/images/official/events/star/09-960.webp 960w"
+      ],
+      "src": "/images/official/events/star/09-960.webp",
+      "album": "events/star",
+      "page": "events__star"
+    },
+    "events/star/10": {
+      "srcset": [
+        "/images/official/events/star/10-480.webp 480w",
+        "/images/official/events/star/10-960.webp 960w"
+      ],
+      "src": "/images/official/events/star/10-960.webp",
+      "album": "events/star",
+      "page": "events__star"
+    },
+    "events/star/11": {
+      "srcset": [
+        "/images/official/events/star/11-480.webp 480w",
+        "/images/official/events/star/11-960.webp 960w"
+      ],
+      "src": "/images/official/events/star/11-960.webp",
+      "album": "events/star",
+      "page": "events__star"
+    },
+    "events/star/12": {
+      "srcset": [
+        "/images/official/events/star/12-480.webp 480w",
+        "/images/official/events/star/12-960.webp 960w"
+      ],
+      "src": "/images/official/events/star/12-960.webp",
+      "album": "events/star",
+      "page": "events__star"
+    },
+    "events/star/13": {
+      "srcset": [
+        "/images/official/events/star/13-480.webp 480w",
+        "/images/official/events/star/13-960.webp 960w"
+      ],
+      "src": "/images/official/events/star/13-960.webp",
+      "album": "events/star",
+      "page": "events__star"
+    },
+    "events/star/14": {
+      "srcset": [
+        "/images/official/events/star/14-480.webp 480w",
+        "/images/official/events/star/14-960.webp 960w"
+      ],
+      "src": "/images/official/events/star/14-960.webp",
+      "album": "events/star",
+      "page": "events__star"
+    },
+    "events/star/15": {
+      "srcset": [
+        "/images/official/events/star/15-480.webp 480w",
+        "/images/official/events/star/15-960.webp 960w"
+      ],
+      "src": "/images/official/events/star/15-960.webp",
+      "album": "events/star",
+      "page": "events__star"
+    },
+    "events/star/16": {
+      "srcset": [
+        "/images/official/events/star/16-480.webp 480w",
+        "/images/official/events/star/16-960.webp 960w"
+      ],
+      "src": "/images/official/events/star/16-960.webp",
+      "album": "events/star",
+      "page": "events__star"
+    },
+    "events/star/17": {
+      "srcset": [
+        "/images/official/events/star/17-480.webp 480w",
+        "/images/official/events/star/17-960.webp 960w"
+      ],
+      "src": "/images/official/events/star/17-960.webp",
+      "album": "events/star",
+      "page": "events__star"
+    },
+    "events/star/18": {
+      "srcset": [
+        "/images/official/events/star/18-480.webp 480w",
+        "/images/official/events/star/18-960.webp 960w"
+      ],
+      "src": "/images/official/events/star/18-960.webp",
+      "album": "events/star",
+      "page": "events__star"
+    },
+    "events/star/19": {
+      "srcset": [
+        "/images/official/events/star/19-480.webp 480w",
+        "/images/official/events/star/19-960.webp 960w"
+      ],
+      "src": "/images/official/events/star/19-960.webp",
+      "album": "events/star",
+      "page": "events__star"
+    },
+    "events/star/20": {
+      "srcset": [
+        "/images/official/events/star/20-480.webp 480w",
+        "/images/official/events/star/20-960.webp 960w"
+      ],
+      "src": "/images/official/events/star/20-960.webp",
+      "album": "events/star",
+      "page": "events__star"
+    },
+    "events/star/21": {
+      "srcset": [
+        "/images/official/events/star/21-480.webp 480w",
+        "/images/official/events/star/21-960.webp 960w"
+      ],
+      "src": "/images/official/events/star/21-960.webp",
+      "album": "events/star",
+      "page": "events__star"
+    },
+    "events/sparkles-2024/01": {
+      "srcset": [
+        "/images/official/events/sparkles-2024/01-480.webp 480w",
+        "/images/official/events/sparkles-2024/01-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles-2024/01-960.webp",
+      "album": "events/sparkles-2024",
+      "page": "events__sparkles-2024"
+    },
+    "events/sparkles-2024/02": {
+      "srcset": [
+        "/images/official/events/sparkles-2024/02-480.webp 480w",
+        "/images/official/events/sparkles-2024/02-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles-2024/02-960.webp",
+      "album": "events/sparkles-2024",
+      "page": "events__sparkles-2024"
+    },
+    "events/sparkles-2024/03": {
+      "srcset": [
+        "/images/official/events/sparkles-2024/03-480.webp 480w",
+        "/images/official/events/sparkles-2024/03-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles-2024/03-960.webp",
+      "album": "events/sparkles-2024",
+      "page": "events__sparkles-2024"
+    },
+    "events/sparkles-2024/04": {
+      "srcset": [
+        "/images/official/events/sparkles-2024/04-480.webp 480w",
+        "/images/official/events/sparkles-2024/04-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles-2024/04-960.webp",
+      "album": "events/sparkles-2024",
+      "page": "events__sparkles-2024"
+    },
+    "events/sparkles-2024/05": {
+      "srcset": [
+        "/images/official/events/sparkles-2024/05-480.webp 480w",
+        "/images/official/events/sparkles-2024/05-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles-2024/05-960.webp",
+      "album": "events/sparkles-2024",
+      "page": "events__sparkles-2024"
+    },
+    "events/sparkles-2024/06": {
+      "srcset": [
+        "/images/official/events/sparkles-2024/06-480.webp 480w",
+        "/images/official/events/sparkles-2024/06-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles-2024/06-960.webp",
+      "album": "events/sparkles-2024",
+      "page": "events__sparkles-2024"
+    },
+    "events/sparkles-2024/07": {
+      "srcset": [
+        "/images/official/events/sparkles-2024/07-480.webp 480w",
+        "/images/official/events/sparkles-2024/07-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles-2024/07-960.webp",
+      "album": "events/sparkles-2024",
+      "page": "events__sparkles-2024"
+    },
+    "events/sparkles-2024/08": {
+      "srcset": [
+        "/images/official/events/sparkles-2024/08-480.webp 480w",
+        "/images/official/events/sparkles-2024/08-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles-2024/08-960.webp",
+      "album": "events/sparkles-2024",
+      "page": "events__sparkles-2024"
+    },
+    "events/sparkles-2024/09": {
+      "srcset": [
+        "/images/official/events/sparkles-2024/09-480.webp 480w",
+        "/images/official/events/sparkles-2024/09-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles-2024/09-960.webp",
+      "album": "events/sparkles-2024",
+      "page": "events__sparkles-2024"
+    },
+    "events/sparkles-2024/10": {
+      "srcset": [
+        "/images/official/events/sparkles-2024/10-480.webp 480w",
+        "/images/official/events/sparkles-2024/10-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles-2024/10-960.webp",
+      "album": "events/sparkles-2024",
+      "page": "events__sparkles-2024"
+    },
+    "events/sparkles-2024/11": {
+      "srcset": [
+        "/images/official/events/sparkles-2024/11-480.webp 480w",
+        "/images/official/events/sparkles-2024/11-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles-2024/11-960.webp",
+      "album": "events/sparkles-2024",
+      "page": "events__sparkles-2024"
+    },
+    "events/sparkles-2024/12": {
+      "srcset": [
+        "/images/official/events/sparkles-2024/12-480.webp 480w"
+      ],
+      "src": "/images/official/events/sparkles-2024/12-480.webp",
+      "album": "events/sparkles-2024",
+      "page": "events__sparkles-2024"
+    },
+    "events/sparkles-2024/13": {
+      "srcset": [
+        "/images/official/events/sparkles-2024/13-480.webp 480w",
+        "/images/official/events/sparkles-2024/13-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles-2024/13-960.webp",
+      "album": "events/sparkles-2024",
+      "page": "events__sparkles-2024"
+    },
+    "events/sparkles-2024/14": {
+      "srcset": [
+        "/images/official/events/sparkles-2024/14-480.webp 480w",
+        "/images/official/events/sparkles-2024/14-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles-2024/14-960.webp",
+      "album": "events/sparkles-2024",
+      "page": "events__sparkles-2024"
+    },
+    "events/sparkles-2024/15": {
+      "srcset": [
+        "/images/official/events/sparkles-2024/15-480.webp 480w",
+        "/images/official/events/sparkles-2024/15-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles-2024/15-960.webp",
+      "album": "events/sparkles-2024",
+      "page": "events__sparkles-2024"
+    },
+    "events/sparkles-2024/16": {
+      "srcset": [
+        "/images/official/events/sparkles-2024/16-480.webp 480w",
+        "/images/official/events/sparkles-2024/16-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles-2024/16-960.webp",
+      "album": "events/sparkles-2024",
+      "page": "events__sparkles-2024"
+    },
+    "events/sparkles-2024/17": {
+      "srcset": [
+        "/images/official/events/sparkles-2024/17-480.webp 480w",
+        "/images/official/events/sparkles-2024/17-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles-2024/17-960.webp",
+      "album": "events/sparkles-2024",
+      "page": "events__sparkles-2024"
+    },
+    "events/sparkles-2024/18": {
+      "srcset": [
+        "/images/official/events/sparkles-2024/18-480.webp 480w",
+        "/images/official/events/sparkles-2024/18-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles-2024/18-960.webp",
+      "album": "events/sparkles-2024",
+      "page": "events__sparkles-2024"
+    },
+    "events/sparkles-2024/19": {
+      "srcset": [
+        "/images/official/events/sparkles-2024/19-480.webp 480w",
+        "/images/official/events/sparkles-2024/19-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles-2024/19-960.webp",
+      "album": "events/sparkles-2024",
+      "page": "events__sparkles-2024"
+    },
+    "events/sparkles-2024/20": {
+      "srcset": [
+        "/images/official/events/sparkles-2024/20-480.webp 480w",
+        "/images/official/events/sparkles-2024/20-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles-2024/20-960.webp",
+      "album": "events/sparkles-2024",
+      "page": "events__sparkles-2024"
+    },
+    "events/sparkles-2024/21": {
+      "srcset": [
+        "/images/official/events/sparkles-2024/21-480.webp 480w",
+        "/images/official/events/sparkles-2024/21-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles-2024/21-960.webp",
+      "album": "events/sparkles-2024",
+      "page": "events__sparkles-2024"
+    },
+    "events/sparkles-2024/22": {
+      "srcset": [
+        "/images/official/events/sparkles-2024/22-480.webp 480w",
+        "/images/official/events/sparkles-2024/22-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles-2024/22-960.webp",
+      "album": "events/sparkles-2024",
+      "page": "events__sparkles-2024"
+    },
+    "events/sparkles-2024/23": {
+      "srcset": [
+        "/images/official/events/sparkles-2024/23-480.webp 480w",
+        "/images/official/events/sparkles-2024/23-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles-2024/23-960.webp",
+      "album": "events/sparkles-2024",
+      "page": "events__sparkles-2024"
+    },
+    "events/sparkles-2024/24": {
+      "srcset": [
+        "/images/official/events/sparkles-2024/24-480.webp 480w",
+        "/images/official/events/sparkles-2024/24-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles-2024/24-960.webp",
+      "album": "events/sparkles-2024",
+      "page": "events__sparkles-2024"
+    },
+    "events/sparkles-2024/25": {
+      "srcset": [
+        "/images/official/events/sparkles-2024/25-480.webp 480w",
+        "/images/official/events/sparkles-2024/25-960.webp 960w"
+      ],
+      "src": "/images/official/events/sparkles-2024/25-960.webp",
+      "album": "events/sparkles-2024",
+      "page": "events__sparkles-2024"
+    },
+    "placement-ceremony/01": {
+      "srcset": [
+        "/images/official/placement-ceremony/01-480.webp 480w",
+        "/images/official/placement-ceremony/01-960.webp 960w"
+      ],
+      "src": "/images/official/placement-ceremony/01-960.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "placement-ceremony/02": {
+      "srcset": [
+        "/images/official/placement-ceremony/02-480.webp 480w",
+        "/images/official/placement-ceremony/02-960.webp 960w"
+      ],
+      "src": "/images/official/placement-ceremony/02-960.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "placement-ceremony/03": {
+      "srcset": [
+        "/images/official/placement-ceremony/03-480.webp 480w",
+        "/images/official/placement-ceremony/03-960.webp 960w"
+      ],
+      "src": "/images/official/placement-ceremony/03-960.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "placement-ceremony/04": {
+      "srcset": [
+        "/images/official/placement-ceremony/04-480.webp 480w",
+        "/images/official/placement-ceremony/04-960.webp 960w"
+      ],
+      "src": "/images/official/placement-ceremony/04-960.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "placement-ceremony/05": {
+      "srcset": [
+        "/images/official/placement-ceremony/05-480.webp 480w",
+        "/images/official/placement-ceremony/05-960.webp 960w"
+      ],
+      "src": "/images/official/placement-ceremony/05-960.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "placement-ceremony/06": {
+      "srcset": [
+        "/images/official/placement-ceremony/06-480.webp 480w",
+        "/images/official/placement-ceremony/06-960.webp 960w"
+      ],
+      "src": "/images/official/placement-ceremony/06-960.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "placement-ceremony/07": {
+      "srcset": [
+        "/images/official/placement-ceremony/07-480.webp 480w",
+        "/images/official/placement-ceremony/07-960.webp 960w"
+      ],
+      "src": "/images/official/placement-ceremony/07-960.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "placement-ceremony/08": {
+      "srcset": [
+        "/images/official/placement-ceremony/08-480.webp 480w",
+        "/images/official/placement-ceremony/08-960.webp 960w"
+      ],
+      "src": "/images/official/placement-ceremony/08-960.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "placement-ceremony/09": {
+      "srcset": [
+        "/images/official/placement-ceremony/09-480.webp 480w",
+        "/images/official/placement-ceremony/09-960.webp 960w"
+      ],
+      "src": "/images/official/placement-ceremony/09-960.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "placement-ceremony/10": {
+      "srcset": [
+        "/images/official/placement-ceremony/10-480.webp 480w",
+        "/images/official/placement-ceremony/10-960.webp 960w"
+      ],
+      "src": "/images/official/placement-ceremony/10-960.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "placement-ceremony/11": {
+      "srcset": [
+        "/images/official/placement-ceremony/11-480.webp 480w",
+        "/images/official/placement-ceremony/11-960.webp 960w"
+      ],
+      "src": "/images/official/placement-ceremony/11-960.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "placement-ceremony/12": {
+      "srcset": [
+        "/images/official/placement-ceremony/12-480.webp 480w",
+        "/images/official/placement-ceremony/12-960.webp 960w"
+      ],
+      "src": "/images/official/placement-ceremony/12-960.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "placement-ceremony/13": {
+      "srcset": [
+        "/images/official/placement-ceremony/13-480.webp 480w"
+      ],
+      "src": "/images/official/placement-ceremony/13-480.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "placement-ceremony/14": {
+      "srcset": [
+        "/images/official/placement-ceremony/14-480.webp 480w",
+        "/images/official/placement-ceremony/14-960.webp 960w"
+      ],
+      "src": "/images/official/placement-ceremony/14-960.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "placement-ceremony/15": {
+      "srcset": [
+        "/images/official/placement-ceremony/15-480.webp 480w",
+        "/images/official/placement-ceremony/15-960.webp 960w"
+      ],
+      "src": "/images/official/placement-ceremony/15-960.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "placement-ceremony/16": {
+      "srcset": [
+        "/images/official/placement-ceremony/16-480.webp 480w",
+        "/images/official/placement-ceremony/16-960.webp 960w"
+      ],
+      "src": "/images/official/placement-ceremony/16-960.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "placement-ceremony/17": {
+      "srcset": [
+        "/images/official/placement-ceremony/17-446.webp 446w"
+      ],
+      "src": "/images/official/placement-ceremony/17-446.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "placement-ceremony/18": {
+      "srcset": [
+        "/images/official/placement-ceremony/18-480.webp 480w"
+      ],
+      "src": "/images/official/placement-ceremony/18-480.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "placement-ceremony/19": {
+      "srcset": [
+        "/images/official/placement-ceremony/19-480.webp 480w"
+      ],
+      "src": "/images/official/placement-ceremony/19-480.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "placement-ceremony/20": {
+      "srcset": [
+        "/images/official/placement-ceremony/20-480.webp 480w"
+      ],
+      "src": "/images/official/placement-ceremony/20-480.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "placement-ceremony/21": {
+      "srcset": [
+        "/images/official/placement-ceremony/21-480.webp 480w"
+      ],
+      "src": "/images/official/placement-ceremony/21-480.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "placement-ceremony/22": {
+      "srcset": [
+        "/images/official/placement-ceremony/22-480.webp 480w"
+      ],
+      "src": "/images/official/placement-ceremony/22-480.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "placement-ceremony/23": {
+      "srcset": [
+        "/images/official/placement-ceremony/23-480.webp 480w"
+      ],
+      "src": "/images/official/placement-ceremony/23-480.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "placement-ceremony/24": {
+      "srcset": [
+        "/images/official/placement-ceremony/24-480.webp 480w"
+      ],
+      "src": "/images/official/placement-ceremony/24-480.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "placement-ceremony/25": {
+      "srcset": [
+        "/images/official/placement-ceremony/25-305.webp 305w"
+      ],
+      "src": "/images/official/placement-ceremony/25-305.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "placement-ceremony/26": {
+      "srcset": [
+        "/images/official/placement-ceremony/26-480.webp 480w"
+      ],
+      "src": "/images/official/placement-ceremony/26-480.webp",
+      "album": "placement-ceremony",
+      "page": "news-and-more"
+    },
+    "student-awards/01": {
+      "srcset": [
+        "/images/official/student-awards/01-480.webp 480w",
+        "/images/official/student-awards/01-960.webp 960w"
+      ],
+      "src": "/images/official/student-awards/01-960.webp",
+      "album": "student-awards",
+      "page": "latest-news-student-achievements"
+    },
+    "student-awards/02": {
+      "srcset": [
+        "/images/official/student-awards/02-480.webp 480w",
+        "/images/official/student-awards/02-960.webp 960w"
+      ],
+      "src": "/images/official/student-awards/02-960.webp",
+      "album": "student-awards",
+      "page": "latest-news-student-achievements"
+    },
+    "student-awards/03": {
+      "srcset": [
+        "/images/official/student-awards/03-480.webp 480w",
+        "/images/official/student-awards/03-960.webp 960w"
+      ],
+      "src": "/images/official/student-awards/03-960.webp",
+      "album": "student-awards",
+      "page": "latest-news-student-achievements"
+    },
+    "student-awards/04": {
+      "srcset": [
+        "/images/official/student-awards/04-480.webp 480w",
+        "/images/official/student-awards/04-960.webp 960w"
+      ],
+      "src": "/images/official/student-awards/04-960.webp",
+      "album": "student-awards",
+      "page": "latest-news-student-achievements"
+    },
+    "student-awards/05": {
+      "srcset": [
+        "/images/official/student-awards/05-480.webp 480w",
+        "/images/official/student-awards/05-960.webp 960w"
+      ],
+      "src": "/images/official/student-awards/05-960.webp",
+      "album": "student-awards",
+      "page": "latest-news-student-achievements"
+    },
+    "student-awards/06": {
+      "srcset": [
+        "/images/official/student-awards/06-480.webp 480w",
+        "/images/official/student-awards/06-960.webp 960w"
+      ],
+      "src": "/images/official/student-awards/06-960.webp",
+      "album": "student-awards",
+      "page": "latest-news-student-achievements"
+    },
+    "student-awards/07": {
+      "srcset": [
+        "/images/official/student-awards/07-480.webp 480w",
+        "/images/official/student-awards/07-960.webp 960w"
+      ],
+      "src": "/images/official/student-awards/07-960.webp",
+      "album": "student-awards",
+      "page": "latest-news-student-achievements"
+    },
+    "team-westin/01": {
+      "srcset": [
+        "/images/official/team-westin/01-480.webp 480w",
+        "/images/official/team-westin/01-960.webp 960w"
+      ],
+      "src": "/images/official/team-westin/01-960.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/02": {
+      "srcset": [
+        "/images/official/team-westin/02-480.webp 480w",
+        "/images/official/team-westin/02-960.webp 960w"
+      ],
+      "src": "/images/official/team-westin/02-960.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/03": {
+      "srcset": [
+        "/images/official/team-westin/03-480.webp 480w",
+        "/images/official/team-westin/03-960.webp 960w"
+      ],
+      "src": "/images/official/team-westin/03-960.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/04": {
+      "srcset": [
+        "/images/official/team-westin/04-480.webp 480w",
+        "/images/official/team-westin/04-960.webp 960w"
+      ],
+      "src": "/images/official/team-westin/04-960.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/05": {
+      "srcset": [
+        "/images/official/team-westin/05-480.webp 480w",
+        "/images/official/team-westin/05-960.webp 960w"
+      ],
+      "src": "/images/official/team-westin/05-960.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/06": {
+      "srcset": [
+        "/images/official/team-westin/06-474.webp 474w"
+      ],
+      "src": "/images/official/team-westin/06-474.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/07": {
+      "srcset": [
+        "/images/official/team-westin/07-268.webp 268w"
+      ],
+      "src": "/images/official/team-westin/07-268.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/08": {
+      "srcset": [
+        "/images/official/team-westin/08-350.webp 350w"
+      ],
+      "src": "/images/official/team-westin/08-350.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/09": {
+      "srcset": [
+        "/images/official/team-westin/09-480.webp 480w",
+        "/images/official/team-westin/09-960.webp 960w"
+      ],
+      "src": "/images/official/team-westin/09-960.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/10": {
+      "srcset": [
+        "/images/official/team-westin/10-480.webp 480w"
+      ],
+      "src": "/images/official/team-westin/10-480.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/11": {
+      "srcset": [
+        "/images/official/team-westin/11-480.webp 480w",
+        "/images/official/team-westin/11-960.webp 960w"
+      ],
+      "src": "/images/official/team-westin/11-960.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/12": {
+      "srcset": [
+        "/images/official/team-westin/12-480.webp 480w",
+        "/images/official/team-westin/12-960.webp 960w"
+      ],
+      "src": "/images/official/team-westin/12-960.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/13": {
+      "srcset": [
+        "/images/official/team-westin/13-480.webp 480w",
+        "/images/official/team-westin/13-960.webp 960w"
+      ],
+      "src": "/images/official/team-westin/13-960.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/14": {
+      "srcset": [
+        "/images/official/team-westin/14-480.webp 480w",
+        "/images/official/team-westin/14-960.webp 960w"
+      ],
+      "src": "/images/official/team-westin/14-960.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/15": {
+      "srcset": [
+        "/images/official/team-westin/15-268.webp 268w"
+      ],
+      "src": "/images/official/team-westin/15-268.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/16": {
+      "srcset": [
+        "/images/official/team-westin/16-480.webp 480w"
+      ],
+      "src": "/images/official/team-westin/16-480.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/17": {
+      "srcset": [
+        "/images/official/team-westin/17-268.webp 268w"
+      ],
+      "src": "/images/official/team-westin/17-268.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/18": {
+      "srcset": [
+        "/images/official/team-westin/18-480.webp 480w",
+        "/images/official/team-westin/18-960.webp 960w"
+      ],
+      "src": "/images/official/team-westin/18-960.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/19": {
+      "srcset": [
+        "/images/official/team-westin/19-480.webp 480w",
+        "/images/official/team-westin/19-960.webp 960w"
+      ],
+      "src": "/images/official/team-westin/19-960.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/20": {
+      "srcset": [
+        "/images/official/team-westin/20-320.webp 320w"
+      ],
+      "src": "/images/official/team-westin/20-320.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/21": {
+      "srcset": [
+        "/images/official/team-westin/21-480.webp 480w"
+      ],
+      "src": "/images/official/team-westin/21-480.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/22": {
+      "srcset": [
+        "/images/official/team-westin/22-480.webp 480w",
+        "/images/official/team-westin/22-960.webp 960w"
+      ],
+      "src": "/images/official/team-westin/22-960.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/23": {
+      "srcset": [
+        "/images/official/team-westin/23-320.webp 320w"
+      ],
+      "src": "/images/official/team-westin/23-320.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/24": {
+      "srcset": [
+        "/images/official/team-westin/24-480.webp 480w"
+      ],
+      "src": "/images/official/team-westin/24-480.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/25": {
+      "srcset": [
+        "/images/official/team-westin/25-478.webp 478w"
+      ],
+      "src": "/images/official/team-westin/25-478.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/26": {
+      "srcset": [
+        "/images/official/team-westin/26-480.webp 480w",
+        "/images/official/team-westin/26-960.webp 960w"
+      ],
+      "src": "/images/official/team-westin/26-960.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "team-westin/27": {
+      "srcset": [
+        "/images/official/team-westin/27-480.webp 480w"
+      ],
+      "src": "/images/official/team-westin/27-480.webp",
+      "album": "team-westin",
+      "page": "success-stories"
+    },
+    "bba-success/01": {
+      "srcset": [
+        "/images/official/bba-success/01-480.webp 480w",
+        "/images/official/bba-success/01-960.webp 960w"
+      ],
+      "src": "/images/official/bba-success/01-960.webp",
+      "album": "bba-success",
+      "page": "blank-1-2-2-2"
+    },
+    "bba-success/02": {
+      "srcset": [
+        "/images/official/bba-success/02-480.webp 480w",
+        "/images/official/bba-success/02-960.webp 960w"
+      ],
+      "src": "/images/official/bba-success/02-960.webp",
+      "album": "bba-success",
+      "page": "blank-1-2-2-2"
+    },
+    "bba-success/03": {
+      "srcset": [
+        "/images/official/bba-success/03-480.webp 480w",
+        "/images/official/bba-success/03-960.webp 960w"
+      ],
+      "src": "/images/official/bba-success/03-960.webp",
+      "album": "bba-success",
+      "page": "blank-1-2-2-2"
+    },
+    "bba-success/04": {
+      "srcset": [
+        "/images/official/bba-success/04-480.webp 480w",
+        "/images/official/bba-success/04-960.webp 960w"
+      ],
+      "src": "/images/official/bba-success/04-960.webp",
+      "album": "bba-success",
+      "page": "blank-1-2-2-2"
+    },
+    "bba-success/05": {
+      "srcset": [
+        "/images/official/bba-success/05-480.webp 480w",
+        "/images/official/bba-success/05-960.webp 960w"
+      ],
+      "src": "/images/official/bba-success/05-960.webp",
+      "album": "bba-success",
+      "page": "blank-1-2-2-2"
+    },
+    "bba-success/06": {
+      "srcset": [
+        "/images/official/bba-success/06-480.webp 480w",
+        "/images/official/bba-success/06-960.webp 960w"
+      ],
+      "src": "/images/official/bba-success/06-960.webp",
+      "album": "bba-success",
+      "page": "blank-1-2-2-2"
+    },
+    "bba-success/07": {
+      "srcset": [
+        "/images/official/bba-success/07-480.webp 480w",
+        "/images/official/bba-success/07-960.webp 960w"
+      ],
+      "src": "/images/official/bba-success/07-960.webp",
+      "album": "bba-success",
+      "page": "blank-1-2-2-2"
+    },
+    "bba-success/08": {
+      "srcset": [
+        "/images/official/bba-success/08-480.webp 480w",
+        "/images/official/bba-success/08-960.webp 960w"
+      ],
+      "src": "/images/official/bba-success/08-960.webp",
+      "album": "bba-success",
+      "page": "blank-1-2-2-2"
+    },
+    "bba-success/09": {
+      "srcset": [
+        "/images/official/bba-success/09-480.webp 480w",
+        "/images/official/bba-success/09-960.webp 960w"
+      ],
+      "src": "/images/official/bba-success/09-960.webp",
+      "album": "bba-success",
+      "page": "blank-1-2-2-2"
+    },
+    "bba-success/10": {
+      "srcset": [
+        "/images/official/bba-success/10-480.webp 480w",
+        "/images/official/bba-success/10-960.webp 960w"
+      ],
+      "src": "/images/official/bba-success/10-960.webp",
+      "album": "bba-success",
+      "page": "blank-1-2-2-2"
+    },
+    "bba-success/11": {
+      "srcset": [
+        "/images/official/bba-success/11-480.webp 480w",
+        "/images/official/bba-success/11-960.webp 960w"
+      ],
+      "src": "/images/official/bba-success/11-960.webp",
+      "album": "bba-success",
+      "page": "blank-1-2-2-2"
+    },
+    "bba-success/12": {
+      "srcset": [
+        "/images/official/bba-success/12-480.webp 480w",
+        "/images/official/bba-success/12-960.webp 960w"
+      ],
+      "src": "/images/official/bba-success/12-960.webp",
+      "album": "bba-success",
+      "page": "blank-1-2-2-2"
+    },
+    "bba-success/13": {
+      "srcset": [
+        "/images/official/bba-success/13-480.webp 480w",
+        "/images/official/bba-success/13-960.webp 960w"
+      ],
+      "src": "/images/official/bba-success/13-960.webp",
+      "album": "bba-success",
+      "page": "blank-1-2-2-2"
+    },
+    "bba-success/14": {
+      "srcset": [
+        "/images/official/bba-success/14-480.webp 480w",
+        "/images/official/bba-success/14-960.webp 960w"
+      ],
+      "src": "/images/official/bba-success/14-960.webp",
+      "album": "bba-success",
+      "page": "blank-1-2-2-2"
+    },
+    "bba-success/15": {
+      "srcset": [
+        "/images/official/bba-success/15-480.webp 480w",
+        "/images/official/bba-success/15-960.webp 960w"
+      ],
+      "src": "/images/official/bba-success/15-960.webp",
+      "album": "bba-success",
+      "page": "blank-1-2-2-2"
+    },
+    "bba-success/16": {
+      "srcset": [
+        "/images/official/bba-success/16-480.webp 480w",
+        "/images/official/bba-success/16-960.webp 960w"
+      ],
+      "src": "/images/official/bba-success/16-960.webp",
+      "album": "bba-success",
+      "page": "blank-1-2-2-2"
+    },
+    "bba-success/17": {
+      "srcset": [
+        "/images/official/bba-success/17-480.webp 480w",
+        "/images/official/bba-success/17-960.webp 960w"
+      ],
+      "src": "/images/official/bba-success/17-960.webp",
+      "album": "bba-success",
+      "page": "blank-1-2-2-2"
+    },
+    "bba-success/18": {
+      "srcset": [
+        "/images/official/bba-success/18-480.webp 480w",
+        "/images/official/bba-success/18-960.webp 960w"
+      ],
+      "src": "/images/official/bba-success/18-960.webp",
+      "album": "bba-success",
+      "page": "blank-1-2-2-2"
+    },
+    "alumni/01": {
+      "srcset": [
+        "/images/official/alumni/01-480.webp 480w",
+        "/images/official/alumni/01-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/01-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "alumni/02": {
+      "srcset": [
+        "/images/official/alumni/02-480.webp 480w",
+        "/images/official/alumni/02-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/02-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "alumni/03": {
+      "srcset": [
+        "/images/official/alumni/03-480.webp 480w",
+        "/images/official/alumni/03-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/03-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "alumni/04": {
+      "srcset": [
+        "/images/official/alumni/04-480.webp 480w",
+        "/images/official/alumni/04-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/04-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "alumni/05": {
+      "srcset": [
+        "/images/official/alumni/05-480.webp 480w",
+        "/images/official/alumni/05-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/05-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "alumni/06": {
+      "srcset": [
+        "/images/official/alumni/06-480.webp 480w",
+        "/images/official/alumni/06-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/06-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "alumni/07": {
+      "srcset": [
+        "/images/official/alumni/07-480.webp 480w",
+        "/images/official/alumni/07-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/07-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "alumni/08": {
+      "srcset": [
+        "/images/official/alumni/08-480.webp 480w",
+        "/images/official/alumni/08-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/08-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "alumni/09": {
+      "srcset": [
+        "/images/official/alumni/09-480.webp 480w",
+        "/images/official/alumni/09-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/09-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "alumni/10": {
+      "srcset": [
+        "/images/official/alumni/10-480.webp 480w",
+        "/images/official/alumni/10-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/10-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "alumni/11": {
+      "srcset": [
+        "/images/official/alumni/11-480.webp 480w",
+        "/images/official/alumni/11-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/11-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "alumni/12": {
+      "srcset": [
+        "/images/official/alumni/12-480.webp 480w",
+        "/images/official/alumni/12-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/12-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "alumni/13": {
+      "srcset": [
+        "/images/official/alumni/13-480.webp 480w",
+        "/images/official/alumni/13-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/13-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "alumni/14": {
+      "srcset": [
+        "/images/official/alumni/14-480.webp 480w",
+        "/images/official/alumni/14-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/14-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "alumni/15": {
+      "srcset": [
+        "/images/official/alumni/15-480.webp 480w",
+        "/images/official/alumni/15-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/15-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "alumni/16": {
+      "srcset": [
+        "/images/official/alumni/16-480.webp 480w",
+        "/images/official/alumni/16-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/16-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "alumni/17": {
+      "srcset": [
+        "/images/official/alumni/17-480.webp 480w",
+        "/images/official/alumni/17-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/17-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "alumni/18": {
+      "srcset": [
+        "/images/official/alumni/18-480.webp 480w",
+        "/images/official/alumni/18-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/18-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "alumni/19": {
+      "srcset": [
+        "/images/official/alumni/19-480.webp 480w",
+        "/images/official/alumni/19-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/19-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "alumni/20": {
+      "srcset": [
+        "/images/official/alumni/20-480.webp 480w",
+        "/images/official/alumni/20-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/20-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "alumni/21": {
+      "srcset": [
+        "/images/official/alumni/21-480.webp 480w",
+        "/images/official/alumni/21-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/21-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "alumni/22": {
+      "srcset": [
+        "/images/official/alumni/22-480.webp 480w",
+        "/images/official/alumni/22-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/22-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "alumni/23": {
+      "srcset": [
+        "/images/official/alumni/23-480.webp 480w",
+        "/images/official/alumni/23-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/23-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "alumni/24": {
+      "srcset": [
+        "/images/official/alumni/24-480.webp 480w",
+        "/images/official/alumni/24-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/24-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "alumni/25": {
+      "srcset": [
+        "/images/official/alumni/25-480.webp 480w",
+        "/images/official/alumni/25-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/25-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "alumni/26": {
+      "srcset": [
+        "/images/official/alumni/26-480.webp 480w",
+        "/images/official/alumni/26-960.webp 960w"
+      ],
+      "src": "/images/official/alumni/26-960.webp",
+      "album": "alumni",
+      "page": "alumni"
+    },
+    "clubs/01": {
+      "srcset": [
+        "/images/official/clubs/01-480.webp 480w"
+      ],
+      "src": "/images/official/clubs/01-480.webp",
+      "album": "clubs",
+      "page": "bba-college-in-vijayawada"
+    },
+    "clubs/02": {
+      "srcset": [
+        "/images/official/clubs/02-480.webp 480w"
+      ],
+      "src": "/images/official/clubs/02-480.webp",
+      "album": "clubs",
+      "page": "bba-college-in-vijayawada"
+    },
+    "clubs/03": {
+      "srcset": [
+        "/images/official/clubs/03-480.webp 480w",
+        "/images/official/clubs/03-960.webp 960w"
+      ],
+      "src": "/images/official/clubs/03-960.webp",
+      "album": "clubs",
+      "page": "bba-college-in-vijayawada"
+    },
+    "clubs/04": {
+      "srcset": [
+        "/images/official/clubs/04-480.webp 480w"
+      ],
+      "src": "/images/official/clubs/04-480.webp",
+      "album": "clubs",
+      "page": "bba-college-in-vijayawada"
+    },
+    "clubs/05": {
+      "srcset": [
+        "/images/official/clubs/05-480.webp 480w"
+      ],
+      "src": "/images/official/clubs/05-480.webp",
+      "album": "clubs",
+      "page": "bba-college-in-vijayawada"
+    },
+    "clubs/06": {
+      "srcset": [
+        "/images/official/clubs/06-480.webp 480w"
+      ],
+      "src": "/images/official/clubs/06-480.webp",
+      "album": "clubs",
+      "page": "bba-college-in-vijayawada"
+    },
+    "clubs/07": {
+      "srcset": [
+        "/images/official/clubs/07-480.webp 480w",
+        "/images/official/clubs/07-960.webp 960w"
+      ],
+      "src": "/images/official/clubs/07-960.webp",
+      "album": "clubs",
+      "page": "bba-college-in-vijayawada"
+    },
+    "clubs/08": {
+      "srcset": [
+        "/images/official/clubs/08-480.webp 480w",
+        "/images/official/clubs/08-960.webp 960w"
+      ],
+      "src": "/images/official/clubs/08-960.webp",
+      "album": "clubs",
+      "page": "bba-college-in-vijayawada"
+    },
+    "clubs/09": {
+      "srcset": [
+        "/images/official/clubs/09-480.webp 480w",
+        "/images/official/clubs/09-960.webp 960w"
+      ],
+      "src": "/images/official/clubs/09-960.webp",
+      "album": "clubs",
+      "page": "bba-college-in-vijayawada"
+    },
+    "clubs/10": {
+      "srcset": [
+        "/images/official/clubs/10-480.webp 480w",
+        "/images/official/clubs/10-960.webp 960w"
+      ],
+      "src": "/images/official/clubs/10-960.webp",
+      "album": "clubs",
+      "page": "bba-college-in-vijayawada"
+    },
+    "clubs/11": {
+      "srcset": [
+        "/images/official/clubs/11-480.webp 480w"
+      ],
+      "src": "/images/official/clubs/11-480.webp",
+      "album": "clubs",
+      "page": "bba-college-in-vijayawada"
+    },
+    "clubs/12": {
+      "srcset": [
+        "/images/official/clubs/12-480.webp 480w",
+        "/images/official/clubs/12-960.webp 960w"
+      ],
+      "src": "/images/official/clubs/12-960.webp",
+      "album": "clubs",
+      "page": "bba-college-in-vijayawada"
+    },
+    "clubs/13": {
+      "srcset": [
+        "/images/official/clubs/13-480.webp 480w",
+        "/images/official/clubs/13-960.webp 960w"
+      ],
+      "src": "/images/official/clubs/13-960.webp",
+      "album": "clubs",
+      "page": "bba-college-in-vijayawada"
+    },
+    "clubs/14": {
+      "srcset": [
+        "/images/official/clubs/14-480.webp 480w"
+      ],
+      "src": "/images/official/clubs/14-480.webp",
+      "album": "clubs",
+      "page": "bba-college-in-vijayawada"
+    },
+    "clubs/15": {
+      "srcset": [
+        "/images/official/clubs/15-480.webp 480w"
+      ],
+      "src": "/images/official/clubs/15-480.webp",
+      "album": "clubs",
+      "page": "bba-college-in-vijayawada"
+    },
+    "publishing/01": {
+      "srcset": [
+        "/images/official/publishing/01-480.webp 480w",
+        "/images/official/publishing/01-960.webp 960w"
+      ],
+      "src": "/images/official/publishing/01-960.webp",
+      "album": "publishing",
+      "page": "blank-1-2-1-1-1-1-1-1-1-2-1-1"
+    },
+    "publishing/02": {
+      "srcset": [
+        "/images/official/publishing/02-480.webp 480w",
+        "/images/official/publishing/02-960.webp 960w"
+      ],
+      "src": "/images/official/publishing/02-960.webp",
+      "album": "publishing",
+      "page": "blank-1-2-1-1-1-1-1-1-1-2-1-1"
+    },
+    "publishing/03": {
+      "srcset": [
+        "/images/official/publishing/03-480.webp 480w",
+        "/images/official/publishing/03-960.webp 960w"
+      ],
+      "src": "/images/official/publishing/03-960.webp",
+      "album": "publishing",
+      "page": "blank-1-2-1-1-1-1-1-1-1-2-1-1"
+    },
+    "publishing/04": {
+      "srcset": [
+        "/images/official/publishing/04-480.webp 480w",
+        "/images/official/publishing/04-960.webp 960w"
+      ],
+      "src": "/images/official/publishing/04-960.webp",
+      "album": "publishing",
+      "page": "blank-1-2-1-1-1-1-1-1-1-2-1-1"
+    },
+    "publishing/05": {
+      "srcset": [
+        "/images/official/publishing/05-480.webp 480w",
+        "/images/official/publishing/05-960.webp 960w"
+      ],
+      "src": "/images/official/publishing/05-960.webp",
+      "album": "publishing",
+      "page": "blank-1-2-1-1-1-1-1-1-1-2-1-1"
+    },
+    "publishing/06": {
+      "srcset": [
+        "/images/official/publishing/06-480.webp 480w",
+        "/images/official/publishing/06-960.webp 960w"
+      ],
+      "src": "/images/official/publishing/06-960.webp",
+      "album": "publishing",
+      "page": "blank-1-2-1-1-1-1-1-1-1-2-1-1"
+    },
+    "publishing/07": {
+      "srcset": [
+        "/images/official/publishing/07-480.webp 480w",
+        "/images/official/publishing/07-960.webp 960w"
+      ],
+      "src": "/images/official/publishing/07-960.webp",
+      "album": "publishing",
+      "page": "blank-1-2-1-1-1-1-1-1-1-2-1-1"
+    },
+    "publishing/08": {
+      "srcset": [
+        "/images/official/publishing/08-480.webp 480w",
+        "/images/official/publishing/08-960.webp 960w"
+      ],
+      "src": "/images/official/publishing/08-960.webp",
+      "album": "publishing",
+      "page": "blank-1-2-1-1-1-1-1-1-1-2-1-1"
+    },
+    "publishing/09": {
+      "srcset": [
+        "/images/official/publishing/09-480.webp 480w",
+        "/images/official/publishing/09-960.webp 960w"
+      ],
+      "src": "/images/official/publishing/09-960.webp",
+      "album": "publishing",
+      "page": "blank-1-2-1-1-1-1-1-1-1-2-1-1"
+    },
+    "publishing/10": {
+      "srcset": [
+        "/images/official/publishing/10-480.webp 480w",
+        "/images/official/publishing/10-960.webp 960w"
+      ],
+      "src": "/images/official/publishing/10-960.webp",
+      "album": "publishing",
+      "page": "blank-1-2-1-1-1-1-1-1-1-2-1-1"
+    },
+    "publishing/11": {
+      "srcset": [
+        "/images/official/publishing/11-480.webp 480w",
+        "/images/official/publishing/11-960.webp 960w"
+      ],
+      "src": "/images/official/publishing/11-960.webp",
+      "album": "publishing",
+      "page": "blank-1-2-1-1-1-1-1-1-1-2-1-1"
+    },
+    "publishing/12": {
+      "srcset": [
+        "/images/official/publishing/12-480.webp 480w",
+        "/images/official/publishing/12-960.webp 960w"
+      ],
+      "src": "/images/official/publishing/12-960.webp",
+      "album": "publishing",
+      "page": "blank-1-2-1-1-1-1-1-1-1-2-1-1"
+    },
+    "publishing/13": {
+      "srcset": [
+        "/images/official/publishing/13-480.webp 480w",
+        "/images/official/publishing/13-960.webp 960w"
+      ],
+      "src": "/images/official/publishing/13-960.webp",
+      "album": "publishing",
+      "page": "blank-1-2-1-1-1-1-1-1-1-2-1-1"
+    },
+    "gallery-albums/01": {
+      "srcset": [
+        "/images/official/gallery-albums/01-350.webp 350w"
+      ],
+      "src": "/images/official/gallery-albums/01-350.webp",
+      "album": "gallery-albums",
+      "page": "gallery"
+    },
+    "gallery-albums/02": {
+      "srcset": [
+        "/images/official/gallery-albums/02-480.webp 480w"
+      ],
+      "src": "/images/official/gallery-albums/02-480.webp",
+      "album": "gallery-albums",
+      "page": "gallery"
+    },
+    "gallery-albums/03": {
+      "srcset": [
+        "/images/official/gallery-albums/03-480.webp 480w",
+        "/images/official/gallery-albums/03-960.webp 960w"
+      ],
+      "src": "/images/official/gallery-albums/03-960.webp",
+      "album": "gallery-albums",
+      "page": "gallery"
+    },
+    "academics/01": {
+      "srcset": [
+        "/images/official/academics/01-480.webp 480w",
+        "/images/official/academics/01-960.webp 960w"
+      ],
+      "src": "/images/official/academics/01-960.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    },
+    "academics/02": {
+      "srcset": [
+        "/images/official/academics/02-480.webp 480w"
+      ],
+      "src": "/images/official/academics/02-480.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    },
+    "academics/03": {
+      "srcset": [
+        "/images/official/academics/03-480.webp 480w",
+        "/images/official/academics/03-960.webp 960w"
+      ],
+      "src": "/images/official/academics/03-960.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    },
+    "academics/04": {
+      "srcset": [
+        "/images/official/academics/04-480.webp 480w",
+        "/images/official/academics/04-960.webp 960w"
+      ],
+      "src": "/images/official/academics/04-960.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    },
+    "academics/05": {
+      "srcset": [
+        "/images/official/academics/05-480.webp 480w",
+        "/images/official/academics/05-960.webp 960w"
+      ],
+      "src": "/images/official/academics/05-960.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    },
+    "academics/06": {
+      "srcset": [
+        "/images/official/academics/06-480.webp 480w",
+        "/images/official/academics/06-960.webp 960w"
+      ],
+      "src": "/images/official/academics/06-960.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    },
+    "academics/07": {
+      "srcset": [
+        "/images/official/academics/07-480.webp 480w"
+      ],
+      "src": "/images/official/academics/07-480.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    },
+    "academics/08": {
+      "srcset": [
+        "/images/official/academics/08-480.webp 480w"
+      ],
+      "src": "/images/official/academics/08-480.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    },
+    "academics/09": {
+      "srcset": [
+        "/images/official/academics/09-480.webp 480w"
+      ],
+      "src": "/images/official/academics/09-480.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    },
+    "academics/10": {
+      "srcset": [
+        "/images/official/academics/10-480.webp 480w",
+        "/images/official/academics/10-960.webp 960w"
+      ],
+      "src": "/images/official/academics/10-960.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    },
+    "academics/11": {
+      "srcset": [
+        "/images/official/academics/11-480.webp 480w",
+        "/images/official/academics/11-960.webp 960w"
+      ],
+      "src": "/images/official/academics/11-960.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    },
+    "academics/12": {
+      "srcset": [
+        "/images/official/academics/12-480.webp 480w",
+        "/images/official/academics/12-960.webp 960w"
+      ],
+      "src": "/images/official/academics/12-960.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    },
+    "academics/13": {
+      "srcset": [
+        "/images/official/academics/13-480.webp 480w",
+        "/images/official/academics/13-960.webp 960w"
+      ],
+      "src": "/images/official/academics/13-960.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    },
+    "academics/14": {
+      "srcset": [
+        "/images/official/academics/14-480.webp 480w",
+        "/images/official/academics/14-960.webp 960w"
+      ],
+      "src": "/images/official/academics/14-960.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    },
+    "academics/15": {
+      "srcset": [
+        "/images/official/academics/15-480.webp 480w",
+        "/images/official/academics/15-960.webp 960w"
+      ],
+      "src": "/images/official/academics/15-960.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    },
+    "academics/16": {
+      "srcset": [
+        "/images/official/academics/16-480.webp 480w"
+      ],
+      "src": "/images/official/academics/16-480.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    },
+    "academics/17": {
+      "srcset": [
+        "/images/official/academics/17-480.webp 480w",
+        "/images/official/academics/17-960.webp 960w"
+      ],
+      "src": "/images/official/academics/17-960.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    },
+    "academics/18": {
+      "srcset": [
+        "/images/official/academics/18-480.webp 480w",
+        "/images/official/academics/18-960.webp 960w"
+      ],
+      "src": "/images/official/academics/18-960.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    },
+    "academics/19": {
+      "srcset": [
+        "/images/official/academics/19-480.webp 480w",
+        "/images/official/academics/19-960.webp 960w"
+      ],
+      "src": "/images/official/academics/19-960.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    },
+    "academics/20": {
+      "srcset": [
+        "/images/official/academics/20-480.webp 480w",
+        "/images/official/academics/20-960.webp 960w"
+      ],
+      "src": "/images/official/academics/20-960.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    },
+    "academics/21": {
+      "srcset": [
+        "/images/official/academics/21-480.webp 480w",
+        "/images/official/academics/21-960.webp 960w"
+      ],
+      "src": "/images/official/academics/21-960.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    },
+    "academics/22": {
+      "srcset": [
+        "/images/official/academics/22-480.webp 480w",
+        "/images/official/academics/22-960.webp 960w"
+      ],
+      "src": "/images/official/academics/22-960.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    },
+    "academics/23": {
+      "srcset": [
+        "/images/official/academics/23-480.webp 480w",
+        "/images/official/academics/23-960.webp 960w"
+      ],
+      "src": "/images/official/academics/23-960.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    },
+    "academics/24": {
+      "srcset": [
+        "/images/official/academics/24-480.webp 480w",
+        "/images/official/academics/24-960.webp 960w"
+      ],
+      "src": "/images/official/academics/24-960.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    },
+    "academics/25": {
+      "srcset": [
+        "/images/official/academics/25-480.webp 480w",
+        "/images/official/academics/25-960.webp 960w"
+      ],
+      "src": "/images/official/academics/25-960.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    },
+    "academics/26": {
+      "srcset": [
+        "/images/official/academics/26-480.webp 480w",
+        "/images/official/academics/26-960.webp 960w"
+      ],
+      "src": "/images/official/academics/26-960.webp",
+      "album": "academics",
+      "page": "academics-and-placements"
+    }
+  }
+}

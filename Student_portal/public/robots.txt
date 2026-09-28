@@ -1,3 +1,3 @@
-# The default build uses local fixture content and must not be indexed.
+# The default prelaunch build remains unindexed. The official build generates its own policy.
 User-agent: *
 Disallow: /

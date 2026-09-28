@@ -15,16 +15,17 @@ export async function ready(page: Page) {
 }
 
 export async function revealAll(page: Page) {
-  for (const section of await page.locator(".sk-home > section").all()) {
+  for (const section of await page.locator(".ed-home > section").all()) {
     await section.scrollIntoViewIfNeeded();
-    await page.waitForTimeout(80);
+    await page.waitForTimeout(60);
   }
+  // Let the editorial photos finish decoding after the viewport sweep.
   await page.evaluate(async () => {
-    await Promise.all(
-      [...document.images]
-        .filter((image) => image.offsetWidth > 0)
-        .map((image) => image.decode().catch(() => undefined)),
-    );
+    const images = [...document.images].filter((i) => i.offsetWidth > 0);
+    await Promise.race([
+      Promise.all(images.map((i) => i.decode().catch(() => undefined))),
+      new Promise((resolve) => setTimeout(resolve, 20000)),
+    ]);
   });
 }
 

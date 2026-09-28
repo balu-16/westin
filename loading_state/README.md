@@ -24,7 +24,8 @@ The showcase includes a large character study, pause/resume and speed controls, 
 - Sleeves overlap the arms, while a collar, placket, buttons, pocket and restrained shading give the uniform depth.
 - The backpack sits against the back with a continuous shoulder strap, buckle, stitched pocket, zipper and carry handle.
 - Feet drive the leg positions through a two-bone joint calculation. The supporting foot rolls heel-to-toe without sinking through the ground; the free leg bends and clears it.
-- A 1.25-second cycle, a straighter supporting leg, opposite arm swings, a slight forward lean and subtle head/backpack follow-through make the stride less stiff.
+- A 1.4-second cycle uses a forward-only lifted step, gentler knee bend, softened foot contact, opposite arm swings, and subtle head/backpack follow-through.
+- The neck moves with the head and stays tucked beneath the collar throughout the walk.
 - One shared animation clock updates SVG transforms without re-rendering React every frame. Offscreen and hidden-tab instances stop.
 - OS reduced motion produces a still pose and stops the loading dots. Manual pause and speed controls are available in the showcase.
 
@@ -77,7 +78,7 @@ npm run build
 npm test
 ```
 
-Tests cover the gait geometry over 1,000 frames, loop continuity, responsive layouts from 320–1440px, unique SVG IDs, local-only requests, manual pause, keyboard controls, runtime reduced-motion changes, offscreen suspension, and automated WCAG A/AA checks.
+Tests cover the gait geometry over 1,000 frames, forward swing, joint continuity, responsive layouts from 320–1440px, unique SVG IDs, local-only requests, manual pause, keyboard controls, runtime reduced-motion changes, offscreen suspension, and automated WCAG A/AA checks.
 
 Playwright uses `/usr/bin/google-chrome` when available. Otherwise run `npx playwright install chromium`, or supply `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH`.
 

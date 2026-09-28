@@ -1,0 +1,233 @@
+/* Placements, Admissions, and Contact extend the warm editorial landing pages. */
+.ed-secondary { background: #fbfaf7; color: #0d2e51; }
+.ed-secondary h2, .ed-secondary h3, .ed-secondary .ed-placement-stat strong {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 500;
+}
+.ed-secondary-section { padding-block: clamp(62px, 7vw, 94px) 0; }
+.ed-secondary-heading {
+  display: grid;
+  grid-template-columns: minmax(0, .38fr) minmax(0, .62fr);
+  align-items: start;
+  gap: 26px;
+  margin-bottom: 31px;
+}
+.ed-secondary-heading h2 {
+  max-width: 800px;
+  font-size: clamp(2.45rem, 4.3vw, 4.7rem);
+  line-height: 1.04;
+  letter-spacing: -.06em;
+  text-wrap: balance;
+}
+.ed-secondary-heading p:not(.ed-kicker) { max-width: 650px; margin-top: 16px; color: #40566a; font-size: 16px; line-height: 1.7; }
+.ed-secondary a:focus-visible, .ed-secondary button:focus-visible,
+.ed-secondary input:focus-visible, .ed-secondary select:focus-visible,
+.ed-secondary .sk-company-row:focus-visible { outline: 3px solid #9c401b; outline-offset: 4px; }
+
+/* Placement figures remain beside the source context rather than posing as a current-year claim. */
+.ed-placement-stat-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 16px; }
+.ed-placement-stat {
+  --pointer-x: 50%; --pointer-y: 50%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  min-height: 245px;
+  overflow: hidden;
+  padding: clamp(25px, 3vw, 40px);
+  border: 1px solid #e3dacf;
+  border-radius: var(--ed-card-radius);
+  background: #f4efe6;
+  box-shadow: var(--ed-card-shadow);
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.ed-placement-stat::before { content: ''; position: absolute; inset: 0; background: radial-gradient(240px circle at var(--pointer-x) var(--pointer-y), #c14e132b, transparent 70%); opacity: 0; pointer-events: none; transition: opacity .25s ease; }
+.ed-placement-stat--feature { background: #0d2e51; border-color: #0d2e51; color: #fffaf1; }
+.ed-placement-stat--feature::before { background: radial-gradient(240px circle at var(--pointer-x) var(--pointer-y), #edb58f40, transparent 72%); }
+.ed-placement-stat--feature .ed-bento-label { color: #f0ab81; }
+.ed-placement-stat strong { position: relative; display: block; margin-top: 25px; font-size: clamp(3.2rem, 6.1vw, 6.7rem); line-height: .9; letter-spacing: -.075em; white-space: nowrap; }
+.ed-placement-stat--feature strong { font-size: clamp(4rem, 7.9vw, 8.8rem); }
+.ed-placement-stat h3 { position: relative; margin-top: 21px; font-size: clamp(1.15rem, 1.6vw, 1.7rem); line-height: 1.2; text-transform: capitalize; }
+.ed-placement-caveat { max-width: 930px; margin-top: 17px; color: #596775; font-size: 13px; line-height: 1.65; }
+.ed-placement-caveat a, .ed-secondary-source-record a, .ed-unpictured-companies a, .ed-admissions-more > a:last-child { display: inline-flex; align-items: center; gap: 4px; color: #9c401b; font-weight: 750; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Bento cards reuse the first three destinations' surface and pointer treatment. */
+.ed-secondary-bento { padding-bottom: 0; }
+.ed-secondary-bento--placement > :nth-child(1) { grid-column: span 7; }
+.ed-secondary-bento--placement > :nth-child(2) { grid-column: span 5; }
+.ed-secondary-bento--placement > :nth-child(3) { grid-column: span 5; }
+.ed-secondary-bento--placement > :nth-child(4) { grid-column: span 7; }
+.ed-secondary-bento--admissions > :nth-child(1) { grid-column: span 6; }
+.ed-secondary-bento--admissions > :nth-child(2), .ed-secondary-bento--admissions > :nth-child(3) { grid-column: span 3; }
+.ed-secondary-bento .ed-bento-card > .ed-photo-frame { height: 230px; }
+.ed-secondary-bento .ed-bento-card h3 { font-size: clamp(1.65rem, 2.3vw, 2.65rem); }
+.ed-secondary-bento .ed-bento-card p { font-size: 15px; }
+.ed-secondary-card-links { display: flex; align-items: center; flex-wrap: wrap; gap: 15px 22px; margin-top: auto; padding-top: 24px; }
+.ed-secondary-card-links a { display: inline-flex; align-items: center; gap: 6px; color: #9c401b; font-size: 13px; font-weight: 750; }
+.ed-secondary-card-links a:not(:first-child) { color: #526477; text-decoration: underline; text-underline-offset: 3px; }
+.ed-admissions-course-links { display: grid; gap: 7px; width: 100%; margin-top: auto; padding-top: 20px; }
+.ed-admissions-course-links a { display: flex; justify-content: space-between; align-items: center; gap: 10px; min-height: 39px; border-bottom: 1px solid #e3dacf; color: #9c401b; font-size: 13px; font-weight: 750; }
+.ed-admissions-course-links a:last-child { border-bottom: 0; }
+
+/* The marquee contains image logos only; the visible copy states their provenance. */
+.ed-secondary .sk-official-highlights { margin-top: clamp(68px, 8vw, 105px); padding: clamp(55px, 6vw, 82px) 0; background: #f3f0ea; }
+.ed-secondary .sk-companies-heading h2 { color: #0d2e51; font-family: Georgia, 'Times New Roman', serif; font-weight: 500; font-size: clamp(2.5rem, 4.1vw, 4.5rem); }
+.ed-secondary .sk-companies-heading .sk-eyebrow { color: #9c401b; }
+.ed-secondary .sk-company-pause { min-height: 46px; padding-inline: 16px; border-color: #d6c5b2; background: #fffdfa; color: #803713; font-size: 14px; }
+.ed-secondary .sk-company-pause:hover { background: #f8e9db; }
+.ed-secondary .sk-company-row { margin-top: 24px; border-radius: 12px; }
+.ed-secondary .sk-company-row-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
+.ed-secondary .sk-company-row-heading h3 { font-family: inherit; font-size: 13px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+.ed-secondary .sk-company-row-heading a { color: #9c401b; font-size: 12px; font-weight: 750; text-decoration: underline; text-underline-offset: 3px; }
+.ed-secondary .sk-company-card { flex: 0 0 210px; width: 210px; min-height: 120px; padding: 12px; border-color: #e3dacf; background: #fffdfa; box-shadow: 0 6px 19px #3e34220e; }
+.ed-secondary .sk-company-card img { max-width: 178px; max-height: 88px; }
+.ed-secondary .sk-companies-caption { display: block; padding-top: 18px; }
+.ed-secondary .sk-companies-caption p { max-width: 1000px; color: #526477; font-size: 13px; }
+.ed-secondary .sk-company-viewport { margin-bottom: 0; }
+.ed-secondary .sk-company-row:focus-visible { outline-offset: -3px; }
+.ed-secondary .sk-official-highlights[data-paused="false"] .sk-company-track { animation-play-state: running; }
+.ed-secondary .sk-official-highlights[data-paused="true"] .sk-company-track,
+.ed-secondary .sk-official-highlights:hover .sk-company-track,
+.ed-secondary .sk-official-highlights[data-paused="false"] .sk-company-row:focus-within .sk-company-track { animation-play-state: paused; }
+
+.ed-secondary-history { padding-bottom: 66px; }
+.ed-secondary-history .sk-placement-history { margin-top: clamp(68px, 8vw, 105px); }
+.ed-secondary-history .sk-placement-history .sk-eyebrow { color: #9c401b; }
+.ed-secondary-history .sk-placement-history h2 { color: #0d2e51; font-family: Georgia, 'Times New Roman', serif; font-weight: 500; }
+.ed-secondary-history .sk-placement-history > p:not(.sk-eyebrow) { color: #40566a; }
+.ed-secondary-history .sk-history-list article { border-color: #e3dacf; background: #f4efe6; }
+.ed-secondary-history .sk-history-list span, .ed-secondary-history .sk-history-list a { color: #9c401b; }
+.ed-secondary-history .sk-history-list h3 { color: #0d2e51; font-family: Georgia, 'Times New Roman', serif; font-weight: 500; }
+.ed-secondary-history .sk-history-list p { color: #526477; font-size: 14px; }
+.ed-secondary-next { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; padding-bottom: 75px; }
+.ed-secondary-next a { display: flex; justify-content: space-between; gap: 12px; align-items: center; min-height: 68px; padding: 15px 20px; border: 1px solid #e3dacf; border-radius: 13px; color: #9c401b; font-size: 15px; font-weight: 750; transition: background .2s ease, transform .2s ease; }
+.ed-secondary-next a:hover { background: #f4efe6; transform: translateY(-2px); }
+.ed-secondary-source-record { padding-block: 38px 55px; }
+.ed-secondary-source-record h2, .ed-unpictured-companies h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); letter-spacing: -.04em; }
+.ed-secondary-source-record > div { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 15px; margin-top: 22px; }
+.ed-secondary-source-record article { grid-column: span 5; padding: clamp(22px, 2.5vw, 32px); border: 1px solid #e3dacf; border-radius: 18px; background: #fffdfa; }
+.ed-secondary-source-record article:first-child { grid-column: span 7; background: #eae0d2; }
+.ed-secondary-source-record article:last-child:nth-child(odd) { grid-column: span 12; }
+.ed-secondary-source-record h3 { font-size: 21px; }
+.ed-secondary-source-record p, .ed-unpictured-companies p { margin: 10px 0; color: #40566a; font-size: 14px; line-height: 1.65; }
+.ed-secondary-source-record li { margin-left: 18px; list-style: disc; color: #40566a; font-size: 14px; }
+.ed-secondary-source-record a { margin-top: 13px; font-size: 13px; }
+.ed-unpictured-companies { padding-bottom: 60px; }
+.ed-unpictured-companies ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; margin-top: 20px; }
+.ed-unpictured-companies li { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 12px 16px; border: 1px solid #e3dacf; border-radius: 9px; background: #fffdfa; font-size: 14px; }
+.ed-unpictured-companies a { flex: 0 0 auto; font-size: 12px; }
+
+/* Admissions keeps the visit target prominent for links from Home and course pages. */
+.ed-admissions-visit { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 35px; margin-block: clamp(66px, 8vw, 105px) 24px; padding: clamp(30px, 4vw, 55px); border-radius: 24px; background: #0d2e51; color: #fffaf1; scroll-margin-top: 100px; }
+.ed-admissions-visit .ed-kicker { color: #f0ab81; }
+.ed-admissions-visit h2 { max-width: 700px; margin-top: 16px; font-size: clamp(2.25rem, 3.9vw, 4.25rem); line-height: 1.05; letter-spacing: -.055em; }
+.ed-admissions-visit p:not(.ed-kicker) { max-width: 670px; margin-top: 15px; color: #e8e4dd; font-size: 16px; line-height: 1.65; }
+.ed-admissions-visit .sk-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.ed-secondary .sk-actions .sk-button { min-height: 48px; border: 1px solid #a9400e; border-radius: 9px; background: #a9400e; color: #fff; font-size: 14px; }
+.ed-secondary .sk-actions .sk-button:hover { background: #873007; border-color: #873007; }
+.ed-admissions-visit .sk-actions .sk-button-outline { border-color: #c6a58c; background: transparent; color: #fffaf1; }
+.ed-admissions-visit .sk-actions .sk-button-outline:hover { background: #ffffff1c; }
+.ed-admissions-directions { display: inline-flex; align-items: center; gap: 5px; margin-top: 20px; color: #f0ab81; font-size: 14px; font-weight: 750; text-decoration: underline; text-underline-offset: 4px; }
+.ed-admissions-more { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 15px 30px; padding-block: 8px 78px; }
+.ed-admissions-more > a:first-child { display: inline-flex; align-items: center; gap: 7px; color: #9c401b; font-size: 14px; font-weight: 750; }
+.ed-admissions-more > a:last-child { font-size: 13px; }
+.ed-secondary--admissions .ed-source-body .sk-admissions-official { background: transparent; }
+
+/* Contact keeps one visible form and moves the additional official records below it. */
+.ed-contact-quick-actions { padding-top: 38px; }
+.ed-contact-quick-actions .sk-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.ed-contact-quick-actions .sk-button-outline { border-color: #cdb9a1 !important; background: #fffdfa !important; color: #803713 !important; }
+.ed-contact-quick-actions .sk-button-outline:hover { background: #f8e9db !important; }
+.ed-contact-overview { padding-block: clamp(50px, 6vw, 76px) 76px; }
+.ed-contact-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; }
+.ed-contact-phone, .ed-contact-email { grid-column: span 5; min-height: 210px; }
+.ed-contact-address { grid-column: span 12; min-height: 180px; }
+.ed-contact-form { grid-column: span 7; grid-row: span 2; min-width: 0; padding: clamp(26px, 3vw, 42px); background: #fffdfa; }
+.ed-contact-form h3 { margin-top: 17px; font-size: clamp(2rem, 3vw, 3.4rem); line-height: 1.04; letter-spacing: -.055em; }
+.ed-contact-form > p { max-width: 490px; color: #40566a; font-size: 15px; line-height: 1.65; }
+.ed-contact-form .sk-counselling-form { max-width: 560px; }
+.ed-contact-form .sk-field label { color: #263f53; font-size: 13px; }
+.ed-contact-form .sk-field input, .ed-contact-form .sk-field select { min-height: 50px; border-color: #d9caba; border-radius: 9px; background: #fbfaf7; }
+.ed-contact-form .sk-counselling-form .sk-button { min-height: 50px; border-radius: 9px; background: #a9400e; font-size: 14px; }
+.ed-contact-form .sk-counselling-form .sk-button:hover { background: #873007; }
+.ed-contact-phone-list { margin-top: auto !important; padding-top: 18px; }
+.ed-contact-phone-list li { padding-left: 0 !important; font-size: 15px; }
+.ed-contact-phone-list li::before { display: none; }
+.ed-contact-phone-list li:first-child a { color: #9c401b; font-size: 21px; font-weight: 750; }
+.ed-contact-email a, .ed-contact-phone-list a { overflow-wrap: anywhere; color: #9c401b; text-decoration: underline; text-underline-offset: 3px; }
+.ed-contact-address p { overflow-wrap: anywhere; }
+.ed-contact-directions { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 20px; color: #9c401b; font-size: 14px; font-weight: 750; }
+.ed-contact-overview .sk-source-note { margin-top: 20px; }
+.ed-contact-overview .sk-source-note a { color: #9c401b; }
+.ed-contact-records { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; }
+.ed-contact-record-card { grid-column: span 4; min-width: 0; padding: clamp(23px, 2.8vw, 35px); border: 1px solid #e3dacf; border-radius: 20px; background: #fffdfa; }
+.ed-contact-record-card:first-child { grid-column: span 5; background: #eae0d2; }
+.ed-contact-record-card:nth-child(2) { grid-column: span 7; }
+.ed-contact-record-card:last-child { grid-column: span 12; }
+.ed-contact-records h3 { font-size: clamp(1.55rem, 2.3vw, 2.2rem); line-height: 1.15; }
+.ed-contact-record-card > ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 22px; }
+.ed-contact-record-card > ul li { min-width: 0; padding: 16px; border: 1px solid #e3dacf; border-radius: 12px; background: #f9f6f0; }
+.ed-contact-record-card .sk-office-list li { color: #40566a; }
+.ed-contact-record-card > ul:not(.sk-office-list) li { display: grid; gap: 7px; }
+.ed-contact-record-card strong { color: #0d2e51; font-size: 15px; line-height: 1.35; }
+.ed-contact-record-card span { color: #40566a; font-size: 14px; line-height: 1.6; }
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .ed-placement-stat:hover { transform: translateY(-4px); border-color: #cdb9a1; box-shadow: 0 20px 40px #3e342225; }
+  .ed-placement-stat:hover::before { opacity: 1; }
+}
+@media (max-width: 1100px) {
+  .ed-secondary-heading { grid-template-columns: minmax(0, .36fr) minmax(0, .64fr); }
+  .ed-secondary-bento > .ed-bento-card { grid-column: span 1; }
+  .ed-secondary-bento--admissions > :first-child { grid-column: span 2; }
+  .ed-contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ed-contact-grid > * { grid-column: span 1; grid-row: auto; }
+}
+@media (max-width: 767px) {
+  .ed-secondary .sk-company-card { flex-basis: 168px; width: 168px; min-height: 98px; padding: 9px; }
+  .ed-secondary .sk-company-card img { max-width: 144px; max-height: 70px; }
+  .ed-secondary-heading { grid-template-columns: 1fr; gap: 12px; }
+  .ed-secondary-heading h2 { font-size: clamp(2.2rem, 8vw, 3.9rem); }
+  .ed-placement-stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ed-placement-stat--feature { grid-column: span 2; }
+  .ed-placement-stat { min-height: 185px; }
+  .ed-placement-stat strong { font-size: clamp(2.65rem, 7vw, 4.6rem); }
+  .ed-placement-stat--feature strong { font-size: clamp(4.5rem, 14vw, 7rem); }
+  .ed-admissions-visit { grid-template-columns: 1fr; align-items: start; }
+  .ed-secondary-next { grid-template-columns: 1fr; }
+  .ed-secondary-source-record > div { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ed-secondary-source-record article, .ed-secondary-source-record article:first-child,
+  .ed-secondary-source-record article:last-child:nth-child(odd) { grid-column: auto; }
+  .ed-secondary-source-record article:last-child:nth-child(odd) { grid-column: span 2; }
+  .ed-unpictured-companies ul { grid-template-columns: 1fr; }
+  .ed-contact-record-card, .ed-contact-record-card:first-child, .ed-contact-record-card:nth-child(2),
+  .ed-contact-record-card:last-child { grid-column: span 6; }
+  .ed-contact-record-card:last-child { grid-column: span 12; }
+  .ed-secondary .sk-company-row-heading { align-items: start; }
+}
+@media (max-width: 580px) {
+  .ed-placement-stat-grid, .ed-contact-grid { grid-template-columns: 1fr; gap: 12px; }
+  .ed-placement-stat--feature, .ed-contact-grid > * { grid-column: span 1; }
+  .ed-placement-stat { min-height: 170px; }
+  .ed-placement-stat--feature { min-height: 225px; }
+  .ed-secondary-bento--admissions > :first-child { grid-column: span 1; }
+  .ed-contact-form { padding: 24px 20px; }
+  .ed-admissions-visit { padding: 30px 22px; }
+  .ed-admissions-visit .sk-actions, .ed-contact-quick-actions .sk-actions { flex-direction: column; align-items: stretch; }
+  .ed-secondary .sk-companies-heading { align-items: start; }
+  .ed-secondary .sk-company-row-heading { display: block; }
+  .ed-secondary .sk-company-row-heading a { display: inline-block; margin-top: 5px; }
+  .ed-unpictured-companies li { align-items: start; }
+  .ed-secondary-source-record > div { grid-template-columns: 1fr; }
+  .ed-secondary-source-record article:last-child:nth-child(odd) { grid-column: auto; }
+  .ed-contact-records { grid-template-columns: 1fr; }
+  .ed-contact-record-card, .ed-contact-record-card:first-child, .ed-contact-record-card:nth-child(2),
+  .ed-contact-record-card:last-child { grid-column: auto; }
+  .ed-contact-record-card > ul { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ed-placement-stat, .ed-placement-stat::before, .ed-secondary-next a { transition: none !important; }
+  .ed-placement-stat:hover, .ed-secondary-next a:hover { transform: none !important; }
+  .ed-secondary .sk-company-track { animation: none !important; }
+}

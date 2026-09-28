@@ -9,7 +9,6 @@ import {
 import { Link } from "react-router-dom";
 import { HomeMedia } from "./HomeMedia";
 import { ContactActions } from "./ContactHandoff";
-import { sources } from "./content";
 import { displayDate, homeImages, type HomeModel } from "./home-model";
 
 export function WestinOverview() {
@@ -27,7 +26,7 @@ export function WestinOverview() {
         <article><span>02 / Practise</span><h3>Learn by doing</h3><p>Westin describes hotel-department practice, business projects, workshops, internships and guest sessions.</p><Link to="/why-westin" className="sk-text-link">Discover the approach <ArrowUpRight size={17} aria-hidden="true" /></Link></article>
         <article><span>03 / Belong</span><h3>Make the day yours</h3><p>Clubs, cultural events, student projects, mentoring and career guidance add more to campus life.</p><Link to="/campus" className="sk-text-link">See campus life <ArrowUpRight size={17} aria-hidden="true" /></Link></article>
       </div>
-      <a href={sources.about} target="_blank" rel="noopener noreferrer" className="sk-overview-source">Read the college’s official About page <ArrowUpRight size={16} aria-hidden="true" /><span className="sr-only"> (opens a new tab)</span></a>
+      <Link to="/about" className="sk-overview-source">Explore our college story <ArrowUpRight size={16} aria-hidden="true" /></Link>
     </section>
   );
 }
@@ -235,12 +234,6 @@ export function CareerChapter({ model }: { model: HomeModel }) {
               </Link>
             </div>
           </div>
-        </div>
-        <div className="sk-career-figures" aria-label="Placement figures published by Westin">
-          <div><strong>42 LPA</strong><span>Highest package</span></div>
-          <div><strong>8 LPA</strong><span>Average package</span></div>
-          <div><strong>100%</strong><span>Placement percentage</span></div>
-          <p>Figures published by Westin; the reporting period is not stated. <a href={sources.home} target="_blank" rel="noopener noreferrer">View the official source <ArrowUpRight size={15} aria-hidden="true" /><span className="sr-only"> (opens a new tab)</span></a></p>
         </div>
       </div>
     </section>

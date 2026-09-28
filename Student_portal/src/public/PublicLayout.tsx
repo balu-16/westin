@@ -1,18 +1,22 @@
 import { useEffect, useRef, useState, type MouseEvent } from "react";
-import { ArrowRight, ArrowUp, Menu, X } from "lucide-react";
+import { ArrowRight, ArrowUp, Menu, Search, X } from "lucide-react";
 import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import westinLogo from "../assets/images/westin-logo.avif";
 import { useAuth } from "../contexts/AuthContext";
-import { getFixturePage, publicPageCopy, routeCopy } from "./content";
-import { PUBLIC_CONTENT_MODE } from "./usePublicContent";
+import { getFixturePage, publicPageCopy, publicRecords, routeCopy } from "./content";
+import { findArchiveEntry } from "./officialArchive";
+import { snapshotRoute } from "./usePublicContent";
 import { CampusSketch } from "./CampusSketch";
+import { PublicNextStep } from "./PublicNextStep";
 import "./skybook.css";
+import "./editorial-public.css";
 
 const navigation = [
   ["About", "/about"],
   ["Programs", "/programs"],
   ["Campus life", "/campus"],
   ["Placements", "/placements"],
+  ["Admissions", "/admissions"],
   ["Contact", "/contact"],
 ];
 const footerGroups = [
@@ -22,6 +26,7 @@ const footerGroups = [
       ["About Westin", "/about"],
       ["Mission & vision", "/about/mission-vision"],
       ["Our management", "/about/management"],
+      ["Faculty", "/about/faculty"],
       ["Why Westin", "/why-westin"],
       ["Partnerships", "/partners/bineid"],
     ],
@@ -47,11 +52,15 @@ const footerGroups = [
       ["News & events", "/news"],
       ["Gallery", "/gallery"],
       ["Magazine", "/magazine"],
+      ["Publishing House", "/publishing-house"],
       ["Stories & voices", "/testimonials"],
+      ["Search the site", "/search"],
       ["Contact & visits", "/contact"],
     ],
   },
 ];
+
+const OFFICIAL_RELEASE = import.meta.env.VITE_PUBLIC_RELEASE_MODE === "official";
 
 export function PublicLayout() {
   const { isAuthenticated } = useAuth();
@@ -66,19 +75,29 @@ export function PublicLayout() {
   const pendingNavigation = useRef<ReturnType<typeof setTimeout> | null>(null);
   const previousPath = useRef(location.pathname);
   const page = getFixturePage(location.pathname);
+  const archiveEntry = findArchiveEntry(location.pathname);
+  const olderRecord = archiveEntry ? undefined : publicRecords.find((record) => {
+    const path = record.kind === 'campus-events' ? `/campus/events/${record.id}` : `/${record.kind}/${record.id}`;
+    return path === location.pathname;
+  });
+  const detailRecord = snapshotRoute(location.pathname) ?? archiveEntry ?? olderRecord;
+  const detailTitle = detailRecord && ('content' in detailRecord ? (typeof detailRecord.content.title === 'string' ? detailRecord.content.title : undefined) : detailRecord.title);
+  const detailSummary = detailRecord && ('content' in detailRecord ? (typeof detailRecord.content.summary === 'string' ? detailRecord.content.summary : undefined) : detailRecord.summary);
   const home = location.pathname === "/";
+  const isCollectionDetail = /^\/(?:news|blog|gallery|magazine|testimonials|success-stories)\/[^/]+|^\/campus\/events\/[^/]+/.test(location.pathname);
+  const indexable = OFFICIAL_RELEASE && (home || (!!page && (!isCollectionDetail || !!detailRecord))) && location.pathname !== '/search';
   const title = home
     ? "Westin College, Vijayawada — Big dreams. Bright beginnings."
-    : (page?.program?.title ??
+    : (detailTitle ?? page?.program?.title ??
         (page ? (routeCopy[page.key] ?? publicPageCopy[page.kind]).title : "Page not found")) +
       " · Westin College";
   const description = home
     ? "Discover business, hospitality and a campus full of possibility. Explore Westin College, Vijayawada, and start your next chapter."
-    : page
+    : detailSummary ?? (page
       ? (routeCopy[page.key] ?? publicPageCopy[page.kind]).summary
-      : "Explore Westin College, Vijayawada.";
+      : "Explore Westin College, Vijayawada.");
   const canonicalOrigin = (
-    import.meta.env.VITE_PUBLIC_SITE_ORIGIN ?? "https://www.westincolleges.com"
+    import.meta.env.VITE_PUBLIC_SITE_ORIGIN ?? "https://www.westincollegevijayawada.com"
   ).replace(/\/+$/, "");
   const destination = isAuthenticated ? "/dashboard" : "/login";
   const loginLabel = isAuthenticated ? "Dashboard" : "Student login";
@@ -87,9 +106,12 @@ export function PublicLayout() {
     // Keep the portal's static metadata for private routes, without duplicate
     // descriptions while the public layout supplies route-specific metadata.
     const fallback = document.getElementById("portal-default-description");
+    const defaultRobots = document.getElementById("portal-default-robots");
     fallback?.remove();
+    defaultRobots?.remove();
     return () => {
       if (fallback) document.head.prepend(fallback);
+      if (defaultRobots) document.head.prepend(defaultRobots);
     };
   }, []);
 
@@ -223,20 +245,16 @@ export function PublicLayout() {
   }, [open]);
 
   return (
-    <div className="skybook-site" id="page-top" onClickCapture={onPublicClickCapture}>
+    <div className="skybook-site sk-editorial-site" id="page-top" onClickCapture={onPublicClickCapture}>
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <link
+      {indexable && <link
         rel="canonical"
-        href={
-          canonicalOrigin + (home ? "/" : location.pathname.replace(/\/+$/, ""))
-        }
-      />
-      {PUBLIC_CONTENT_MODE === "fixture" && (
-        <meta name="robots" content="noindex,nofollow" />
-      )}
+        href={canonicalOrigin + (home ? "/" : location.pathname.replace(/\/+$/, ""))}
+      />}
+      <meta name="robots" content={indexable ? "index,follow" : "noindex,nofollow"} />
       <a className="sk-skip" href="#public-content">
         Skip to content
       </a>
@@ -245,17 +263,9 @@ export function PublicLayout() {
           <Link
             to="/"
             className="sk-brand"
-            aria-label="Westin College home. Vijayawada campus. Learn. Grow. Belong."
+            aria-label="Westin College home"
           >
-            <img
-              src={westinLogo}
-              width="575"
-              height="294"
-              alt="Westin College"
-            />
-            <span>
-              Vijayawada campus<span>Learn. Grow. Belong.</span>
-            </span>
+            <img src="/images/official/brand/westin-logo-full-480.png" srcSet="/images/official/brand/westin-logo-full-480.png 480w, /images/official/brand/westin-logo-full-960.png 960w" sizes="128px" width="480" height="245" alt="" />
           </Link>
           <nav className="sk-desktop-nav" aria-label="Public website">
             {navigation.map(([label, to]) => (
@@ -265,6 +275,7 @@ export function PublicLayout() {
             ))}
           </nav>
           <div className="sk-header-actions">
+            <Link className="sk-header-search" to="/search" aria-label="Search the website"><Search size={18} aria-hidden="true" /></Link>
             <Link className="sk-login-link" to={destination}>
               {loginLabel}
             </Link>
@@ -344,9 +355,11 @@ export function PublicLayout() {
         data-exiting={exitingFrom === location.pathname + location.search ? "true" : undefined}
       >
         <Outlet />
+        <PublicNextStep pathname={location.pathname} program={page?.program} />
       </main>
       <footer className="sk-footer">
         <div className="sk-container">
+          <div className="sk-footer-card">
           <div className="sk-footer-top">
             <p>
               Good people.
@@ -404,25 +417,22 @@ export function PublicLayout() {
               </nav>
             ))}
           </div>
-          <div className="sk-footer-signoff">
-            <div className="sk-footer-sketch" aria-hidden="true">
-              <CampusSketch />
-            </div>
-            <div className="sk-footer-wordmark" aria-label="Westin College, Vijayawada">
-              <span>WESTIN</span>
-              <span>College · Vijayawada</span>
-            </div>
-          </div>
           <div className="sk-footer-bottom">
             <span>
               © {new Date().getFullYear()} Westin College · Vijayawada
             </span>
             <span>Made for your next chapter.</span>
           </div>
-          {/* <p className="sk-art-disclosure">
-            AI-generated scenes are illustrative, not photographs of Westin’s
-            campus, students or facilities.
-          </p> */}
+          </div>
+          <div className="sk-footer-signoff">
+            <div className="sk-footer-sketch" aria-hidden="true">
+              <CampusSketch id="westin-footer" />
+            </div>
+            <div className="sk-footer-wordmark" aria-label="Westin College, Vijayawada">
+              <span className="sk-footer-location">College · Vijayawada</span>
+              <span className="sk-footer-oversize" aria-hidden="true">WESTIN</span>
+            </div>
+          </div>
         </div>
       </footer>
     </div>

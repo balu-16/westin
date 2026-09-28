@@ -1,7 +1,9 @@
 import { useEffect, useId, useRef, type CSSProperties } from "react";
 import {
   animateWalker,
+  ARM_BIAS,
   gaitPose,
+  GROUND_DASH_SPACING,
   type LegPose,
   type WalkerController,
 } from "./walker-motion";
@@ -32,7 +34,7 @@ function Leg({ side, pose }: { side: "near" | "far"; pose: LegPose }) {
       transform={`translate(140 ${REST.hipY}) rotate(${pose.hip})`}
     >
       <path
-        d="M-13-5C-16 14-13 39-11 61Q-10 72 1 74c10 0 13-5 13-14L12 4Z"
+        d="M-15-13C-17 10-13 39-11 61Q-10 72 1 74c10 0 13-5 13-14L14-12Z"
         fill={fill}
       />
       <path
@@ -93,7 +95,7 @@ function Arm({ far = false }: { far?: boolean }) {
   return (
     <g
       data-part={`${side}-arm`}
-      transform={`translate(${far ? "157 116" : "137 117"}) rotate(${far ? -REST.arm : REST.arm})`}
+      transform={`translate(${far ? "162 118" : "129 119"}) rotate(${(far ? -REST.arm : REST.arm) + ARM_BIAS})`}
     >
       {/* The skin is behind a sewn sleeve and cuff, so both stay joined in motion. */}
       <path d="M-8 17C-9 27-8 34-6 42q6 7 12 0L8 17Z" fill={skin} />
@@ -235,8 +237,11 @@ export function StudentWalkingLoader({
               stroke="var(--swl-dash)"
               strokeWidth="1.4"
             >
-              {[0, 30, 60, 90, 120, 150, 180, 210, 240].map((x) => (
-                <path key={x} d={`M${x} 3h10`} />
+              {Array.from({ length: 11 }, (_, index) => index).map((index) => (
+                <path
+                  key={index}
+                  d={`M${index * GROUND_DASH_SPACING} 3h9`}
+                />
               ))}
             </g>
           </svg>
@@ -248,7 +253,7 @@ export function StudentWalkingLoader({
           >
             <Arm far />
             {/* The bag is fitted to the back rather than floating outside the shoulder. */}
-            <g data-part="backpack" transform={`rotate(${REST.bag} 110 128)`}>
+            <g data-part="backpack" transform={`translate(4 5) rotate(${REST.bag} 110 170) translate(110 170) scale(0.756) translate(-110 -170)`}>
               <path
                 d="M110 112c-13-6-25 1-29 17l-8 43c-3 17 3 25 16 29l26 4c11 1 17-6 18-19l5-51c0-12-13-18-28-23Z"
                 fill="#B56338"
@@ -287,8 +292,6 @@ export function StudentWalkingLoader({
               d="M120 187h36l4 22c-12 3-28 1-42-3Z"
               fill="var(--swl-pants)"
             />
-            <path d="m135 94 16 1 3 18-17 8-10-10Z" fill="var(--swl-skin)" />
-            <path d="m135 94 16 1 1 9c-5 5-12 5-18 1Z" fill="#AF7652" />
             <g data-part="shirt">
               <path
                 d="M121 106 133 103l12 9 10-7c9 12 11 26 11 44l-3 46c-16 4-31 2-46-3l-5-38c-2-27-4-39 9-48Z"
@@ -301,18 +304,6 @@ export function StudentWalkingLoader({
               />
               <path d="m146 119 8 74" stroke="#4586AD" strokeWidth="1.7" />
               <path d="m149 120 7 72" stroke="#B6E0F0" strokeWidth="2.2" />
-              <path
-                d="m133 101 12 11-9 12-10-17Z"
-                fill="#C5E7F5"
-                stroke="#5C9CBF"
-                strokeWidth=".6"
-              />
-              <path
-                d="m155 103-10 9 11 11 4-10Z"
-                fill="#DFF2FA"
-                stroke="#5C9CBF"
-                strokeWidth=".6"
-              />
               <path
                 d="m153 134 10 1v13l-5 3-4-4Z"
                 fill="#7EBADC"
@@ -349,7 +340,16 @@ export function StudentWalkingLoader({
               <path d="m139 177 4 .2-.2 5-4-.2Z" fill="#EAC093" />
             </g>
             <Arm />
-            <g data-part="head" transform={`rotate(${REST.head} 142 104)`}>
+            <g data-part="head" transform={`rotate(${REST.head} 146 105)`}>
+              {/* The neck turns with the head and extends beneath both jaw and collar. */}
+              <path
+                d="M141 87Q148 86 155 89l3 24-15 9-10-12Z"
+                fill="var(--swl-skin)"
+              />
+              <path
+                d="M143 95q6 6 13 3l1 8q-8 5-17-1Z"
+                fill="#AF7652"
+              />
               <g transform="translate(62 23) scale(.64)">
                 <path
                   d="M104 47c14-12 37-9 47 5 5 7 4 17 7 25l7 10c2 3-1 5-7 6-2 15-12 23-25 20-15-3-24-13-26-27l-7-18Z"
@@ -400,6 +400,20 @@ export function StudentWalkingLoader({
                   strokeWidth="1.9"
                 />
               </g>
+            </g>
+            <g data-part="collar">
+              <path
+                d="m133 101 12 11-9 12-10-17Z"
+                fill="#C5E7F5"
+                stroke="#5C9CBF"
+                strokeWidth=".6"
+              />
+              <path
+                d="m155 103-10 9 11 11 4-10Z"
+                fill="#DFF2FA"
+                stroke="#5C9CBF"
+                strokeWidth=".6"
+              />
             </g>
           </g>
         </g>

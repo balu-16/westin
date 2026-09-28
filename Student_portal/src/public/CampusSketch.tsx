@@ -1,11 +1,8 @@
-import { useId } from "react";
-
 const TREE_CROWN =
   "M44 230c-18 1-30-12-25-27-17-9-16-27-4-37-8-17-1-31 12-39-5-17 2-30 16-37-1-17 10-28 23-31 0-20 13-34 29-29 13-13 30-9 36 6 21-1 29 16 25 33 17 8 24 22 17 37 16 10 20 26 10 40 15 15 13 32 0 43 7 18-4 34-22 37-7 19-25 23-42 14-15 10-32 7-39-6-12 6-26 5-36-4Z";
 
 /** Original academic elevation, inspired by classical architectural pen drawings. */
-export function CampusSketch() {
-  const id = useId();
+export function CampusSketch({ id = 'westin-campus-sketch' }: { id?: string }) {
   const windowId = `${id}-window`;
   const treeId = `${id}-tree`;
   const leafId = `${id}-leaves`;

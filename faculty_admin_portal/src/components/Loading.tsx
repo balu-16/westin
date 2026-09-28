@@ -81,7 +81,7 @@ export function PageLoader({
   className,
 }: {
   label: string
-  /** Rendered walker width in px (height follows the 220:200 viewBox). */
+  /** Rendered walker width in px (height follows the 280:360 viewBox). */
   size?: number
   className?: string
 }) {

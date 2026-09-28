@@ -4,14 +4,18 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "prebuild": "node scripts/refresh-public-snapshot.mjs",
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && npm run build:ssr && node scripts/prerender-public.mjs",
+    "build:official": "VITE_PUBLIC_RELEASE_MODE=official npm run build",
+    "verify:public-build": "node scripts/verify-public-build.mjs",
     "build:ssr": "vite build --ssr src/entry-server.tsx --outDir dist-server",
     "ssr:smoke": "npm run build:ssr && node scripts/ssr-smoke.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
     "test": "playwright test",
     "assets:skybook": "node scripts/optimize-skybook.mjs",
+    "assets:company-logos": "node scripts/normalize-company-logos.mjs",
     "capture:skybook": "node scripts/capture-skybook.mjs"
   },
   "dependencies": {

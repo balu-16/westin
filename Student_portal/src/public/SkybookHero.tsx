@@ -62,17 +62,18 @@ export function SkybookHero({ model }: { model: HomeModel }) {
               <source
                 media="(max-width: 767px)"
                 srcSet="/images/skybook/skybook-mobile-480.webp 480w, /images/skybook/skybook-mobile-720.webp 720w, /images/skybook/skybook-mobile-960.webp 960w"
-                sizes="calc(100vw - 12px)"
+                sizes="(max-width: 767px) calc(100vw - 32px), 100vw"
               />
               <img
                 src="/images/skybook/skybook-desktop-1440.webp"
                 srcSet="/images/skybook/skybook-desktop-960.webp 960w, /images/skybook/skybook-desktop-1440.webp 1440w, /images/skybook/skybook-desktop-1920.webp 1920w"
-                sizes="(min-width: 1440px) 900px, (min-width: 1024px) 65vw, 100vw"
+                sizes="(min-width: 1440px) 880px, (min-width: 1024px) 52vw, 100vw"
                 alt="Illustrative AI-generated artwork: an open sketchbook becomes an imagined campus, with a blue path and a college-age student turning a page."
                 width="1440"
                 height="1080"
                 fetchPriority="high"
                 loading="eager"
+                decoding="async"
                 onError={() => setFailed(true)}
               />
             </picture>
@@ -99,7 +100,7 @@ export function SkybookHero({ model }: { model: HomeModel }) {
             );
           })}
         </nav>
-        <a className="sk-scroll-note" href="#find-your-future">
+        <a className="sk-scroll-note" href="#programmes">
           A little curiosity goes a long way{" "}
           <ArrowDown size={14} aria-hidden="true" />
         </a>

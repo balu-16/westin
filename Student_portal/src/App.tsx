@@ -146,6 +146,14 @@ function AppRoutes() {
           }
         />
         <Route
+          path="/publishing-house"
+          element={
+            <Suspense fallback={<PageLoader label="Opening Westin Publishing House" className="min-h-[60vh]" />}>
+              <PublicPage />
+            </Suspense>
+          }
+        />
+        <Route
           path="/testimonials/*"
           element={
             <Suspense fallback={<PageLoader label="Opening stories" className="min-h-[60vh]" />}>

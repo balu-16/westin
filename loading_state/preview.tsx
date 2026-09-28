@@ -107,7 +107,7 @@ function Preview() {
           />
           <div className="stage-meta">
             <span>ORIGINAL SVG</span>
-            <span>1.25s WALK CYCLE</span>
+            <span>1.4s WALK CYCLE</span>
           </div>
         </div>
       </section>
