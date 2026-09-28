@@ -96,9 +96,9 @@ export function EditorialDestination({ kind, sections, publishedBody, children }
           const card = page.cards[index]
           if (!card) return null
           return <article key={section.title} className={`ed-bento-card ed-bento-card--${card.tone}`} onPointerMove={moveCardLight} onPointerLeave={resetCardLight}>
-            {'image' in card && card.image ? <div className="ed-photo-frame ed-photo-frame--bottom"><img src={`/images/official/campus/${card.image}-960.webp`} srcSet={`/images/official/campus/${card.image}-480.webp 480w, /images/official/campus/${card.image}-960.webp 960w`} sizes="(min-width: 1100px) 45vw, 100vw" width="960" height="640" loading="lazy" decoding="async" alt={card.alt} /><span className="ed-photo-frame-caption ed-photo-frame-caption--label">{card.label}</span></div> : null}
+            {'image' in card && card.image ? <div className="ed-photo-frame"><img src={`/images/official/campus/${card.image}-960.webp`} srcSet={`/images/official/campus/${card.image}-480.webp 480w, /images/official/campus/${card.image}-960.webp 960w`} sizes="(min-width: 1100px) 45vw, 100vw" width="960" height="640" loading="lazy" decoding="async" alt={card.alt} /></div> : null}
             <div className="ed-bento-card-copy">
-              {'image' in card ? null : <span className="ed-bento-label">{card.label}</span>}
+              <span className="ed-bento-label">{card.label}</span>
               <h3>{section.title}</h3>
               <p>{section.body}</p>
               {section.points?.length ? <ul>{section.points.map((point) => <li key={point}>{point}</li>)}</ul> : null}

@@ -726,14 +726,14 @@ export function SuccessSection() {
       <div className="sk-success-grid">
         {successStories.achievements.map((item, index) => (
           <article key={item.title}>
-            <div className="ed-photo-frame ed-photo-frame--bottom">
+            <div className="ed-photo-frame">
               <OfficialPhoto
                 mediaKey={item.image.key}
                 alt={item.image.alt}
                 sizes="(max-width: 767px) calc(100vw - 44px), 340px"
               />
-              <h3 className="ed-photo-frame-caption">{item.title}</h3>
             </div>
+            <h3>{item.title}</h3>
             <p>{item.text}</p>
             {index === 0 && <EditorialNote>Effort deserves its moment.</EditorialNote>}
           </article>
@@ -830,14 +830,14 @@ export function EventsSection() {
         {eventGalleries.map(([id, title, year]) => (
           <li key={id}>
             <Link to={`/campus/events/${id}`}>
-              <span className="ed-photo-frame ed-photo-frame--bottom">
+              <span className="ed-photo-frame">
                 <OfficialPhoto
                   mediaKey={`events/${id}/01`}
                   alt={`Westin ${title}${year ? ` ${year}` : ""} event photograph`}
                   sizes="(max-width: 767px) calc(100vw - 44px), 240px"
                 />
-                <h3 className="ed-photo-frame-caption">{title}</h3>
               </span>
+              <h3>{title}</h3>
             </Link>
           </li>
         ))}
@@ -1253,16 +1253,17 @@ export function CampaignTaglinesSection() {
           <ul aria-label={`${group.label} campaign photographs`}>
             {group.items.map((item, index) => (
               <li key={`${group.label}-${index}`} className="ed-source-card">
-                <div className="ed-photo-frame ed-photo-frame--bottom">
+                <div className="ed-photo-frame">
                   <OfficialPhoto
                     mediaKey={item.image.key}
                     alt={item.image.alt}
                     sizes="(max-width: 767px) 78vw, 380px"
                   />
-                  <span className="ed-photo-frame-caption ed-photo-frame-caption--label">{group.label}</span>
                 </div>
                 <p className="sk-campaign-title">{item.title}</p>
                 <p className="sk-campaign-sub">{item.subtitle}</p>
+                {groupIndex === 0 && index === 1 && <EditorialNote>Care lives in the details.</EditorialNote>}
+                {groupIndex === 0 && index === 5 && <EditorialNote>Lead with purpose.</EditorialNote>}
               </li>
             ))}
           </ul>

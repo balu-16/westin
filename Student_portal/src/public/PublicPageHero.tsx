@@ -107,12 +107,14 @@ export function PublicPageHero({
   eyebrow,
   title,
   summary,
+  quote,
   photo,
 }: {
   kind: HeroKind
   eyebrow: string
   title: string
   summary: string
+  quote: string
   photo?: PageHeroPhoto
 }) {
   const motif = heroMotifs[kind]
@@ -127,7 +129,7 @@ export function PublicPageHero({
           <p className="sk-eyebrow"><span className="sk-small-line" aria-hidden="true" />{eyebrow}</p>
           <h1>{title}</h1>
           <p className="sk-page-hero-summary">{summary}</p>
-          <p className="sk-page-hero-quote">Good people<br />make great places<span aria-hidden="true" /></p>
+          <p className="sk-page-hero-quote">{quote}<span aria-hidden="true" /></p>
         </div>
         {photo ? <figure className="sk-page-hero-photo">
           <img src={photoSrc} srcSet={photoSrcSet} sizes="(min-width: 900px) 50vw, 100vw" width="960" height="640" loading="eager" fetchPriority="high" decoding="async" alt={photo.alt} />

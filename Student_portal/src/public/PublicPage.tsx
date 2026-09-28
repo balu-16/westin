@@ -10,6 +10,7 @@ import type { PublishedContentEntry } from '../lib/publicApi'
 import { PUBLIC_CONTENT_MODE, publicSnapshot, snapshotPublicPath, snapshotRoute, usePublishedEntry, usePublishedSite } from './usePublicContent'
 import { publicFetch, publicSearchUrl } from '../lib/publicApi'
 import { PublicPageHero, type PageHeroPhoto } from './PublicPageHero'
+import { heroQuoteFor } from './heroQuotes'
 import { EditorialNote } from './EditorialNote'
 import { archivePath, findArchiveEntry, officialArchive, type OfficialArchiveEntry } from './officialArchive'
 import { safePublicUrl } from './home-model'
@@ -86,7 +87,7 @@ const kindHeroPhotos: Record<PublicPageKind, PageHeroPhoto> = {
 
 function PageIntro({ kind, keyName, title, summary, heroPhoto }: { kind: PublicPageKind; keyName: string; title?: string; summary?: string; heroPhoto?: PageHeroPhoto }) {
   const copy = routeCopy[keyName] ?? publicPageCopy[kind]
-  return <PublicPageHero kind={kind} eyebrow={copy.eyebrow} title={title || copy.title} summary={summary || copy.summary} photo={heroPhoto ?? routeHeroPhotos[keyName] ?? kindHeroPhotos[kind]} />
+  return <PublicPageHero kind={kind} eyebrow={copy.eyebrow} title={title || copy.title} summary={summary || copy.summary} quote={heroQuoteFor(keyName, title || copy.title)} photo={heroPhoto ?? routeHeroPhotos[keyName] ?? kindHeroPhotos[kind]} />
 }
 
 function SectionCards({ sections }: { sections: PublicSection[] }) {
@@ -116,10 +117,21 @@ function ProgramIndex({ entries }: { entries: PublishedContentEntry[] }) {
       <div className="ed-program-grid">
         {fixturePrograms.filter((program) => program.group === group.name).map((program, index) => {
           const published = entries.find((entry) => entry.entryType === 'program' && entry.slug === program.slug)
+          const cardImage = index === 0
+            ? { stem: group.image, alt: group.alt }
+            : program.slug === 'bba-honours'
+              ? { stem: 'bba-programme-2', alt: 'Westin business student seated in a blue blazer' }
+              : null
           return <article key={program.slug} className={`ed-program-card${index === 0 ? ' ed-program-card--feature' : ''}`} onPointerMove={moveCardLight} onPointerLeave={resetCardLight}>
-            {index === 0 && <div className="ed-photo-frame ed-photo-frame--bottom"><img src={`/images/official/campus/${group.image}-960.webp`} srcSet={`/images/official/campus/${group.image}-480.webp 480w, /images/official/campus/${group.image}-960.webp 960w`} sizes="(min-width: 1100px) 45vw, 100vw" width="960" height="640" loading="lazy" decoding="async" alt={group.alt} /><span className="ed-photo-frame-caption">{group.name}</span></div>}
+            {cardImage && <div className="ed-photo-frame"><img src={`/images/official/campus/${cardImage.stem}-960.webp`} srcSet={`/images/official/campus/${cardImage.stem}-480.webp 480w, /images/official/campus/${cardImage.stem}-960.webp 960w`} sizes="(min-width: 1100px) 45vw, 100vw" width="960" height="640" loading="lazy" decoding="async" alt={cardImage.alt} /></div>}
             <div className="ed-program-card-copy"><span className="ed-bento-label">{program.label}</span><h4>{published && contentText(published.content, 'title') || program.title}</h4><p>{published && contentText(published.content, 'summary') || program.summary}</p>
               <ul>{program.facts.map((fact) => <li key={fact}>{fact}</li>)}</ul>
+              {program.slug === 'bba-honours' && <div className="ed-program-year-plan"><h5>Four years at a glance</h5><dl>
+                <div><dt>Year 1</dt><dd>Core business subjects.</dd></div>
+                <div><dt>Year 2</dt><dd>Three-month internship and certifications.</dd></div>
+                <div><dt>Year 3</dt><dd>Specialisation and six months of corporate training.</dd></div>
+                <div><dt>Year 4</dt><dd>Research, innovation, leadership and a year-long project.</dd></div>
+              </dl></div>}
               {index === 0 && <EditorialNote>{group.note}</EditorialNote>}
               <div className="ed-program-card-links"><Link to={'/programs/' + program.slug}>Explore course <ArrowRight size={17} aria-hidden="true" /></Link><a href={program.source} target="_blank" rel="noopener noreferrer">Original course record <span className="sr-only">(opens a new tab)</span></a></div>
             </div>
@@ -249,7 +261,8 @@ function RecordGrid({ kind, entries }: { kind: PublicPageKind; entries: Publishe
         const imageAlt = 'imageAlt' in record && typeof record.imageAlt === 'string' ? record.imageAlt : record.title
         const label = 'label' in record && typeof record.label === 'string' ? record.label : record.kind === 'campus-events' ? 'Campus event' : 'Westin archive'
         return <article key={record.id} className="ed-record-card flex flex-col overflow-hidden p-6" onPointerMove={moveCardLight} onPointerLeave={resetCardLight}>
-          {image ? <div className="ed-photo-frame ed-photo-frame--bottom"><img className="sk-archive-thumb" src={image} width="600" height="400" loading="lazy" alt={imageAlt} /><span className="ed-photo-frame-caption ed-photo-frame-caption--label">{label}</span></div> : <p className="text-xs font-bold uppercase tracking-[.15em] text-[#9c401b]">{label}</p>}
+          {image ? <div className="ed-photo-frame"><img className="sk-archive-thumb" src={image} width="600" height="400" loading="lazy" alt={imageAlt} /></div> : null}
+          <p className="text-xs font-bold uppercase tracking-[.15em] text-[#9c401b]">{label}</p>
           <h2 className="mt-4 text-2xl font-bold tracking-[-.04em] text-[#0d2e51]">{record.title}</h2>
           <p className="mt-3 flex-1 text-sm leading-7 text-[#40566a]">{record.summary}</p>
           {(record.date || record.context) && <p className="mt-4 text-xs font-semibold text-[#526477]">{[record.date, record.context].filter(Boolean).join(' · ')}</p>}
@@ -269,9 +282,11 @@ function GalleryCollection({ entries }: { entries: PublishedContentEntry[] }) {
       <div><p className="sk-eyebrow">Learning in action</p><h2>Practice, people and shared moments.</h2><p>Browse photographs published in Westin’s event galleries. Open a collection to see its source and the context supplied by the college.</p><EditorialNote className="ed-card-note--paired">Every moment tells a story.</EditorialNote></div>
     </div>
     <div className="sk-gallery-grid">{published.map((entry) => <Link key={entry.id} to={publicEntryPath(entry)}>
-      {safePublicUrl(entry.media?.[0]?.url) ? <span className="ed-photo-frame ed-photo-frame--bottom"><img src={safePublicUrl(entry.media[0].url)} width="600" height="400" loading="lazy" alt={entry.media[0].altText || contentText(entry.content, 'title')} /><span className="ed-photo-frame-caption">{contentText(entry.content, 'title')}</span></span> : <span>{contentText(entry.content, 'title')}</span>}
+      {safePublicUrl(entry.media?.[0]?.url) && <span className="ed-photo-frame"><img src={safePublicUrl(entry.media[0].url)} width="600" height="400" loading="lazy" alt={entry.media[0].altText || contentText(entry.content, 'title')} /></span>}
+      <span className="ed-gallery-card-title">{contentText(entry.content, 'title')}</span>
     </Link>)}{events.map((event) => <Link key={event.id} to={archivePath(event)}>
-      <span className="ed-photo-frame ed-photo-frame--bottom"><img src={event.image} width="600" height="400" loading="lazy" alt={event.imageAlt || event.title} /><span className="ed-photo-frame-caption">{event.title}</span></span>
+      <span className="ed-photo-frame"><img src={event.image} width="600" height="400" loading="lazy" alt={event.imageAlt || event.title} /></span>
+      <span className="ed-gallery-card-title">{event.title}</span>
     </Link>)}</div>
   </div>
 }
@@ -422,7 +437,7 @@ export function PublicSearch() {
 
   return (
     <>
-      <PublicPageHero kind="search" eyebrow="Explore Westin" title="Find what you need." summary="Search programs, college information, articles, events and publications." photo={photo('bba-learning', 'Westin business students learning together', 'Find your next direction')} />
+      <PublicPageHero kind="search" eyebrow="Explore Westin" title="Find what you need." summary="Search programs, college information, articles, events and publications." quote={heroQuoteFor('/search', 'Find what you need.')} photo={photo('bba-learning', 'Westin business students learning together', 'Find your next direction')} />
       <div data-public-fixture={PUBLIC_CONTENT_MODE === 'fixture' ? 'true' : undefined} className="mx-auto max-w-[1360px] px-5 py-14 sm:px-8 lg:px-12 lg:py-24">
         <form onSubmit={(event) => { event.preventDefault(); setSubmitted(query.trim()) }} className="mx-auto flex max-w-3xl gap-2 rounded-2xl border border-[#e3dacf] bg-white p-2 shadow-[0_10px_30px_rgba(62,52,34,.06)]">
           <label htmlFor="public-search" className="sr-only">Search published content</label>
@@ -461,7 +476,7 @@ function publicEntryPath(entry: PublishedContentEntry) {
 export function NotFound() {
   return (
     <>
-      <PublicPageHero kind="not-found" eyebrow="Page not found" title="That page has turned." summary="Try the homepage or explore the programs currently available." photo={photo('about-hero', 'Westin hospitality students learning together', 'Find your way back')} />
+      <PublicPageHero kind="not-found" eyebrow="Page not found" title="That page has turned." summary="Try the homepage or explore the programs currently available." quote="There is always a way back." photo={photo('about-hero', 'Westin hospitality students learning together', 'Find your way back')} />
       <div className="sk-container sk-not-found-action">
         <Link to="/" className="sk-button">Back to Westin <ArrowUpRight size={16} aria-hidden="true" /></Link>
       </div>

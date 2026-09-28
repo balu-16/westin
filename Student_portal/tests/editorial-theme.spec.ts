@@ -43,7 +43,7 @@ test('each main page has one four-question FAQ that works from the keyboard', as
   await expect(page.locator('.ed-faq')).toHaveCount(0)
 })
 
-test('the official logo, legacy mark, and one underlined hero quote are visible', async ({ page }) => {
+test('the official logo, legacy mark, and page-specific underlined hero quotes are visible', async ({ page }) => {
   await page.goto('/')
   const logo = page.locator('.sk-header .sk-brand img')
   await expect(logo).toBeVisible()
@@ -51,15 +51,23 @@ test('the official logo, legacy mark, and one underlined hero quote are visible'
   await expect(page.locator('.ed-legacy-mark')).toContainText('25 years of legacy')
   await expect(page.locator('.ed-legacy-mark img')).toBeVisible()
   await expect(page.locator('.ed-hero-hand')).toHaveCount(1)
-  for (const route of ['/about', '/programs/food-production', '/campus', '/placements', '/admissions', '/contact']) {
+  for (const [route, line] of [
+    ['/about', 'People help us grow.'],
+    ['/programs/food-production', 'Good food begins with care.'],
+    ['/campus', 'Belong, learn, grow.'],
+    ['/placements', 'Make room for possibility.'],
+    ['/admissions', 'The next chapter starts here.'],
+    ['/contact', 'A conversation opens doors.'],
+  ] as const) {
     await page.goto(route)
     const quote = page.locator('.sk-page-hero-quote')
-    await expect(quote, route).toHaveText(/Good people\s*make great places/)
+    await expect(quote, route).toHaveText(line)
+    await expect(page.getByText('Good people', { exact: true })).toHaveCount(0)
     expect(await quote.evaluate((node) => getComputedStyle(node.querySelector('span')!).backgroundColor), route).toBe('rgb(241, 106, 44)')
   }
 })
 
-test('image led cards use contextual notes and the Home photo shades', async ({ page }) => {
+test('image led cards keep contextual notes and only left photo shading', async ({ page }) => {
   const notes = [
     ['/about', ['Guidance helps us grow.']],
     ['/campus', ['Confidence comes from doing.', 'Find your people.']],
@@ -80,29 +88,56 @@ test('image led cards use contextual notes and the Home photo shades', async ({ 
   }
   await page.goto('/about')
   const left = page.locator('.sk-about-official .ed-photo-frame--left')
-  const bottom = page.locator('.ed-bento-grid .ed-photo-frame--bottom').first()
-  for (const frame of [left, bottom]) {
+  const plain = page.locator('.ed-bento-grid .ed-photo-frame').first()
+  for (const frame of [left, plain]) {
     await expect(frame.locator('img')).toBeVisible()
-    expect(await frame.evaluate((node) => getComputedStyle(node, '::after').backgroundImage)).toContain('linear-gradient')
   }
+  expect(await left.evaluate((node) => getComputedStyle(node, '::after').backgroundImage)).toContain('linear-gradient(90deg')
+  expect(await plain.evaluate((node) => getComputedStyle(node, '::after').backgroundImage)).toBe('none')
+  await expect(plain.locator('.ed-photo-frame-caption')).toHaveCount(0)
 })
 
-test('photo collection captions fit their cards on desktop and phone', async ({ page }) => {
+test('photo collection headings sit below photos on desktop and phone', async ({ page }) => {
   for (const width of [390, 1440]) {
     await page.setViewportSize({ width, height: 900 })
     for (const route of ['/gallery', '/campus/events', '/success-stories']) {
       await page.goto(route)
       const frame = page.locator('.sk-gallery-grid .ed-photo-frame, .sk-event-grid .ed-photo-frame, .sk-success-grid .ed-photo-frame').first()
       await expect(frame).toBeVisible()
-      await expect(frame.locator('.ed-photo-frame-caption')).toBeVisible()
+      await expect(frame.locator('.ed-photo-frame-caption')).toHaveCount(0)
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${route} at ${width}px`).toBe(true)
       expect(await frame.evaluate((node) => {
         const frameBounds = node.getBoundingClientRect()
-        const caption = node.querySelector('.ed-photo-frame-caption')?.getBoundingClientRect()
-        return !!caption && caption.left >= frameBounds.left && caption.right <= frameBounds.right && caption.top >= frameBounds.top && caption.bottom <= frameBounds.bottom
+        const heading = node.parentElement?.querySelector('h3, .ed-gallery-card-title')?.getBoundingClientRect()
+        return !!heading && heading.top >= frameBounds.bottom && heading.right <= innerWidth
       }), `${route} at ${width}px`).toBe(true)
     }
   }
+})
+
+test('placements and admissions add real photos while BBA Honours explains all four years', async ({ page }) => {
+  await page.goto('/placements')
+  for (const title of ['Business internships', 'Corporate readiness']) {
+    const card = page.locator('.ed-secondary-bento--placement .ed-bento-card').filter({ hasText: title })
+    const image = card.locator('.ed-photo-frame img')
+    await expect(image).toBeVisible()
+    expect(await image.evaluate(async (node: HTMLImageElement) => { await node.decode(); return node.naturalWidth > 0 })).toBe(true)
+    await expect(card.locator('.ed-photo-frame-caption')).toHaveCount(0)
+  }
+  await page.goto('/admissions')
+  for (const title of ['Check the entry route.', 'See the place for yourself.']) {
+    const card = page.locator('.ed-secondary-bento--admissions .ed-bento-card').filter({ hasText: title })
+    const image = card.locator('.ed-photo-frame img')
+    await expect(image).toBeVisible()
+    expect(await image.evaluate(async (node: HTMLImageElement) => { await node.decode(); return node.naturalWidth > 0 })).toBe(true)
+    await expect(card.locator('.ed-photo-frame-caption')).toHaveCount(0)
+  }
+  await page.goto('/programs')
+  const honours = page.locator('.ed-program-card').filter({ hasText: 'BBA (Honours)' })
+  await expect(honours.locator('.ed-photo-frame img')).toBeVisible()
+  await expect(honours.locator('.ed-program-year-plan dt')).toHaveCount(4)
+  await expect(page.locator('.sk-campaign-group--hospitality .ed-card-note').filter({ hasText: 'Care lives in the details.' })).toBeVisible()
+  await expect(page.locator('.sk-campaign-group--hospitality .ed-card-note').filter({ hasText: 'Lead with purpose.' })).toBeVisible()
 })
 
 test('campus life has one blue panel before the footer with its explore links', async ({ page }) => {

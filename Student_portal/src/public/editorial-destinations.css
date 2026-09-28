@@ -41,7 +41,7 @@
   position: absolute;
   z-index: 1;
   inset: 0;
-  background: linear-gradient(90deg, #f7f4ed 0%, #f7f4edb5 13%, transparent 38%), linear-gradient(0deg, #071b28a6, transparent 29%);
+  background: linear-gradient(90deg, #f7f4ed 0%, #f7f4edb5 13%, transparent 38%);
   pointer-events: none;
 }
 .sk-page-hero-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
@@ -163,10 +163,17 @@
 .ed-program-card { grid-column: span 3; display: flex; flex-direction: column; min-height: 350px; }
 .ed-program-card--feature { grid-column: span 6; }
 .ed-program-group[data-group="business"] .ed-program-card:not(.ed-program-card--feature) { grid-column: span 6; }
+.ed-program-group[data-group="business"] .ed-program-card .ed-photo-frame img { object-position: center top; }
 .ed-program-group[data-group="junior"] .ed-program-card--feature { grid-column: span 12; display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
 .ed-program-group[data-group="junior"] .ed-program-card > .ed-photo-frame { height: 100%; min-height: 320px; }
 .ed-program-card h4 { margin-top: 14px; font-size: clamp(1.55rem, 2.05vw, 2.45rem); line-height: 1.08; letter-spacing: -.045em; }
 .ed-program-card--feature h4 { font-size: clamp(2rem, 2.8vw, 3rem); }
+.ed-program-year-plan { width: 100%; margin-top: 24px; padding-top: 18px; border-top: 1px solid #e3dacf; }
+.ed-program-year-plan h5 { color: #9c401b; font-size: 11px; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; }
+.ed-program-year-plan dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px 20px; margin-top: 16px; }
+.ed-program-year-plan dl > div { min-width: 0; padding-left: 12px; border-left: 2px solid #c14e13; }
+.ed-program-year-plan dt { color: #0d2e51; font-size: 13px; font-weight: 800; }
+.ed-program-year-plan dd { margin-top: 4px; color: #40566a; font-size: 13px; line-height: 1.45; }
 .ed-program-card-links { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; width: 100%; margin-top: auto; padding-top: 24px; }
 .ed-program-card-links a:first-child, .ed-other-options a { display: inline-flex; align-items: center; gap: 7px; color: #9c401b; font-size: 13px; font-weight: 750; }
 .ed-program-card-links a:last-child { color: #40566a; font-size: 11px; line-height: 1.5; text-decoration: underline; text-underline-offset: 3px; }
@@ -210,13 +217,14 @@
 .ed-source-section .sk-campaign-group { margin-top: clamp(40px, 5vw, 64px); }
 .ed-source-section .sk-campaign-group h3 { color: #0d2e51; font-size: clamp(1.7rem, 2.3vw, 2.5rem); line-height: 1.15; }
 .ed-source-section .sk-campaign-group ul { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; overflow: visible; scroll-snap-type: none; }
-.ed-source-section .sk-campaign-group li { grid-column: span 4; min-width: 0; padding: 15px; border-color: #e3dacf; border-radius: var(--ed-card-radius); background: #fffdfa; }
+.ed-source-section .sk-campaign-group li { display: flex; flex-direction: column; grid-column: span 4; min-width: 0; padding: 15px; border-color: #e3dacf; border-radius: var(--ed-card-radius); background: #fffdfa; }
 .ed-source-section .sk-campaign-group--hospitality li:first-child,
 .ed-source-section .sk-campaign-group--hospitality li:last-child { grid-column: span 8; background: #eae0d2; }
 .ed-source-section .sk-campaign-group .ed-photo-frame { aspect-ratio: 16 / 10; border-radius: 5px; }
 .ed-source-section .sk-campaign-group .ed-photo-frame > .sk-photo { aspect-ratio: auto; border-radius: 0; }
 .ed-source-section .sk-campaign-title { margin-top: 18px; color: #0d2e51; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(1.25rem, 1.8vw, 1.75rem); line-height: 1.2; }
 .ed-source-section .sk-campaign-sub { color: #40566a; font-size: 14px; }
+.ed-source-section .sk-campaign-group .ed-card-note { margin: auto 12px auto auto !important; padding-block: 24px; }
 
 .ed-source-body .sk-achievement-counters { gap: 15px; }
 .ed-source-body .sk-achievement-counters > div { padding: 26px 20px; border: 1px solid #e3dacf; border-radius: 18px; background: #fffdfa; text-align: left; }
@@ -279,7 +287,7 @@
   .sk-editorial-site .sk-page-hero-photographic .sk-page-hero-copy { padding: 42px 0 30px; }
   .sk-editorial-site .sk-page-hero-photographic h1 { font-size: clamp(2.8rem, 10vw, 4.5rem); }
   .sk-page-hero-photo { height: clamp(260px, 58vw, 390px); min-height: 0; margin: 0 -24px; }
-  .sk-page-hero-photo::before { background: linear-gradient(180deg, #f7f4ed 0%, #f7f4ed5e 16%, transparent 45%), linear-gradient(0deg, #071b28a6, transparent 30%); }
+  .sk-page-hero-photo::before { background: linear-gradient(180deg, #f7f4ed 0%, #f7f4ed5e 16%, transparent 45%); }
   .sk-page-hero-photo figcaption { right: 28px; bottom: 17px; font-size: 17px; }
   .ed-destination-intro, .ed-programs-intro { grid-template-columns: 1fr; gap: 13px; padding-block: 47px 25px; }
   .ed-destination-intro h2, .ed-programs-intro h2 { font-size: clamp(2.2rem, 7vw, 3.8rem); }
@@ -303,6 +311,7 @@
   .ed-source-body .sk-junior-life, .ed-source-body .sk-achievement-counters, .ed-source-body .sk-placement-totals { grid-template-columns: 1fr; }
   .ed-source-body .sk-campaign-group li { padding: 12px; }
   .ed-source-body .sk-campaign-title { font-size: 1.3rem; }
+  .ed-program-year-plan dl { grid-template-columns: 1fr; }
   .ed-bento-grid, .ed-program-grid, .ed-other-options-grid { grid-template-columns: 1fr; gap: 13px; }
   .ed-bento-grid > .ed-bento-card, .ed-program-grid > .ed-program-card,
   .ed-program-group[data-group="junior"] .ed-program-card--feature { grid-column: span 1; }

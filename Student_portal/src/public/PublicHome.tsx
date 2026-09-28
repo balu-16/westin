@@ -79,8 +79,8 @@ export function PublicHome() {
     <section className="ed-stories ed-shell" aria-labelledby="ed-stories-title">
       <div className="ed-section-heading ed-stories-heading"><h2 id="ed-stories-title"><span className="ed-orange-rule" aria-hidden="true" />Stories from Westin</h2><Link to="/news" className="ed-inline-link">All stories <ArrowRight size={17} aria-hidden="true" /></Link></div>
       <div className="ed-story-grid">
-        <Link className="ed-story-card" to={eventStory?.href || '/campus/events'}><EditorialImage name="story-event" eager alt="Illustrative generated scene of a speaker at a student event" /><span className="ed-story-overlay"><small>Campus events</small><strong>{eventStory?.title || 'Moments that bring people together.'}</strong><span>Explore events <ArrowRight size={16} aria-hidden="true" /></span></span></Link>
-        <Link className="ed-story-card" to={newsStory?.href || '/news'}><EditorialImage name="story-social" eager alt="Illustrative generated scene of students talking at a campus gathering" /><span className="ed-story-overlay"><small>News &amp; stories</small><strong>{newsStory?.title || 'See what is happening at Westin.'}</strong><span>Explore news <ArrowRight size={16} aria-hidden="true" /></span></span></Link>
+        <Link className="ed-story-card" to={eventStory?.href || '/campus/events'}><EditorialImage name="story-event" eager alt="Illustrative generated scene of a speaker at a student event" /><span className="ed-story-copy"><small>Campus events</small><strong>{eventStory?.title || 'Moments that bring people together.'}</strong><span>Explore events <ArrowRight size={16} aria-hidden="true" /></span></span></Link>
+        <Link className="ed-story-card" to={newsStory?.href || '/news'}><EditorialImage name="story-social" eager alt="Illustrative generated scene of students talking at a campus gathering" /><span className="ed-story-copy"><small>News &amp; stories</small><strong>{newsStory?.title || 'See what is happening at Westin.'}</strong><span>Explore news <ArrowRight size={16} aria-hidden="true" /></span></span></Link>
       </div>
     </section>
 
