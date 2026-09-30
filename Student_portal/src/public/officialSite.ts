@@ -239,8 +239,9 @@ export const visionAndMission = {
 export const leadership: Person[] = [
   {
     id: "director-k-durga-prasad",
-    name: "Mr. Durga Prasad K",
-    role: "Director",
+    name: "K. Durga Prasad",
+    role: "Founder & Director",
+    detail: "A qualified hotelier, K. Durga Prasad has helped shape Westin’s growth in Vijayawada and guides its teaching and non-teaching teams. His approach to education connects knowledge with character and opportunity, encouraging students to turn their potential into purposeful careers and develop an outlook that reaches beyond the classroom.",
     image: {
       key: "people/director-k-durga-prasad",
       alt: "Mr. Durga Prasad K, Director of Westin College",
@@ -249,8 +250,9 @@ export const leadership: Person[] = [
   },
   {
     id: "principal-p-chandra-shekar",
-    name: "Mr. Chandra Shekar P",
-    role: "Principal",
+    name: "P. Chandra Shekar",
+    role: "Principal, Vijayawada",
+    detail: "With experience in hospitality and administration, P. Chandra Shekar leads the Vijayawada campus team of educators. His work brings teaching and campus operations together, supporting the smooth organisation of college life. He helps translate the college’s educational direction into the daily work of the local academic team.",
     image: {
       key: "people/principal-p-chandra-shekar-circle",
       alt: "Mr. Chandra Shekar P, Principal of Westin College",
@@ -259,8 +261,9 @@ export const leadership: Person[] = [
   },
   {
     id: "admin-manager-k-sailaja",
-    name: "Mrs. Sailaja K",
-    role: "Admin Manager",
+    name: "Sailaja Kasaraneni",
+    role: "Manager, Administration",
+    detail: "Associated with Westin since its inception, Sailaja Kasaraneni oversees administrative work and staff coordination. Her approach emphasises clear processes, careful organisation and balanced leadership. Through day-to-day planning and people management, she supports the operational foundations that allow educators and campus teams to focus on their work with students.",
     image: {
       key: "people/admin-manager-k-sailaja",
       alt: "Mrs. Sailaja K, Admin Manager of Westin College",
@@ -1046,7 +1049,7 @@ export const bbaAdmissionReasons: Titled = {
     "Comprehensive Curriculum: A strong foundation in management, leadership, entrepreneurship and corporate strategies.",
     "Industry Exposure: Internships, live projects, case studies and industry interactions.",
     "Global Perspective: Student exchange and international exposure.",
-    "100% Placement Assistance: A dedicated placement cell that ensures students get placed in top companies.",
+    "100% Placement Assistance: A dedicated placement cell supporting internship and employment preparation.",
     "Entrepreneurial Focus: Startup incubation, mentorship, funding and resources for aspiring entrepreneurs.",
   ],
   source: officialSources.bbaAdmissions,
@@ -1560,7 +1563,7 @@ export const juniorProgrammeDetail = {
   ],
   learningOutcomes: [
     "Have a strong foundation in business management and economics.",
-    "Be ready for higher education in BBA, B.Com, CA, CS, and MBA programs.",
+    "Prepare for BBA, B.Com and professional study such as CA or CS, with postgraduate options after a bachelor’s degree.",
     "Understand fundamental financial concepts and business operations.",
     "Develop problem-solving skills for real-world business challenges.",
   ],

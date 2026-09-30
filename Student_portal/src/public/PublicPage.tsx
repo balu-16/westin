@@ -15,9 +15,12 @@ import { EditorialNote } from './EditorialNote'
 import { archivePath, findArchiveEntry, officialArchive, type OfficialArchiveEntry } from './officialArchive'
 import { safePublicUrl } from './home-model'
 import { OfficialDestinationContent } from './OfficialDestinationContent'
-import { EditorialDestination, OfficialContentSection, moveCardLight, leaveCardLight } from './EditorialDestinations'
+import { EditorialDestination, OfficialContentSection, SectionNavigation, moveCardLight, leaveCardLight } from './EditorialDestinations'
 import { AdmissionsDestination, ContactDestination, PlacementsDestination } from './SecondaryDestinations'
 import { PublicFaq } from './PublicFaq'
+import { studyDirections } from './learning-content'
+import { CourseLearningSection, LearningSpacesSection } from './LearningSections'
+import { CareerPlannerContent } from './CareerSections'
 import './editorial-destinations.css'
 import './editorial-secondary.css'
 
@@ -33,9 +36,9 @@ function contentText(content: Record<string, unknown>, key: string) {
   return typeof value === 'string' ? value.trim() : ''
 }
 
-function SourceLink({ href, label = 'Original Westin record' }: { href: string; label?: string }) {
+function PublicationLink({ href }: { href: string }) {
   return <a href={href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-bold text-[#9c401b] underline decoration-[#d6b79b] underline-offset-4 hover:text-[#753115]">
-    {label}<ArrowUpRight size={16} aria-hidden="true" /><span className="sr-only"> (opens a new tab)</span>
+    Open publication<ArrowUpRight size={16} aria-hidden="true" /><span className="sr-only"> (opens a new tab)</span>
   </a>
 }
 
@@ -96,29 +99,25 @@ function SectionCards({ sections }: { sections: PublicSection[] }) {
       <h2>{section.title}</h2>
       <p>{section.body}</p>
         {section.points && <ul>{section.points.map((point) => <li key={point}><Check size={16} aria-hidden="true" />{point}</li>)}</ul>}
-        <SourceLink href={section.source} />
     </article>)}
   </div>
 }
 
 function ProgramIndex({ entries }: { entries: PublishedContentEntry[] }) {
-  const groups = [
-    { name: 'Business', slug: 'business', description: 'Explore management, enterprise and the work behind strong decisions.', image: 'bba-programme', alt: 'Westin business students in a learning setting', note: 'Ideas into action.' },
-    { name: 'Hospitality', slug: 'hospitality', description: 'Learn service, food, operations and the craft of welcoming people.', image: 'hm-service-team', alt: 'Westin hospitality students practising service together', note: 'Care is a craft.' },
-    { name: 'Junior college', slug: 'junior', description: 'Build a foundation in commerce and management through MEC or CEC.', image: 'junior-life-1', alt: 'Westin junior college students participating in an activity', note: 'Start with possibility.' },
-  ] as const
+  const groups = studyDirections
   return <div className="ed-programs">
     <section className="ed-shell ed-programs-intro" aria-labelledby="ed-programs-title">
       <p className="ed-kicker"><span className="ed-orange-rule" aria-hidden="true" />Our Programmes · three study directions</p>
       <div><h2 id="ed-programs-title">Find the course that feels like yours.</h2><p>Explore business degrees, hospitality degrees and diplomas, and MEC or CEC intermediate study. Each course page has its learning areas, entry details and a way to speak with the Vijayawada team.</p></div>
     </section>
+    <SectionNavigation label="Programs sections" items={[...groups.map((group) => ({ href: `#ed-program-${group.slug}`, label: group.name })), { href: '#learning-methods', label: 'How learning works' }, { href: '#other-options-title', label: 'Other options' }]} />
     {groups.map((group) => <section key={group.slug} className="ed-shell ed-program-group" data-group={group.slug} aria-labelledby={`ed-program-${group.slug}`}>
       <div className="ed-program-group-heading"><div><p className="ed-kicker"><span className="ed-orange-rule" aria-hidden="true" />Study direction</p><h3 id={`ed-program-${group.slug}`}>{group.name}</h3></div><p>{group.description}</p></div>
       <div className="ed-program-grid">
         {fixturePrograms.filter((program) => program.group === group.name).map((program, index) => {
           const published = entries.find((entry) => entry.entryType === 'program' && entry.slug === program.slug)
           const cardImage = index === 0
-            ? { stem: group.image, alt: group.alt }
+            ? { stem: group.image.key.replace('campus/', ''), alt: group.image.alt }
             : program.slug === 'bba-honours'
               ? { stem: 'bba-programme-2', alt: 'Westin business student seated in a blue blazer' }
               : null
@@ -133,7 +132,7 @@ function ProgramIndex({ entries }: { entries: PublishedContentEntry[] }) {
                 <div><dt>Year 4</dt><dd>Research, innovation, leadership and a year-long project.</dd></div>
               </dl></div>}
               {index === 0 && <EditorialNote>{group.note}</EditorialNote>}
-              <div className="ed-program-card-links"><Link to={'/programs/' + program.slug}>Explore course <ArrowRight size={17} aria-hidden="true" /></Link><a href={program.source} target="_blank" rel="noopener noreferrer">Original course record <span className="sr-only">(opens a new tab)</span></a></div>
+              <div className="ed-program-card-links"><Link to={'/programs/' + program.slug}>Explore course <ArrowRight size={17} aria-hidden="true" /></Link></div>
             </div>
           </article>
         })}
@@ -158,6 +157,7 @@ function ProgramDetail({ program, published }: { program: PublicProgram; publish
         {publishedBody && <p className="mt-5 whitespace-pre-line border-l-2 border-[#f2a159] pl-5 text-base leading-8 text-[#40566a]">{publishedBody}</p>}
         <h3 className="mt-9 text-xl font-bold text-[#0d2e51]">What you will explore</h3>
         <ul className="mt-4 grid gap-3 text-[15px] leading-7 text-[#40566a]">{program.learning.map((point) => <li key={point} className="flex gap-3"><Check size={17} className="mt-1 shrink-0 text-[#c14e13]" aria-hidden="true" />{point}</li>)}</ul>
+        <CourseLearningSection group={program.group} />
         {program.related && <div className="mt-9 border-t border-[#e3dacf] pt-6">
           <h3 className="mb-3 text-lg font-bold text-[#0d2e51]">Related courses</h3>
           <div className="flex flex-wrap gap-2">{program.related.map((slug) => {
@@ -169,11 +169,10 @@ function ProgramDetail({ program, published }: { program: PublicProgram; publish
       <aside className="self-start rounded-[28px] border border-[#e3dacf] bg-[#f4efe6] p-6 sm:p-8">
         <p className="sk-eyebrow">At a glance</p>
         <ul className="mt-5 grid gap-3">{program.facts.map((fact) => <li key={fact} className="flex gap-3 border-b border-[#e3dacf] pb-3 text-sm font-semibold text-[#40566a] last:border-0"><span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#c14e13]" />{fact}</li>)}</ul>
-        <h3 className="mt-7 text-lg font-bold text-[#0d2e51]">Entry listed by Westin</h3>
+        <h3 className="mt-7 text-lg font-bold text-[#0d2e51]">Entry requirements</h3>
         <p className="mt-2 text-sm leading-7 text-[#40566a]">{program.entry}</p>
         <h3 className="mt-6 text-lg font-bold text-[#0d2e51]">Where it can lead</h3>
         <p className="mt-2 text-sm leading-7 text-[#40566a]">{program.outcomes}</p>
-        <div className="mt-7"><SourceLink href={program.source} label="Original course record" /></div>
         <Link to="/admissions#visit" className="mt-7 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#9c401b] px-5 text-sm font-bold text-white">Ask about this course <ArrowUpRight size={16} aria-hidden="true" /></Link>
       </aside>
     </div>
@@ -230,7 +229,8 @@ function LocalDetail({ record }: { record: LocalRecord }) {
             {points?.length ? <ul>{points.map((point) => <li key={point}>{point}</li>)}</ul> : null}
           </>
         )}
-        <SourceLink href={record.source} label="View original Westin archive" />
+        {record.kind === 'magazine' && <PublicationLink href={record.source} />}
+        {'attachment' in record && record.attachment && <a className="sk-text-link" href={record.attachment.href} target="_blank" rel="noopener noreferrer">{record.attachment.title}<ArrowUpRight size={16} aria-hidden="true" /><span className="sr-only"> (opens a new tab)</span></a>}
         <Link to={record.kind === 'campus-events' ? '/campus/events' : '/' + record.kind} className="sk-text-link">Back to the collection <ArrowRight size={17} aria-hidden="true" /></Link>
       </div>
     </article></div>
@@ -247,7 +247,7 @@ function RecordGrid({ kind, entries }: { kind: PublicPageKind; entries: Publishe
   const names = new Set(published.map((entry) => contentText(entry.content, 'title').toLowerCase()))
   const sourceUrls = new Set(published.map((entry) => contentText(entry.content, 'sourceUrl')).filter(Boolean))
   return <div className={wrap}>
-    <p className="mb-8 max-w-3xl text-base leading-8 text-[#40566a]">Explore our college archive. Dates and campus context are shown where the original record provides them; new published stories appear alongside earlier material.</p>
+    <p className="mb-8 max-w-3xl text-base leading-8 text-[#40566a]">Explore our college archive, with dates and campus details where available. Discover recent stories alongside earlier events and publications.</p>
     {kind === 'magazine' && <Link to="/publishing-house" className="sk-text-link mb-8">Explore Westin Publishing House <ArrowRight size={17} aria-hidden="true" /></Link>}
     <div className="ed-record-grid">
       {published.map((entry) => <article key={entry.id || entry.slug} className="ed-record-card flex flex-col p-6" onPointerMove={moveCardLight} onPointerLeave={leaveCardLight}>
@@ -266,7 +266,7 @@ function RecordGrid({ kind, entries }: { kind: PublicPageKind; entries: Publishe
           <h2 className="mt-4 text-2xl font-bold tracking-[-.04em] text-[#0d2e51]">{record.title}</h2>
           <p className="mt-3 flex-1 text-sm leading-7 text-[#40566a]">{record.summary}</p>
           {(record.date || record.context) && <p className="mt-4 text-xs font-semibold text-[#526477]">{[record.date, record.context].filter(Boolean).join(' · ')}</p>}
-          {kind === 'magazine' ? <div className="mt-5"><SourceLink href={record.source} label="Open publication" /></div> : <Link to={localRecordPath(record)} className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#9c401b]">Explore record <ArrowRight size={17} aria-hidden="true" /></Link>}
+          {kind === 'magazine' ? <div className="mt-5"><PublicationLink href={record.source} /></div> : <Link to={localRecordPath(record)} className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#9c401b]">Explore record <ArrowRight size={17} aria-hidden="true" /></Link>}
         </article>
       })}
     </div>
@@ -279,7 +279,7 @@ function GalleryCollection({ entries }: { entries: PublishedContentEntry[] }) {
   return <div className={wrap}>
     <div className="sk-gallery-feature">
       <div className="ed-photo-frame ed-photo-frame--left"><img src="/images/official/hospitality-practice.webp" width="1200" height="800" loading="eager" alt="Westin students practising food production together" /><span className="ed-photo-frame-caption">Learning in action</span></div>
-      <div><p className="sk-eyebrow">Learning in action</p><h2>Practice, people and shared moments.</h2><p>Browse photographs published in Westin’s event galleries. Open a collection to see its source and the context supplied by the college.</p><EditorialNote className="ed-card-note--paired">Every moment tells a story.</EditorialNote></div>
+      <div><p className="sk-eyebrow">Learning in action</p><h2>Practice, people and shared moments.</h2><p>Explore our event galleries, from practical learning to celebrations and student activities. Open a collection to discover its photographs and event details.</p><EditorialNote className="ed-card-note--paired">Every moment tells a story.</EditorialNote></div>
     </div>
     <div className="sk-gallery-grid">{published.map((entry) => <Link key={entry.id} to={publicEntryPath(entry)}>
       {safePublicUrl(entry.media?.[0]?.url) && <span className="ed-photo-frame"><img src={safePublicUrl(entry.media[0].url)} width="600" height="400" loading="lazy" alt={entry.media[0].altText || contentText(entry.content, 'title')} /></span>}
@@ -305,6 +305,16 @@ function EditorialPage({ kind, keyName, entries, published }: { kind: PublicPage
   const publishedTitle = published && contentText(published.content, 'title')
   const publishedSummary = published && contentText(published.content, 'summary')
   const publishedBody = published && contentText(published.content, 'body')
+  if (keyName === '/career-planner') return <div className="ed-secondary ed-secondary--career">
+    <PageIntro kind={kind} keyName={keyName} title={publishedTitle || undefined} summary={publishedSummary || undefined} />
+    <CareerPlannerContent />
+    {publishedBody && <article className="ed-shell ed-published-copy"><h2>More from Westin</h2><p>{publishedBody}</p></article>}
+  </div>
+  if (keyName === '/campus/infrastructure') return <>
+    <PageIntro kind={kind} keyName={keyName} title={publishedTitle || undefined} summary={publishedSummary || undefined} />
+    <LearningSpacesSection />
+    {publishedBody && <article className="ed-shell ed-published-copy"><h2>More from Westin</h2><p>{publishedBody}</p></article>}
+  </>
   if (keyName === '/placements' && sections) return <PlacementsDestination sections={sections} title={publishedTitle || undefined} summary={publishedSummary || undefined} publishedBody={publishedBody || undefined} />
   if ((keyName === '/about' || keyName === '/campus') && sections) return <>
     <PageIntro kind={kind} keyName={keyName} title={publishedTitle || undefined} summary={publishedSummary || undefined} />
@@ -383,7 +393,7 @@ export function PublicPage() {
     <ProgramDetail program={page.program} published={published} />
     <MovedContent path={page.key} programSlug={page.program.slug} />
   </div>
-  if (page.kind === 'programs') return <div data-public-fixture={PUBLIC_CONTENT_MODE === 'fixture' ? 'true' : undefined}><PageIntro kind="programs" keyName={page.key} /><ProgramIndex entries={entries} /><OfficialContentSection kind="programs" title="The ideas behind each school." intro="Explore Westin’s published campaign lines and photographs across hospitality, business, junior college and publishing."><MovedContent path={page.key} /></OfficialContentSection><PublicFaq route="/programs" /></div>
+  if (page.kind === 'programs') return <div data-public-fixture={PUBLIC_CONTENT_MODE === 'fixture' ? 'true' : undefined}><PageIntro kind="programs" keyName={page.key} title={published && contentText(published.content, 'title') || undefined} summary={published && contentText(published.content, 'summary') || undefined} /><ProgramIndex entries={entries} /><OfficialContentSection kind="programs" title="How learning comes to life." intro="Discover the practical experiences that connect subject knowledge, professional skills and personal development.">{published && contentText(published.content, 'body') && <article className="ed-shell ed-published-copy"><h2>More from Westin</h2><p>{contentText(published.content, 'body')}</p></article>}<MovedContent path={page.key} /></OfficialContentSection><PublicFaq route="/programs" /></div>
   return <div data-public-fixture={PUBLIC_CONTENT_MODE === 'fixture' ? 'true' : undefined}><EditorialPage kind={page.kind} keyName={page.key} entries={entries} published={published} /></div>
 }
 

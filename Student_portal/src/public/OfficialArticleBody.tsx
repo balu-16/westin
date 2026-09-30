@@ -32,8 +32,7 @@ export function OfficialArticleBody({ slug }: { slug: string }) {
   if (!article) {
     return (
       <p>
-        This article is not available in the migrated archive. The original text
-        is on the Westin College website.
+        The full text of this article is currently unavailable.
       </p>
     );
   }

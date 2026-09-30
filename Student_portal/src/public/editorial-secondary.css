@@ -66,6 +66,14 @@
 .ed-secondary-card-links { display: flex; align-items: center; flex-wrap: wrap; gap: 15px 22px; margin-top: auto; padding-top: 24px; }
 .ed-secondary-card-links a { display: inline-flex; align-items: center; gap: 6px; color: #9c401b; font-size: 13px; font-weight: 750; }
 .ed-secondary-card-links a:not(:first-child) { color: #526477; text-decoration: underline; text-underline-offset: 3px; }
+.ed-placement-career-details { width: 100%; margin-top: 20px; }
+.ed-placement-career-details > div + div { margin-top: 20px; padding-top: 18px; border-top: 1px solid #e3dacf; }
+.ed-placement-career-details h4 { color: #0d2e51; font-size: 16px; font-weight: 750; line-height: 1.4; }
+.ed-placement-career-details ul { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px 20px; }
+.ed-placement-career-card .ed-secondary-card-links { margin-top: 0; }
+@media (max-width: 580px) {
+  .ed-placement-career-details ul { grid-template-columns: 1fr; }
+}
 .ed-admissions-study-routes { width: 100%; margin-top: 25px; padding-top: 19px; border-top: 1px solid #d9ccbc; }
 .ed-admissions-study-routes h4 { color: #9c401b; font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
 .ed-admissions-study-routes dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 13px; }
@@ -179,6 +187,67 @@
 .ed-contact-record-card strong { color: #0d2e51; font-size: 15px; line-height: 1.35; }
 .ed-contact-record-card span { color: #40566a; font-size: 14px; line-height: 1.6; }
 
+/* Admissions, careers and enquiry guidance share the existing editorial surfaces. */
+.ed-secondary .ed-section-nav { margin-top: 28px; }
+#placement-figures-title, #placement-support-title, #company-title, #history-title,
+#placement-stories, #placement-feedback, #admissions-title, #admissions-eligibility,
+#admissions-guidance, #admissions-psychometric, #contact-official, #counselling,
+#campus-location, #contact-enquiries, #contact-network, #career-profile,
+#career-services, #career-screening, #career-preparation { scroll-margin-top: 110px; }
+.ed-secondary .ed-unpictured-companies { padding-top: 38px; }
+.ed-secondary-history .sk-history-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.ed-secondary-history .sk-history-list article { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
+.ed-secondary-history .sk-history-list article:last-child { grid-column: span 2; }
+.ed-secondary-history .sk-history-list .ed-history-context { color: #9c401b; font-weight: 700; }
+.ed-secondary-history .sk-history-list .sk-text-link { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; margin-top: 12px; font-size: 14px; }
+.ed-placement-people > section { padding-bottom: 70px; }
+.ed-placement-people h2 { font-size: clamp(2.3rem, 3.4vw, 3.75rem); }
+.ed-alumni-preview-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.ed-alumni-preview { display: flex; align-items: flex-start; gap: 18px; min-width: 0; padding: clamp(22px, 2.4vw, 32px); border: 1px solid #e3dacf; border-radius: var(--ed-card-radius); background: #fffdfa; }
+.ed-alumni-preview > .sk-photo { flex: 0 0 80px; width: 80px; height: 80px; border-radius: 50%; overflow: hidden; }
+.ed-alumni-preview img { width: 100%; height: 100%; object-fit: cover; }
+.ed-alumni-preview > div:last-child { min-width: 0; }
+.ed-alumni-preview h3 { margin-top: 12px; font-size: 24px; line-height: 1.2; }
+.ed-alumni-preview p, .ed-employer-preview p { margin-top: 14px; color: #40566a; font-size: 14px; line-height: 1.72; }
+.ed-alumni-preview a, .ed-employer-preview a, .ed-eligibility-course a { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; margin-top: 12px; color: #9c401b; font-size: 13px; font-weight: 750; }
+.ed-employer-preview-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.ed-employer-preview { padding: clamp(24px, 3vw, 38px); border: 1px solid #e3dacf; border-radius: var(--ed-card-radius); background: #f4efe6; }
+.ed-employer-preview h3 { margin-top: 15px; font-size: 29px; line-height: 1.15; }
+.ed-employer-preview .ed-employer-role { font-size: 13px; font-weight: 700; }
+.ed-eligibility-group { margin-top: 34px; }
+.ed-eligibility-group > h3 { margin-bottom: 18px; font-size: 29px; }
+.ed-eligibility-group > ul { display: grid; gap: 12px; }
+.ed-eligibility-row { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 2.15fr); gap: 28px; min-width: 0; padding: clamp(22px, 2.4vw, 32px); border: 1px solid #e3dacf; border-radius: 14px; background: #fffdfa; }
+.ed-eligibility-row[data-program="hotel-management"] { background: #f4efe6; }
+.ed-eligibility-course { min-width: 0; }
+.ed-eligibility-course h4 { color: #0d2e51; font-family: Georgia, 'Times New Roman', serif; font-size: 23px; font-weight: 500; line-height: 1.25; }
+.ed-eligibility-course > .ed-bento-label { display: block; margin-top: 13px; }
+.ed-eligibility-row dl { display: grid; grid-template-columns: minmax(0, .5fr) minmax(0, 1.15fr) minmax(0, 1fr); gap: 24px; }
+.ed-eligibility-row dl > div { min-width: 0; }
+.ed-eligibility-row dt { margin-bottom: 10px; color: #9c401b; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.ed-eligibility-row dd { color: #40566a; font-size: 14px; line-height: 1.65; }
+.ed-eligibility-row dd > span { display: block; }
+.ed-eligibility-row dd > span + span { margin-top: 6px; }
+.ed-admissions-assessment { padding-block: 22px 72px; }
+.ed-admissions-assessment .sk-admissions-psychometric { padding: clamp(28px, 4vw, 48px); background: #f4efe6; }
+.ed-admissions-assessment h2 { margin-top: 13px; font-size: clamp(2rem, 3vw, 3rem); line-height: 1.15; }
+.ed-admissions-assessment p:not(.sk-eyebrow) { max-width: 800px; margin-top: 17px; color: #40566a; font-size: 15px; line-height: 1.7; }
+.ed-admissions-assessment a { margin-top: 24px; }
+.ed-contact-enquiries { padding-bottom: 30px; }
+.ed-contact-address { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+.ed-contact-address > .ed-photo-frame { min-height: 290px; height: 100%; }
+.ed-contact-record-card > p { margin-top: 16px; color: #40566a; font-size: 14px; line-height: 1.7; }
+.ed-career-profile { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 42px; align-items: center; padding-top: 20px; }
+.ed-career-profile > .ed-photo-frame { min-height: 360px; height: 100%; max-height: 470px; border-radius: 18px; }
+.ed-career-profile h2 { margin-top: 17px; font-size: clamp(2.3rem, 3.4vw, 3.75rem); line-height: 1.08; letter-spacing: -.045em; }
+.ed-career-profile p:not(.sk-eyebrow) { margin-top: 20px; color: #40566a; font-size: 15px; line-height: 1.75; }
+.ed-career-profile .sk-text-link { min-height: 44px; margin-top: 24px; }
+.ed-career-screening-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.ed-career-screening-grid > article { min-width: 0; padding: clamp(24px, 3vw, 36px); border: 1px solid #e3dacf; border-radius: 16px; background: #f4efe6; }
+.ed-career-screening-grid h3 { font-size: 25px; line-height: 1.2; }
+.ed-career-screening-grid p { margin-top: 15px; color: #40566a; font-size: 15px; line-height: 1.75; }
+.ed-career-preparation { padding-bottom: 75px; }
+
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .ed-placement-stat:hover { transform: translateY(-4px); border-color: #cdb9a1; box-shadow: 0 20px 40px #3e342225; }
   .ed-placement-stat:hover::before { opacity: 1; }
@@ -189,8 +258,23 @@
   .ed-secondary-bento--admissions > :first-child { grid-column: span 2; }
   .ed-contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ed-contact-grid > * { grid-column: span 1; grid-row: auto; }
+  .ed-contact-address { display: flex; }
+  .ed-contact-address > .ed-photo-frame { min-height: 0; height: 210px; }
+  .ed-eligibility-row { grid-template-columns: minmax(0, .9fr) minmax(0, 1.5fr); }
+  .ed-eligibility-row dl { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .ed-eligibility-row dl > :last-child { grid-column: span 2; }
+  .ed-alumni-preview { flex-direction: column; }
 }
 @media (max-width: 767px) {
+  .ed-secondary-history .sk-history-list, .ed-alumni-preview-grid, .ed-employer-preview-grid,
+  .ed-career-profile, .ed-career-screening-grid { grid-template-columns: 1fr; }
+  .ed-secondary-history .sk-history-list article:last-child { grid-column: auto; }
+  .ed-alumni-preview { flex-direction: row; }
+  .ed-career-profile { gap: 25px; }
+  .ed-career-profile > .ed-photo-frame { min-height: 0; height: 250px; }
+  .ed-eligibility-row { grid-template-columns: 1fr; gap: 20px; }
+  .ed-eligibility-row dl { grid-template-columns: 1fr; }
+  .ed-eligibility-row dl > :last-child { grid-column: auto; }
   .ed-secondary .sk-company-card { flex-basis: 168px; width: 168px; min-height: 98px; padding: 9px; }
   .ed-secondary .sk-company-card img { max-width: 144px; max-height: 70px; }
   .ed-secondary-heading { grid-template-columns: 1fr; gap: 12px; }
@@ -213,6 +297,8 @@
   .ed-secondary .sk-company-row-heading { align-items: start; }
 }
 @media (max-width: 580px) {
+  .ed-alumni-preview { gap: 14px; }
+  .ed-alumni-preview > .sk-photo { flex-basis: 64px; width: 64px; height: 64px; }
   .ed-admissions-study-routes dl { grid-template-columns: 1fr; }
   .ed-placement-stat-grid, .ed-contact-grid { grid-template-columns: 1fr; gap: 12px; }
   .ed-placement-stat--feature, .ed-contact-grid > * { grid-column: span 1; }

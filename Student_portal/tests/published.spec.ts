@@ -4,6 +4,51 @@ import { entry, isolateThirdParties, ready } from './helpers'
 
 test.beforeEach(async ({ page }) => isolateThirdParties(page))
 
+test('published page copy complements the richer learning and campus sections', async ({ page }) => {
+  await page.route('**/api/public/site', (route) => route.fulfill({ json: { settings: {}, entries: [
+    entry('page', 'programs', { title: 'Published study choices', summary: 'A reviewed study introduction.', body: 'A reviewed programme announcement.' }),
+    entry('page', 'campus', { title: 'Published campus title', body: 'A reviewed campus announcement.' }),
+    entry('page', 'campus-infrastructure', { title: 'Published learning spaces', body: 'A reviewed facilities announcement.' }),
+  ] } }))
+  for (const [route, title, body, selector, count] of [
+    ['/programs', 'Published study choices', 'A reviewed programme announcement.', '#learning-methods .ed-learning-card', 6],
+    ['/campus', 'Published campus title', 'A reviewed campus announcement.', '.sk-club-grid > li', 6],
+    ['/campus/infrastructure', 'Published learning spaces', 'A reviewed facilities announcement.', '.ed-learning-grid--spaces article', 4],
+  ] as const) {
+    await page.goto(route)
+    await expect(page.locator('h1')).toHaveText(title)
+    await expect(page.getByText(body, { exact: true })).toBeVisible()
+    await expect(page.locator(selector)).toHaveCount(count)
+  }
+})
+
+test('learning and campus content remains available when the publishing API fails', async ({ page }) => {
+  await page.route('**/api/public/site', (route) => route.fulfill({ status: 503, json: { message: 'Unavailable' } }))
+  for (const [route, selector, count] of [
+    ['/programs', '#learning-methods .ed-learning-card', 6],
+    ['/campus', '.ed-learning-grid--support article', 3],
+    ['/campus/infrastructure', '.ed-learning-grid--spaces article', 4],
+  ] as const) {
+    await page.goto(route)
+    await expect(page.locator('h1')).toBeVisible()
+    await expect(page.locator(selector)).toHaveCount(count)
+  }
+})
+
+test('published destinations keep the expanded About page and omit source credits', async ({ page }) => {
+  await page.route('**/api/public/site', (route) => route.fulfill({ json: { settings: {}, entries: [
+    entry('page', 'about', { title: 'About our college', body: 'An approved college announcement.' }),
+  ] } }))
+  for (const route of ['/about', '/programs', '/campus', '/placements', '/admissions', '/contact', '/about/management']) {
+    await page.goto(route)
+    await expect(page.getByText(/Original Westin|Original course record|Original admissions page|Westin source|From Westin.s published material|^Source$/i)).toHaveCount(0)
+    if (route === '/about') {
+      await expect(page.locator('#about-history')).toContainText('Established in 1999')
+      await expect(page.locator('.ed-administration-card')).toHaveCount(3)
+    }
+  }
+})
+
 test('the illustrated Home renders even when the publishing API is unavailable', async ({ page }) => {
   const requests: string[] = []
   page.on('request', (request) => { if (request.url().includes('/api/public/site')) requests.push(request.url()) })
@@ -38,7 +83,8 @@ test('published course copy updates the course page while official details remai
   await expect(page.locator('.sk-page-hero h1')).toHaveText('Published BBA title')
   await expect(page.getByText('A college update to the course.')).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Course details' })).toBeVisible()
-  await expect(page.getByRole('link', { name: /Original course record/ })).toHaveAttribute('href', /westincollegevijayawada/)
+  await expect(page.getByRole('link', { name: /Original course record/ })).toHaveCount(0)
+  await expect(page.getByRole('complementary').getByRole('link', { name: 'Ask about this course' })).toHaveAttribute('href', '/admissions#visit')
 })
 
 test('published course copy also updates the redesigned program index', async ({ page }) => {
@@ -52,7 +98,7 @@ test('published course copy also updates the redesigned program index', async ({
   await expect(page.locator('.ed-program-card')).toHaveCount(10)
 })
 
-test('published placements copy updates the redesigned overview and remains sourced', async ({ page }) => {
+test('published placements copy updates the overview and keeps reporting context', async ({ page }) => {
   await page.route('**/api/public/site', (route) => route.fulfill({ json: { settings: {}, entries: [
     entry('page', 'placements', { title: 'Published career title', summary: 'Published career summary', body: 'A reviewed career update.' }),
   ] } }))
@@ -60,7 +106,35 @@ test('published placements copy updates the redesigned overview and remains sour
   await expect(page.locator('.sk-page-hero h1')).toHaveText('Published career title')
   await expect(page.locator('.sk-page-hero-summary')).toHaveText('Published career summary')
   await expect(page.getByText('A reviewed career update.')).toBeVisible()
-  await expect(page.locator('.ed-placement-caveat a')).toHaveAttribute('href', 'https://www.westincollegevijayawada.com/')
+  await expect(page.locator('.ed-placement-caveat')).toContainText('no reporting period or campus breakdown')
+  await expect(page.locator('.ed-placement-caveat a')).toHaveCount(0)
+  await expect(page.locator('.sk-history-list article')).toHaveCount(5)
+  await expect(page.locator('.ed-alumni-preview')).toHaveCount(3)
+})
+
+test('published Career Planner copy supplements its recruitment and preparation sections', async ({ page }) => {
+  await page.route('**/api/public/site', (route) => route.fulfill({ json: { settings: {}, entries: [
+    entry('page', 'career-planner', { title: 'Published career guidance', summary: 'A reviewed recruitment introduction.', body: 'A reviewed career announcement.' }),
+  ] } }))
+  await page.goto('/career-planner')
+  await expect(page.locator('h1')).toHaveText('Published career guidance')
+  await expect(page.getByText('A reviewed career announcement.', { exact: true })).toBeVisible()
+  await expect(page.locator('#career-services .ed-learning-card')).toHaveCount(6)
+  await expect(page.locator('#career-screening article')).toHaveCount(4)
+})
+
+test('career and enquiry pages retain their information when publishing is unavailable', async ({ page }) => {
+  await page.route('**/api/public/site', (route) => route.fulfill({ status: 503, json: { message: 'Unavailable' } }))
+  for (const [route, selector, count] of [
+    ['/placements', '.sk-history-list article', 5],
+    ['/admissions', '.ed-eligibility-row', 10],
+    ['/contact', '.sk-counselling-form', 1],
+    ['/career-planner', '#career-services .ed-learning-card', 6],
+  ] as const) {
+    await page.goto(route)
+    await expect(page.locator('h1')).toBeVisible()
+    await expect(page.locator(selector)).toHaveCount(count)
+  }
 })
 
 test('published records supplement the sourced news archive', async ({ page }) => {

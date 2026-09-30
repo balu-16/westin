@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Pause, Play } from 'lucide-react'
 import { sources } from './content'
+import { placementHistory } from './secondary-content'
 
 type Company = { name: string; slug?: string; source: string }
 type LogoCompany = Company & { slug: string }
@@ -45,9 +46,9 @@ function CompanyCard({ company }: { company: LogoCompany }) {
   </span>
 }
 
-function CompanyTrack({ companies, label, source, reverse = false }: { companies: LogoCompany[]; label: string; source: string; reverse?: boolean }) {
+function CompanyTrack({ companies, label, reverse = false }: { companies: LogoCompany[]; label: string; reverse?: boolean }) {
   return <div className="sk-company-row" role="group" aria-label={label} tabIndex={0}>
-    <div className="sk-container sk-company-row-heading"><h3>{label}</h3><a href={source} target="_blank" rel="noopener noreferrer">Westin source<span className="sr-only"> (opens a new tab)</span></a></div>
+    <div className="sk-container sk-company-row-heading"><h3>{label}</h3></div>
     <div className="sk-company-viewport">
       <div className={`sk-company-track${reverse ? ' sk-company-reverse' : ''}`}>
         <div className="sk-company-set">{companies.map((company) => <CompanyCard key={company.name} company={company} />)}</div>
@@ -66,10 +67,10 @@ export function OfficialHighlights() {
         {paused ? <Play size={17} aria-hidden="true" /> : <Pause size={17} aria-hidden="true" />}{paused ? 'Play' : 'Pause'}
       </button>
     </div>
-    <CompanyTrack companies={businessLogos} label="Business and broader industry" source={sources.home} />
-    <CompanyTrack companies={hospitalityLogos} label="Hospitality and service" source={newer} reverse />
+    <CompanyTrack companies={businessLogos} label="Business and broader industry" />
+    <CompanyTrack companies={hospitalityLogos} label="Hospitality and service" reverse />
     <div className="sk-container sk-companies-caption">
-      <p>These organizations appear in Westin’s company strips or published placement material. A logo here does not describe a specific offer or package.</p>
+      <p>Explore organisations across business and hospitality. A displayed logo does not describe a specific job offer or package.</p>
     </div>
   </section>
 }
@@ -84,22 +85,16 @@ export function LegacyFeature() {
 export function UnpicturedCompanies() {
   const companies = hospitalityCompanies.filter((company) => !company.slug)
   return <section className="ed-shell ed-unpictured-companies" aria-labelledby="unpictured-companies-title">
-    <h2 id="unpictured-companies-title">Other organizations named by Westin</h2>
-    <p>These names appear in published material but do not have local logo assets for the marquee.</p>
-    <ul>{companies.map((company) => <li key={company.name} className="ed-source-card"><span>{company.name}</span><a href={company.source} target="_blank" rel="noopener noreferrer">Source<span className="sr-only"> for {company.name} (opens a new tab)</span></a></li>)}</ul>
+    <h2 id="unpictured-companies-title">More organisations across hospitality and service</h2>
+    <p>Discover further organisations in our placement history, spanning hotels, resorts, restaurants and related services.</p>
+    <ul>{companies.map((company) => <li key={company.name} className="ed-source-card"><span>{company.name}</span></li>)}</ul>
   </section>
 }
 
 export function PlacementHistory() {
-  const rows = [
-    { label: 'Business-facing page', figures: '12,000+ international · 4,000+ domestic placements', context: 'Reporting period and campus breakdown not stated', source: sources.business },
-    { label: 'Hospitality-facing page', figures: '15,000+ international · 6,000+ domestic placements', context: 'Reporting period and campus breakdown not stated', source: sources.hotelCollegeDetailed },
-    { label: 'Legacy Vijayawada homepage', figures: '2,200 international placements', context: 'Historical site figure; reporting period not stated', source: sources.legacyHome },
-    { label: '2017–18 Hyderabad record', figures: '66% of final-year students in international jobs or internships before completion', context: 'Hyderabad campus · 2017–18', source: sources.legacyPlacements },
-  ]
   return <section className="sk-placement-history" aria-labelledby="history-title">
     <p className="sk-eyebrow">Read the record in context</p><h2 id="history-title">Placement figures through the years.</h2>
-    <p>Westin’s pages publish different totals. Each is shown with its own page and original context rather than combined into a single current number.</p>
-    <div className="sk-history-list">{rows.map((row) => <article key={row.label}><span>{row.label}</span><h3>{row.figures}</h3><p>{row.context}</p><a href={row.source} target="_blank" rel="noopener noreferrer">Original record<span className="sr-only"> (opens a new tab)</span></a></article>)}</div>
+    <p>These figures cover different study areas, campuses and periods. Read each with its reporting context; they do not form one current placement total.</p>
+    <div className="sk-history-list">{placementHistory.map((row) => <article key={row.id} data-record={row.id}><span>{row.label}</span><h3>{row.figures}</h3><p className="ed-history-context">{row.context}</p><p>{row.body}</p>{row.href && <Link className="sk-text-link" to={row.href}>Read the placement record <ArrowRight size={16} aria-hidden="true" /></Link>}</article>)}</div>
   </section>
 }

@@ -14,6 +14,7 @@ export interface OfficialArchiveEntry {
   points?: string[]
   image?: string
   imageAlt?: string
+  attachment?: { title: string; href: string }
 }
 
 const blogBase = 'https://www.westincollegevijayawada.com/post/'
@@ -139,7 +140,9 @@ export const officialArchive: OfficialArchiveEntry[] = [
     id: 'international-hotel-placements-2017-18', kind: 'news', title: 'International hotel interviews, 2017–18', date: '2018', context: 'Hyderabad campus',
     summary: 'The legacy Westin page records interviews by hospitality employers at its Hyderabad campus in 2017–18.',
     source: 'https://www.westincolleges.com/vij/placements.html',
-    paragraphs: ['Westin’s legacy placement record names Atlantis The Palm, Kempinski, Madinat Jumeirah, Anantara, Dubai World Trade Centre, Sheraton and other employers that interviewed students at Hyderabad.', 'The page reports that 66% of final-year students had an international job or internship before finishing in 2017–18. This is a dated Hyderabad record, not a present-day Vijayawada rate.'],
+    paragraphs: ['The 2017–18 placement record describes international hospitality employers visiting or conducting campus interviews at Westin Hyderabad. The organisations span hotels, resorts, restaurants and convention venues in the UAE, Bahrain and Saudi Arabia.', 'The record reports that 66% of final-year students had an international job or internship before completing their course. This result belongs to the Hyderabad campus and the 2017–18 academic year.', 'The linked 2018 Hyderabad placement list records departments including food and beverage service, food production, housekeeping and front office. It includes overseas roles, a domestic job and students whose placement was pending when the list was prepared.'],
+    points: ['Atlantis The Palm, Dubai', 'Kempinski Hotel Mall of the Emirates', 'Madinat Jumeirah, Dubai', 'Desert Islands Resort & Spa by Anantara, Abu Dhabi', 'Dubai World Trade Centre, UAE', 'Sheraton, Bahrain', 'Shakespeare & Co., Dubai', 'Gloria Hotels, Dubai', 'Landmark Hotels, Saudi Arabia', 'Nando’s, Saudi Arabia'],
+    attachment: { title: 'View the 2018 Hyderabad placement list (PDF)', href: 'https://www.westincolleges.com/vij/images/attachments/Placements_list.pdf' },
   },
   {
     id: 'westin-students-uae-bahrain', kind: 'news', title: 'Westin students take hotel roles in the UAE and Bahrain', date: '2018–2021 batch', context: 'Vijayawada',

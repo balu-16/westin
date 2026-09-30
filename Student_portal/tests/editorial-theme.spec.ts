@@ -1,10 +1,26 @@
 import { expect, test } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import { isolateThirdParties } from './helpers'
+import { publicSections, fixturePrograms } from '../src/public/content'
 
 test.beforeEach(async ({ page }) => isolateThirdParties(page))
 
 const mainRoutes = ['/', '/about', '/programs', '/campus', '/placements', '/admissions', '/contact']
+
+test('public pages remove source credits while preserving external resources', async ({ page }) => {
+  const routes = [...new Set([...mainRoutes, ...Object.keys(publicSections), ...fixturePrograms.map((program) => `/programs/${program.slug}`), '/gallery', '/campus/events', '/magazine', '/news/westin-students-uae-bahrain'])]
+  for (const route of routes) {
+    await page.goto(route)
+    await expect(page.locator('h1'), route).toBeVisible()
+    await expect(page.getByText(/Original Westin|Original course record|Original admissions page|Westin source|From Westin.s published material|Figures and their sources|View original Westin archive|Original record|^Source$/i), route).toHaveCount(0)
+  }
+  await page.goto('/magazine')
+  await expect(page.getByRole('link', { name: /Open publication/ }).first()).toHaveAttribute('href', /^https:/)
+  await page.goto('/admissions')
+  await expect(page.getByRole('link', { name: 'Open Westin’s Psychometric Test' })).toHaveAttribute('href', /^https:/)
+  await page.goto('/news/westin-students-uae-bahrain')
+  await expect(page.getByRole('link', { name: /Read The Hindu coverage/ })).toHaveAttribute('href', /thehindu\.com/)
+})
 
 test('six main destinations show official source sections before FAQs and the next step', async ({ page }) => {
   for (const route of mainRoutes.slice(1)) {
@@ -87,12 +103,12 @@ test('image led cards keep contextual notes and only left photo shading', async 
     }
   }
   await page.goto('/about')
-  const left = page.locator('.sk-about-official .ed-photo-frame--left')
+  const left = page.locator('.sk-page-hero-photo')
   const plain = page.locator('.ed-bento-grid .ed-photo-frame').first()
   for (const frame of [left, plain]) {
     await expect(frame.locator('img')).toBeVisible()
   }
-  expect(await left.evaluate((node) => getComputedStyle(node, '::after').backgroundImage)).toContain('linear-gradient(90deg')
+  expect(await left.evaluate((node) => getComputedStyle(node, '::before').backgroundImage)).toContain('linear-gradient(90deg')
   expect(await plain.evaluate((node) => getComputedStyle(node, '::after').backgroundImage)).toBe('none')
   await expect(plain.locator('.ed-photo-frame-caption')).toHaveCount(0)
 })
@@ -136,28 +152,95 @@ test('placements and admissions add real photos while BBA Honours explains all f
   const honours = page.locator('.ed-program-card').filter({ hasText: 'BBA (Honours)' })
   await expect(honours.locator('.ed-photo-frame img')).toBeVisible()
   await expect(honours.locator('.ed-program-year-plan dt')).toHaveCount(4)
-  await expect(page.locator('.sk-campaign-group--hospitality .ed-card-note').filter({ hasText: 'Care lives in the details.' })).toBeVisible()
-  await expect(page.locator('.sk-campaign-group--hospitality .ed-card-note').filter({ hasText: 'Lead with purpose.' })).toBeVisible()
+  await expect(page.locator('#learning-methods')).toContainText('Internships and workplace learning')
+  await expect(page.locator('.sk-campaign-group')).toHaveCount(0)
 })
 
 test('admissions choices and campus details stay readable across screen sizes', async ({ page }) => {
-  for (const width of [390, 768, 1440]) {
+  const descriptions = [
+    [
+      'food production, food and beverage service, front office and housekeeping',
+      'Their entry requirements and training structures differ.',
+      'Explore. Experience. Excel. Your global journey begins here.',
+    ],
+    [
+      'analytics, FinTech, logistics, aviation, human resources, real estate and entrepreneurship',
+      'three-year BBA or the four-year honours route',
+    ],
+    [
+      'State Board of Intermediate Education, Andhra Pradesh',
+      'Continuous counselling involving parents',
+    ],
+  ]
+  const highlights = [
+    ['Practical Training', 'Internship Support', 'Placement Assistance'],
+    ['Business Knowledge', 'Industry Exposure', 'Career Guidance'],
+    ['Experienced Faculty', 'Exam Preparation', 'Career Support'],
+  ]
+  const titles = ['Hotel Management', 'BBA', 'Junior Intermediate College']
+  const photos = ['hm-service-team', 'bba-leadership', 'junior-life-2']
+  for (const width of [390, 640, 768, 1100, 1440]) {
     await page.setViewportSize({ width, height: 900 })
     await page.goto('/admissions')
-    const courses = page.locator('#admissions-2026 .ed-admissions-course-card')
+    const section = page.locator('#admissions-2026')
+    const courses = section.locator('.ed-admissions-course-card')
     await expect(courses).toHaveCount(3)
-    for (const course of await courses.all()) {
+    await expect(section.locator('.sk-course-highlights')).toHaveCount(0)
+    for (let index = 0; index < titles.length; index++) {
+      const course = courses.nth(index)
+      await expect(section.getByRole('heading', { name: titles[index], exact: true })).toHaveCount(1)
       await course.scrollIntoViewIfNeeded()
       const image = course.locator('.ed-admissions-course-photo img')
       await expect(image).toBeVisible()
+      await expect(image).toHaveAttribute('src', new RegExp(`/campus/${photos[index]}-`))
       expect(await image.evaluate(async (node: HTMLImageElement) => { await node.decode(); return node.naturalWidth > 0 })).toBe(true)
       await expect(course.locator('h3')).toBeVisible()
+      for (const paragraph of descriptions[index]) {
+        await expect(course.locator('p').filter({ hasText: paragraph })).toBeVisible()
+      }
+      await expect(course.locator('li')).toHaveText(highlights[index])
+    }
+    const layout = await courses.evaluateAll((nodes) => nodes.map((node) => ({
+      card: node.getBoundingClientRect().toJSON(),
+      photo: node.querySelector('.ed-admissions-course-photo')!.getBoundingClientRect().toJSON(),
+      copy: node.querySelector('.ed-admissions-course-copy')!.getBoundingClientRect().toJSON(),
+    })))
+    for (const course of layout.slice(0, 2)) {
+      expect(course.photo.bottom).toBeLessThanOrEqual(course.copy.top)
+    }
+    if (width < 768) {
+      expect(layout[0].card.bottom).toBeLessThanOrEqual(layout[1].card.top)
+      expect(layout[1].card.bottom).toBeLessThanOrEqual(layout[2].card.top)
+    } else {
+      expect(layout[0].card.top).toBeCloseTo(layout[1].card.top, 0)
+      expect(layout[0].card.right).toBeLessThanOrEqual(layout[1].card.left)
+      expect(layout[2].card.top).toBeGreaterThanOrEqual(layout[1].card.bottom)
+      expect(layout[2].card.left).toBeCloseTo(layout[0].card.left, 0)
+      expect(layout[2].card.right).toBeCloseTo(layout[1].card.right, 0)
+    }
+    if (width <= 1100) {
+      expect(layout[2].photo.bottom).toBeLessThanOrEqual(layout[2].copy.top)
+    } else {
+      expect(layout[2].copy.right).toBeLessThanOrEqual(layout[2].photo.left)
     }
     await expect(courses.last().locator('.ed-card-note')).toContainText('A strong start opens doors.')
     await expect(page.locator('.ed-admissions-study-routes dl > div')).toHaveCount(3)
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `admissions at ${width}px`).toBe(true)
 
     await page.goto('/campus')
+    const clubs = page.locator('#life .sk-club-grid > li')
+    await expect(clubs).toHaveCount(6)
+    for (const title of ['Entrepreneurship Club', 'Finance & Investment Society', 'Marketing Mavericks', 'Cultural Club']) {
+      const card = clubs.filter({ hasText: title })
+      await card.scrollIntoViewIfNeeded()
+      await expect(card.getByRole('heading', { name: title, exact: true })).toBeVisible()
+      const image = card.locator('.ed-club-photo img')
+      await expect(image).toBeVisible()
+      await expect(image).toHaveAttribute('alt', /Westin students|Westin business students/)
+      expect(await image.evaluate(async (node: HTMLImageElement) => { await node.decode(); return node.naturalWidth > 0 })).toBe(true)
+    }
+    await expect(clubs.filter({ hasText: 'Sports Club' })).toContainText('football, cricket, badminton, and athletics')
+    await expect(clubs.filter({ hasText: 'Social Responsibility Club' })).toContainText('community service projects and awareness campaigns')
     for (const title of ['Spaces for study', 'Student-led communities']) {
       const card = page.locator('.ed-bento-card').filter({ hasText: title })
       await expect(card.locator('li')).toHaveCount(3)

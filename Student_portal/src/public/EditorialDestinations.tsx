@@ -1,5 +1,5 @@
 import type { PointerEvent, ReactNode } from 'react'
-import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import type { PublicSection } from './content'
 import { EditorialNote } from './EditorialNote'
@@ -11,14 +11,14 @@ const details = {
   about: {
     eyebrow: 'Get to know Westin',
     title: 'The people and purpose behind the place.',
-    intro: 'Explore the college story in smaller pieces, then follow the people and ideas that interest you most.',
-    fullLabel: 'The complete college story.',
+    intro: 'Discover our roots in Vijayawada, our approach to learning and the people who support every student’s next step.',
+    fullLabel: 'Leadership and administration.',
     cards: [
-      { label: 'Our roots', tone: 'cream' },
+      { label: 'Our roots', tone: 'cream', image: 'about-hero', alt: 'Westin hospitality students learning together' },
       { label: 'Our approach', tone: 'photo', image: 'students-group', alt: 'A Westin educator speaking with students in a classroom' },
       { label: 'People at Westin', tone: 'plain' },
       { label: 'Recognition', tone: 'sand' },
-      { label: 'From the archive', tone: 'plain' },
+      { label: 'Support for your next step', tone: 'plain' },
       { label: 'Teaching and mentoring', tone: 'photo', image: 'faculty-excellence', alt: 'Westin faculty and students in a learning setting', note: 'Guidance helps us grow.' },
     ],
     links: [
@@ -32,7 +32,7 @@ const details = {
     eyebrow: 'Beyond the classroom',
     title: 'Room to discover what you can do.',
     intro: 'A closer look at where students study, practise, collaborate and make the most of time together.',
-    fullLabel: 'The complete campus story.',
+    fullLabel: 'Make the most of college life.',
     cards: [
       { label: 'Study', tone: 'cream' },
       { label: 'Practice', tone: 'photo', image: 'hm-front-office', alt: 'Westin hospitality students practising front office service', note: 'Confidence comes from doing.' },
@@ -41,6 +41,10 @@ const details = {
     ],
   },
 } as const
+
+export function SectionNavigation({ items, label }: { items: readonly { href: string; label: string }[]; label: string }) {
+  return <nav className="ed-shell ed-section-nav" aria-label={label}><span>On this page</span><ul>{items.map((item) => <li key={item.href}><a href={item.href}>{item.label}<ArrowRight size={14} aria-hidden="true" /></a></li>)}</ul></nav>
+}
 
 /** Decorative pointer light uses DOM style properties so cards do not rerender on every move. */
 export function moveCardLight(event: PointerEvent<HTMLElement>) {
@@ -70,7 +74,7 @@ export function OfficialContentSection({ kind, title, intro, children }: {
     card.style.setProperty('--pointer-y', `${((event.clientY - bounds.top) / bounds.height) * 100}%`)
   }}>
     <div className="ed-shell ed-source-heading">
-      <p className="ed-kicker"><span className="ed-orange-rule" aria-hidden="true" />From Westin's published material</p>
+      <p className="ed-kicker"><span className="ed-orange-rule" aria-hidden="true" />{{ about: 'People at Westin', programs: 'Explore your study options', campus: 'Life at Westin', placements: 'Career preparation', admissions: 'Admissions at Westin', contact: 'Visit and connect' }[kind]}</p>
       <div><h2 id={`official-content-${kind}`}>{title}</h2><p>{intro}</p></div>
     </div>
     <div className="ed-source-body">{children}</div>
@@ -90,20 +94,22 @@ export function EditorialDestination({ kind, sections, publishedBody, children }
       <div><h2 id="ed-destination-title">{page.title}</h2><p>{page.intro}</p></div>
     </section>
 
-    <section className="ed-shell" aria-label={`${kind === 'about' ? 'About Westin' : 'Campus life'} highlights`}>
+    {kind === 'campus' && <SectionNavigation label="Campus Life sections" items={[{ href: '#campus-highlights', label: 'Learning and campus life' }, { href: '#life', label: 'Student clubs' }, { href: '#campus', label: 'Student support' }, { href: '#campus-moments', label: 'Campus moments' }]} />}
+
+    <section className="ed-shell" id={kind === 'campus' ? 'campus-highlights' : undefined} aria-label={`${kind === 'about' ? 'About Westin' : 'Campus life'} highlights`}>
       <div className={`ed-bento-grid ed-bento-grid--${kind}`}>
         {sections.map((section, index) => {
           const card = page.cards[index]
           if (!card) return null
-          return <article key={section.title} className={`ed-bento-card ed-bento-card--${card.tone}`} onPointerMove={moveCardLight} onPointerLeave={leaveCardLight}>
+          return <article key={section.title} id={kind === 'about' && index === 0 ? 'about-history' : undefined} className={`ed-bento-card ed-bento-card--${card.tone}`} onPointerMove={moveCardLight} onPointerLeave={leaveCardLight}>
             {'image' in card && card.image ? <div className="ed-photo-frame"><img src={`/images/official/campus/${card.image}-960.webp`} srcSet={`/images/official/campus/${card.image}-480.webp 480w, /images/official/campus/${card.image}-960.webp 960w`} sizes="(min-width: 1100px) 45vw, 100vw" width="960" height="640" loading="lazy" decoding="async" alt={card.alt} /></div> : null}
             <div className="ed-bento-card-copy">
               <span className="ed-bento-label">{card.label}</span>
               <h3>{section.title}</h3>
               <p>{section.body}</p>
               {section.points?.length ? <ul>{section.points.map((point) => <li key={point}>{point}</li>)}</ul> : null}
+              {kind === 'campus' && index === 0 && <Link className="sk-text-link ed-campus-spaces-link" to="/campus/infrastructure">Explore learning spaces <ArrowRight size={17} aria-hidden="true" /></Link>}
               {'note' in card && card.note ? <EditorialNote>{card.note}</EditorialNote> : null}
-              <a className="ed-bento-source" href={section.source} target="_blank" rel="noopener noreferrer">Original Westin source <ArrowUpRight size={16} aria-hidden="true" /><span className="sr-only"> (opens a new tab)</span></a>
             </div>
           </article>
         })}
@@ -118,7 +124,7 @@ export function EditorialDestination({ kind, sections, publishedBody, children }
     <OfficialContentSection
       kind={kind}
       title={page.fullLabel}
-      intro={kind === 'about' ? 'Read the college story and a message from its founder, in Westin’s own words.' : 'Explore the spaces, clubs and activities Westin describes across its campus.'}
+      intro={kind === 'about' ? 'Meet the team guiding education and everyday campus life in Vijayawada.' : 'Find your interests, get guidance and discover the activities that bring students together.'}
     >
       {publishedBody && <article className="ed-shell ed-published-copy"><h2>More from Westin</h2><p>{publishedBody}</p></article>}
       {children}

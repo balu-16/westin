@@ -11,6 +11,9 @@ import { OfficialPhoto } from "./OfficialPhoto";
 import { EditorialNote } from "./EditorialNote";
 import { OfficialContentSection, moveCardLight, leaveCardLight } from "./EditorialDestinations";
 import { PublicFaq } from "./PublicFaq";
+import { programmeRecordsFor } from "./programme-routes";
+import { admissionsDirectionCopy } from "./secondary-content";
+import { ContactEnquiryGuide } from "./CareerSections";
 import {
   about,
   achievements,
@@ -50,9 +53,9 @@ import {
   teamVoices,
   visionAndMission,
   albumPhotos,
-  officialSources,
 } from "./officialSite";
 import type { Pic, Programme } from "./officialTypes";
+import { studentClubProfiles } from "./learning-content";
 
 export function SourceNote({ href, children }: { href: string; children: string }) {
   return (
@@ -169,11 +172,25 @@ export function AboutSection() {
           {about.knowledge.map((paragraph, index) => (
             <p key={`knowledge-${index}`}>{paragraph}</p>
           ))}
-          <SourceNote href={about.source}>Westin’s About page</SourceNote>
         </div>
       </div>
     </section>
   );
+}
+
+/** A concise introduction to the Vijayawada administration. */
+export function AdministrationSection() {
+  return <section className="ed-shell ed-administration" aria-labelledby="about-title">
+    <h3 id="about-title">The Vijayawada team.</h3>
+    <div className="ed-administration-grid">
+      {leadership.map((person) => <article key={person.id} className="ed-administration-card ed-source-card">
+        <div className="ed-administration-portrait"><OfficialPhoto mediaKey={person.image.key} alt={person.image.alt} sizes="160px" /></div>
+        <h4>{person.name}</h4>
+        <p className="ed-administration-role">{person.role}</p>
+        <p>{person.detail}</p>
+      </article>)}
+    </div>
+  </section>
 }
 
 /** 05 · The founder's message. */
@@ -218,7 +235,6 @@ export function VisionMissionSection() {
           ))}
         </ul>
         <p className="sk-vision-legacy">{visionAndMission.legacyLine}</p>
-        <SourceNote href={visionAndMission.source}>Westin’s Vision &amp; Mission page</SourceNote>
       </div>
     </section>
   );
@@ -233,7 +249,7 @@ export function LeadershipSection() {
           <p className="sk-eyebrow">Who leads Westin</p>
           <h2 id="leadership-title">The people behind the college.</h2>
         </div>
-        <p>Direction, teaching and administration, in the college&rsquo;s own words.</p>
+        <p>Direction, teaching and administration at our Vijayawada campus.</p>
       </div>
       <ul className="sk-leadership-grid">
         {leadership.map((person) => (
@@ -249,7 +265,7 @@ export function LeadershipSection() {
 }
 
 /** 08 · Counters, both placement total sets, and the recognition line. */
-export function AchievementsSection() {
+export function AchievementsSection({ includePlacementTotals = true }: { includePlacementTotals?: boolean } = {}) {
   return (
     <section className="sk-achievements" id="achievements" aria-labelledby="achievements-title" data-reveal>
       <div className="sk-container">
@@ -268,7 +284,7 @@ export function AchievementsSection() {
             </div>
           ))}
         </dl>
-        <div className="sk-placement-totals">
+        {includePlacementTotals && <div className="sk-placement-totals">
           {Object.values(achievements.totals).map((totals) => (
             <article key={totals.label} className="ed-source-card">
               <h3>{totals.label}</h3>
@@ -281,7 +297,7 @@ export function AchievementsSection() {
               <span>{totals.note}</span>
             </article>
           ))}
-        </div>
+        </div>}
         <p className="sk-achievement-recognition">{recognition.explore}</p>
       </div>
     </section>
@@ -427,7 +443,7 @@ function ProgrammeCard({ programme }: { programme: Programme }) {
           <div>
             <h4>Structure</h4>
             <ol className="sk-timeline">
-              {structureStages.map((stage) => <ProgrammeStageCard key={stage.label} stage={stage} />)}
+              {structureStages.map((stage) => <ProgrammeStageCard key={`${stage.label}-${stage.title}`} stage={stage} />)}
             </ol>
           </div>
           <div>
@@ -464,7 +480,6 @@ function ProgrammeCard({ programme }: { programme: Programme }) {
             )}
           </div>
         ))}
-        <SourceNote href={programme.source}>Westin’s official programme page</SourceNote>
       </div>
     </details>
   );
@@ -472,18 +487,7 @@ function ProgrammeCard({ programme }: { programme: Programme }) {
 
 /** Detailed official course copy belongs on its course route, not Home. */
 export function OfficialProgrammeDetail({ slug }: { slug: string }) {
-  const officialSlugs: Record<string, string[]> = {
-    bba: ["bba"],
-    "bba-honours": ["bba-4-years-programe"],
-    "bhm-three-year": ["3-years-degree-program"],
-    "bhm-honours": ["4-years-degree-program"],
-    "work-integrated-hotel-management": ["diploma-in-hotel-management"],
-    "dhm-one-year": ["dhm-1-year-course"],
-    "food-production": ["diploma-in-food-production"],
-    pgdhm: ["pgdm"],
-    intermediate: ["mec", "cec"],
-  };
-  const matches = programmes.filter((programme) => officialSlugs[slug]?.includes(programme.slug));
+  const matches = programmeRecordsFor(slug);
   if (!matches.length) return null;
   return <section className="sk-container sk-section sk-catalogue sk-route-programmes" aria-label="Full course information">
     <div className="sk-section-heading"><div><p className="sk-eyebrow">Official course information</p><h2>Course details</h2></div><p>Learning structure, eligibility and career pathways published by Westin.</p></div>
@@ -608,7 +612,7 @@ export function CampusSection() {
   );
 }
 
-/** 13 · Student life, clubs and the junior-college list. */
+/** Student clubs with fuller descriptions and their existing photographs. */
 export function StudentLifeSection() {
   return (
     <section className="sk-container sk-section sk-life" id="life" aria-labelledby="life-title" data-reveal>
@@ -620,19 +624,24 @@ export function StudentLifeSection() {
         <p>{studentLife.intro}</p>
       </div>
       <ul className="sk-club-grid">
-        {studentLife.clubs.map((club) => (
-          <li key={club} className="ed-source-card">{club}</li>
-        ))}
+        {studentClubProfiles.map((club) => {
+          const visual = club.image;
+          return (
+            <li key={club.id} className="ed-source-card">
+              {visual && (
+                <div className="ed-photo-frame ed-club-photo">
+                  <OfficialPhoto
+                    mediaKey={visual.key}
+                    alt={visual.alt}
+                    sizes="(max-width: 580px) calc(100vw - 88px), (max-width: 1100px) calc(50vw - 72px), 420px"
+                  />
+                </div>
+              )}
+              <div className="ed-club-copy"><h3>{club.title}</h3><p>{club.body}</p></div>
+            </li>
+          );
+        })}
       </ul>
-      <div className="sk-life-extra">
-        <h3>{studentLife.juniorTitle}</h3>
-        <p>{studentLife.juniorIntro}</p>
-        <ul className="sk-junior-life">
-          {studentLife.juniorItems.map((item, index) => (
-            <li key={`junior-${index}`} className="ed-source-card">{item}</li>
-          ))}
-        </ul>
-      </div>
     </section>
   );
 }
@@ -705,7 +714,7 @@ export function PlacementNewsSection() {
           sizes="(min-width: 1024px) 620px, 100vw"
         />
         <SourceNote href={placementNews.source}>
-          Read the original report in The Hindu
+          Read The Hindu coverage
         </SourceNote>
       </div>
     </section>
@@ -848,7 +857,7 @@ export function EventsSection() {
             <h3>{album.title}</h3>
             <p>
               <a href={album.source} target="_blank" rel="noopener noreferrer">
-                View on the official gallery
+                Open photo album
                 <span className="sr-only"> (opens a new tab)</span>
               </a>
             </p>
@@ -1044,11 +1053,35 @@ export function FaqSection() {
   );
 }
 
-const admissionsCourseVisuals = {
-  "Hotel Managment": { mediaKey: "campus/hm-service-team", alt: "Westin hospitality student serving water at a restaurant table" },
-  BBA: { mediaKey: "campus/bba-leadership", alt: "Westin business student writing in a notebook" },
-  "Junior Intermediate College": { mediaKey: "campus/junior-life-2", alt: "Westin junior college students listening during a workshop", note: "A strong start opens doors." },
-} as const satisfies Record<(typeof admissions2026.courses)[number]["title"], { mediaKey: string; alt: string; note?: string }>;
+const admissionsCourseDetails = {
+  "Hotel Managment": {
+    title: "Hotel Management",
+    mediaKey: "campus/hm-service-team",
+    alt: "Westin hospitality student serving water at a restaurant table",
+    paragraphs: admissionsDirectionCopy.hospitality,
+    closingLine: recognition.explore,
+  },
+  BBA: {
+    title: "BBA",
+    mediaKey: "campus/bba-leadership",
+    alt: "Westin business student writing in a notebook",
+    paragraphs: admissionsDirectionCopy.business,
+  },
+  "Junior Intermediate College": {
+    title: "Junior Intermediate College",
+    mediaKey: "campus/junior-life-2",
+    alt: "Westin junior college students listening during a workshop",
+    paragraphs: admissionsDirectionCopy.junior,
+    note: "A strong start opens doors.",
+  },
+} as const satisfies Record<(typeof admissions2026.courses)[number]["title"], {
+  title: string;
+  mediaKey: string;
+  alt: string;
+  paragraphs: readonly string[];
+  closingLine?: string;
+  note?: string;
+}>;
 
 /** 22 · Admissions 2026. */
 export function AdmissionsSection() {
@@ -1062,64 +1095,39 @@ export function AdmissionsSection() {
           </div>
           <p className="sk-admissions-line">{admissions2026.programmesLine}</p>
         </div>
-        <div className="sk-course-highlights">
+        <div className="sk-admissions-notes">
           {admissions2026.courses.map((course) => {
-            const visual = admissionsCourseVisuals[course.title];
+            const details = admissionsCourseDetails[course.title];
             return (
               <article key={course.title} className="ed-source-card ed-admissions-course-card">
+                <div className="ed-photo-frame ed-admissions-course-photo">
+                  <OfficialPhoto
+                    mediaKey={details.mediaKey}
+                    alt={details.alt}
+                    sizes={course.title === "Junior Intermediate College"
+                      ? "(max-width: 1100px) calc(100vw - 92px), (max-width: 1456px) calc(50vw - 80px), 604px"
+                      : "(max-width: 767px) calc(100vw - 92px), (max-width: 1456px) calc(50vw - 80px), 604px"}
+                  />
+                </div>
                 <div className="ed-admissions-course-copy">
-                  <h3>{course.title}</h3>
+                  <h3>{details.title}</h3>
+                  {details.paragraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                  {"closingLine" in details && <p className="sk-admissions-explore">{details.closingLine}</p>}
                   <p className="sk-course-note">Highlights:</p>
                   <ul>
                     {course.highlights.map((highlight) => (
                       <li key={highlight}>{highlight}</li>
                     ))}
                   </ul>
-                  {"note" in visual && <EditorialNote>{visual.note}</EditorialNote>}
-                </div>
-                <div className="ed-photo-frame ed-admissions-course-photo">
-                  <OfficialPhoto mediaKey={visual.mediaKey} alt={visual.alt} sizes="(max-width: 580px) calc(100vw - 64px), (max-width: 1100px) calc(50vw - 64px), 36vw" />
+                  {"note" in details && <EditorialNote>{details.note}</EditorialNote>}
                 </div>
               </article>
             );
           })}
         </div>
-        <div className="sk-admissions-notes">
-          <div className="ed-source-card">
-            <h3>Hotel Management</h3>
-            <p>{admissions2026.hotelNote}</p>
-            <p className="sk-admissions-explore">{recognition.explore}</p>
-          </div>
-          <div className="ed-source-card">
-            <h3>BBA</h3>
-            <p>{admissions2026.bbaNote}</p>
-            {admissions2026.bbaHighlights.map((paragraph, index) => (
-              <p key={`bba-${index}`}>{paragraph}</p>
-            ))}
-          </div>
-          <div className="ed-source-card">
-            <h3>Junior Intermediate College</h3>
-            <p>{admissions2026.juniorNote}</p>
-          </div>
-        </div>
         <TitledBlock title={bbaAdmissionReasons.title} items={bbaAdmissionReasons.items} />
-        <div className="sk-admissions-psychometric ed-source-card">
-          <h3>{admissions2026.psychometricTest.title}</h3>
-          <p>{admissions2026.psychometricTest.note}</p>
-          <a
-            className="sk-button sk-button-outline"
-            href={admissions2026.psychometricTest.href}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open the Psychometric Test
-            <span className="sr-only"> (opens a new tab)</span>
-          </a>
-        </div>
-        <Link className="sk-text-link" to="/admissions#visit">
-          Plan a campus tour and counselling
-          <ArrowUpRight size={17} aria-hidden="true" />
-        </Link>
       </div>
     </section>
   );
@@ -1141,12 +1149,12 @@ export function ContactSection() {
   return (
     <>
       <section className="ed-shell ed-contact-overview" id="contact-official" aria-labelledby="contact-official-title">
-        <div className="ed-secondary-heading"><p className="ed-kicker"><span className="ed-orange-rule" aria-hidden="true" />Reach the college</p><div><h2 id="contact-official-title">Talk to the college.</h2><p>Westin is more than just a place of learning; it&rsquo;s a place where dreams take flight, where ideas flourish, and where you&rsquo;ll find the support.</p></div></div>
+        <div className="ed-secondary-heading"><p className="ed-kicker"><span className="ed-orange-rule" aria-hidden="true" />Reach the college</p><div><h2 id="contact-official-title">Talk to the college.</h2><p>Connect with the Vijayawada team about a course, admission guidance or a campus visit. Choose a call for a conversation, email for a fuller enquiry, or the counselling form to prepare a WhatsApp message.</p></div></div>
         <div className="ed-contact-grid">
           <article className="ed-bento-card ed-bento-card--cream ed-contact-phone" onPointerMove={moveCardLight} onPointerLeave={leaveCardLight}>
-            <div className="ed-bento-card-copy"><span className="ed-bento-label">Call</span><h3>Speak to the Vijayawada team.</h3><ul className="ed-contact-phone-list">{[...site.contact.phones].reverse().map((line) => <li key={line}><a href={phoneHref(line)}>{line}</a></li>)}</ul></div>
+            <div className="ed-bento-card-copy"><span className="ed-bento-label">Call</span><h3>Speak to the Vijayawada team.</h3><p>Ask about your preferred course, entry requirements and the next steps for an application. You can also discuss counselling or arrange a campus visit. The mobile number below is also the college’s WhatsApp contact.</p><ul className="ed-contact-phone-list">{[...site.contact.phones].reverse().map((line) => <li key={line}><a href={phoneHref(line)}>{line}</a></li>)}</ul></div>
           </article>
-          <div className="sk-counselling ed-bento-card ed-contact-form" onPointerMove={moveCardLight} onPointerLeave={leaveCardLight}>
+          <div className="sk-counselling ed-bento-card ed-contact-form" id="counselling" onPointerMove={moveCardLight} onPointerLeave={leaveCardLight}>
           <span className="ed-bento-label">Ask a question</span>
           <h3>Get free counselling</h3>
           <p>
@@ -1223,14 +1231,14 @@ export function ContactSection() {
             </button>
           </form>
         </div>
-          <article className="ed-bento-card ed-contact-email" onPointerMove={moveCardLight} onPointerLeave={leaveCardLight}><div className="ed-bento-card-copy"><span className="ed-bento-label">Email</span><h3>Write to the team.</h3><p><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></p></div></article>
-          <article className="ed-bento-card ed-bento-card--sand ed-contact-address" onPointerMove={moveCardLight} onPointerLeave={leaveCardLight}><div className="ed-bento-card-copy"><span className="ed-bento-label">Visit</span><h3>Find us in Vijayawada.</h3><p>{site.contact.address}. {site.contact.addressNote}.</p><a className="ed-contact-directions" href={site.contact.directions} target="_blank" rel="noopener noreferrer">Get directions <ArrowUpRight size={17} aria-hidden="true" /><span className="sr-only"> (opens a new tab)</span></a></div></article>
+          <article className="ed-bento-card ed-contact-email" onPointerMove={moveCardLight} onPointerLeave={leaveCardLight}><div className="ed-bento-card-copy"><span className="ed-bento-label">Email</span><h3>Write to the team.</h3><p>Include your name, the course or topic you are interested in and the questions you would like answered. Email is useful for discussing eligibility, requesting current admission information or introducing an industry enquiry.</p><p><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></p></div></article>
+          <article className="ed-bento-card ed-bento-card--sand ed-contact-address" id="campus-location" onPointerMove={moveCardLight} onPointerLeave={leaveCardLight}><div className="ed-photo-frame"><OfficialPhoto mediaKey="campus/students-group" alt="Westin students listening to an educator during a classroom session" /></div><div className="ed-bento-card-copy"><span className="ed-bento-label">Visit</span><h3>Find us in Vijayawada.</h3><p>G V R Towers, Bharathi Nagar, opposite Vinayak Theatre, Vijayawada, Andhra Pradesh 520008, India.</p><p>Contact the team to arrange a visit and discuss the course or learning spaces you would like to explore. Ask about counselling and hostel arrangements while planning your visit.</p><a className="ed-contact-directions" href={site.contact.directions} target="_blank" rel="noopener noreferrer">Get directions <ArrowUpRight size={17} aria-hidden="true" /><span className="sr-only"> (opens a new tab)</span></a></div></article>
         </div>
-        <SourceNote href={officialSources.contact}>Westin’s original Contact page</SourceNote>
       </section>
-      <OfficialContentSection kind="contact" title="More ways to find Westin." intro="Westin lists these offices, affiliations and accreditations in its published college information.">
-        <div className="ed-shell ed-contact-records">
-          <article className="ed-contact-record-card ed-contact-offices ed-source-card"><h3>Westin offices</h3><ul className="sk-office-list">{site.offices.map((office) => <li key={office}>{office}</li>)}</ul></article>
+      <ContactEnquiryGuide />
+      <OfficialContentSection kind="contact" title="The wider Westin network." intro="Our college information includes office locations and academic affiliations. Start with the Vijayawada team for directions to the relevant service and for requests about supporting documents.">
+        <div className="ed-shell ed-contact-records" id="contact-network">
+          <article className="ed-contact-record-card ed-contact-offices ed-source-card"><h3>Westin offices</h3><p>The following office locations appear in the Westin network. Contact Vijayawada for your college enquiry and to discuss the office or service relevant to your needs.</p><ul className="sk-office-list">{site.offices.map((office) => <li key={office}>{office}</li>)}</ul></article>
           <article className="ed-contact-record-card ed-source-card"><h3>Affiliations</h3><ul>{site.affiliations.map((item) => <li key={item.name}><strong>{item.name}</strong><span>{item.note}</span></li>)}</ul></article>
           <article className="ed-contact-record-card ed-source-card"><h3>Accreditations</h3><ul>{site.accreditations.map((item) => <li key={item.name}><strong>{item.name}</strong><span>{item.note}</span></li>)}</ul></article>
         </div>
@@ -1311,14 +1319,11 @@ export function JuniorProgrammeSection() {
       </div>
       <p className="sk-catalogue-intro">{juniorProgrammeDetail.overview}</p>
       <div className="sk-titled-grid">
-        <TitledBlock title="Program Objectives" items={juniorProgrammeDetail.objectives} />
+        <TitledBlock title="Academic and Personal Development" items={juniorProgrammeDetail.programObjectives} />
         <TitledBlock title="Learning Outcomes" items={juniorProgrammeDetail.learningOutcomes} />
-        <TitledBlock title="Program Objectives" items={juniorProgrammeDetail.programObjectives} />
         <TitledBlock title="Internship &amp; Practical Learning" items={juniorProgrammeDetail.practicalLearning} />
       </div>
-      <TitledBlock title="Course Structure &amp; Key Features" items={juniorProgrammeDetail.keyFeatures} />
       <p className="sk-vision-legacy">{juniorProgrammeDetail.closing}</p>
-      <SourceNote href={juniorProgrammeDetail.source}>Westin&rsquo;s junior college course page</SourceNote>
     </section>
   );
 }
@@ -1342,7 +1347,6 @@ export function FoodProductionSection() {
           </li>
         ))}
       </ol>
-      <SourceNote href={foodProductionDetail.source}>Westin&rsquo;s Diploma in Food Production page</SourceNote>
     </section>
   );
 }
