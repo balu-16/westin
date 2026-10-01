@@ -14,6 +14,7 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "test": "playwright test",
+    "test:login-layout": "playwright test --config playwright.login.config.ts",
     "assets:skybook": "node scripts/optimize-skybook.mjs",
     "assets:company-logos": "node scripts/normalize-company-logos.mjs",
     "capture:skybook": "node scripts/capture-skybook.mjs"

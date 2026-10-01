@@ -11,6 +11,9 @@ export default defineConfig({
     },
   },
   build: {
+    // iPhone 7/7 Plus stop at iOS 15. Keep responsive queries readable by
+    // Safari 15 instead of minifying them to Safari 16.4 range syntax.
+    cssTarget: 'safari15',
     rollupOptions: {
       output: {
         // Vite 8 (rolldown) dropped the `manualChunks` object form; the

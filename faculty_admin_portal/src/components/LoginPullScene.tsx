@@ -204,9 +204,11 @@ export function LoginPullScene({
       data-pulling={pulling}
       aria-label="Westin sign-in"
     >
-      <div className="stage-grid" aria-hidden="true" />
-      <div className="stage-orbit stage-orbit-one" aria-hidden="true" />
-      <div className="stage-orbit stage-orbit-two" aria-hidden="true" />
+      <div className="stage-decoration" aria-hidden="true">
+        <div className="stage-grid" />
+        <div className="stage-orbit stage-orbit-one" />
+        <div className="stage-orbit stage-orbit-two" />
+      </div>
       <div className="stage-story">
         <div className="story-copy">
           <span className="eyebrow">
@@ -279,4 +281,3 @@ export function LoginPullScene({
     </section>
   );
 }
-

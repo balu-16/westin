@@ -19,12 +19,22 @@
   min-height: 684px;
   margin: 0 auto;
   padding: 46px 56px 48px;
-  overflow: hidden;
+  overflow: visible;
   border: 1px solid var(--pull-line);
   border-radius: 32px;
   background:
     radial-gradient(ellipse at 12% 4%, #effbff 0, transparent 62%),
     linear-gradient(130deg, #daf1ff 10%, #b1e0fb 67%, #9cd4f6);
+}
+
+/* Clip artwork separately: the form must remain visible and scrollable. */
+.login-pull-scene .stage-decoration {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
 }
 
 .login-pull-scene .stage-grid {
@@ -293,14 +303,26 @@
  * hide overflow or scale down the controls to force a fit.
  * Keep this production stylesheet in sync in the student and staff apps. */
 .login-page-shell {
-  min-height: 100vh;
-  min-height: 100dvh;
+  /* Safari before 15.4 has no dvh. Use a feature query so the build
+   * cannot discard the vh fallback when optimizing duplicate properties. */
+  --login-vh: 1vh;
+  min-height: calc(var(--login-vh) * 100);
   display: flex;
   flex-direction: column;
-  overflow-x: clip;
+  overflow-x: hidden;
   background:
     radial-gradient(ellipse at 12% 4%, #effbff 0, transparent 62%),
     linear-gradient(130deg, #daf1ff 10%, #b1e0fb 67%, #9cd4f6);
+}
+@supports (overflow: clip) {
+  .login-page-shell {
+    overflow-x: clip;
+  }
+}
+@supports (height: 100dvh) {
+  .login-page-shell {
+    --login-vh: 1dvh;
+  }
 }
 .login-page-shell .login-page-header,
 .login-page-shell .login-page-footer {
@@ -314,16 +336,15 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  flex: 1;
-  min-height: 0;
+  flex: 1 0 auto;
 }
 .login-page-shell .login-pull-scene {
-  flex: 1;
+  flex: 1 0 auto;
   width: 100%;
   max-width: 1240px;
-  min-height: 0;
+  min-height: min-content;
   margin: 0 auto;
-  padding: clamp(20px, 3dvh, 32px) 40px;
+  padding: clamp(20px, calc(var(--login-vh) * 3), 32px) 40px;
   grid-template-columns: minmax(0, 1fr) 416px;
   gap: 40px;
   border: 0;
@@ -332,7 +353,7 @@
 }
 .login-page-shell .stage-story {
   align-self: center;
-  height: min(620px, calc(100dvh - 160px));
+  height: min(620px, calc(var(--login-vh) * 100 - 160px));
   min-height: 0;
 }
 .login-page-shell .story-copy {
@@ -349,7 +370,7 @@
 .login-page-shell .pull-character {
   right: -26px;
   bottom: 8px;
-  width: clamp(190px, 26dvh, 248px);
+  width: clamp(190px, calc(var(--login-vh) * 26), 248px);
 }
 .login-page-shell .notebook-note {
   bottom: 0;
@@ -363,7 +384,7 @@
   bottom: 4px;
 }
 .login-page-shell .login-card {
-  min-height: min(540px, calc(100dvh - 190px));
+  min-height: min(540px, calc(var(--login-vh) * 100 - 190px));
   padding: 26px 28px;
 }
 .login-page-shell .login-card-topline {
@@ -458,7 +479,7 @@
     padding-block: 16px;
   }
   .login-page-shell .stage-story {
-    height: min(480px, calc(100dvh - 132px));
+    height: min(480px, calc(var(--login-vh) * 100 - 132px));
   }
   .login-page-shell .story-copy {
     padding-top: 0;
@@ -475,7 +496,7 @@
     bottom: 25px;
   }
   .login-page-shell .pull-character {
-    width: clamp(160px, 28dvh, 210px);
+    width: clamp(160px, calc(var(--login-vh) * 28), 210px);
     bottom: 0;
   }
   .login-page-shell .notebook-note {
@@ -486,7 +507,7 @@
     display: none;
   }
   .login-page-shell .login-card {
-    min-height: min(470px, calc(100dvh - 150px));
+    min-height: min(470px, calc(var(--login-vh) * 100 - 150px));
     padding: 20px 26px;
   }
   .login-page-shell .login-card-topline {
@@ -540,7 +561,7 @@
   .login-page-shell .stage-story {
     width: 100%;
     min-height: 0;
-    height: clamp(140px, 20dvh, 180px);
+    height: clamp(140px, calc(var(--login-vh) * 20), 180px);
   }
   .login-page-shell .story-copy {
     padding: 0;
@@ -571,7 +592,7 @@
   .login-page-shell .pull-character {
     right: 4px;
     bottom: -8px;
-    width: clamp(92px, 15dvh, 120px);
+    width: clamp(92px, calc(var(--login-vh) * 15), 120px);
   }
   .login-page-shell .pull-card {
     width: 100%;
