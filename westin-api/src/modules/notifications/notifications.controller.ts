@@ -1,9 +1,11 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, ParseUUIDPipe, Patch, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, ParseUUIDPipe, Patch, Post, Put, Query, Req, UnauthorizedException } from '@nestjs/common';
 import { IsBoolean, IsOptional, IsString } from 'class-validator';
 import { Roles } from '../../common/decorators/roles.decorator';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
+import { Public } from '../../common/decorators/public.decorator';
 import type { AuthUser } from '../../common/guards/jwt-auth.guard';
 import { NotificationsService } from './notifications.service';
+import { ReportReminderService } from './report-reminder.service';
 import { CreateTemplateDto, SendNotificationDto, UpdateTemplateDto } from './notifications.dto';
 
 class SettingsBodyDto {
@@ -40,7 +42,26 @@ class HistoryQueryDto {
 
 @Controller('api')
 export class NotificationsController {
-  constructor(private svc: NotificationsService) {}
+  constructor(
+    private svc: NotificationsService,
+    private reminders: ReportReminderService,
+  ) {}
+
+  /** Vercel Cron (see vercel.json `crons`) drives the daily-report reminder:
+   *  serverless instances are frozen between requests, so the in-process
+   *  interval cannot be relied on there. Vercel sends
+   *  `Authorization: Bearer ${CRON_SECRET}`; without a configured secret the
+   *  endpoint refuses to run rather than execute unauthenticated. */
+  @Public()
+  @Get('cron/report-reminder')
+  reportReminderCron(@Req() req: any) {
+    const secret = process.env.CRON_SECRET;
+    const authorization: string = req.headers?.authorization ?? '';
+    if (!secret || authorization !== `Bearer ${secret}`) {
+      throw new UnauthorizedException();
+    }
+    return this.reminders.runDueSlot();
+  }
 
   // Read — both portals share this helper shape (simple directory)
   @Get('faculty/list')

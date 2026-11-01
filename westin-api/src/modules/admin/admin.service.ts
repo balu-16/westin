@@ -117,22 +117,36 @@ export class AdminService {
       if (dupId) throw new ConflictException(`Faculty id ${facultyId} already exists`);
     }
 
-    return this.db.tx(async (client) => {
-      const user = await client.query(
-        `insert into users (role, email, password_hash, display_name, phone)
-         values ('faculty', $1, null, $2, $3) returning id`,
-        [dto.email.toLowerCase(), dto.name, dto.phone ?? null],
-      );
-      const userId = user.rows[0].id;
-      await client.query(
-        `insert into faculty_profiles (user_id, faculty_id, designation, department) values ($1, $2, $3, $4)`,
-        [userId, facultyId, dto.designation ?? null, dto.department ?? null],
-      );
-      for (const subjectId of dto.subjects ?? []) {
-        await client.query(`insert into faculty_subjects (faculty_id, subject_id) values ($1, $2)`, [userId, subjectId]);
+    try {
+      return await this.db.tx(async (client) => {
+        const user = await client.query(
+          `insert into users (role, email, password_hash, display_name, phone)
+           values ('faculty', $1, null, $2, $3) returning id`,
+          [dto.email.toLowerCase(), dto.name, dto.phone ?? null],
+        );
+        const userId = user.rows[0].id;
+        await client.query(
+          `insert into faculty_profiles (user_id, faculty_id, designation, department) values ($1, $2, $3, $4)`,
+          [userId, facultyId, dto.designation ?? null, dto.department ?? null],
+        );
+        const subjectIds = [...new Set(dto.subjects ?? [])];
+        if (subjectIds.length > 0) {
+          // One round-trip instead of one insert per subject.
+          await client.query(
+            `insert into faculty_subjects (faculty_id, subject_id) select $1, unnest($2::uuid[])`,
+            [userId, subjectIds],
+          );
+        }
+        return { id: userId, facultyId };
+      });
+    } catch (err: any) {
+      // Concurrent creates can lose the pre-check race above — surface the
+      // unique violation (email / faculty_id) as 409 instead of a 500.
+      if (err.code === '23505') {
+        throw new ConflictException('A teacher with this email or faculty id already exists — please retry');
       }
-      return { id: userId, facultyId };
-    });
+      throw err;
+    }
   }
 
   async updateTeacher(id: string, dto: Partial<{ name: string; email: string; designation: string; department: string; phone: string; status: string; subjects: string[] }>) {
@@ -145,11 +159,15 @@ export class AdminService {
       const dup = await this.db.queryOne(`select 1 from users where lower(email)=lower($1) and id<>$2`, [dto.email, id]);
       if (dup) throw new ConflictException(`Email ${dto.email} already exists`);
     }
-    if (dto.subjects) {
-      for (const sid of dto.subjects) {
-        const sub = await this.db.queryOne(`select id from subjects where id=$1`, [sid]);
-        if (!sub) throw new BadRequestException(`Unknown subjectId ${sid}`);
-      }
+    if (dto.subjects && dto.subjects.length > 0) {
+      // Single existence check for the whole list (was one query per subject).
+      const subjectIds = [...new Set(dto.subjects)];
+      const rows = await this.db.query<{ id: string }>(`select id from subjects where id = any($1::uuid[])`, [
+        subjectIds,
+      ]);
+      const found = new Set(rows.map((r) => r.id));
+      const missing = subjectIds.filter((sid) => !found.has(sid));
+      if (missing.length > 0) throw new BadRequestException(`Unknown subjectId ${missing[0]}`);
     }
 
     await this.db.tx(async (client) => {
@@ -167,8 +185,13 @@ export class AdminService {
       `, [dto.designation ?? null, dto.department ?? null, id]);
       if (dto.subjects) {
         await client.query(`delete from faculty_subjects where faculty_id = $1`, [id]);
-        for (const subjectId of dto.subjects) {
-          await client.query(`insert into faculty_subjects (faculty_id, subject_id) values ($1, $2)`, [id, subjectId]);
+        const subjectIds = [...new Set(dto.subjects)];
+        if (subjectIds.length > 0) {
+          // One round-trip instead of one insert per subject.
+          await client.query(
+            `insert into faculty_subjects (faculty_id, subject_id) select $1, unnest($2::uuid[])`,
+            [id, subjectIds],
+          );
         }
       }
     });
@@ -195,6 +218,9 @@ export class AdminService {
   // ---------- students ----------
 
   listStudents(sectionId?: string, search?: string, page?: number | string, pageSize?: number | string) {
+    if (sectionId != null && sectionId !== '' && !isUuid(sectionId)) {
+      throw new BadRequestException('sectionId must be a UUID');
+    }
     const pg = pageParams(page, pageSize);
     return this.db
       .query<any>(`
@@ -248,41 +274,55 @@ export class AdminService {
   async createStudent(dto: { name: string; email: string; sectionId: string; year: number; department?: string }) {
     const dup = await this.db.queryOne(`select 1 from users where lower(email) = lower($1)`, [dto.email]);
     if (dup) throw new ConflictException(`Email ${dto.email} already exists`);
-    const section = await this.db.queryOne<{ id: string; label: string; max_strength: number; count: number }>(`
-      select s.id, s.label, s.max_strength,
-             (select count(*)::int from student_profiles sp where sp.section_id = s.id) as count
-        from sections s where s.id = $1
-    `, [dto.sectionId]);
-    if (!section) throw new BadRequestException('Unknown section');
-    if (section.count >= section.max_strength) {
-      throw new ConflictException(`Section ${section.label} is at max strength`);
+    try {
+      const created = await this.db.tx(async (client) => {
+        // Lock the section row so the capacity check and the count+1 roll-no
+        // allocation are serialized against concurrent creates and section
+        // transfers (same pattern as updateStudent).
+        const secRow = await client.query<{ id: string; label: string; max_strength: number; count: number }>(
+          `select s.id, s.label, s.max_strength,
+                  (select count(*)::int from student_profiles sp where sp.section_id = s.id) as count
+             from sections s where s.id = $1 for update`,
+          [dto.sectionId],
+        );
+        const section = secRow.rows[0];
+        if (!section) throw new BadRequestException('Unknown section');
+        if (section.count >= section.max_strength) {
+          throw new ConflictException(`Section ${section.label} is at max strength`);
+        }
+
+        const next = await client.query<{ n: number }>(`
+          select coalesce(max(nullif(regexp_replace(student_id, '\\D', '', 'g'), '')::int), 2024999) + 1 as n
+            from student_profiles where student_id like 'STU-%'
+        `);
+        const studentId = `STU-${new Date().getFullYear()}-${String((next.rows[0]?.n ?? 1) % 1000).padStart(3, '0')}`;
+        const prefix = section.label.replace(/-\d+$/, '');
+        const rollNo = `${prefix}-${String(section.count + 1).padStart(2, '0')}`;
+
+        const user = await client.query(
+          `insert into users (role, email, password_hash, display_name)
+           values ('student', $1, $2, $3) returning id`,
+          [dto.email.toLowerCase(), hashPassword(DEFAULT_PASSWORD), dto.name],
+        );
+        const userId = user.rows[0].id;
+        await client.query(
+          `insert into student_profiles (user_id, student_id, section_id, year, department, roll_no)
+           values ($1, $2, $3, $4, $5, $6)`,
+          [userId, studentId, dto.sectionId, dto.year, dto.department ?? null, rollNo],
+        );
+        return { id: userId, studentId, rollNo };
+      });
+      this.cache.invalidate('students');
+      this.cache.invalidate('sections');
+      return created;
+    } catch (err: any) {
+      // Concurrent creates can lose the email pre-check race or collide on the
+      // generated student id / roll no — surface as 409 instead of a 500.
+      if (err.code === '23505') {
+        throw new ConflictException('A student with this email or a conflicting id already exists — please retry');
+      }
+      throw err;
     }
-
-    const next = await this.db.queryOne<{ n: number }>(`
-      select coalesce(max(nullif(regexp_replace(student_id, '\\D', '', 'g'), '')::int), 2024999) + 1 as n
-        from student_profiles where student_id like 'STU-%'
-    `);
-    const studentId = `STU-${new Date().getFullYear()}-${String((next?.n ?? 1) % 1000).padStart(3, '0')}`;
-    const prefix = section.label.replace(/-\d+$/, '');
-    const rollNo = `${prefix}-${String(section.count + 1).padStart(2, '0')}`;
-
-    const created = await this.db.tx(async (client) => {
-      const user = await client.query(
-        `insert into users (role, email, password_hash, display_name)
-         values ('student', $1, $2, $3) returning id`,
-        [dto.email.toLowerCase(), hashPassword(DEFAULT_PASSWORD), dto.name],
-      );
-      const userId = user.rows[0].id;
-      await client.query(
-        `insert into student_profiles (user_id, student_id, section_id, year, department, roll_no)
-         values ($1, $2, $3, $4, $5, $6)`,
-        [userId, studentId, dto.sectionId, dto.year, dto.department ?? null, rollNo],
-      );
-      return { id: userId, studentId, rollNo };
-    });
-    this.cache.invalidate('students');
-    this.cache.invalidate('sections');
-    return created;
   }
 
   async updateStudent(id: string, dto: Partial<{ name: string; email: string; sectionId: string; year: number; department: string; status: string }>) {
@@ -382,4 +422,9 @@ export class AdminService {
        limit $2
     `, [userRole, capped]);
   }
+}
+
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+function isUuid(value: string): boolean {
+  return UUID_RE.test(value);
 }

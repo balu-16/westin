@@ -13,6 +13,8 @@ type Entry = { value: unknown; expiresAt: number };
  */
 @Injectable()
 export class CacheService {
+  /** Hard cap on live entries so key cardinality can never grow unbounded. */
+  private static readonly MAX_ENTRIES = 1000;
   private store = new Map<string, Entry>();
   private inflight = new Map<string, Promise<unknown>>();
 
@@ -27,7 +29,16 @@ export class CacheService {
   }
 
   set<T>(key: string, value: T, ttlMs: number): void {
-    if (this.store.size >= 1000) this.sweep();
+    if (!this.store.has(key) && this.store.size >= CacheService.MAX_ENTRIES) {
+      this.sweep();
+      // Still full — every entry is live. Map preserves insertion order, so
+      // evict oldest-first (approximate LRU good enough for this cache).
+      while (this.store.size >= CacheService.MAX_ENTRIES) {
+        const oldest = this.store.keys().next().value;
+        if (oldest === undefined) break;
+        this.store.delete(oldest);
+      }
+    }
     this.store.set(key, { value, expiresAt: Date.now() + ttlMs });
   }
 

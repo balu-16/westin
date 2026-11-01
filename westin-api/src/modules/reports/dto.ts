@@ -1,4 +1,4 @@
-import { IsInt, IsOptional, IsString, IsNotEmpty, IsUUID, Matches, Min } from 'class-validator';
+import { IsInt, IsOptional, IsString, IsNotEmpty, IsUUID, Matches, MaxLength, Min } from 'class-validator';
 
 /** Report-attachments bucket limit. */
 export const MAX_ATTACHMENT_BYTES = 20 * 1024 * 1024;
@@ -33,11 +33,13 @@ export class CreateReportDto {
 
   @IsString()
   @IsNotEmpty()
+  @MaxLength(300)
   topic: string;
 
   /** Path returned earlier by POST /api/reports/upload-url. */
   @IsOptional()
   @IsString()
   @IsNotEmpty()
+  @MaxLength(500)
   attachmentPath?: string | null;
 }

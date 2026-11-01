@@ -66,7 +66,9 @@ export class ProfileService {
     try {
       exists = await this.storage.objectExists(BUCKETS.profileAvatars, path);
     } catch (e: any) {
-      throw new BadRequestException(`Could not verify avatar upload: ${e.message}`);
+      // Storage error details stay server-side.
+      this.logger.warn(`avatar existence check failed for ${path}: ${e?.message ?? e}`);
+      throw new BadRequestException('Could not verify avatar upload — please try again');
     }
     if (!exists) throw new BadRequestException('Avatar file not found — please upload again');
 

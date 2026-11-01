@@ -44,7 +44,8 @@ export class AnnouncementsService {
       `select id, title, message, category, audience, created_at
          from announcements
          ${visible}
-        order by created_at desc, id asc`,
+        order by created_at desc, id asc
+        limit 200`,
     );
     return rows.map(mapAnnouncement);
   }

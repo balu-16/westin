@@ -31,16 +31,21 @@ async function main() {
     if (applied.has(id)) continue;
     const sql = fs.readFileSync(path.join(dir, file), 'utf8');
     console.log(`applying ${file} ...`);
-    await pool.query('begin');
+    // One client for the whole migration: consecutive pool.query calls are
+    // not guaranteed to share a client, which would break the transaction.
+    const client = await pool.connect();
     try {
-      await pool.query(sql);
-      await pool.query('insert into schema_migrations (id, name) values ($1, $2)', [Number(id), file]);
-      await pool.query('commit');
+      await client.query('begin');
+      await client.query(sql);
+      await client.query('insert into schema_migrations (id, name) values ($1, $2)', [Number(id), file]);
+      await client.query('commit');
       console.log(`applied ${file}`);
     } catch (err) {
-      await pool.query('rollback');
+      await client.query('rollback').catch(() => {});
       console.error(`FAILED ${file}:`, (err as Error).message);
       process.exit(1);
+    } finally {
+      client.release();
     }
   }
 

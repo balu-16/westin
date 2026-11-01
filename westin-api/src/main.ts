@@ -11,8 +11,11 @@ import { RateLimitGuard } from './modules/ratelimit/rate-limit.guard';
 import { RateLimitService } from './modules/ratelimit/rate-limit.service';
 import { env } from './config/env';
 
+let nestApp: any = null;
+
 async function createServer() {
   const app = await NestFactory.create(AppModule);
+  nestApp = app;
   const reflector = app.get(Reflector);
 
   // Security headers + gzip for the JSON list payloads.
@@ -46,6 +49,10 @@ async function createServer() {
     (app as any).getHttpAdapter().getInstance().set('trust proxy', 1);
   }
 
+  // Runs onModuleDestroy (pg pool.end) and onApplicationShutdown hooks when
+  // app.close() is called. No-op on Vercel; used by the local SIGTERM path.
+  app.enableShutdownHooks();
+
   await app.init();
   return app.getHttpAdapter().getInstance();
 }
@@ -53,7 +60,14 @@ async function createServer() {
 let serverPromise: Promise<any> | null = null;
 
 function getServer() {
-  if (!serverPromise) serverPromise = createServer();
+  if (!serverPromise) {
+    serverPromise = createServer();
+    // Never cache a rejected bootstrap — a warm instance whose first cold
+    // start failed (e.g. transient pooler saturation) must be able to retry.
+    serverPromise.catch(() => {
+      serverPromise = null;
+    });
+  }
   return serverPromise;
 }
 
@@ -70,6 +84,15 @@ if (process.env.VERCEL !== '1') {
       server.listen(env.port, () => {
         console.log(`westin-api listening on http://localhost:${env.port}`);
       });
+      const shutdown = (signal: string) => {
+        console.log(`${signal} received — shutting down`);
+        server.close(() => {});
+        nestApp?.close().finally(() => process.exit(0));
+        // Force-exit if anything above hangs (open keep-alive sockets etc).
+        setTimeout(() => process.exit(0), 5_000).unref();
+      };
+      process.on('SIGTERM', () => shutdown('SIGTERM'));
+      process.on('SIGINT', () => shutdown('SIGINT'));
     })
     .catch((err) => {
       console.error('Failed to start westin-api:', err);

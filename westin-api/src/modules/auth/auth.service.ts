@@ -1,4 +1,4 @@
-import { BadRequestException, ForbiddenException, Injectable, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, ForbiddenException, Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import jwt from 'jsonwebtoken';
 import { env } from '../../config/env';
 import { DatabaseService } from '../../database/database.service';
@@ -34,6 +34,8 @@ export type UserPayload = {
 
 @Injectable()
 export class AuthService {
+  private readonly logger = new Logger('Auth');
+
   constructor(
     private db: DatabaseService,
     private mail: MailService,
@@ -128,18 +130,32 @@ export class AuthService {
     }
 
     const code = randomOtp();
+    // Conditional insert: the throttle is enforced atomically, so two
+    // concurrent requests cannot both pass the check above and double-send.
     const inserted = await this.db.query<{ id: string }>(
       `insert into otp_codes (user_id, code_hash, expires_at)
-       values ($1, $2, now() + interval '${OTP_TTL_MINUTES} minutes') returning id`,
+       select $1, $2, now() + interval '${OTP_TTL_MINUTES} minutes'
+        where not exists (
+          select 1 from otp_codes
+           where user_id = $1 and created_at > now() - interval '${OTP_RESEND_THROTTLE_SECONDS} seconds'
+        )
+       returning id`,
       [user.id, hmacSha256(env.otpPepper, code)],
     );
     const otpId = (inserted[0] as any)?.id;
+    if (!otpId) {
+      throw new BadRequestException(
+        `Please wait ${OTP_RESEND_THROTTLE_SECONDS}s before requesting a new code`,
+      );
+    }
     try {
       await this.mail.sendOtp(user.email, code, 'portal login');
     } catch (err: any) {
       // Clean up the OTP row so a failed delivery doesn't leave a usable code
       if (otpId) await this.db.query(`delete from otp_codes where id=$1`, [otpId]).catch(() => {});
-      throw new BadRequestException(err.message || 'Failed to send OTP — please try again');
+      // Raw SMTP errors can expose hostnames/relay details — never return them.
+      this.logger.error(`OTP send failed for user ${user.id}: ${err?.message ?? err}`);
+      throw new BadRequestException('Failed to send OTP — please try again');
     }
     return { sent: true, expiresIn: OTP_TTL_MINUTES * 60 };
   }
@@ -183,20 +199,31 @@ export class AuthService {
 
   async refresh(refreshToken: string) {
     const hash = sha256(refreshToken);
-    const row = await this.db.queryOne<any>(
-      `select r.id, r.user_id, r.expires_at, r.revoked_at
-         from refresh_tokens r where r.token_hash = $1`,
+    // Atomic claim: revoking and checking happen in one statement, so two
+    // concurrent refreshes with the same token cannot both win — rotation is
+    // single-use under concurrency.
+    const claimed = await this.db.query<any>(
+      `update refresh_tokens set revoked_at = now()
+        where token_hash = $1 and revoked_at is null and expires_at > now()
+        returning id, user_id`,
       [hash],
     );
-    if (!row || row.revoked_at || new Date(row.expires_at).getTime() < Date.now()) {
+    if (claimed.length === 0) {
       // Reuse detection: a revoked/unknown refresh token presented again means
       // the token family may be compromised — revoke all active sessions.
-      if (row?.revoked_at) {
-        await this.db.query(`update refresh_tokens set revoked_at = now() where user_id = $1 and revoked_at is null`, [row.user_id]).catch(() => undefined);
+      const existing = await this.db
+        .queryOne<any>(`select user_id from refresh_tokens where token_hash = $1`, [hash])
+        .catch(() => null);
+      if (existing?.user_id) {
+        await this.db
+          .query(`update refresh_tokens set revoked_at = now() where user_id = $1 and revoked_at is null`, [
+            existing.user_id,
+          ])
+          .catch(() => undefined);
       }
       throw new UnauthorizedException('Invalid refresh token');
     }
-    await this.db.query(`update refresh_tokens set revoked_at = now() where id = $1`, [row.id]);
+    const row = claimed[0];
     // Enforce max active sessions (rotation already revoked the presented one).
     await this.db.query(
       `update refresh_tokens set revoked_at = now()

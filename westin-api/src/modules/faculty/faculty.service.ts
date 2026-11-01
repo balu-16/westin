@@ -104,9 +104,20 @@ export class FacultyService {
     `, [facultyId]);
   }
 
-  async sectionStudents(sectionId: string) {
+  async sectionStudents(facultyId: string, sectionId: string) {
     const section = await this.db.queryOne(`select id from sections where id = $1`, [sectionId]);
     if (!section) throw new NotFoundException('Section not found');
+    // Faculty must be assigned to this section (class teacher or timetable
+    // slot) — same rule as the attendance roster.
+    const assigned = await this.db.queryOne(
+      `select 1 from sections sec
+        where sec.id=$1 and (
+          sec.class_teacher_id=$2
+          or exists (select 1 from timetable_slots t where t.section_id=sec.id and t.faculty_id=$2)
+        )`,
+      [sectionId, facultyId],
+    );
+    if (!assigned) throw new NotFoundException('Section not found');
     return this.db.query<any>(`
       select u.id, sp.student_id as "studentId", sp.roll_no as "rollNo",
              u.display_name as name, u.email, u.status,

@@ -1,4 +1,4 @@
-import { IsIn, IsInt, IsOptional, IsString, IsNotEmpty, IsUUID, Min } from 'class-validator';
+import { IsIn, IsInt, IsOptional, IsString, IsNotEmpty, IsUUID, MaxLength, Min } from 'class-validator';
 
 export const FILE_TYPES = ['pdf', 'docx', 'pptx', 'xlsx'] as const;
 export type FileType = (typeof FILE_TYPES)[number];
@@ -24,6 +24,7 @@ export class UploadUrlDto {
 export class CreateMaterialDto {
   @IsString()
   @IsNotEmpty()
+  @MaxLength(160)
   name: string;
 
   @IsOptional()
@@ -40,10 +41,12 @@ export class CreateMaterialDto {
   /** Path returned earlier by POST /api/materials/upload-url. */
   @IsString()
   @IsNotEmpty()
+  @MaxLength(500)
   storagePath: string;
 
   @IsOptional()
   @IsString()
+  @MaxLength(1000)
   description?: string | null;
 }
 
@@ -51,6 +54,7 @@ export class UpdateMaterialDto {
   @IsOptional()
   @IsString()
   @IsNotEmpty()
+  @MaxLength(160)
   name?: string;
 
   @IsOptional()
@@ -59,5 +63,6 @@ export class UpdateMaterialDto {
 
   @IsOptional()
   @IsString()
+  @MaxLength(1000)
   description?: string | null;
 }

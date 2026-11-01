@@ -105,14 +105,44 @@ export class StudentsService {
 
   async updateSettings(studentId: string, dto: Partial<{ push: boolean; email: boolean; announcements: boolean; reminders: boolean; theme: string }>) {
     const current = await this.getSettings(studentId);
-    const merged = { ...current, ...dto };
-    // theme may be null if old row has null or client omits it after light-theme removal — keep existing or default to light
-    const theme = (merged as any).theme ?? current.theme ?? 'light';
+    // The incoming dto is a transformed DTO instance whose declared-but-unset
+    // fields exist as `undefined` own properties — a plain {...current, ...dto}
+    // would overwrite real values with undefined. Merge field-by-field instead.
+    const merged = {
+      push: dto.push ?? current.push,
+      email: dto.email ?? current.email,
+      announcements: dto.announcements ?? current.announcements,
+      reminders: dto.reminders ?? current.reminders,
+      // theme may be null if old row has null — keep existing or default to light
+      theme: dto.theme ?? current.theme ?? 'light',
+    };
+    const theme = merged.theme;
+    // New rows get the merged values; existing rows update ONLY the provided
+    // fields (coalesce), so two concurrent PATCHes of different fields can no
+    // longer lose each other's write.
     await this.db.query(`
       insert into user_settings (user_id, push, email, announcements, reminders, theme)
       values ($1, $2, $3, $4, $5, $6)
-      on conflict (user_id) do update set push = $2, email = $3, announcements = $4, reminders = $5, theme = $6, updated_at = now()
-    `, [studentId, merged.push, merged.email, merged.announcements, merged.reminders, theme]);
+      on conflict (user_id) do update set
+        push = coalesce($7, user_settings.push),
+        email = coalesce($8, user_settings.email),
+        announcements = coalesce($9, user_settings.announcements),
+        reminders = coalesce($10, user_settings.reminders),
+        theme = coalesce($11, user_settings.theme),
+        updated_at = now()
+    `, [
+      studentId,
+      merged.push ?? true,
+      merged.email ?? true,
+      merged.announcements ?? true,
+      merged.reminders ?? true,
+      theme,
+      dto.push ?? null,
+      dto.email ?? null,
+      dto.announcements ?? null,
+      dto.reminders ?? null,
+      dto.theme ?? null,
+    ]);
     return { ...merged, theme };
   }
 }

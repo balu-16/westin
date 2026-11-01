@@ -14,6 +14,11 @@ export class MailService {
         port: env.smtp.port,
         secure: false,
         auth: { user: env.smtp.user, pass: env.smtp.pass },
+        // Bound the SMTP conversation so a hung relay can't stall the
+        // request until the platform kills the function.
+        connectionTimeout: 5_000,
+        greetingTimeout: 5_000,
+        socketTimeout: 10_000,
       });
     }
     return this.transporter;

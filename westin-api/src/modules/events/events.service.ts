@@ -3,7 +3,7 @@ import { DatabaseService } from '../../database/database.service';
 import { CacheService } from '../../common/cache/cache.service';
 import { kolkataNow } from '../../common/util/time';
 import { NotificationsService } from '../notifications/notifications.service';
-import { StorageService, BUCKETS } from '../storage/storage.service';
+import { StorageService, BUCKETS, isServerGeneratedPath } from '../storage/storage.service';
 import { CreateEventDto, UpdateEventDto } from './dto';
 
 type EventRow = {
@@ -84,7 +84,8 @@ export class EventsService {
                 to_char(end_date, 'YYYY-MM-DD') as end_date,
                 event_time, location, is_live, description, created_by, poster_path
            from events
-          order by start_date asc, created_at asc`,
+          order by start_date asc, created_at asc
+          limit 500`,
       ),
     );
     const today = kolkataNow().today;
@@ -149,6 +150,9 @@ export class EventsService {
     if (dto.posterPath && dto.posterPath.length > 500) {
       throw new BadRequestException('posterPath too long');
     }
+    if (dto.posterPath && !isServerGeneratedPath(dto.posterPath)) {
+      throw new BadRequestException('posterPath must be a path returned by the upload endpoint');
+    }
     const row = await this.db.queryOne<EventRow>(
       `insert into events (title, category, start_date, end_date, event_time, location, is_live, description, created_by, poster_path)
        values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
@@ -195,6 +199,15 @@ export class EventsService {
     if (endDate && endDate < startDate) {
       throw new BadRequestException('endDate must be on or after startDate');
     }
+    // A NEW poster path must come from the upload endpoint; re-sending the
+    // row's existing (possibly legacy-format) path stays allowed.
+    if (
+      dto.posterPath?.trim() &&
+      dto.posterPath.trim() !== existing.poster_path &&
+      !isServerGeneratedPath(dto.posterPath.trim())
+    ) {
+      throw new BadRequestException('posterPath must be a path returned by the upload endpoint');
+    }
 
     // Dynamic SET built from fixed column names only; values stay parameterized.
     const sets: string[] = ['updated_at = now()'];
@@ -212,7 +225,6 @@ export class EventsService {
     if (dto.description !== undefined) set('description', dto.description?.trim() || null);
     if (dto.isLive !== undefined) set('is_live', dto.isLive);
     if (dto.posterPath !== undefined) set('poster_path', dto.posterPath?.trim() || null);
-
     const row = await this.db.queryOne<EventRow>(
       `update events set ${sets.join(', ')}
         where id = $1
@@ -310,6 +322,9 @@ export class EventsService {
       throw new NotFoundException('Event not found');
     }
     if (!dto.storagePath || dto.storagePath.length > 500) throw new BadRequestException('storagePath required');
+    if (!isServerGeneratedPath(dto.storagePath)) {
+      throw new BadRequestException('storagePath must be a path returned by the upload endpoint');
+    }
     const kind = dto.kind && ['poster', 'gallery', 'reference'].includes(dto.kind) ? dto.kind : 'gallery';
     // Best-effort: verify object exists (HEAD), but don't fail if storage is eventually consistent
     try {

@@ -1,32 +1,32 @@
 import { Body, Controller, Get, HttpCode, Post, Req } from '@nestjs/common';
-import { IsIn, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsIn, IsNotEmpty, IsOptional, IsString, MaxLength } from 'class-validator';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { Public } from '../../common/decorators/public.decorator';
 import type { AuthUser } from '../../common/guards/jwt-auth.guard';
 import { AuthService } from './auth.service';
 
 class LoginDto {
-  @IsString() @IsNotEmpty() identifier: string; // email or STU-/FAC-/ADM- id
-  @IsString() @IsNotEmpty() password: string;
+  @IsString() @IsNotEmpty() @MaxLength(200) identifier: string; // email or STU-/FAC-/ADM- id
+  @IsString() @IsNotEmpty() @MaxLength(200) password: string;
 }
 
 class OtpRequestDto {
-  @IsString() @IsNotEmpty() identifier: string;
+  @IsString() @IsNotEmpty() @MaxLength(200) identifier: string;
   @IsOptional() @IsIn(['faculty', 'admin']) portal?: string;
 }
 
 class OtpVerifyDto {
-  @IsString() @IsNotEmpty() identifier: string;
-  @IsString() @IsNotEmpty() code: string;
+  @IsString() @IsNotEmpty() @MaxLength(200) identifier: string;
+  @IsString() @IsNotEmpty() @MaxLength(10) code: string;
   @IsOptional() @IsIn(['faculty', 'admin']) portal?: string;
 }
 
 class RefreshDto {
-  @IsString() @IsNotEmpty() refreshToken: string;
+  @IsString() @IsNotEmpty() @MaxLength(200) refreshToken: string;
 }
 
 class LogoutDto {
-  @IsString() @IsOptional() refreshToken?: string;
+  @IsString() @IsOptional() @MaxLength(200) refreshToken?: string;
 }
 
 @Controller('api/auth')

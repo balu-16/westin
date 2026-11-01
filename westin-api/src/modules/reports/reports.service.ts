@@ -1,6 +1,6 @@
 import { BadRequestException, ForbiddenException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { DatabaseService } from '../../database/database.service';
-import { StorageService, BUCKETS } from '../storage/storage.service';
+import { StorageService, BUCKETS, isServerGeneratedPath } from '../storage/storage.service';
 import { pageParams, paginatedEnvelope } from '../../common/util/pagination';
 import { CreateReportDto, MAX_ATTACHMENT_BYTES } from './dto';
 
@@ -142,6 +142,20 @@ export class ReportsService {
 
   async create(dto: CreateReportDto, userId: string): Promise<DailyReportJson> {
     parseDate(dto.reportDate, 'reportDate');
+    const attachmentPath = dto.attachmentPath?.trim() || null;
+    if (attachmentPath) {
+      if (attachmentPath.length > 500 || !isServerGeneratedPath(attachmentPath)) {
+        throw new BadRequestException('attachmentPath must be a path returned by the upload endpoint');
+      }
+      // Best-effort existence check (same tolerance as materials): fail on a
+      // definite not-found, swallow transient storage errors.
+      try {
+        const head = await this.storage.headObject(BUCKETS.reportAttachments, attachmentPath);
+        if (!head.exists) throw new BadRequestException('Uploaded object not found — re-upload the file');
+      } catch (e) {
+        if (e instanceof BadRequestException) throw e;
+      }
+    }
     const section = await this.db.queryOne(`select id from sections where id = $1::uuid`, [
       dto.sectionId,
     ]);
@@ -173,7 +187,7 @@ export class ReportsService {
           dto.subjectId,
           dto.reportDate,
           dto.topic.trim(),
-          dto.attachmentPath?.trim() || null,
+          attachmentPath,
         ],
       );
       return this.mapReport(row!);

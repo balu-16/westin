@@ -614,6 +614,8 @@ export class NotificationsService {
           this.logger.warn(
             `OneSignal invalid_aliases (${invalid.length}) — retrying with ${externalIds.length - invalid.length}/${externalIds.length} external_ids`,
           );
+          // Backoff with jitter so a degraded OneSignal isn't hammered.
+          await new Promise((resolve) => setTimeout(resolve, 250 * 2 ** attempt + Math.random() * 250));
           const bad = new Set<string>(invalid);
           externalIds = externalIds.filter((id) => !bad.has(id));
           continue;

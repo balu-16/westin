@@ -1,6 +1,7 @@
 import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { DatabaseService } from '../../database/database.service';
-import { StorageService, BUCKETS } from '../storage/storage.service';
+import { CacheService } from '../../common/cache/cache.service';
+import { StorageService, BUCKETS, isServerGeneratedPath } from '../storage/storage.service';
 import { CreateMaterialDto, FileType, MAX_FILE_BYTES, UpdateMaterialDto } from './dto';
 import { pageParams, paginatedEnvelope } from '../../common/util/pagination';
 
@@ -42,6 +43,7 @@ export class MaterialsService {
 
   constructor(
     private db: DatabaseService,
+    private cache: CacheService,
     private storage: StorageService,
   ) {}
 
@@ -109,41 +111,46 @@ export class MaterialsService {
     const envelope = paginatedEnvelope(mappedFiles.map((m) => ({ ...m.json, __total: m.__total }) as any), effPg);
     const files = envelope.rows;
 
-    const folderRows = await this.db.query<{
-      subject_id: string | null;
-      subject_name: string | null;
-      file_count: string;
-    }>(
-      `select f.subject_id, s.name as subject_name, count(*) as file_count
-         from study_files f
-         left join subjects s on s.id = f.subject_id
-        group by f.subject_id, s.name
-        order by s.name asc nulls last`,
-    );
-    const folders = folderRows.map((r) => ({
+    // folders + stats always describe the whole collection (identical for
+    // every caller and unchanged by the file filters) — cache the aggregate
+    // queries and invalidate on every write.
+    const meta = await this.cache.wrap('materials:meta', 60_000, async () => {
+      const folderRows = await this.db.query<{
+        subject_id: string | null;
+        subject_name: string | null;
+        file_count: string;
+      }>(
+        `select f.subject_id, s.name as subject_name, count(*) as file_count
+           from study_files f
+           left join subjects s on s.id = f.subject_id
+          group by f.subject_id, s.name
+          order by s.name asc nulls last`,
+      );
+      const statsRow = await this.db.queryOne<{
+        total_files: string;
+        total_size: string | null;
+        subject_count: string;
+      }>(
+        `select count(*) as total_files,
+                coalesce(sum(size_bytes), 0) as total_size,
+                count(distinct subject_id) as subject_count
+           from study_files`,
+      );
+      return { folderRows, statsRow };
+    });
+    const folders = meta.folderRows.map((r) => ({
       id: r.subject_id,
       name: r.subject_name ?? 'General',
       fileCount: Number(r.file_count),
     }));
 
-    const statsRow = await this.db.queryOne<{
-      total_files: string;
-      total_size: string | null;
-      subject_count: string;
-    }>(
-      `select count(*) as total_files,
-              coalesce(sum(size_bytes), 0) as total_size,
-              count(distinct subject_id) as subject_count
-         from study_files`,
-    );
-
     return {
       files,
       folders,
       stats: {
-        totalFiles: Number(statsRow?.total_files ?? 0),
-        totalSize: Number(statsRow?.total_size ?? 0),
-        subjects: Number(statsRow?.subject_count ?? 0),
+        totalFiles: Number(meta.statsRow?.total_files ?? 0),
+        totalSize: Number(meta.statsRow?.total_size ?? 0),
+        subjects: Number(meta.statsRow?.subject_count ?? 0),
       },
       pagination: {
         page: envelope.page,
@@ -174,6 +181,9 @@ export class MaterialsService {
     if (dto.sizeBytes > MAX_FILE_BYTES) {
       throw new BadRequestException('File exceeds the 50 MB study-materials limit');
     }
+    if (!isServerGeneratedPath(dto.storagePath)) {
+      throw new BadRequestException('storagePath must be a path returned by the upload endpoint');
+    }
     // Verify the object actually landed in storage so stats/download URLs never poison.
     try {
       const head = await this.storage.headObject(BUCKETS.studyMaterials, dto.storagePath);
@@ -201,6 +211,7 @@ export class MaterialsService {
         userId,
       ],
     );
+    this.cache.invalidate('materials');
     return this.mapFile(row!);
   }
 
@@ -231,6 +242,7 @@ export class MaterialsService {
         [...params, id],
       );
       if (!updated) throw new NotFoundException('Material not found');
+      this.cache.invalidate('materials');
       return this.mapFile(updated);
     }
     return this.mapFile(await this.findOneRow(id));
@@ -239,6 +251,7 @@ export class MaterialsService {
   async remove(id: string) {
     const row = await this.findOneRow(id);
     await this.db.query(`delete from study_files where id = $1`, [id]);
+    this.cache.invalidate('materials');
     try {
       await this.storage.deleteObject(BUCKETS.studyMaterials, row.storage_path);
     } catch (err) {

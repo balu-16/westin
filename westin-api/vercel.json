@@ -1,6 +1,10 @@
 {
     "version": 2,
     "buildCommand": "npm install && npm run build",
+    "crons": [
+        { "path": "/api/cron/report-reminder", "schedule": "30 14 * * *" },
+        { "path": "/api/cron/report-reminder", "schedule": "30 15 * * *" }
+    ],
     "builds": [
         {
             "src": "src/main.ts",
@@ -11,22 +15,11 @@
         {
             "src": "/api/(.*)",
             "methods": ["OPTIONS"],
-            "dest": "src/main.ts",
-            "headers": {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-                "Access-Control-Allow-Headers": "Content-Type, Authorization, Accept, x-device-api-key",
-                "Access-Control-Allow-Credentials": "true",
-                "Access-Control-Max-Age": "86400"
-            }
+            "dest": "src/main.ts"
         },
         {
             "src": "/(.*)",
-            "dest": "src/main.ts",
-            "headers": {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Credentials": "true"
-            }
+            "dest": "src/main.ts"
         }
     ]
 }

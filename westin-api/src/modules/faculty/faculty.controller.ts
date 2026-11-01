@@ -20,7 +20,7 @@ export class FacultyController {
   }
 
   @Get('sections/:id/students')
-  sectionStudents(@Param('id', ParseUUIDPipe) id: string) {
-    return this.faculty.sectionStudents(id);
+  sectionStudents(@Param('id', ParseUUIDPipe) id: string, @CurrentUser() user: AuthUser) {
+    return this.faculty.sectionStudents(user.id, id);
   }
 }

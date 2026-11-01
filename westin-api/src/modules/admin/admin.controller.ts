@@ -1,42 +1,42 @@
-import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, Query, HttpCode } from '@nestjs/common';
-import { IsArray, IsEmail, IsIn, IsInt, IsOptional, IsString, IsUUID, Max, Min } from 'class-validator';
+import { BadRequestException, Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, Query, HttpCode } from '@nestjs/common';
+import { IsArray, IsEmail, IsIn, IsInt, IsOptional, IsString, IsUUID, Max, MaxLength, Min } from 'class-validator';
 import { Roles } from '../../common/decorators/roles.decorator';
 import { AdminService } from './admin.service';
 
 class CreateTeacherDto {
-  @IsString() name: string;
-  @IsEmail() email: string;
-  @IsOptional() @IsString() facultyId?: string;
-  @IsOptional() @IsString() designation?: string;
-  @IsOptional() @IsString() department?: string;
-  @IsOptional() @IsString() phone?: string;
+  @IsString() @MaxLength(200) name: string;
+  @IsEmail() @MaxLength(320) email: string;
+  @IsOptional() @IsString() @MaxLength(32) facultyId?: string;
+  @IsOptional() @IsString() @MaxLength(120) designation?: string;
+  @IsOptional() @IsString() @MaxLength(120) department?: string;
+  @IsOptional() @IsString() @MaxLength(32) phone?: string;
   @IsOptional() @IsArray() @IsUUID('4', { each: true }) subjects?: string[];
 }
 
 class UpdateTeacherDto {
-  @IsOptional() @IsString() name?: string;
-  @IsOptional() @IsEmail() email?: string;
-  @IsOptional() @IsString() designation?: string;
-  @IsOptional() @IsString() department?: string;
-  @IsOptional() @IsString() phone?: string;
+  @IsOptional() @IsString() @MaxLength(200) name?: string;
+  @IsOptional() @IsEmail() @MaxLength(320) email?: string;
+  @IsOptional() @IsString() @MaxLength(120) designation?: string;
+  @IsOptional() @IsString() @MaxLength(120) department?: string;
+  @IsOptional() @IsString() @MaxLength(32) phone?: string;
   @IsOptional() @IsIn(['active', 'inactive']) status?: string;
   @IsOptional() @IsArray() @IsUUID('4', { each: true }) subjects?: string[];
 }
 
 class CreateStudentDto {
-  @IsString() name: string;
-  @IsEmail() email: string;
+  @IsString() @MaxLength(200) name: string;
+  @IsEmail() @MaxLength(320) email: string;
   @IsUUID() sectionId: string;
-  @IsInt() year: number;
-  @IsOptional() @IsString() department?: string;
+  @IsInt() @Min(1) @Max(6) year: number;
+  @IsOptional() @IsString() @MaxLength(120) department?: string;
 }
 
 class UpdateStudentDto {
-  @IsOptional() @IsString() name?: string;
-  @IsOptional() @IsEmail() email?: string;
+  @IsOptional() @IsString() @MaxLength(200) name?: string;
+  @IsOptional() @IsEmail() @MaxLength(320) email?: string;
   @IsOptional() @IsUUID() sectionId?: string;
   @IsOptional() @IsInt() @Min(1) @Max(6) year?: number;
-  @IsOptional() @IsString() department?: string;
+  @IsOptional() @IsString() @MaxLength(120) department?: string;
   @IsOptional() @IsIn(['active', 'inactive']) status?: string;
 }
 
@@ -106,6 +106,9 @@ export class AdminController {
 
   @Get('login-logs')
   loginLogs(@Query('role') role: 'teacher' | 'student' = 'teacher', @Query('limit') limit?: string) {
+    if (role !== 'teacher' && role !== 'student') {
+      throw new BadRequestException('role must be teacher or student');
+    }
     return this.admin.loginLogs(role, limit ? Number(limit) : 10);
   }
 }

@@ -111,7 +111,12 @@ export class RateLimitGuard implements CanActivate {
 
 function clientIp(req: any): string {
   const fwd = req.headers?.['x-forwarded-for'];
-  if (typeof fwd === 'string' && fwd.trim()) return fwd.split(',')[0].trim();
+  if (typeof fwd === 'string' && fwd.trim()) {
+    // Take the LAST hop: the trusted proxy (Vercel) appends the connecting
+    // client's IP, while earlier entries are client-supplied and spoofable.
+    const hops = fwd.split(',').map((h) => h.trim()).filter(Boolean);
+    if (hops.length > 0) return hops[hops.length - 1];
+  }
   return req.socket?.remoteAddress ?? 'unknown';
 }
 
